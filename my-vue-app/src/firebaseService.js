@@ -1,5 +1,4 @@
 // this file will contain methods to fetch data from firebase
-
 import { getDatabase, ref, get } from 'firebase/database';
 import { initializeApp } from 'firebase/app';
 import firebaseConfig from './firebaseConfig'; // Import your Firebase configuration
