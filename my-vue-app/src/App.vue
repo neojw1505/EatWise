@@ -49,7 +49,7 @@ export default {
       this.supermarketData = await smAPI.fetchProductsByTitleAndPrice(this.title, this.price);
     },
     async fetchProductsByPromo(){
-      this.supermarketData = await smAPI.fetchProductsByPromo();
+      this.supermarketData = await smAPI.fetchProductsByPromo(false);
     },
   },
   // You can use the `onMounted` hook to fetch data when the component is mounted
