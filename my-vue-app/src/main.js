@@ -2,6 +2,8 @@ import { createApp } from 'vue'
 import App from './App.vue'
 import * as supermarketAPI  from './firebaseService';
 import spoonacularObj from './api/spoonacular';
+import 'bootstrap/dist/css/bootstrap.css';
+import 'bootstrap/dist/js/bootstrap.js';
 
 // Initialise app
 const app = createApp(App);
