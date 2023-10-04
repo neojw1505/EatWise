@@ -163,6 +163,50 @@ export const fetchProductsByPrice = async (price, ascending = true) => {
   }
 };
 
+// Function to fetch products by title, price, and sorting order
+export const fetchProductsByTitleAndPrice = async (title, maxPrice, ascending = true) => {
+  const path = `/${baseURL}`; // Set the path to the root
+  const dataRef = ref(database, path);
+
+  try {
+    const snapshot = await get(dataRef);
+    if (snapshot.exists()) {
+      const allProducts = snapshot.val();
+      const matchingProducts = [];
+
+      // Iterate through the supermarkets and filter products by title and price
+      for (const supermarketName in allProducts) {
+        if (allProducts.hasOwnProperty(supermarketName)) {
+          const products = allProducts[supermarketName];
+
+          const filteredProducts = products.filter((product) =>
+            product.product_title.toLowerCase().includes(title.toLowerCase()) &&
+            parseFloat(product.product_price.replace('$', '')) <= maxPrice
+          );
+
+          matchingProducts.push(...filteredProducts);
+        }
+      }
+
+      // Sort the matching products based on sorting order
+      matchingProducts.sort((a, b) => {
+        const priceA = parseFloat(a.product_price.replace('$', ''));
+        const priceB = parseFloat(b.product_price.replace('$', ''));
+        const comparison = ascending ? priceA - priceB : priceB - priceA;
+        return comparison;
+      });
+
+      return matchingProducts;
+    } else {
+      console.log('No data available');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+};
+
 // Function to fetch products with promotions and optional sorting by price
 export const fetchProductsByPromo = async (ascending = true) => {
   const path = `/${baseURL}`;
@@ -210,40 +254,47 @@ export const fetchProductsByPromo = async (ascending = true) => {
     throw error;
   }
 };
-// Function to fetch products by title, price, and sorting order
-export const fetchProductsByTitleAndPrice = async (title, maxPrice, ascending = true) => {
-  const path = `/${baseURL}`; // Set the path to the root
-  const dataRef = ref(database, path);
 
+export const fetchProductsByPromoAndSupermarket = async (supermarketName = '', ascending = true) => {
   try {
+    const path = `/${baseURL}`;
+    const dataRef = ref(database, path);
+
     const snapshot = await get(dataRef);
+
     if (snapshot.exists()) {
       const allProducts = snapshot.val();
-      const matchingProducts = [];
+      const promotedProducts = [];
 
-      // Iterate through the supermarkets and filter products by title and price
-      for (const supermarketName in allProducts) {
-        if (allProducts.hasOwnProperty(supermarketName)) {
-          const products = allProducts[supermarketName];
-
-          const filteredProducts = products.filter((product) =>
-            product.product_title.toLowerCase().includes(title.toLowerCase()) &&
-            parseFloat(product.product_price.replace('$', '')) <= maxPrice
+      for (const superName in allProducts) {
+        if (allProducts.hasOwnProperty(superName)) {
+          const products = allProducts[superName];
+          const matchingProducts = products.filter((product) =>
+            product.product_promo &&
+            product.product_promo !== 'No promotion available' &&
+            (supermarketName === '' || supermarketName === superName)
           );
 
-          matchingProducts.push(...filteredProducts);
+          promotedProducts.push(...matchingProducts);
         }
       }
 
-      // Sort the matching products based on sorting order
-      matchingProducts.sort((a, b) => {
-        const priceA = parseFloat(a.product_price.replace('$', ''));
-        const priceB = parseFloat(b.product_price.replace('$', ''));
-        const comparison = ascending ? priceA - priceB : priceB - priceA;
-        return comparison;
-      });
+      // Sort promoted products by price if specified
+      if (ascending) {
+        promotedProducts.sort((a, b) => {
+          const priceA = parseFloat(a.product_price.match(/\$([\d.]+)/)[1]);
+          const priceB = parseFloat(b.product_price.match(/\$([\d.]+)/)[1]);
+          return priceA - priceB;
+        });
+      } else {
+        promotedProducts.sort((a, b) => {
+          const priceA = parseFloat(a.product_price.match(/\$([\d.]+)/)[1]);
+          const priceB = parseFloat(b.product_price.match(/\$([\d.]+)/)[1]);
+          return priceB - priceA;
+        });
+      }
 
-      return matchingProducts;
+      return promotedProducts;
     } else {
       console.log('No data available');
       return null;
