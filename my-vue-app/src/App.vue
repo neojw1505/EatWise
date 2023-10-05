@@ -17,6 +17,9 @@
     <br>
     <RandomRecipe/>
     <RecipesByIngredients/>
+    <BreakfastRecipe/>
+    <LunchRecipe/>
+    <DinnerRecipe/>
   </div>
 </template>
 
