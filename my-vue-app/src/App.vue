@@ -1,5 +1,6 @@
 <template>
   <div>
+
     <!-- <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
     Display supermarket data here
     <div class="owl-carousel">
@@ -20,11 +21,11 @@
     <router-view>
       
     </router-view>
+
   </div>
 </template>
 
 <script>
-import FindRecipes from './components/FindRecipes.vue';
 
 export default {
   components: { FindRecipes },
@@ -60,6 +61,7 @@ export default {
   },
 
 };
+
 </script>
 
 <style></style>
