@@ -1,5 +1,6 @@
 <template>
   <div>
+<<<<<<< Updated upstream
     <h1>Hello World</h1>
     <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
       <!-- Display supermarket data here -->
@@ -17,10 +18,14 @@
     <br>
     <RandomRecipe/>
     <RecipesByIngredients/>
+=======
+    <NewPromotions />
+>>>>>>> Stashed changes
   </div>
 </template>
 
 <script>
+<<<<<<< Updated upstream
 export default {
   name: 'YourComponentName',
   data() {
@@ -65,6 +70,8 @@ export default {
   //   }
   // },
 };
+=======
+>>>>>>> Stashed changes
 </script>
 
 <style></style>
