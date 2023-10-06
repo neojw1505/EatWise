@@ -11,7 +11,7 @@
           class="btn btn-outline-success border-0 rounded-5"
           type="submit"
         >
-          <img class="logo" src="../../images/search_logo2.jpg" alt="" type="button" />
+          <img class="logo" src="../images/search_logo2.jpg" alt="" type="button" />
         </button>
       </form>
     </div>
