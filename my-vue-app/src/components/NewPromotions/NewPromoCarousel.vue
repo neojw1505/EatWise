@@ -91,4 +91,9 @@ export default {
   justify-content: center;
   margin-top: 20px; /* Adjust as needed */
 }
+
+.btn-primary:hover{
+  background-color: #133a8d;
+  transition: background-color 0.4s ease; /* Add a smooth transition effect */
+}
 </style>
