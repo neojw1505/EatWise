@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="text-center card-button-container">
-        <a href="#" class="btn btn-primary">Go Somewhere</a>
+        <a :href="product.product_link" target="_blank" class="btn btn-primary">Check it Out!</a>
       </div>
     </div>
   </template>
@@ -35,7 +35,7 @@
   <style scoped>
   /* Add hover effect to the card */
   .card:hover {
-    background-color: #f0f0f0;
+    background-color: #f0f0f0f4;
     transition: background-color 0.3s ease;
   }
   .card-img-top {
@@ -100,5 +100,10 @@
     margin-top: auto;
     padding-bottom: 20px; /* Adjust as needed */
   }
+
+  .btn-primary:hover{
+  background-color: #133a8d;
+  transition: background-color 0.4s ease; /* Add a smooth transition effect */
+}
   </style>
   
