@@ -14,7 +14,7 @@ export default {
         highlighLink(eachLink){
             // console.log(this.$route.path);
             // console.log(eachLink.routeTo);
-            return this.$route.path===eachLink.routeTo ? 'nav-item mx-2 highlightBackground' : 'nav-item mx-2';
+            return this.$route.path.startsWith(eachLink.routeTo)   ? 'nav-item mx-2 highlightBackground' : 'nav-item mx-2';
         }
     }
 }
