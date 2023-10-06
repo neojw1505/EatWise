@@ -15,15 +15,30 @@
         id="navbarSupportedContent"
       >
         <!-- show the left logos -->
-        <NavbarLink1 />
-        <NavbarLink2 />
+        <NavbarLinkSection1 />
+        <NavbarLinkSection2 />
       </div>
     </div>
   </nav>
 </template>
 
 <script>
-export default {};
+import NavbarLinkSection1 from "./NavbarLinks/NavbarLinkSection1.vue"
+import NavbarLinkSection2 from "./NavbarLinks/NavbarLinkSection2.vue"
+
+export default {
+  name: 'Navbar',
+  components:{
+    NavbarLinkSection1,NavbarLinkSection2
+  },
+  data(){
+    return{
+      linksToPages1:[
+        
+      ]
+    }
+  }
+};
 </script>
 
 <style></style>
