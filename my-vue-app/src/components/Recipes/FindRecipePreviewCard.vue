@@ -34,6 +34,13 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped>
+.cardStyle {
+        border: #2ccfda solid 1px;
+        border-bottom-left-radius: 30px;
+        width: 200px;
+        height: 250px;
+        background-image: linear-gradient(to bottom right, #95ad61, #2ccfda);
+        color: black;
+      }
 </style>
