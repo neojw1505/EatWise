@@ -1,6 +1,6 @@
 <template>
   <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-    <Navbarlink
+    <NavbarlinkCard
       v-for="eachLink in linksToPages1"
       v-bind:eachLink="eachLink"
       :key="eachLink.linkName"
@@ -17,12 +17,12 @@ import findRecipeImage from '../images/find_recipe.png';
 import view_promotion from '../images/view_promotion.png';
 import market from '../images/market.png';
 
-import Navbarlink from "./Navbarlink.vue";
+import NavbarlinkCard from "./NavbarlinkCard.vue";
 
 export default {
   name: "NavbarLinkSection1",
   components: {
-    Navbarlink,
+    NavbarlinkCard,
   },
   data() {
     return {
