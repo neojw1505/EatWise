@@ -21,13 +21,14 @@
     <router-view>
       
     </router-view>
-    <newPromoCarousel />
+
   </div>
 </template>
 
 <script>
 
 export default {
+  components: { FindRecipes },
   data() {
     return {
       supermarketData: [],
