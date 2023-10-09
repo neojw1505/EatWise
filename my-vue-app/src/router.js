@@ -10,6 +10,7 @@ const routes = [
     // { path: '/market', component: Market },
     // { path: '/saved-recipes', component:  },
     // { path: '/profile', component:  },
+    // { path: '//progress-tracker', component: }
     // Add more routes as needed
   ];
 
