@@ -44,11 +44,18 @@
   }
   .equal-card {
     width: 100%;
-    max-width: 22rem;
+    max-width: 20rem;
     height: 30rem;
     border: none;
     border-radius: 10px;
     transition: transform 0.2s;
+    margin-right: 1rem;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+  .equal-card:last-child {
+    margin-right: 0;
   }
   /* Style the rectangle-overlay */
   .rectangle-overlay {
@@ -86,6 +93,9 @@
     transform: scale(1);
   }
 }
+  .card-content {
+    flex-grow: 1;
+  }
   .card-button-container {
     margin-top: auto;
     padding-bottom: 20px; /* Adjust as needed */
@@ -95,6 +105,5 @@
   background-color: #133a8d;
   transition: background-color 0.4s ease; /* Add a smooth transition effect */
 }
-
   </style>
   
