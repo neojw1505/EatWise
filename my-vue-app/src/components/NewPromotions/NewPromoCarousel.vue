@@ -1,5 +1,5 @@
 <template>
-  <div v-if="supermarketData" class="smaller-container text-center mx-auto">
+  <div v-if="supermarketData" class="smaller-container text-center">
     <div class="owl-carousel">
       <new-promo-card
         v-for="product in randomProducts"
@@ -8,7 +8,7 @@
       />
     </div>
 
-    <div class="text-center py-4">
+    <div class="text-center">
         <button type="button" class="btn btn-primary pill">View More</button>
     </div>
 
@@ -47,12 +47,14 @@ export default {
       this.$nextTick(() => {
         $(".owl-carousel").owlCarousel({
           items: 3,
+          nav: true,
           autoPlay: 4000,
           autoPlaySpeed: 3000,
-          autoPlayTimeout: 2000,
           autoPlayHoverPause: true,
           center: true,
           responsiveClass: true,
+          margin: 0,
+          loop: true,
           responsive: {
             0: {
               items: 1,
@@ -79,21 +81,23 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .smaller-container {
+  padding-block: 2rem;
   max-width: 80rem;
-  padding-inline-start: 5rem;
+  padding-inline: 1rem;
   background-color:#007459
 }
 
 .custom-dots {
   display: flex;
   justify-content: center;
-  margin-top: 20px; /* Adjust as needed */
+  margin-top: 2rem; /* Adjust as needed */
 }
 
 .btn-primary:hover{
   background-color: #133a8d;
   transition: background-color 0.4s ease; /* Add a smooth transition effect */
 }
+
 </style>
