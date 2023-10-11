@@ -28,7 +28,6 @@
 <script>
 
 export default {
-  components: { FindRecipes },
   data() {
     return {
       supermarketData: [],
