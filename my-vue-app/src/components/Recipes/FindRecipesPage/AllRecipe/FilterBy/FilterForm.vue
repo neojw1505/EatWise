@@ -2,7 +2,7 @@
   <div class="collapse my-2 mx-auto" id="filter" style="max-width: 800px;">
         <FilterMealType />
         <FilterDietType />
-        <!-- <FilterByKeyword /> -->
+        <FilterByKeyword />
   </div>
 </template>
 

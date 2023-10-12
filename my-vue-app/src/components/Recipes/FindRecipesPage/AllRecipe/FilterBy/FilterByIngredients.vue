@@ -1,7 +1,7 @@
 <template>
     <div>
       <div class="d-flex align-items-center">
-        <span class="fw-bold">Ingredient:</span>
+        <span class="fw-bold">{{nameOfAction}}:</span>
         <input
           class="form-control d-inline"
           v-model="addIngredientsToFilter"
@@ -30,7 +30,10 @@
   </template>
   
   <script>
+
+
   export default {
+    props:['nameOfAction'],
     data() {
       return {
         ingrediendList: [],

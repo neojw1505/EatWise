@@ -14,7 +14,8 @@
 
     <div class="collapse" id="FilterByKeywordOptions">
       <div class=" my-2 ">
-        <FilterByIngredients />
+        <FilterByIngredients nameOfAction="Ingredients to be added"/>
+        <FilterByIngredients nameOfAction="Ingredients to be removed"/>
         <!-- <FilterByPriceRange />
         <FilterBySupermarket/> -->
       </div>

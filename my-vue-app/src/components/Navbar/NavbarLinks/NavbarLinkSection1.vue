@@ -35,11 +35,6 @@ export default {
           routeTo: "/find-recipes",
         },
         {
-          linkName: "View Promotions",
-          linkLogo: view_promotion,
-          routeTo: "/view-promotions",
-        },
-        {
           linkName: "Market",
           linkLogo: market,
           routeTo: "/market",
