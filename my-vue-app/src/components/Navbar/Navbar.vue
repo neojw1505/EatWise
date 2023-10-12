@@ -1,7 +1,7 @@
 <template>
   <nav
     class="navbar navbar-expand-lg navbar-light sticky-top"
-    style="background-color: #007459"
+    style="background-color: #4F919F"
   >
     <div class="container-fluid">
       <div class="d-flex">
@@ -31,13 +31,6 @@ export default {
   components:{
     NavbarLinkSection1,NavbarLinkSection2
   },
-  data(){
-    return{
-      linksToPages1:[
-        
-      ]
-    }
-  }
 };
 </script>
 
