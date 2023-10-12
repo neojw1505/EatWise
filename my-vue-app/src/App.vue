@@ -1,7 +1,8 @@
 <template>
   <div>
-    <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
-    <!-- Display supermarket data here -->
+
+    <!-- <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
+    Display supermarket data here
     <div class="owl-carousel">
       <div class="card" style="width: 18rem" v-for="product in supermarketData" :key="product.product_link">
         <img class="card-img-top" :src="product.product_img" />
@@ -16,7 +17,11 @@
         </div>
       </div>
     </div>
-    <br />
+    <br /> -->
+    <router-view>
+      
+    </router-view>
+
   </div>
 </template>
 
@@ -55,6 +60,7 @@ export default {
   },
 
 };
+
 </script>
 
 <style></style>

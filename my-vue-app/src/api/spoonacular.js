@@ -13,17 +13,24 @@ const dietTypes = [
 
 class SpoonacularAPI {
   constructor() {
+
     this.BASE_URL =
       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
+    this.BASE_URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
 
     // Initialize axios with a base URL and default parameters
     this.axios = axios.create({
       baseURL: this.BASE_URL,
       headers: {
+
         "X-RapidAPI-Key": import.meta.env.VITE_SPOONACULAR_API_KEY,
         "X-RapidAPI-Host":
           "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       },
+
+        'X-RapidAPI-Key': import.meta.env.VITE_SPOONACULAR_API_KEY,
+        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
+      }
     });
   }
 
