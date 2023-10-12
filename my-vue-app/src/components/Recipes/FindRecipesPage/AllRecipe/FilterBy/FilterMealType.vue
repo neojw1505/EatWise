@@ -14,23 +14,34 @@
 
     <div class="collapse" id="FilterMealTypeOptions">
       <div class="d-flex justify-content-between mx-5 my-2">
-        <div @click="checked" class="filterOption col">Breakfast</div>
-        <div @click="checked" class="filterOption col">Lunch</div>
-        <div @click="checked" class="filterOption col">Dinner</div>
-        <div @click="checked" class="filterOption col">Snack</div>
+        <input @click="checked" :class="filterOption" value="Breakfast" type="button" >
+        <input @click="checked" :class="filterOption" value="Lunch" type="button" >
+        <input @click="checked" :class="filterOption" value="Dinner" type="button" >
       </div>
     </div>
-
-    
   </div>
 </template>
 
 <script>
 export default {
+  data(){
+    return{
+      filterOption:" col-3 rounded-3 mx-auto bg-light border  text-center justify-content-center d-flex align-items-center ",
+      filterOptionCheck:" col-3 rounded-3 mx-auto  bg-warning border  text-center justify-content-center d-flex align-items-center",
+      filterBy: []
+    }
+  },
   methods:{
     checked(e){
-      console.log(e.target)
-      e.target.className= e.target.className=="filterOption col" ? "filterOptionCheck col" : "filterOption col"
+      if (this.filterBy.includes(e.target.value)){
+        e.target.className=this.filterOption;
+        let index = this.filterBy.indexOf(e.target.value);
+        this.filterBy.splice(index,1);
+      }
+      else{
+        e.target.className=this.filterOptionCheck;
+        this.filterBy.push(e.target.value)
+      }
     }
   }
 };
