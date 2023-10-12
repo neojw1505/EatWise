@@ -17,6 +17,7 @@ import findRecipeImage from '../images/find_recipe.png';
 import view_promotion from '../images/view_promotion.png';
 import market from '../images/market.png';
 import progressTrackerImage from '../images/ProgressTracker.png'
+import consumption from '../images/consumption.png'
 
 import NavbarlinkCard from "./NavbarlinkCard.vue";
 
@@ -44,9 +45,14 @@ export default {
           routeTo: "/market",
         },
         {
-          linkName: "ProgressTracker",
+          linkName: "Insights",
           linkLogo: progressTrackerImage,
-          routeTo: "/progress-tracker",
+          routeTo: "/insights",
+        },
+        {
+          linkName: "Consumption",
+          linkLogo: consumption,
+          routeTo: "/consumption",
         },
       ],
     };

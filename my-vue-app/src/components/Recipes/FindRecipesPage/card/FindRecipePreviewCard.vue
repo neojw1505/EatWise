@@ -1,6 +1,6 @@
 <template>
   <router-link :to="routerTO">
-        <div class="card col-2 cardStyle">
+        <div class="card col-2 cardStyle mx-3">
           <img
             class="card-img-top"
             :src="recipe.recipeImage"
