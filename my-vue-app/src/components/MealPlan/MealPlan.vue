@@ -1,18 +1,30 @@
 <template>
-  <div>
+  <div class="container-fluid border border-success">
+    <div class="row">
+      <div class="col">
+        <h1>Your Meal Plans</h1>
+      </div>
+    </div>
+    <div class="row d-flex pb-5">
     <BreakfastRecipe
       v-if="breakfastRecipe && breakfastNutrition"
       :recipeData="breakfastRecipe"
       :nutritionData="breakfastNutrition"
+      @refresh-recipe="refreshRecipe"
     />
     <LunchRecipe
+      v-if="lunchRecipe && lunchNutrition"
       :recipeData="lunchRecipe"
       :nutritionData="lunchNutrition"
+      @refresh-recipe="refreshRecipe"
     />
     <DinnerRecipe
+      v-if="dinnerRecipe && dinnerNutrition"
       :recipeData="dinnerRecipe"
       :nutritionData="dinnerNutrition"
+      @refresh-recipe="refreshRecipe"
     />
+    </div>
   </div>
 </template>
 
@@ -66,6 +78,8 @@ export default {
         this.number
       );
       this.breakfastNutrition = await this.$spoonAPI.getNutritionByRecipeID(this.breakfastRecipe.id);
+      console.log(this.breakfastRecipe);
+      console.log(this.breakfastNutrition);
     },
     async getLunchRecipe() {
       this.lunchRecipe = await this.$spoonAPI.getLunchRecipe(
@@ -81,8 +95,26 @@ export default {
       );
       this.dinnerNutrition = await this.$spoonAPI.getNutritionByRecipeID(this.dinnerRecipe.id); 
     },
+    async refreshRecipe(mealType){
+      if (mealType === 'breakfast') {
+        // Fetch a new breakfast recipe when the child requests a refresh for breakfast
+        await this.getBreakfastRecipe()
+      } else if (mealType === 'lunch') {
+        await this.getLunchRecipe()
+      } else if (mealType === 'dinner') {
+        await this.getDinnerRecipe()
+      }
+    }
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+  /* h1 {
+    color: #FFF;
+  } */
+  .container-fluid {
+    background-color: #FFF;
+    padding: 50px;
+  }
+</style>

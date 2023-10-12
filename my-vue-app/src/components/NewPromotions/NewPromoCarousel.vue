@@ -80,11 +80,11 @@ export default {
 </script>
 
 <style>
-.smaller-container {
+/* .smaller-container {
   max-width: 80rem;
   padding-inline-start: 5rem;
   background-color:#007459
-}
+} */
 
 .custom-dots {
   display: flex;

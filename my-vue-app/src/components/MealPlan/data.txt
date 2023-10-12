@@ -1,0 +1,12 @@
+            // this.Calories = this.Nutrients.calories
+            // this.Carbs = this.Nutrients.carbs
+            // this.Fat = this.Nutrients.fat
+            // this.Protein = this.Nutrients.protein
+            // this.CaloricBreakdown = this.Nutrients.caloricBreakdown
+            // this.percentCarbs = this.Nutrients.caloricBreakdown.percentCarbs
+            // this.percentFat = this.Nutrients.caloricBreakdown.percentFat
+            // this.percentProtein = this.Nutrients.caloricBreakdown.percentProtein
+            // this.Ingredients = this.Nutrients.ingredients
+            // this.Vitamins = this.Nutrients.nutrients
+            // this.GlycemicIndex = this.Nutrients.properties[0].amount
+            // this.GlycemicLoad = this.Nutrients.properties[1].amount
