@@ -27,10 +27,6 @@ class SpoonacularAPI {
         "X-RapidAPI-Host":
           "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       },
-
-        'X-RapidAPI-Key': import.meta.env.VITE_SPOONACULAR_API_KEY,
-        'X-RapidAPI-Host': 'spoonacular-recipe-food-nutrition-v1.p.rapidapi.com'
-      }
     });
   }
 
@@ -173,7 +169,9 @@ class SpoonacularAPI {
     query = "",
     number = 10,
     includeIngredients = [],
-    excludeIngredients = []
+    excludeIngredients = [],
+    minCal = 300,
+    maxCal = 800
   ) {
     try {
       const mealTypesQuery = mealTypes.join(",");
@@ -181,7 +179,7 @@ class SpoonacularAPI {
       const includeIngredientsQuery = includeIngredients.join(",");
       const excludeIngredientsQuery = excludeIngredients.join(",");
       const response = await this.axios.get(
-        `/recipes/complexSearch?query=${query}&diet=${dietTypesQuery}&type=${mealTypesQuery}&includeIngredients=${includeIngredientsQuery}&excludeIngredients=${excludeIngredientsQuery}&number=${number}`
+        `/recipes/complexSearch?query=${query}&diet=${dietTypesQuery}&type=${mealTypesQuery}&includeIngredients=${includeIngredientsQuery}&excludeIngredients=${excludeIngredientsQuery}&number=${number}&minCalories=${minCal}&maxCalories=${maxCal}`
       );
       // extract the ids
       const recipeIDsArr = [];
