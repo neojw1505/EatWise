@@ -24,7 +24,6 @@
 
 
 
-
     <div class="card-body" v-if="!loading && imageLoaded">
       <h4 class="card-title">{{ recipeData.title }}</h4>
       <p class="card-text">
@@ -63,6 +62,7 @@
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
         <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
       </button>
+
     </div>
   </div>
 </template>
@@ -74,8 +74,10 @@ export default {
       mealType: "breakfast",
       loading: false, // Initialize as not loading
       imageLoaded: false, // Initialize as not loaded
+
       isConsumed: false,
       isBookmarked: false,
+
     };
   },
   props: {
@@ -114,14 +116,17 @@ export default {
     async refreshRecipe(mealType) {
       this.loading = true; // Set loading to true when refreshing
       this.$emit("refresh-recipe", mealType);
+
       this.isConsumed = false;
       this.isBookmarked = false;
+
     },
     onImageLoad() {
       // This method is called when the image has finished loading
       this.imageLoaded = true; // Set imageLoaded to true once the image is loaded
       this.loading = false; // Set loading to false after the image is loaded
     },
+
     async toggleConsumedState() {
     this.isConsumed = !this.isConsumed;
     },
@@ -139,16 +144,17 @@ export default {
     },
   },
 
-
 };
 </script>
 
 <style scoped>
 .card {
+
   background-color: #FFB18D;
   color: #000000;
   border-radius: 2rem;
   box-shadow: 5px 5px 10px #888888;
+
 }
 .image-container {
   height: 300px; /* Adjust the height as needed */
@@ -163,6 +169,7 @@ export default {
   object-fit: contain; /* Ensures the image fully covers the container */
   border-radius: 0.5rem;
   box-shadow: 5px 5px 10px #888888;
+
 }
 .card .badge {
   font-size: 14px;
@@ -221,12 +228,13 @@ export default {
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px #888888;
+
 }
 
 .badge-content {
   text-align: center;
   font-size: larger;
-  
+
 }
 
 @keyframes pulsate {

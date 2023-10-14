@@ -1,4 +1,5 @@
 <template>
+
   <div class="card col-lg-4 col-md-4 col-sm-12" v-if="recipeData && nutritionData">
     <div class="card-header"><h3>Breakfast</h3></div>
 
@@ -21,7 +22,6 @@
 
     </div>
   </div>
-
 
 
 
@@ -58,11 +58,13 @@
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
+
       <button class="btn btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }" style="margin-left: 1rem;">
         {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
         <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
       </button>
+
     </div>
   </div>
 </template>
@@ -76,6 +78,7 @@ export default {
       imageLoaded: false, // Initialize as not loaded
       isConsumed: false,
       isBookmarked: false,
+
     };
   },
   props: {
@@ -114,14 +117,17 @@ export default {
     async refreshRecipe(mealType) {
       this.loading = true; // Set loading to true when refreshing
       this.$emit("refresh-recipe", mealType);
+
       this.isConsumed = false;
       this.isBookmarked = false;
+
     },
     onImageLoad() {
       // This method is called when the image has finished loading
       this.imageLoaded = true; // Set imageLoaded to true once the image is loaded
       this.loading = false; // Set loading to false after the image is loaded
     },
+
     async toggleConsumedState() {
     this.isConsumed = !this.isConsumed;
     },
@@ -131,6 +137,7 @@ export default {
     },
   },
 
+
   watch: {
     // Watch for changes in recipeData and reset imageLoaded and loading
     recipeData() {
@@ -139,22 +146,24 @@ export default {
     },
   },
 
-
 };
 </script>
 
 <style scoped>
 .card {
+
   background-color: #FFB18D;
   color: #000000;
   border-radius: 2rem;
   box-shadow: 5px 5px 10px #888888;
+
 }
 .image-container {
   height: 300px; /* Adjust the height as needed */
   display: flex;
   justify-content: center;
   align-items: center;
+
   position: relative; /* Add this to position the bookmark icon */
 }
 .card-img {
@@ -221,12 +230,12 @@ export default {
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px #888888;
+
 }
 
 .badge-content {
   text-align: center;
   font-size: larger;
-  
 }
 
 @keyframes pulsate {
@@ -257,4 +266,3 @@ export default {
 
 }
 </style>
-

@@ -6,6 +6,7 @@
       </div>
     </div>
     <div class="row d-flex pb-5">
+
       <div class="d-flex">
         <BreakfastRecipe
           v-if="breakfastRecipe && breakfastNutrition"
@@ -28,6 +29,7 @@
           @refresh-recipe="refreshRecipe"
         />
       </div>
+
     </div>
   </div>
 </template>

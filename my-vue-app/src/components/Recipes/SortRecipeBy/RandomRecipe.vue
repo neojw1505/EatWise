@@ -60,7 +60,7 @@ export default {
       this.imgUrl = this.RandomRecipe.image;
       this.CookingSteps = this.RandomRecipe.analyzedInstructions;
       this.Summary = this.RandomRecipe.instructions;
-      console.log(this.CookingSteps);
+      console.log(this.RandomRecipe);
     },
   },
 };
