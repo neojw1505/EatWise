@@ -53,9 +53,7 @@
     display: flex;
     flex-direction: column;
     justify-content: space-between;
-  }
-  .equal-card:last-child {
-    margin-right: 0;
+    text-align: center;
   }
   /* Style the rectangle-overlay */
   .rectangle-overlay {
