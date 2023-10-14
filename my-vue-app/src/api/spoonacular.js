@@ -171,8 +171,8 @@ class SpoonacularAPI {
     number = 10,
     includeIngredients = [],
     excludeIngredients = [],
-    minCal = 300,
-    maxCal = 800
+    minCal = 0,
+    maxCal = 10000
   ) {
     try {
       const mealTypesQuery = mealTypes.join(",");

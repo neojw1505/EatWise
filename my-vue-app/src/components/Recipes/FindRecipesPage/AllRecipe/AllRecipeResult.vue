@@ -13,6 +13,22 @@
           style="text-decoration: none"
         />
       </div>
+
+      <div v-else class="row d-flex mx-auto justify-content-center">
+        <h1 class="d-inline">
+          <i>
+            <div class="spinner-border text-success" role="status">
+              <span class="visually-hidden">Loading...</span>
+            </div></i
+          >
+        </h1>
+      </div>
+      <div v-if="data && data.length==0" class="row d-flex mx-auto justify-content-center">
+        <h1 class="d-inline">
+          <i>No Reciepe found </i>
+          <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
+        </h1>
+      </div>
     </div>
   </div>
 </template>
@@ -35,18 +51,20 @@ export default {
     };
   },
   methods: {
-    async getSelectedRecipeGeneralInfo() {
-      this.data = await this.$spoonAPI.getSelectedRecipeGeneralInfo();
-    },
+    // async getSelectedRecipeGeneralInfo() {
+    //   this.data = await this.$spoonAPI.getSelectedRecipeGeneralInfo();
+    // },
 
     async getFilteredRecipes() {
       this.data = await this.$spoonAPI.getFilteredRecipes(
         this.PassMealType,
         this.PassDietType,
         this.PassSearchInput,
-        10,
+        50,
         this.PassIncludeIngredients,
-        this.PassExcludeIngredients
+        this.PassExcludeIngredients,
+        this.PassMinCal,
+        this.PassMaxCal
       );
       console.log(this.data);
     },
@@ -57,24 +75,63 @@ export default {
   },
   watch: {
     // Watch someData for changes
-    PassSearchInput(newValue, oldValue) {
-      this.getFilteredRecipes();
+    PassSearchInput: {
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log("PassSearchInput changed:", newVal);
+        this.getFilteredRecipes();
+      },
     },
-    PassMealType(newValue, oldValue) {
-      this.getFilteredRecipes();
+    PassMealType: {
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log("PassSearchInput changed:", newVal);
+        this.getFilteredRecipes();
+      },
     },
-    PassDietType(newValue, oldValue) {
-      this.getFilteredRecipes();
+    PassDietType: {
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log("PassSearchInput changed:", newVal);
+        this.getFilteredRecipes();
+      },
     },
-    PassIncludeIngredients(newValue, oldValue) {
-      this.getFilteredRecipes();
+    PassIncludeIngredients: {
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log("PassSearchInput changed:", newVal);
+        this.getFilteredRecipes();
+      },
     },
-    PassExcludeIngredients(newValue, oldValue) {
-      this.getFilteredRecipes();
+    PassExcludeIngredients: {
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log("PassSearchInput changed:", newVal);
+        this.getFilteredRecipes();
+      },
     },
-
+    PassMinCal: {
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log("PassSearchInput changed:", newVal);
+        this.getFilteredRecipes();
+      },
+    },
+    PassMaxCal: {
+      deep: true,
+      handler(newVal, oldVal) {
+        console.log("PassSearchInput changed:", newVal);
+        this.getFilteredRecipes();
+      },
+    },
   },
 };
 </script>
 
-<style></style>
+<style>
+
+.spinner-border {
+  width: 10rem; 
+  height: 10rem;
+}
+</style>

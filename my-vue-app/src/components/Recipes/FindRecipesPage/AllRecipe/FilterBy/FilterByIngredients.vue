@@ -12,7 +12,7 @@
         >+</span
       >
     </div>
-    <div class="m-3 d-flex align-items-center container-fluid " style="max-width: 800px">
+    <div class="m-3 d-flex justify-content-start" style="max-width: 800px; flex-wrap: wrap;">
       <div
         v-for="i in ingrediendList"
         :key="i"
