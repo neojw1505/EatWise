@@ -1,7 +1,7 @@
 <template>
   <div class="my-1">
     <div
-      class="d-block p-2 text-white rounded-4 d-flex justify-content-between align-items-center"
+      class="d-block p-2 text-black fw-semibold rounded-4 d-flex justify-content-between align-items-center"
       data-bs-toggle="collapse"
       data-bs-target="#FilterByKeywordOptions"
       aria-expanded="false"
@@ -13,11 +13,17 @@
     </div>
 
     <div class="collapse" id="FilterByKeywordOptions">
-      <div class=" my-2 ">
-        <FilterByIngredients nameOfAction="Ingredients to be added"/>
-        <FilterByIngredients nameOfAction="Ingredients to be removed"/>
-        <!-- <FilterByPriceRange />
-        <FilterBySupermarket/> -->
+      <div class="my-2">
+        <FilterByIngredients
+          @addIngredient="handleAddIngredient"
+          @removeIngredient="handleRemoveIngredient"
+          nameOfAction="added"
+        />
+        <FilterByIngredients
+          @addIngredient="handleAddIngredient"
+          @removeIngredient="handleRemoveIngredient"
+          nameOfAction="removed"
+        />
       </div>
     </div>
   </div>
@@ -26,28 +32,16 @@
 <script>
 export default {
   data() {
-    return {
-      filterOption:"btn col-3 rounded-3 mx-auto bg-light border  text-center justify-content-center d-flex align-items-center",
-    filterOptionCheck:"btn col-3 rounded-3 mx-auto  bg-warning border  text-center justify-content-center d-flex align-items-center",
-    filterBy: []
-    };
+    return {};
   },
   methods: {
-    addIngredient() {
-      // console.log(this.addIngredientsToFilter)
-      if (this.addIngredientsToFilter == "") {
-        return;
-      }
-      this.ingrediendList.push(this.addIngredientsToFilter);
-      this.addIngredientsToFilter = "";
-      console.log(this.ingrediendList);
-      console.log(this.addIngredientsToFilter);
+    handleAddIngredient(data) {
+      // console.log(data);
+      this.$emit('getIncludeIngredientInput',data)
     },
-    removeIngredient(i) {
-      console.log(i);
-      this.ingrediendList.splice();
-      let index = this.ingrediendList.indexOf(i);
-      this.ingrediendList.splice(index, 1);
+    handleRemoveIngredient(data) {
+      // console.log(data);
+      this.$emit('getExcludeIngredientInput',data)
     },
   },
 };
@@ -59,5 +53,6 @@ export default {
   height: 0;
   border-left: 10px solid transparent;
   border-right: 10px solid transparent;
-  border-top: 10px solid ; /* Change the color as needed */
-}</style>
+  border-top: 10px solid; /* Change the color as needed */
+}
+</style>

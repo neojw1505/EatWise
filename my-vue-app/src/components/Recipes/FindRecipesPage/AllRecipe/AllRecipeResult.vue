@@ -1,167 +1,79 @@
 <template>
-  <div class="mySwiper p-5 pt-2 shadow border rounded-4 my-3 d-flex mx-auto"  style="max-width: 1600px;" >
-    <div
-    
-    class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 justify-content-start g-4"
-    v-if="data"
-    >
-      <FindRecipePreviewCard
-        
-        v-for="item in data"
-        :key="item.title"
-        :recipe="item"
-        :routerTO="item.id"
-        style="text-decoration: none"
-      />
+  <div class="mx-auto" style="max-width: 1700px">
+    <div class="p-4 pt-2 shadow border rounded-4 my-3 d-flex mx-3">
+      <div
+        class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 justify-content-start g-4"
+        v-if="data"
+      >
+        <FindRecipePreviewCard
+          v-for="item in data"
+          :key="item.id"
+          :recipe="item"
+          :routerTO="item.id"
+          style="text-decoration: none"
+        />
+      </div>
     </div>
   </div>
 </template>
 
 <script>
-import healthyRecipeImage from "../card/healthymeal.jpeg";
 export default {
-  name:"AllRecipeResult",
-  props:["searchInput"],
+  name: "AllRecipeResult",
+  props: [
+    "PassSearchInput",
+    "PassMealType",
+    "PassDietType",
+    "PassIncludeIngredients",
+    "PassExcludeIngredients",
+    "PassMinCal",
+    "PassMaxCal",
+  ],
   data() {
     return {
-      dummyRecipe: [
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-        {
-          recipeName: "This is a dummy data",
-          recipeImage: healthyRecipeImage,
-          cal: 100,
-          routerTO: "/find-recipes",
-        },
-      ],
-      data: null
+      data: null,
     };
   },
-  methods:{
+  methods: {
     async getSelectedRecipeGeneralInfo() {
-      this.data = await this.$spoonAPI.getSelectedRecipeGeneralInfo(); 
+      this.data = await this.$spoonAPI.getSelectedRecipeGeneralInfo();
     },
 
     async getFilteredRecipes() {
-      this.data = await this.$spoonAPI.getFilteredRecipes([],[],this.searchInput, 10,[],[]); 
-      // console.log(this.data);
-    }
+      this.data = await this.$spoonAPI.getFilteredRecipes(
+        this.PassMealType,
+        this.PassDietType,
+        this.PassSearchInput,
+        10,
+        this.PassIncludeIngredients,
+        this.PassExcludeIngredients
+      );
+      console.log(this.data);
+    },
   },
-  created(){
-    this.getFilteredRecipes()
-  }
+  mounted() {
+    console.log(this.PassSearchInput);
+    this.getFilteredRecipes();
+  },
+  watch: {
+    // Watch someData for changes
+    PassSearchInput(newValue, oldValue) {
+      this.getFilteredRecipes();
+    },
+    PassMealType(newValue, oldValue) {
+      this.getFilteredRecipes();
+    },
+    PassDietType(newValue, oldValue) {
+      this.getFilteredRecipes();
+    },
+    PassIncludeIngredients(newValue, oldValue) {
+      this.getFilteredRecipes();
+    },
+    PassExcludeIngredients(newValue, oldValue) {
+      this.getFilteredRecipes();
+    },
+
+  },
 };
 </script>
 

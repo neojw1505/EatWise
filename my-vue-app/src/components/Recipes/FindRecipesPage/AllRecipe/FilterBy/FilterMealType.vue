@@ -1,7 +1,7 @@
 <template>
   <div class="my-1">
     <div
-      class="d-block p-2 text-white rounded-4 d-flex justify-content-between align-items-center"
+      class="d-block p-2  text-black fw-semibold  rounded-4 d-flex justify-content-between align-items-center"
       data-bs-toggle="collapse"
       data-bs-target="#FilterMealTypeOptions"
       aria-expanded="false"
@@ -14,9 +14,9 @@
 
     <div class="collapse" id="FilterMealTypeOptions">
       <div class="d-flex justify-content-between mx-5 my-2">
-        <input @click="checked" :class="filterOption" value="Breakfast" type="button" >
-        <input @click="checked" :class="filterOption" value="Lunch" type="button" >
-        <input @click="checked" :class="filterOption" value="Dinner" type="button" >
+        <input @click="checked" :class="filterOption" value="breakfast" type="button" >
+        <input @click="checked" :class="filterOption" value="lunch" type="button" >
+        <input @click="checked" :class="filterOption" value="dinner" type="button" >
       </div>
     </div>
   </div>
@@ -37,10 +37,14 @@ export default {
         e.target.className=this.filterOption;
         let index = this.filterBy.indexOf(e.target.value);
         this.filterBy.splice(index,1);
+        // console.log(this.filterBy);
+        this.$emit('getMealTypeInput', this.filterBy)
       }
       else{
         e.target.className=this.filterOptionCheck;
         this.filterBy.push(e.target.value)
+        // console.log(this.filterBy);
+        this.$emit('getMealTypeInput', this.filterBy)
       }
     }
   }
