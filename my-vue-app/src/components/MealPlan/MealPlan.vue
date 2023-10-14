@@ -6,27 +6,34 @@
       </div>
     </div>
     <div class="row d-flex pb-5">
-    <BreakfastRecipe
-      v-if="breakfastRecipe && breakfastNutrition"
-      :recipeData="breakfastRecipe"
-      :nutritionData="breakfastNutrition"
-      @refresh-recipe="refreshRecipe"
-    />
-    <LunchRecipe
-      v-if="lunchRecipe && lunchNutrition"
-      :recipeData="lunchRecipe"
-      :nutritionData="lunchNutrition"
-      @refresh-recipe="refreshRecipe"
-    />
-    <DinnerRecipe
-      v-if="dinnerRecipe && dinnerNutrition"
-      :recipeData="dinnerRecipe"
-      :nutritionData="dinnerNutrition"
-      @refresh-recipe="refreshRecipe"
-    />
+
+      <div class="d-flex">
+        <BreakfastRecipe
+          v-if="breakfastRecipe && breakfastNutrition"
+          :recipeData="breakfastRecipe"
+          :nutritionData="breakfastNutrition"
+          @refresh-recipe="refreshRecipe"
+          style="margin-right: 0.5rem"
+        />
+        <LunchRecipe
+          v-if="lunchRecipe && lunchNutrition"
+          :recipeData="lunchRecipe"
+          :nutritionData="lunchNutrition"
+          @refresh-recipe="refreshRecipe"
+          style="margin-right: 0.5rem"
+        />
+        <DinnerRecipe
+          v-if="dinnerRecipe && dinnerNutrition"
+          :recipeData="dinnerRecipe"
+          :nutritionData="dinnerNutrition"
+          @refresh-recipe="refreshRecipe"
+        />
+      </div>
+
     </div>
   </div>
 </template>
+
 
 <script>
 export default {

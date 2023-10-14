@@ -1,16 +1,29 @@
 <template>
-  <div class="card border-success col-lg-4 col-md-4 col-sm-12" v-if="recipeData && nutritionData">
-    <div class="card-header"><h3>Lunch</h3></div>
+
+  <div class="card col-lg-4 col-md-4 col-sm-12" v-if="recipeData && nutritionData">
+    <div class="card-header"><h3>Breakfast</h3></div>
 
     <!-- Display the image or a spinner -->
-    <div class="image-container" v-if="loading">
-      <div class="spinner-border text-success" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+  <div class="image-container" v-if="loading">
+    <div class="spinner-border text-success" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
-    <div class="image-container" v-else>
+  </div>
+
+  <div class="image-container" v-else>
+    <div class="image-wrapper">
       <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
+      <div class="bookmark" >
+        <button class="bookmark-button" @click="toggleBookmarkState()">
+          <font-awesome-icon v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #007459;" />
+          <font-awesome-icon v-else :icon="['fas', 'bookmark']" size="2xl" style="color: #ffffff;" />
+        </button>
+      </div>
+
     </div>
+  </div>
+
+
 
     <div class="card-body" v-if="!loading && imageLoaded">
       <h4 class="card-title">{{ recipeData.title }}</h4>
@@ -44,6 +57,14 @@
       <button class="btn" @click="refreshRecipe(mealType)">
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
+
+
+      <button class="btn btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }" style="margin-left: 1rem;">
+        {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
+        <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
+        <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
+      </button>
+
     </div>
   </div>
 </template>
@@ -55,6 +76,9 @@ export default {
       mealType: "lunch",
       loading: false, // Initialize as not loading
       imageLoaded: false, // Initialize as not loaded
+      isConsumed: false,
+      isBookmarked: false,
+
     };
   },
   props: {
@@ -93,13 +117,27 @@ export default {
     async refreshRecipe(mealType) {
       this.loading = true; // Set loading to true when refreshing
       this.$emit("refresh-recipe", mealType);
+
+      this.isConsumed = false;
+      this.isBookmarked = false;
+
     },
     onImageLoad() {
       // This method is called when the image has finished loading
       this.imageLoaded = true; // Set imageLoaded to true once the image is loaded
       this.loading = false; // Set loading to false after the image is loaded
     },
+
+    async toggleConsumedState() {
+    this.isConsumed = !this.isConsumed;
+    },
+
+    async toggleBookmarkState() {
+    this.isBookmarked = !this.isBookmarked;
+    },
   },
+
+
   watch: {
     // Watch for changes in recipeData and reset imageLoaded and loading
     recipeData() {
@@ -107,63 +145,92 @@ export default {
       this.loading = false;
     },
   },
+
 };
 </script>
 
 <style scoped>
 .card {
-  background-color: #aed4b7;
-  color: #fff;
+
+  background-color: #FFB18D;
+  color: #000000;
   border-radius: 2rem;
+  box-shadow: 5px 5px 10px #888888;
+
 }
 .image-container {
   height: 300px; /* Adjust the height as needed */
   display: flex;
   justify-content: center;
   align-items: center;
-}
 
+  position: relative; /* Add this to position the bookmark icon */
+}
 .card-img {
   max-width: 100%;
   max-height: 100%;
-  object-fit: cover; /* Ensures the image covers the container */
+  object-fit: contain; /* Ensures the image fully covers the container */
+  border-radius: 0.5rem;
+  box-shadow: 5px 5px 10px #888888;
 }
 .card .badge {
   font-size: 14px;
   padding: 4px 8px;
   border-radius: 0.5rem;
-  color: #fff;
-  background-color: #cc6600;
+  color: #000000;
+  background-color: #FBE8A6;
   margin-left: 5px; /* Add margin between labels */
+  
 }
 .card-footer {
   text-align: center;
+  
 }
 .btn {
-  background-color: #007459;
+  background-color: #303C6C;
   color: #fff;
+  box-shadow: 5px 5px 10px #888888;
 }
 .btn:hover {
   background-color: #fff;
+  color: #303C6C;
+}
+.btn-fail {
+  background-color: #D7191C;
+  color: #fff;
+}
+.btn-fail:hover {
+  background-color: #fff;
+  color: #D7191C;
+}
+.consumed-btn-green {
+  background-color: #007459;
+  color: #fff;
+}
+.consumed-btn-green:hover {
   color: #007459;
+  background-color: white;
 }
 .spinner-border {
-  width: 10rem; 
+  width: 10rem;
   height: 10rem;
+  
 }
 .badge-circular {
-  min-width: 70px; /* Set a minimum width for the badge */
-  padding: 0.2em 0.5em; /* Adjust the padding as needed */
+  min-width: 70px;
+  padding: 0.2em 0.5em;
   background-color: #cc6600;
   color: #fff;
-  border-radius: 50%; /* Make the badge circular */
+  border-radius: 50%;
   position: absolute;
-  top: 10px; /* Adjust the top position as needed */
-  right: 20px; /* Adjust the right position as needed */
-  animation: pulsate 2s infinite; /* Add pulsating animation */
-  display: inline-flex; /* Make the badge adjust its size based on content */
-  align-items: center; /* Center content vertically */
-  justify-content: center; /* Center content horizontally */
+  top: 10px;
+  right: 20px;
+  animation: pulsate 2s infinite;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  box-shadow: 5px 5px 10px #888888;
+
 }
 
 .badge-content {
@@ -181,5 +248,21 @@ export default {
   100% {
     transform: scale(1);
   }
+}
+
+/* New styles for the bookmark icon */
+.bookmark {
+  position: absolute;
+  top: 2rem;
+  right: 1.5rem;
+  box-shadow: 5px 5px 10px #888888;
+}
+
+.bookmark-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+
 }
 </style>
