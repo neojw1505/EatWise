@@ -1,6 +1,7 @@
 <!-- Home.vue -->
 <template>
-  <Navbar/>
+  <div>
+    <Navbar/>
   <div class="home-container">
     <div class="col-8">
       <MealPlan/>
@@ -14,6 +15,7 @@
         <h1>Calories Tracker?</h1>
       </div>
     </div>
+  </div>
   </div>
 </template>
 

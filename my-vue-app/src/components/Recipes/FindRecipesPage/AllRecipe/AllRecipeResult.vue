@@ -3,12 +3,14 @@
     <div
     
     class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 justify-content-start g-4"
+    v-if="data"
     >
       <FindRecipePreviewCard
-        v-for="item in dummyRecipe"
-        :key="item.recipeName"
+        
+        v-for="item in data"
+        :key="item.title"
         :recipe="item"
-        :routerTO="item.routerTO"
+        :routerTO="item.id"
         style="text-decoration: none"
       />
     </div>
@@ -18,6 +20,8 @@
 <script>
 import healthyRecipeImage from "../card/healthymeal.jpeg";
 export default {
+  name:"AllRecipeResult",
+  props:["searchInput"],
   data() {
     return {
       dummyRecipe: [
@@ -142,8 +146,22 @@ export default {
           routerTO: "/find-recipes",
         },
       ],
+      data: null
     };
   },
+  methods:{
+    async getSelectedRecipeGeneralInfo() {
+      this.data = await this.$spoonAPI.getSelectedRecipeGeneralInfo(); 
+    },
+
+    async getFilteredRecipes() {
+      this.data = await this.$spoonAPI.getFilteredRecipes([],[],this.searchInput, 10,[],[]); 
+      // console.log(this.data);
+    }
+  },
+  created(){
+    this.getFilteredRecipes()
+  }
 };
 </script>
 
