@@ -134,8 +134,8 @@ export default {
 </script>
 
 <style scoped>
-.btn-primary:hover{
-  background-color: #133a8d;
-  transition: background-color 0.4s ease; /* Add a smooth transition effect */
-}
+  .btn-primary:hover{
+    background-color: #133a8d;
+    transition: background-color 0.4s ease; /* Add a smooth transition effect */
+  }
 </style>
