@@ -39,26 +39,33 @@ export default {
       this.MealType=data;
     },
     handleDietTypeInput(data) {
-      console.log(data)
+      // console.log(data)
       this.MealType=data;
     },
     handleIncludeIngredientInput(data) {
-      console.log(data)
+      // console.log(data)
       this.MealType=data;
     },
     handleExcludeIngredientInput(data) {
-      console.log(data)
+      // console.log(data)
       this.MealType=data;
     },
     handleMinCalInput(data) {
-      console.log(data)
+      // console.log(data)
       this.MealType=data;
     },
     handleMaxCalInput(data) {
-      console.log(data)
+      // console.log(data)
       this.MealType=data;
     },
-  }
+  },
+  watch: {
+    // Watch someData for changes
+    MealType(newValue, oldValue) {
+      this.MealType=newValue;
+    },
+    
+  },
 }
 </script>
 
