@@ -16,19 +16,19 @@
       <div class="my-2">
         <b> Calories: </b>
         <input
-          v-model="minPrice"
+          v-model="minCal"
           class="form-control d-inline"
           type="number"
           style="width: 100px"
-          @change="this.$emit('getMinCalInput',minPrice)"
+          @change="this.$emit('getMinCalInput',minCal)"
         />
         to
         <input
-          v-model="maxPrice"
+          v-model="maxCal"
           class="form-control d-inline"
           type="number"
           style="width: 100px"
-          @change="this.$emit('getMaxCalInput',maxPrice)"
+          @change="this.$emit('getMaxCalInput',maxCal)"
         />
       </div>
     </div>
@@ -39,8 +39,8 @@
 export default {
   data() {
     return {
-      minPrice: "",
-      maxPrice: "",
+      minCal: "",
+      maxCal: "",
     };
   },
   methods: {

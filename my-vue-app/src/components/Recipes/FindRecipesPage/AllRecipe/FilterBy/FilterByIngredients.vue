@@ -21,7 +21,7 @@
       >
         {{ i
         }}<span
-          class="fw-bolder border rounded-5 bg-light mx-2 px-2 pb-1 align-items-center"
+          class="fw-bolder border rounded-5 bg-light px-2 pb-1 align-items-center"
           @click="removeIngredient(i)"
           >x</span
         >

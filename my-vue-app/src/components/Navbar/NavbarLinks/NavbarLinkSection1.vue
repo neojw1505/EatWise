@@ -14,7 +14,6 @@
 // link name, link logo and the path they are directing once click
 
 import findRecipeImage from '../images/find_recipe.png';
-import view_promotion from '../images/view_promotion.png';
 import market from '../images/market.png';
 import progressTrackerImage from '../images/ProgressTracker.png'
 import consumption from '../images/consumption.png'

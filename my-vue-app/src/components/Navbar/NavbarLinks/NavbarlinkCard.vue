@@ -1,5 +1,5 @@
 <template>
-    <router-link class="nav-link active py-0 d-flex" aria-current="page" :to="eachLink.routeTo">
+    <router-link class="nav-link active py-0 d-flex mx-auto" aria-current="page" :to="eachLink.routeTo">
     <li :class="highlighLink(eachLink)" >
         <img class="logo" :src="eachLink.linkLogo" alt="" />
         <div class="fw-semibold">{{eachLink.linkName}}</div> 
