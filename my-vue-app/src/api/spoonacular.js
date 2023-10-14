@@ -26,7 +26,7 @@ class SpoonacularAPI {
         "X-RapidAPI-Key": import.meta.env.VITE_SPOONACULAR_API_KEY,
         "X-RapidAPI-Host":
           "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-      },
+      },})}
 
 
   // get a random recipe
