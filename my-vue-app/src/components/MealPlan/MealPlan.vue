@@ -77,7 +77,7 @@ export default {
         this.BreakfastRecipesCategory,
         this.number
       );
-      this.breakfastNutrition = await this.$spoonAPI.getNutritionByRecipeID(this.breakfastRecipe.id);
+      this.breakfastNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(this.breakfastRecipe.id);
       console.log(this.breakfastRecipe);
       console.log(this.breakfastNutrition);
     },
@@ -86,14 +86,14 @@ export default {
         this.LunchRecipesCategory,
         this.number
       );
-      this.lunchNutrition = await this.$spoonAPI.getNutritionByRecipeID(this.lunchRecipe.id); 
+      this.lunchNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(this.lunchRecipe.id); 
     },
     async getDinnerRecipe() {
       this.dinnerRecipe = await this.$spoonAPI.getDinnerRecipe(
         this.DinnerRecipesCategory,
         this.number
       );
-      this.dinnerNutrition = await this.$spoonAPI.getNutritionByRecipeID(this.dinnerRecipe.id); 
+      this.dinnerNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(this.dinnerRecipe.id); 
     },
     async refreshRecipe(mealType){
       if (mealType === 'breakfast') {

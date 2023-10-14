@@ -27,8 +27,7 @@ class SpoonacularAPI {
         "X-RapidAPI-Host":
           "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
       },
-    });
-  }
+
 
   // get a random recipe
   async getRandomRecipe() {
@@ -162,6 +161,8 @@ class SpoonacularAPI {
     }
   }
 
+
+  ///find-recipes
   // return list of filtered recipes based on users filter selection
   async getFilteredRecipes(
     mealTypes = [],
