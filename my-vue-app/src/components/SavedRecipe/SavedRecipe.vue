@@ -1,4 +1,4 @@
-<!-- <template>
+<template>
   <div>
     <Navbar />
     <div class="mx-auto">
@@ -10,13 +10,13 @@
             class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 justify-content-start g-4"
             v-if="data"
           >
-            <FindRecipePreviewCard
+            <!-- <FindRecipePreviewCard
               v-for="item in data"
               :key="item.id"
               :recipe="item"
               :routerTO="item.id"
               style="text-decoration: none"
-            />
+            /> -->
           </div>
         </div>
       </div>
@@ -25,7 +25,6 @@
 </template>
 
 <script>
-import healthymeal from "./healthymeal.jpeg";
 
 export default {
   data() {
@@ -36,4 +35,4 @@ export default {
 };
 </script>
 
-<style></style> -->
+<style></style>
