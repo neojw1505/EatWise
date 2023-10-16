@@ -1,23 +1,20 @@
 <!-- Home.vue -->
 <template>
   <div>
-    <Navbar />
-    <div class="home-container">
-      <div class="col-lg-9">
-        <RecipeOfDay class="component-margin" />
-        <MealPlan class="component-margin" />
-        <NewPromoCarousel class="component-margin" />
-      </div>
-      <div class="col-3 component-margin">
-        <div>
-          <h1 class="component-margin">XP Level?</h1>
-          <h1 class="component-margin">Random Food Fact?</h1>
-          <h1 class="component-margin">Random Food Joke?</h1>
-          <h1 class="component-margin">Calories Tracker?</h1>
+    <Navbar/>
+    <div class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 ">
+        <div class="row">
+          <div class="col" >Random Food Fact?</div>
+          <div class="col" >Random Food Joke?</div>
+          <div class="col" >Calories Tracker?</div>
         </div>
       </div>
+    
+        <RecipeOfDay class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 " />
+        <MealPlan class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "  />
+        <NewPromoCarousel  class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "/>
     </div>
-  </div>
+ 
 </template>
 
 
@@ -27,8 +24,5 @@
     display: flex;
   }
 
-  .component-margin {
-  margin-bottom: 1.5rem ;
-  margin-left: 1.5rem;
-}
+
 </style>

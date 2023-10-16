@@ -1,18 +1,17 @@
 <template>
-  <div class="container">
-    <div class="row">
-      <div class="rando-recipe">
-        <div class="rando-recipe-header">
-          <h1 class="fw-bold">Recipe of the Day</h1>
-        </div>
-        <div class="rando-recipe-content">
-          <div class="rando-recipe-img">
-            <img class="rando-img img-fluid" :src="imgUrl" alt="Recipe Image">
-          </div>
-          <div class="rando-recipe-info">
-            <h4 class="recipe-title">{{ Title }}</h4>
-          </div>
-        </div>
+  <div
+    class="shadow p-3 rounded-5 my-3"
+    style="background-color: #fbe8a6"
+  >
+    <h1 class="fw-bold mb-3">Recipe of the Day</h1>
+    <div class="rando-recipe-content row">
+      <!-- show the image of recipe of the day -->
+      <div class="rando-recipe-img col-sm-12 col-md-6">
+        <img class="rando-img img-fluid" :src="imgUrl" alt="Recipe Image" />
+      </div>
+      <!-- show the recipe description -->
+      <div class="col-sm-12 col-md-6">
+        <h4 class="">{{ formattedRecipeName }}</h4>
       </div>
     </div>
   </div>
@@ -23,13 +22,13 @@ export default {
   data() {
     return {
       RandomRecipe: null,
-      Title: '',
+      Title: "",
       DishTypes: [],
       Diets: [],
-      PrepTime: '',
-      imgUrl: '',
+      PrepTime: "",
+      imgUrl: "",
       CookingSteps: [],
-      Summary: '',
+      Summary: "",
     };
   },
   created() {
@@ -49,49 +48,46 @@ export default {
       this.Summary = this.RandomRecipe.instructions;
       console.log(this.CookingSteps);
     },
-
+  },
+  computed: {
+    //in the event that the name of the recipe is too long, we shorten the name
+    formattedRecipeName() {
+      return this.Title.length > 60
+        ? this.Title.slice(0, 57) + "..."
+        : this.Title;
+    },
   },
 };
 </script>
 
 <style scoped>
-
- .rando-recipe {
-  background: #FBE8A6;
-  border-radius: 40px;
-  padding: 1.5rem;
-  max-height: 30rem;
-  box-shadow: 5px 5px 10px #888888;
- }
-
- .rando-recipe-header {
+.rando-recipe-header {
   color: black;
   font-size: 1.5em;
   word-wrap: break-word;
   margin-bottom: 10px;
- }
+}
 
- .rando-recipe-content {
+.rando-recipe-content {
   display: flex;
   align-items: top;
   max-height: 100%;
- }
+}
 
- .rando-recipe-img {
-  box-shadow: 5px 5px 10px #888888;
+.rando-recipe-img {
   border-radius: 1.2rem;
   max-width: 100%;
   max-height: 100%;
- }
+}
 
- .rando-img {
+.rando-img {
   max-height: 100%;
   max-width: 100%;
   object-fit: contain;
   border-radius: 20px;
- }
+}
 
- .recipe-title {
+.recipe-title {
   margin-left: 1.5rem;
   color: black;
   font-size: 2rem;
@@ -101,9 +97,9 @@ export default {
   max-height: none;
   overflow: hidden;
   flex-grow: 1;
- }
+}
 
- .recipe-content {
+.recipe-content {
   margin-left: 1.5rem;
   color: black;
   font-size: 1.5rem;
@@ -113,5 +109,5 @@ export default {
   max-height: none;
   overflow: hidden;
   flex-grow: 1;
- }
+}
 </style>

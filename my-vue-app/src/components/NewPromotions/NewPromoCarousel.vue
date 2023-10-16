@@ -23,42 +23,18 @@
       enabled: true,
     }"
     :breakpoints="{
-      '300': {
-        slidesPerView: 1,
-        slidesPerGroup: 1,
-      },
-      '550': {
-        slidesPerView: 1,
-        slidesPerGroup: 1,
-      },
       '760': {
         slidesPerView: 1,
         slidesPerGroup: 1,
       },
-      '1000': {
+      '800': {
         slidesPerView: 2,
         slidesPerGroup: 2,
       },
       '1200': {
-        slidesPerView: 2,
-        slidesPerGroup: 2,
-      },
-      '1400': {
         slidesPerView: 3,
         slidesPerGroup: 3,
       },
-      '1800':{
-        slidesPerView: 3,
-        slidesPerGroup: 3,
-      },
-      '2100':{
-        slidesPerView: 4,
-        slidesPerGroup: 4,
-      },
-      '2400':{
-        slidesPerView: 4,
-        slidesPerGroup: 4,
-      }
     }"
 
   >
