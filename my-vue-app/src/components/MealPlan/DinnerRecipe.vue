@@ -1,5 +1,5 @@
 <template>
-  <div class="card col-lg-4 col-md-4 col-sm-12" v-if="recipeData && nutritionData">
+  <div class="card my-3 mx-3" style="width: 280px;" v-if="recipeData && nutritionData">
     <div class="card-header"><h3>Dinner</h3></div>
 
     <!-- Display the image or a spinner -->
@@ -26,22 +26,24 @@
 
 
     <div class="card-body" v-if="!loading && imageLoaded">
-      <h4 class="card-title">{{ recipeData.title }}</h4>
-      <p class="card-text">
+      <h4 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName}}</h4>
+      <!-- <p class="card-text">
         <span> Servings: {{ recipeData.servings }} </span>
         <span> Carbs: {{ nutritionData.carbs }} </span>
         <span> Fat: {{ nutritionData.fat }} </span>
         <span> Protein: {{ nutritionData.protein }} </span>
-      </p>
+      </p> -->
       <!-- Labels based on conditions -->
+      <div style="height: 100px;">
       <div class="d-flex justify-content-end flex-wrap">
         <span
           v-for="label in labels"
           :key="label"
-          class="badge d-sm-inline-block"
+          class="badge d-sm-inline-block m-1"
           >{{ label }}</span
         >
       </div>
+    </div>
       <!-- Top Right Label for Kcal and PrepTime -->
       <div class="badge badge-circular">
         <div class="badge-content">
@@ -110,6 +112,11 @@ export default {
       // Add more labels based on your conditions
       return labels;
     },
+    formattedRecipeName() {
+      return this.recipeData.title.length > 33
+        ? this.recipeData.title.slice(0, 30) + "..."
+        : this.recipeData.title;
+    },
   },
   methods: {
     async refreshRecipe(mealType) {
@@ -157,15 +164,13 @@ export default {
 
 }
 .image-container {
-  height: 300px; /* Adjust the height as needed */
   display: flex;
   justify-content: center;
   align-items: center;
   position: relative; /* Add this to position the bookmark icon */
 }
 .card-img {
-  max-width: 100%;
-  max-height: 100%;
+  max-width: 300px;
   object-fit: contain; /* Ensures the image fully covers the container */
   border-radius: 0.5rem;
   box-shadow: 5px 5px 10px #888888;

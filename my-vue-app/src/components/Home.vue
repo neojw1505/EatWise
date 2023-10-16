@@ -2,24 +2,19 @@
 <template>
   <div>
     <Navbar/>
-  <div class="home-container">
-
-    <div class="col-9" style="padding: 10px;">
-      <RecipeOfDay />
-      <MealPlan/>
-      <NewPromoCarousel/>
-    </div>
-    <div class="col-3">
-
-      <div>
-        <h1>XP Level?</h1>
-        <h1>Random Food Fact?</h1>
-        <h1>Random Food Joke?</h1>
-        <h1>Calories Tracker?</h1>
+    <div class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 ">
+        <div class="row">
+          <div class="col" >Random Food Fact?</div>
+          <div class="col" >Random Food Joke?</div>
+          <div class="col" >Calories Tracker?</div>
+        </div>
       </div>
+    
+        <RecipeOfDay class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 " />
+        <MealPlan class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "  />
+        <NewPromoCarousel  class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "/>
     </div>
-  </div>
-  </div>
+ 
 </template>
 
 
@@ -28,4 +23,6 @@
     /* background-color: #007459; */
     display: flex;
   }
+
+
 </style>

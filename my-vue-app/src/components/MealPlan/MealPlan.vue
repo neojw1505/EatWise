@@ -1,27 +1,25 @@
 <template>
-  <div class="container-fluid">
-    <div class="row">
-      <div class="col">
-        <h1>Your Meal Plans</h1>
-      </div>
-    </div>
-    <div class="row d-flex">
+  <div class="shadow p-3 rounded-5 my-3" style="background-color: #fbe8a6">
+    <h1 class="fw-bold">Your Meal Plan</h1>
 
-      <div class="d-flex">
+    <div class="d-flex flex-wrap">
+      <div class="col">
         <BreakfastRecipe
           v-if="breakfastRecipe && breakfastNutrition"
           :recipeData="breakfastRecipe"
           :nutritionData="breakfastNutrition"
           @refresh-recipe="refreshRecipe"
-          style="margin-right: 0.5rem"
         />
+      </div>
+      <div class="col">
         <LunchRecipe
           v-if="lunchRecipe && lunchNutrition"
           :recipeData="lunchRecipe"
           :nutritionData="lunchNutrition"
           @refresh-recipe="refreshRecipe"
-          style="margin-right: 0.5rem"
         />
+      </div>
+      <div class="col">
         <DinnerRecipe
           v-if="dinnerRecipe && dinnerNutrition"
           :recipeData="dinnerRecipe"
@@ -29,11 +27,9 @@
           @refresh-recipe="refreshRecipe"
         />
       </div>
-
     </div>
   </div>
 </template>
-
 
 <script>
 export default {
@@ -84,7 +80,10 @@ export default {
         this.BreakfastRecipesCategory,
         this.number
       );
-      this.breakfastNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(this.breakfastRecipe.id);
+      this.breakfastNutrition =
+        await this.$spoonAPI.getSelectedRecipeNutritions(
+          this.breakfastRecipe.id
+        );
       console.log(this.breakfastRecipe);
       console.log(this.breakfastNutrition);
     },
@@ -93,38 +92,41 @@ export default {
         this.LunchRecipesCategory,
         this.number
       );
-      this.lunchNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(this.lunchRecipe.id); 
+      this.lunchNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(
+        this.lunchRecipe.id
+      );
     },
     async getDinnerRecipe() {
       this.dinnerRecipe = await this.$spoonAPI.getDinnerRecipe(
         this.DinnerRecipesCategory,
         this.number
       );
-      this.dinnerNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(this.dinnerRecipe.id); 
+      this.dinnerNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(
+        this.dinnerRecipe.id
+      );
     },
-    async refreshRecipe(mealType){
-      if (mealType === 'breakfast') {
+    async refreshRecipe(mealType) {
+      if (mealType === "breakfast") {
         // Fetch a new breakfast recipe when the child requests a refresh for breakfast
-        await this.getBreakfastRecipe()
-      } else if (mealType === 'lunch') {
-        await this.getLunchRecipe()
-      } else if (mealType === 'dinner') {
-        await this.getDinnerRecipe()
+        await this.getBreakfastRecipe();
+      } else if (mealType === "lunch") {
+        await this.getLunchRecipe();
+      } else if (mealType === "dinner") {
+        await this.getDinnerRecipe();
       }
-    }
+    },
   },
 };
 </script>
 
 <style scoped>
-  /* h1 {
+/* h1 {
     color: #FFF;
   } */
-  .container-fluid {
-    background-color: #FBE8A6;
-    padding: 2rem;
-    border-radius: 1.5rem;
-    box-shadow: 5px 5px 10px #888888;
-    margin: 0;
-  }
+
+.MealPlanSection {
+  background: #fbe8a6;
+  border-radius: 40px;
+  padding: 1.5rem;
+}
 </style>
