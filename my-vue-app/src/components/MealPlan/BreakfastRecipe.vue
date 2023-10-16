@@ -4,7 +4,7 @@
 
     <!-- Display the image or a spinner -->
   <div class="image-container" v-if="loading">
-    <div class="spinner-border text-success" role="status">
+    <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
@@ -100,13 +100,13 @@ export default {
         labels.push("Vegan");
       }
       if (this.recipeData.glutenFree) {
-        labels.push("GlutenFree");
+        labels.push("Gluten Free");
       }
       if (this.recipeData.dairyFree) {
-        labels.push("DairyFree");
+        labels.push("Dairy Free");
       }
       if (this.recipeData.veryHealthy) {
-        labels.push("veryHealthy");
+        labels.push("Healthier Choice");
       }
       // Add more labels based on your conditions
       return labels;
@@ -212,6 +212,7 @@ export default {
 .spinner-border {
   width: 10rem;
   height: 10rem;
+  color:#303C6C
   
 }
 .badge-circular {

@@ -5,6 +5,7 @@
   <div class="home-container">
 
     <div class="col-9" style="padding: 10px;">
+      <RecipeOfDay />
       <MealPlan/>
       <NewPromoCarousel/>
     </div>
