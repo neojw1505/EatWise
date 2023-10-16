@@ -9,6 +9,56 @@ const database = getDatabase(firebaseApp);
 
 const baseURL = 'allSuperMarketsGroceries'
 
+export const fetchProducts = async (searchQuery = '', minPrice = 0, maxPrice = Number.POSITIVE_INFINITY, onPromotion = false, ascending = true, supermarketName = '') => {
+  const path = `/${baseURL}`;
+  const dataRef = ref(database, path);
+
+  try {
+    const snapshot = await get(dataRef);
+    if (snapshot.exists()) {
+      const allProducts = snapshot.val();
+      const matchingProducts = [];
+
+      // Iterate through the supermarkets and filter products based on criteria
+      for (const superName in allProducts) {
+        if (allProducts.hasOwnProperty(superName) && (supermarketName === '' || supermarketName === superName)) {
+          const products = allProducts[superName];
+
+          const filteredProducts = products.filter((product) => {
+            const productTitle = product.product_title.toLowerCase();
+            const productPrice = parseFloat(product.product_price.replace('$', ''));
+            const productPromotion = product.product_promo && product.product_promo !== 'No promotion available';
+
+            return (
+              (productTitle.includes(searchQuery.toLowerCase()) || searchQuery === '') &&
+              productPrice >= minPrice &&
+              productPrice <= maxPrice &&
+              (!onPromotion || (onPromotion && productPromotion))
+            );
+          });
+
+          matchingProducts.push(...filteredProducts);
+        }
+      }
+
+      // Sort matching products based on ascending or descending order
+      matchingProducts.sort((a, b) => {
+        const priceA = parseFloat(a.product_price.replace('$', ''));
+        const priceB = parseFloat(b.product_price.replace('$', ''));
+        const comparison = ascending ? priceA - priceB : priceB - priceA;
+        return comparison;
+      });
+
+      return matchingProducts;
+    } else {
+      console.log('No data available');
+      return null;
+    }
+  } catch (error) {
+    console.error('Error fetching data:', error);
+    throw error;
+  }
+}
 // Fetch all products with optional ascending sorting by price
 export const fetchAllProducts = async (ascending = true) => {
   const path = `/${baseURL}`; // Set the path to the root
