@@ -2,7 +2,7 @@
   <div class="container-fluid">
     <div class="row">
       <div class="col">
-        <h1>Your Meal Plans</h1>
+        <h1 class="fw-bold">Your Meal Plan</h1>
       </div>
     </div>
     <div class="row d-flex">
@@ -122,9 +122,8 @@ export default {
   } */
   .container-fluid {
     background-color: #FBE8A6;
-    padding: 2rem;
+    padding: 1.5rem;
     border-radius: 1.5rem;
     box-shadow: 5px 5px 10px #888888;
-    margin: 0;
   }
 </style>

@@ -1,8 +1,8 @@
 <template>
-  <div class="m-3">
-    <h5 class="fw-bold" style="color: #7aaab4">Available Promotions</h5>
+  <div class="carousel-container">
+    <h1 class="fw-bold">Available Promotions</h1>
     <!-- creating slide container for RecommendedRecipes -->
-    <swiper
+    <swiper class="carousel mySwiper"
     :slidesPerView="1"
     :loop="true"
     :centeredSlides="false"
@@ -32,37 +32,35 @@
         slidesPerGroup: 1,
       },
       '760': {
+        slidesPerView: 1,
+        slidesPerGroup: 1,
+      },
+      '1000': {
         slidesPerView: 2,
         slidesPerGroup: 2,
       },
-      '950': {
+      '1200': {
+        slidesPerView: 2,
+        slidesPerGroup: 2,
+      },
+      '1400': {
         slidesPerView: 3,
         slidesPerGroup: 3,
       },
-      '1200': {
-        slidesPerView: 4,
-        slidesPerGroup: 4,
-      },
-      '1400': {
-        slidesPerView: 4,
-        slidesPerGroup: 4,
-      },
       '1800':{
-        slidesPerView: 5,
-        slidesPerGroup: 5,
+        slidesPerView: 3,
+        slidesPerGroup: 3,
       },
       '2100':{
-        slidesPerView: 6,
-        slidesPerGroup: 6,
+        slidesPerView: 4,
+        slidesPerGroup: 4,
       },
       '2400':{
-        slidesPerView: 7,
-        slidesPerGroup: 7,
+        slidesPerView: 4,
+        slidesPerGroup: 4,
       }
     }"
-    
 
-    class="mySwiper p-5 pt-2 shadow border rounded-4 "
   >
       <swiper-slide v-for="product in randomProducts" :key="product.product_link" >
         <new-promo-card
@@ -73,7 +71,7 @@
     </swiper>
 
     <div class="text-center py-4">
-        <button type="button" class="btn btn-primary pill">View More</button>
+        <button type="button" class="btn pill">View More</button>
     </div>
 
   </div>
@@ -134,8 +132,29 @@ export default {
 </script>
 
 <style scoped>
-  .btn-primary:hover{
-    background-color: #133a8d;
-    transition: background-color 0.4s ease; /* Add a smooth transition effect */
+  .btn {
+  background-color: #303C6C;
+  color: #fff;
+  box-shadow: 5px 5px 10px #888888;
+  }
+
+  .btn:hover {
+  background-color: #fff;
+  color: #303C6C;
+  }
+  .carousel-container{
+    background-color: #FBE8A6;
+    padding: 1.5rem;
+    border-radius: 1.5rem;
+    box-shadow: 5px 5px 10px #888888;
+  }
+
+  .carousel{
+    background-color: #FFB18D;
+    color: #000000;
+    border-radius: 2rem;
+    box-shadow: 5px 5px 10px #888888;
+    padding: 1.25rem 1rem;
+    border-radius: 0.5rem;
   }
 </style>

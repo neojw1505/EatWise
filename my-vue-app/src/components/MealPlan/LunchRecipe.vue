@@ -159,7 +159,7 @@ export default {
 
 }
 .image-container {
-  height: 300px; /* Adjust the height as needed */
+  height: 18.75rem; /* Adjust the height as needed */
   display: flex;
   justify-content: center;
   align-items: center;

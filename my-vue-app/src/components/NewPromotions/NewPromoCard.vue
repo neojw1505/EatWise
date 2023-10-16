@@ -16,7 +16,7 @@
         </div>
       </div>
       <div class="text-center card-button-container">
-        <a :href="product.product_link" target="_blank" class="btn btn-primary">Check it Out!</a>
+        <a :href="product.product_link" target="_blank" class="btn">Check it Out!</a>
       </div>
     </div>
   </template>
@@ -35,12 +35,22 @@
   <style scoped>
   /* Add hover effect to the card */
   .card:hover {
-    background-color: #f0f0f0f4;
+    background-color: #D2FDFF;
     transition: background-color 0.3s ease;
   }
   .card-img-top {
     height: 300px;
     object-fit: cover;
+  }
+  .btn {
+  background-color: #303C6C;
+  color: #fff;
+  box-shadow: 5px 5px 10px #888888;
+  }
+
+  .btn:hover {
+  background-color: #fff;
+  color: #303C6C;
   }
   .equal-card {
     width: 100%;
@@ -58,7 +68,7 @@
   /* Style the rectangle-overlay */
   .rectangle-overlay {
     background-color: rgba(255, 0, 0, 0.7);
-    color: white;
+    color: #FFFBEE;
     padding: 10px;
     width: calc(100% - 20px); /* Take up the width of the card minus 20px for padding */
     position: absolute;
@@ -99,9 +109,6 @@
     padding-bottom: 20px; /* Adjust as needed */
   }
 
-  .btn-primary:hover{
-  background-color: #133a8d;
-  transition: background-color 0.4s ease; /* Add a smooth transition effect */
-}
+
   </style>
   
