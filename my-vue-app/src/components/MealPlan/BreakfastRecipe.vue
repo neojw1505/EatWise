@@ -177,7 +177,7 @@ export default {
   border-radius: 0.5rem;
   color: #000000;
   background-color: #FBE8A6;
-  margin-left: 5px; /* Add margin between labels */
+  margin-left: 5px;
   
 }
 .card-footer {
@@ -228,7 +228,6 @@ export default {
   align-items: center;
   justify-content: center;
   box-shadow: 5px 5px 10px #888888;
-
 }
 
 .badge-content {

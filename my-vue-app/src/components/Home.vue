@@ -4,7 +4,7 @@
     <Navbar/>
   <div class="home-container">
 
-    <div class="col-9">
+    <div class="col-9" style="padding: 10px;">
       <MealPlan/>
       <NewPromoCarousel/>
     </div>
