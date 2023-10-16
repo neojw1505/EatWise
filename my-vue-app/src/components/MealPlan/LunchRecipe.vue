@@ -1,7 +1,7 @@
 <template>
 
   <div class="card col-lg-4 col-md-4 col-sm-12" v-if="recipeData && nutritionData">
-    <div class="card-header"><h3>Breakfast</h3></div>
+    <div class="card-header"><h3>Lunch</h3></div>
 
     <!-- Display the image or a spinner -->
   <div class="image-container" v-if="loading">

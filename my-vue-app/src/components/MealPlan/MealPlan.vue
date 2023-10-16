@@ -1,11 +1,11 @@
 <template>
-  <div class="container-fluid border border-success">
+  <div class="container-fluid">
     <div class="row">
       <div class="col">
         <h1>Your Meal Plans</h1>
       </div>
     </div>
-    <div class="row d-flex pb-5">
+    <div class="row d-flex">
 
       <div class="d-flex">
         <BreakfastRecipe
@@ -121,7 +121,10 @@ export default {
     color: #FFF;
   } */
   .container-fluid {
-    background-color: #FFF;
-    padding: 50px;
+    background-color: #FBE8A6;
+    padding: 2rem;
+    border-radius: 1.5rem;
+    box-shadow: 5px 5px 10px #888888;
+    margin: 0;
   }
 </style>
