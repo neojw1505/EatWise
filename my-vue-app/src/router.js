@@ -16,6 +16,8 @@ const routes = [
     // { path: '/profile', component:  },
     // { path: '/insights', component: }
     // { path: '/consumption', component: }
+    // { path: '/register', component: }
+    // { path: '/login', component: }
     // Add more routes as needed
   ];
 
