@@ -29,15 +29,8 @@ import NavbarLinkSection2 from "./NavbarLinks/NavbarLinkSection2.vue"
 export default {
   name: 'Navbar',
   components:{
-    NavbarLinkSection1,NavbarLinkSection2
+    NavbarLinkSection1, NavbarLinkSection2
   },
-  data(){
-    return{
-      linksToPages1:[
-        
-      ]
-    }
-  }
 };
 </script>
 

@@ -1,7 +1,7 @@
 <template>
   <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-    <NavbarSearch />
-    <Navbarlink
+    <!-- <NavbarSearch /> -->
+    <NavbarlinkCard
       v-for="eachLink in linksToPages2"
       v-bind:eachLink="eachLink"
       :key="eachLink.linkName"
@@ -17,13 +17,13 @@
 import saved from "../images/saved.png";
 import profile from "../images/profile.png";
 
-import Navbarlink from "./Navbarlink.vue";
+import NavbarlinkCard from "./NavbarlinkCard.vue";
 import NavbarSearch from "./NavbarSearch.vue";
 
 export default {
   name: "NavbarLinkSection1",
   components: {
-    Navbarlink,
+    NavbarlinkCard,
     NavbarSearch,
   },
   data() {

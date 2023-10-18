@@ -1,6 +1,6 @@
 <template>
   <ul class="navbar-nav mb-2 mb-lg-0 text-center">
-    <Navbarlink
+    <NavbarlinkCard
       v-for="eachLink in linksToPages1"
       v-bind:eachLink="eachLink"
       :key="eachLink.linkName"
@@ -14,15 +14,16 @@
 // link name, link logo and the path they are directing once click
 
 import findRecipeImage from '../images/find_recipe.png';
-import view_promotion from '../images/view_promotion.png';
 import market from '../images/market.png';
+import progressTrackerImage from '../images/ProgressTracker.png'
+import consumption from '../images/consumption.png'
 
-import Navbarlink from "./Navbarlink.vue";
+import NavbarlinkCard from "./NavbarlinkCard.vue";
 
 export default {
   name: "NavbarLinkSection1",
   components: {
-    Navbarlink,
+    NavbarlinkCard,
   },
   data() {
     return {
@@ -33,14 +34,19 @@ export default {
           routeTo: "/find-recipes",
         },
         {
-          linkName: "View Promotions",
-          linkLogo: view_promotion,
-          routeTo: "/view-promotions",
-        },
-        {
           linkName: "Market",
           linkLogo: market,
           routeTo: "/market",
+        },
+        {
+          linkName: "Insights",
+          linkLogo: progressTrackerImage,
+          routeTo: "/insights",
+        },
+        {
+          linkName: "Consumption",
+          linkLogo: consumption,
+          routeTo: "/consumption",
         },
       ],
     };

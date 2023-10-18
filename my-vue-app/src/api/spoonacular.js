@@ -13,17 +13,21 @@ const dietTypes = [
 
 class SpoonacularAPI {
   constructor() {
-    this.BASE_URL = "https://api.spoonacular.com";
-    this.apiKey = import.meta.env.VITE_SPOONACULAR_API_KEY;
+
+    this.BASE_URL =
+      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
+    this.BASE_URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
 
     // Initialize axios with a base URL and default parameters
     this.axios = axios.create({
       baseURL: this.BASE_URL,
-      params: {
-        apiKey: this.apiKey, // Inject the API key into every request
-      },
-    });
-  }
+      headers: {
+
+        "X-RapidAPI-Key": import.meta.env.VITE_SPOONACULAR_API_KEY,
+        "X-RapidAPI-Host":
+          "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      },})}
+
 
   // get a random recipe
   async getRandomRecipe() {
@@ -52,24 +56,6 @@ class SpoonacularAPI {
     } catch (error) {
       // Handle errors here
       console.error("Error fetching recipes by ingredients:", error);
-      throw error;
-    }
-  }
-
-  // Get recipes by nutrients
-  async getRecipesByNutrients(nutrients, number) {
-    try {
-      const response = await this.axios.get("/recipes/findByNutrients", {
-        params: {
-          nutrients: nutrients.join(","), // Join the array into a comma-separated string
-          number: number, // You can adjust the number of recipes to fetch
-        },
-      });
-      // Handle the response and return the recipes
-      return response.data;
-    } catch (error) {
-      // Handle errors here
-      console.error("Error fetching recipes by nutrients:", error);
       throw error;
     }
   }
@@ -175,14 +161,108 @@ class SpoonacularAPI {
     }
   }
 
-  async getNutritionByRecipeID(recipeID) {
+
+  ///find-recipes
+  // return list of filtered recipes based on users filter selection
+  async getFilteredRecipes(
+    mealTypes = [],
+    dietTypes = [],
+    query = "",
+    number = 10,
+    includeIngredients = [],
+    excludeIngredients = [],
+    minCal = 0,
+    maxCal = 10000
+  ) {
     try {
-      const response = await this.axios.get(`/recipes/${recipeID}/nutritionWidget.json`);
-      // Handle the response and return the nutrition data
-      return response.data;
+      const mealTypesQuery = mealTypes.join(",");
+      const dietTypesQuery = dietTypes.join(",");
+      const includeIngredientsQuery = includeIngredients.join(",");
+      const excludeIngredientsQuery = excludeIngredients.join(",");
+      const response = await this.axios.get(
+        `/recipes/complexSearch?query=${query}&diet=${dietTypesQuery}&type=${mealTypesQuery}&includeIngredients=${includeIngredientsQuery}&excludeIngredients=${excludeIngredientsQuery}&number=${number}&minCalories=${minCal}&maxCalories=${maxCal}`
+      );
+      // extract the ids
+      const recipeIDsArr = [];
+      // console.log(response.data);
+      for (const recipe of response.data.results) {
+        recipeIDsArr.push(recipe.id);
+      }
+      // create ids as string join with commas
+      const recipeIDsQuery = recipeIDsArr.join(",");
+      const response2 = await this.axios.get(
+        `/recipes/informationBulk?ids=${recipeIDsQuery}&includeNutrition=true`
+      );
+      return response2.data;
     } catch (error) {
       // Handle errors here
-      console.error(`Error fetching nutrition for recipe with ID ${recipeID}:`, error);
+      // console.error(`Error fetching nutrition for recipe with ID ${recipeID}:`, error);
+      throw error;
+    }
+  }
+
+  // args: recipeID,
+  // desc: return the ingredients of the recipe
+  async getSelectedRecipeIngredients(id) {
+    try {
+      const response = await this.axios.get(
+        `/recipes/${id}/ingredientWidget.json`
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // args: recipeID,
+  // desc: return the nutrients of the recipe
+  async getSelectedRecipeNutritions(id) {
+    try {
+      const response = await this.axios.get(
+        `/recipes/${id}/nutritionWidget.json`
+      );
+      console.log(response.data);
+      return response.data;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // args: recipeID,
+  // desc: return the instructions of the recipe
+  async getSelectedRecipeInstructions(id){
+    try {
+      const response = await this.axios.get(
+        `recipes/${id}/information`
+      );
+      console.log(response.data);
+      return response.data.analyzedInstructions[0].steps;
+    } catch (error) {
+      throw error;
+    }
+  }
+
+  // args: recipeID,
+  // desc: return the name, prep time, serving size, description of the recipe
+  async getSelectedRecipeGeneralInfo(id){
+    try {
+      const response = await this.axios.get(
+        `recipes/${id}/information`
+      );
+      const name = response.data.title;
+      const prepTime = response.data.readyInMinutes;
+      const servingSize = response.data.servings;
+      const description = response.data.summary;
+
+      let obj = {}
+      obj.name = name
+      obj.prepTime = prepTime
+      obj.servingSize = servingSize
+      obj.description = description
+      console.log(obj);
+      return obj;
+    } catch (error) {
       throw error;
     }
   }
