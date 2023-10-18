@@ -1,7 +1,7 @@
 <template>
   <nav
     class="navbar navbar-expand-lg navbar-light sticky-top"
-    style="background-color: #4F919F"
+    style="background-color: #F4976C"
   >
     <div class="container-fluid">
       <div class="d-flex">

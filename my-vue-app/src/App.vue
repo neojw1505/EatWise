@@ -1,5 +1,4 @@
 <template>
-  <div>
 
     <!-- <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
     Display supermarket data here
@@ -19,46 +18,42 @@
     </div>
     <br /> -->
     <router-view>
-      
+        <LoginPage/>
     </router-view>
 
-  </div>
+    
 </template>
 
 <script>
+import LoginPage from './components/Landing Page/LoginPage/LoginPage.vue';
+
+
 
 export default {
-  data() {
-    return {
-      supermarketData: [],
-      ascending: true, // default value is true, sort in increasing price
-    };
-  },
-  methods: {
-    async fetchProductsByPromo() {
-        this.supermarketData = await this.$smAPI.fetchProductsByPromo(false);
-        this.initOwlCarousel();
+    data() {
+        return {
+            supermarketData: [],
+            ascending: true, // default value is true, sort in increasing price
+        };
     },
-
-    initOwlCarousel() {
-        $(document).ready(function(){
-          $(".owl-carousel").owlCarousel(
-            {
-              items: 3
-            }
-          );
-        });
+    methods: {
+        async fetchProductsByPromo() {
+            this.supermarketData = await this.$smAPI.fetchProductsByPromo(false);
+            this.initOwlCarousel();
+        },
+        initOwlCarousel() {
+            $(document).ready(function () {
+                $(".owl-carousel").owlCarousel({
+                    items: 3
+                });
+            });
+        },
+        async fetchProductsByPromoAndSupermarket() {
+            this.supermarketData =
+                await this.$smAPI.fetchProductsByPromoAndSupermarket(this.supermarketName, false);
+        },
     },
-
-    async fetchProductsByPromoAndSupermarket() {
-      this.supermarketData =
-        await this.$smAPI.fetchProductsByPromoAndSupermarket(
-          this.supermarketName,
-          false
-        );
-    },
-  },
-
+    components: { LoginPage }
 };
 
 </script>
