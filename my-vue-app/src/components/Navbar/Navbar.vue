@@ -1,11 +1,7 @@
 <template>
   <nav
     class="navbar navbar-expand-lg navbar-light sticky-top"
-<<<<<<< Updated upstream
-    style="background-color: #007459"
-=======
     style="background-color: #EF8A5B"
->>>>>>> Stashed changes
   >
     <div class="container-fluid">
       <div class="d-flex">
