@@ -18,7 +18,7 @@
     </div>
     <br /> -->
     <router-view>
-        <LoginPage/>
+        <RegistrationPage />
     </router-view>
 
     

@@ -5,13 +5,14 @@ import FindRecipes from './components/Recipes/FindRecipesPage/FindRecipes.vue';
 import SelectedRecipeCard from "./components/Recipes/SelectedRecipePage/SelectedRecipeCard.vue";
 import Market from "./components/Market/Market.vue";
 import SavedRecipe from "./components/SavedRecipe/SavedRecipe.vue"
+
 const routes = [
     { path: '/', component: Home },
     { path: '/find-recipes', component: FindRecipes },
     { path: '/find-recipes/SelectedRecipeCard', component: SelectedRecipeCard },
     { path: '/market', component: Market },
     { path: '/saved-recipes', component: SavedRecipe },
-
+    {path: '/RegistrationPage', component: SavedRecipe},
     // { path: '/view-promotions', component: ViewPromos },
     // { path: '/profile', component:  },
     // { path: '/insights', component: }

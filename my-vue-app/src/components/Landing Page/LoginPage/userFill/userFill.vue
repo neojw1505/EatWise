@@ -15,15 +15,16 @@
             <div class="form-group d-inline" style="margin-bottom:20px;margin-top: 20px;;">
             <p class="text-center">Not a member yet? <a href ="#" >Sign up now!</a></p>
             </div>
-            <div class="form-group">
+            <!-- Google Registration (Removed till later notice) -->
+            <!-- <div class="form-group">
             
               <p> <hr> </p>
               
             </div>
-            
-            <div class="form-group text-center" style="min-width:300px">
+            -->
+            <!-- <div class="form-group text-center" style="min-width:300px">
             <button style="font-size:auto;" id="google-signin" class="btn btn-primary col-4 btn-sm mx-auto" type="submit">Sign in with Google</button>
-            </div>
+            </div> -->
       </div> 
   </div> 
   
@@ -68,6 +69,9 @@ p{
   padding-bottom:100px;
   align-items: center;
   justify-items: center;
+  max-height: 60vh; /* Set a maximum height based on viewport height */
+  overflow-y: auto; /* Add a scrollbar if the content overflows */
+  padding: 10px;
 
 }
 #logincard{
