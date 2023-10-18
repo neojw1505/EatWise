@@ -22,11 +22,7 @@ export default {
 
 <style scoped>
 .highlightBackground{
-<<<<<<< Updated upstream:my-vue-app/src/components/Navbar/NavbarLinks/Navbarlink.vue
-    background-color: #AED4B7;
-=======
     background-color: #FFB18D;
->>>>>>> Stashed changes:my-vue-app/src/components/Navbar/NavbarLinks/NavbarlinkCard.vue
     border-radius: 25px;
 }
 .logo{
@@ -34,11 +30,7 @@ export default {
     height: 25px;
 }
 li:hover{
-<<<<<<< Updated upstream:my-vue-app/src/components/Navbar/NavbarLinks/Navbarlink.vue
-            background-color: #AED4B7;
-=======
             background-color: #FBE8A6;
->>>>>>> Stashed changes:my-vue-app/src/components/Navbar/NavbarLinks/NavbarlinkCard.vue
             border-radius: 25px;
         }
 </style>
