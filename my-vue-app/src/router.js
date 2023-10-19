@@ -15,10 +15,10 @@ const routes = [
     {path: '/RegistrationPage', component: SavedRecipe},
     // { path: '/view-promotions', component: ViewPromos },
     // { path: '/profile', component:  },
-    { path: '/insights', component: Insights}
+    { path: '/insights', component: Insights},
     // { path: '/consumption', component: }
-    // { path: '/register', component: }
-    // { path: '/login', component: }
+    { path: '/register', component: RegistrationPage},
+    // { path: '/login', component: LoginPage },
     // Add more routes as needed
   ];
 
