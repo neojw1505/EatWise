@@ -42,12 +42,12 @@ export default {
 
 <style>
 .highlightBackground {
-  background-color: #7aaab4;
+  background-color: #EF8A5B;
   border-radius: 25px;
 }
 
 .hovereffect :hover{
-            background-color: #7AAAB4;
+            background-color: #FBE8A6;
             border-radius: 25px;
         }
 </style>

@@ -22,7 +22,7 @@ export default {
 
 <style scoped>
 .highlightBackground{
-    background-color: #7AAAB4;
+    background-color: #FFB18D;
     border-radius: 25px;
 }
 .logo{
@@ -30,7 +30,7 @@ export default {
     height: 25px;
 }
 li:hover{
-            background-color: #7AAAB4;
+            background-color: #FBE8A6;
             border-radius: 25px;
         }
 </style>

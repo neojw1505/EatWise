@@ -3,7 +3,7 @@
     <router-link class="navbar-brand p-0 m-0" to="/">
     <li :class="this.$route.path==='/' ? 'highlightBackground' : ''" @click="highlighLink" style="list-style: none">
         <img class="logo" src="../images/companyLogo.png" alt="" type="button" />
-        <div class="fw-semibold">EATWISE</div>
+        <div class="fw-semibold">EatWise</div>
     </li>
   </router-link>
   </div>
@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .highlightBackground{
-    background-color: #7AAAB4;
+    background-color: #FFB18D;
     border-radius: 25px;
 }
 .logo{
@@ -25,7 +25,7 @@ export default {
     height: 25px;
 }
 li:hover{
-            background-color: #7AAAB4;
+            background-color: #FBE8A6;
             border-radius: 25px;
         }
 </style>

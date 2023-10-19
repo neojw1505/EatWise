@@ -1,7 +1,7 @@
 <template>
   <nav
     class="navbar navbar-expand-lg navbar-light sticky-top"
-    style="background-color: #F4976C"
+    style="background-color: #EF8A5B"
   >
     <div class="container-fluid">
       <div class="d-flex">
@@ -29,7 +29,7 @@ import NavbarLinkSection2 from "./NavbarLinks/NavbarLinkSection2.vue"
 export default {
   name: 'Navbar',
   components:{
-    NavbarLinkSection1,NavbarLinkSection2
+    NavbarLinkSection1, NavbarLinkSection2
   },
 };
 </script>

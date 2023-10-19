@@ -3,6 +3,7 @@ import App from './App.vue'
 import router from './router';
 import * as supermarketAPI  from './firebaseService';
 import spoonacularObj from './api/spoonacular';
+import FitnessCalculatorObj from './api/fitness-calculator';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
@@ -30,6 +31,7 @@ app.component('font-awesome-icon', FontAwesomeIcon);
 // Attach the imported object to global properties
 app.config.globalProperties.$smAPI = supermarketAPI;
 app.config.globalProperties.$spoonAPI = spoonacularObj;
+app.config.globalProperties.$fitCalcAPI = FitnessCalculatorObj;
 
 // Function to register a Vue component
 function registerComponent(context, app) {
