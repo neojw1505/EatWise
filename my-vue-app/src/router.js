@@ -12,7 +12,7 @@ const routes = [
     { path: '/find-recipes/SelectedRecipeCard', component: SelectedRecipeCard },
     { path: '/market', component: Market },
     { path: '/saved-recipes', component: SavedRecipe },
-    {path: '/RegistrationPage', component: SavedRecipe},
+    {path: '/LoginPage', component: LoginPage},
     // { path: '/view-promotions', component: ViewPromos },
     // { path: '/profile', component:  },
     { path: '/insights', component: Insights},

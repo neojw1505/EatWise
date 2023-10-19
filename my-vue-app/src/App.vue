@@ -18,7 +18,8 @@
     </div>
     <br /> -->
     <router-view>
-        <RegistrationPage />
+        <LoginPage/>
+
     </router-view>
 
     
@@ -26,6 +27,7 @@
 
 <script>
 import LoginPage from './components/Landing Page/LoginPage/LoginPage.vue';
+// import RegistrationPage from './components/Landing Page/LoginPage/RegistrationPage.vue';
 
 
 
