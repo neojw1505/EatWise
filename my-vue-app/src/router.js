@@ -8,6 +8,7 @@ import SavedRecipe from "./components/SavedRecipe/SavedRecipe.vue";
 import Insights from "./components/Insights/Insights.vue";
 import Registration from "./components/LandingPage/RegistrationPage/Registration.vue";
 import Login from "./components/LandingPage/LoginPage/Login.vue";
+import Profile from "./components/Profile/Profile.vue";
 
 const routes = [
     { path: '/', component: Home },
@@ -21,6 +22,7 @@ const routes = [
     // { path: '/consumption', component: }
     { path: '/register', component: Registration},
     { path: '/login', component: Login},
+    { path: '/profile', component: Profile},
     // Add more routes as needed
   ];
 
