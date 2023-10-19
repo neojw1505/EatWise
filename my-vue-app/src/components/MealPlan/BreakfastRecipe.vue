@@ -14,8 +14,8 @@
       <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
       <div class="bookmark" >
         <button class="bookmark-button" @click="toggleBookmarkState()">
-          <font-awesome-icon v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #007459;" />
-          <font-awesome-icon v-else :icon="['fas', 'bookmark']" size="2xl" style="color: #ffffff;" />
+          <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #007459;" />
+          <font-awesome-icon  v-else :icon="['fas', 'bookmark']" size="2xl" style="color: #ffffff;" />
         </button>
       </div>
 
@@ -155,6 +155,10 @@ export default {
 </script>
 
 <style scoped>
+  svg.fa-bookmark {
+      stroke: black;
+      stroke-width: 30;
+  }
 .card {
 
   background-color: #FFB18D;

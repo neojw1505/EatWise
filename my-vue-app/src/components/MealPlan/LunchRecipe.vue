@@ -158,6 +158,10 @@ export default {
 </script>
 
 <style scoped>
+  svg.fa-bookmark {
+      stroke: black;
+      stroke-width: 30;
+  }
 .card {
 
   background-color: #FFB18D;
