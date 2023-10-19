@@ -1,3 +1,4 @@
+<<<<<<< Updated upstream
 <template>
     <OnboardingGender/>
 </template>
@@ -12,3 +13,13 @@ export default {
 <style>
 
 </style>
+=======
+
+<template>
+    <div>
+        <NavbarLandingPage />
+    </div>
+    <!-- <OnboardingGender></OnboardingGender> -->
+    <OnboardFinalPage></OnboardFinalPage>
+</template>
+>>>>>>> Stashed changes

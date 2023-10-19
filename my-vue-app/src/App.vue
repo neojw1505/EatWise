@@ -20,7 +20,7 @@
     </div>
     <br /> -->
     <router-view>
-      <!-- <Onboarding></Onboarding> -->
+      <OnboardingFinalPage></OnboardingFinalPage>
       <!-- <Home></Home> -->
     </router-view>
 
