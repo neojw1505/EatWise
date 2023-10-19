@@ -3,7 +3,7 @@
     <Navbar />
     <div class="mx-auto">
       <h2 class="m-3">Market Place</h2>
-      <div class="mx-3 container row mx-auto" style="max-width: 1700px">
+      <div class="mx-3 container row mx-auto" style="max-width: 1200px">
         <!-- left side -->
         <div class="col-md-12 col-lg-4 mb-5">
             <MarketFilter/>
@@ -34,7 +34,7 @@
 export default {
   data() {
     return {
-      sortOptions: ["Most Relevant","Most Recent","On Promotion","Order By Price(Ascending)"],
+      sortOptions: ["On Promotion","Order By Price(Ascending)"],
       sortBy:[],
     }
   },
