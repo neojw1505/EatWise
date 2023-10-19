@@ -7,7 +7,7 @@
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#marketFilter"
-        style="background-color: #7aaab4"
+        style="background-color: #FFB18D"
       >
         <img src="./filter.png" style="width: 50px" />
       </button>
