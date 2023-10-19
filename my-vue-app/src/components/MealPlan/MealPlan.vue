@@ -1,5 +1,5 @@
 <template>
-  <div class="shadow p-3 rounded-5 my-3" style="background-color: #fbe8a6">
+  <div class="shadow p-3 rounded-4 my-3" style="background-color: #fbe8a6">
     <h1 class="fw-bold">Your Meal Plan</h1>
 
     <div class="d-flex flex-wrap">

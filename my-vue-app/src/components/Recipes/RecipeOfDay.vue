@@ -1,14 +1,14 @@
 <template>
   <div class="row">
     <div
-      class="col-lg-8 col-md-12  pt-2 shadow border rounded-5 px-4 my-3 mx-1 "
+      class="col-lg-8 col-md-12  pt-2 shadow border rounded-4 px-4 my-3 mx-1 "
       style="background-color: #fbe8a6"
     >
       <h1 class="fw-bold mb-3">Recipe of the Day</h1>
       <div class="row py-3 pt-0">
         <!-- show the image of recipe of the day -->
         <div class="col-sm-12 col-md-6">
-          <img class="img-fluid rounded-5" :src="imgUrl" alt="Recipe Image" />
+          <img class="img-fluid rounded-4" :src="imgUrl" alt="Recipe Image" />
         </div>
         <!-- show the recipe description -->
         <div class="col-sm-12 col-md-6">
@@ -18,7 +18,7 @@
     </div>
     <!-- joke of the day -->
     <div
-      class="pt-2 shadow border rounded-5 my-3 col-lg col-md-12 d-flex flex-column align-items-center justify-content-between mx-1"
+      class="pt-2 shadow border rounded-4 my-3 col-lg col-md-12 d-flex flex-column align-items-center justify-content-between mx-1"
       v-if="windowWidth>992"
     >
       <div class="shadow border rounded-4">Random Food Fact?</div>
