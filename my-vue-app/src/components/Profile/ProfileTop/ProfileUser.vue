@@ -3,10 +3,12 @@
     <!-- username -->
     <div class="mx-0 rounded-4 p-2 py-1 border border-2 border-dark" style="background-color: #FFE1E1;"><h3>{{userName}}</h3></div>
     <!-- setting button -->
+    <router-link  class="text-decoration-none text-dark" to="/profile/setting">
     <div class="m-2 border border-2 border-dark rounded-4 bg-light p-2" style="width: 100px;">
         <font-awesome-icon :icon="['fas', 'gear']" />
         <span class="fw-semibold">Settings</span>
     </div>
+    </router-link>
 
     <div class="m-2 border border-dark border-2 rounded-4 "  style="background-color: #303C6C;">
         <div class=" d-flex align-items-center justify-content-center  rounded-4"  style="background-color: #FFB18D;">
