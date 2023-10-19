@@ -1,6 +1,6 @@
 <template>
   <div id="RegisterCard" class="card shadow">
-    <div class="card-body d-block">
+    <div class="card-body">
       <form>
         <div class="row col-sm-12 mx-auto my-10">
           <h5 class="card-title mb-4 text-center">User Registration</h5>
@@ -10,7 +10,7 @@
           <input class="col-12 form-control" type="date" v-model="dateOfBirth" placeholder="Date of Birth" id="date">
         </div>
         <div class="form-group text-center">
-          <button id="register" class="btn shadow col-sm-6 col-xs-6 btn-lg text-center my-2 " type="submit">Register Now</button>
+          <button id="register" class="btn shadow btn-lg text-center my-2 " type="submit">Register Now</button>
         </div>
       </form>
     </div>
@@ -36,7 +36,6 @@ export default {
 .btn{
   background-color: #F4976C;
   color:white;
-  border: 1px solid black;
 }
 p {
   color: grey;
@@ -69,10 +68,6 @@ p {
 
 input {
   width: 100%;
-}
-
-.input-group-append {
-  cursor: pointer;
 }
 
 </style>

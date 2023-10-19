@@ -1,7 +1,7 @@
 <template>
   <nav
     class="navbar navbar-expand-lg navbar-light sticky-top"
-    style="background-color: #4f919f"
+    style="background-color: #EF8A5B"
   >
     <div class="container-fluid">
         <!-- eatwise logo and dropdown button -->
@@ -12,7 +12,7 @@
             src="./images/companyLogo.png"
             alt=""
         />
-        <div class="fw-semibold">EATWISE</div>
+        <div class="fw-semibold">EatWise</div>
         </div>
       </div>
       <!-- show the register and login -->

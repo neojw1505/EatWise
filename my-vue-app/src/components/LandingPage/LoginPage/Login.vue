@@ -5,7 +5,7 @@
     </div>
     <div id="background-container">
       <img id="login-background" src="../Assets/background.png" alt="background">
-      <RegistrationFill />
+      <userFill />
     </div>
 
   </div>
@@ -14,18 +14,17 @@
 
 <script>
 import NavbarLandingPage from '../../Navbar/NavbarLandingPage.vue';
-import RegistrationFill from './RegiFill/RegistrationFill.vue';
 
 export default {
-    name: 'loginPage',
+    name: 'login',
     data() {
     },
     methods: {},
-    components: { NavbarLandingPage, RegistrationFill }
+    components: { NavbarLandingPage }
 }
 </script>
 
-<style>
+<style scoped>
 #container{
   position: fixed;
   display: flex;
@@ -35,8 +34,6 @@ export default {
 }
 
 #background-container {
-  width: 100%;
-  height: 100%;
   position: absolute;
   top: 0;
   left: 0;

@@ -18,7 +18,10 @@
     </div>
     <br /> -->
     <router-view>
+<<<<<<< Updated upstream
         <LoginPage/>
+=======
+>>>>>>> Stashed changes
 
     </router-view>
 
@@ -26,11 +29,14 @@
 </template>
 
 <script>
+<<<<<<< Updated upstream
 import LoginPage from './components/Landing Page/LoginPage/LoginPage.vue';
 // import RegistrationPage from './components/Landing Page/LoginPage/RegistrationPage.vue';
 
 
 
+=======
+>>>>>>> Stashed changes
 export default {
     data() {
         return {
@@ -55,7 +61,6 @@ export default {
                 await this.$smAPI.fetchProductsByPromoAndSupermarket(this.supermarketName, false);
         },
     },
-    components: { LoginPage }
 };
 
 </script>

@@ -4,8 +4,8 @@
       <NavbarLandingPage />
     </div>
     <div id="background-container">
-      <img id="login-background" src="../Assets/background.png" alt="background">
-      <userFill />
+      <img id="Registration-background" src="../Assets/background.png" alt="background">
+      <RegistrationFill />
     </div>
 
   </div>
@@ -14,17 +14,18 @@
 
 <script>
 import NavbarLandingPage from '../../Navbar/NavbarLandingPage.vue';
+import RegistrationFill from './RegiFill/RegistrationFill.vue';
 
 export default {
-    name: 'loginPage',
+    name: 'Registration',
     data() {
     },
     methods: {},
-    components: { NavbarLandingPage }
+    components: { NavbarLandingPage, RegistrationFill }
 }
 </script>
 
-<style>
+<style scoped>
 #container{
   position: fixed;
   display: flex;
@@ -44,12 +45,12 @@ export default {
 
 }
 
-#login-background {
+#Registration-background {
   width: 100%;
   height: 100%;
   object-fit: cover; /* Scales the image while maintaining aspect ratio */
 }
-#login-body{
+#Registration-body{
   margin-top:200px;
 
 }
