@@ -6,18 +6,30 @@ import SelectedRecipeCard from "./components/Recipes/SelectedRecipePage/Selected
 import Market from "./components/Market/Market.vue";
 import SavedRecipe from "./components/SavedRecipe/SavedRecipe.vue";
 import Insights from "./components/Insights/Insights.vue";
+import Registration from "./components/LandingPage/RegistrationPage/Registration.vue";
+import Login from "./components/LandingPage/LoginPage/Login.vue";
+
 const routes = [
     { path: '/', component: Home },
     { path: '/find-recipes', component: FindRecipes },
     { path: '/find-recipes/SelectedRecipeCard', component: SelectedRecipeCard },
     { path: '/market', component: Market },
     { path: '/saved-recipes', component: SavedRecipe },
+<<<<<<< Updated upstream
+    {path: '/LoginPage', component: LoginPage},
+=======
+>>>>>>> Stashed changes
     // { path: '/view-promotions', component: ViewPromos },
     // { path: '/profile', component:  },
-    { path: '/insights', component: Insights}
+    { path: '/insights', component: Insights},
     // { path: '/consumption', component: }
-    // { path: '/register', component: }
-    // { path: '/login', component: }
+<<<<<<< Updated upstream
+    { path: '/register', component: RegistrationPage},
+    // { path: '/login', component: LoginPage },
+=======
+    { path: '/register', component: Registration},
+    { path: '/login', component: Login},
+>>>>>>> Stashed changes
     // Add more routes as needed
   ];
 
