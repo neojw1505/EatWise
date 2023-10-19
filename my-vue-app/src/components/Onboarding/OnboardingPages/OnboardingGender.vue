@@ -1,150 +1,71 @@
 <template>
-    <div id="container" class="mx-auto d-block">
-        <div>
-            <NavbarLandingPage />
+  <div>
+    <NavbarLandingPage />
+    <div class="container background-image ">
+      <div class="mx-auto text-center my-5 rounded-4 bg-warning col-8">
+        <h1>Select Your Gender</h1>
+      </div>
+      <div
+        class="mx-auto border rounded-4 justify-content-center py-2 px-5 d-flex shadow bg-white col-8"
+      >
+        <!-- male -->
+        <div @click="checked('male')" id="male" :class="filterOption">
+          <img src="../img/male.png" />
+          <h3>Male</h3>
         </div>
-        <div id="background-container">
-            <img id="background-image" src="../img/background.png" alt="background">
+        <!-- female -->
+        <div @click="checked('female')" id="female" :class="filterOption">
+          <img  src="../img/female.png" />
+          <h3>Female</h3>
         </div>
-        <div class="title col-sm-6 col-lg-4 col-xs-6">
-            Select Your Gender
-        </div>
-        <div class="body col-sm-6 col-lg-6 col-xs-6 mx-auto">
-            <div class="row">
-            <div class="maleContainer col-3" value="male">
-                <img src="../img/male.png">
-                <h3 style="margin-top: 5px;">Male</h3>
-            </div>
-
-            <div class="femaleContainer col-3" value="female">
-                <img src="../img/female.png"> 
-                <h3 style="margin-top: 5px;">Female</h3>
-            </div>
-        </div>
-        </div>
-        <button id="submit" class="btn col-sm-6 col-xs-6 btn-lg text-center my-5 " type="submit">Next</button>
+      </div>
+      <div class="mx-auto text-center">
+        <button
+          id="submit"
+          class="btn my-5 bg-warning px-5 fs-5 fw-semibold"
+          type="submit"
+        >
+          Next
+        </button>
+      </div>
     </div>
+  </div>
 </template>
 
 <script>
-export default{
-
-methods:
-
-function submit(){
-    
-}
-
-
-}
-
+export default {
+  data() {
+    return {
+      filterOption: " border rounded-4 p-3 mx-md-5 bg-light shadow text-center",
+      filterOptionCheck: " border rounded-4 p-3 mx-md-5 bg-warning shadow text-center",
+      selectedGender: "",
+    };
+  },
+  methods: {
+    checked(gender) {
+      if (this.selectedGender == gender) {
+        this.selectedGender = "";
+        document.getElementById(gender).className = this.filterOption;
+      } else {
+        this.selectedGender = gender;
+        document.getElementById(gender).className = this.filterOptionCheck;
+        if (gender == "male") {
+          document.getElementById("female").className = this.filterOption;
+        } else {
+          document.getElementById("male").className = this.filterOption;
+        }
+      }
+      // console.log(this.selectedGender);
+    },
+  },
+};
 </script>
 
-
-
-<style scoped>
-#container {
-    position: fixed;
-    display: flex;
-    justify-content: center;
-    width: 100%;
-    height: 100%;
+<style>
+body {
+  background-image: url(../img/background.png);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
-
-#background-container {
-    width: 100%;
-    height: 100%;
-    position: absolute;
-    top: 0;
-    left: 0;
-    z-index: -1;
-    overflow: hidden;
-
-}
-
-#background-image {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-}
-
-.title {
-    display: flex;
-    position: relative;
-    border-radius: 15px;
-    flex-direction: column;
-    justify-content: center;
-    flex-shrink: 0;
-    color: #000;
-    background-color: #EAD048;
-    text-align: center;
-    font-family: Poppins;
-    font-size: 36px;
-    font-style: normal;
-    font-weight: 700;
-    line-height: 130%; /* 46.8px */
-    letter-spacing: 7.2px;
-    text-transform: uppercase;
-    margin-left: auto;
-    margin-right: auto;
-    top: 100px;
-    padding: 10px;
-
-}
-
-.body {
-    display: flex;
-    position: relative;
-    justify-content: center;
-    background-color: #F9F7F7 ;
-    border-radius: 40px;
-    box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.50);
-    top: 150px;
-    height: 40vh;
-    width: 50vw;
-}
-
-.maleContainer {
-    position: absolute;
-    top: 15%;
-    left: 20%;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 50px;
-    text-align: center ;
-    background-color:#F9F7F7;
-    overflow: hidden;
-
-}
-
-.femaleContainer {
-    position: absolute;
-    top: 15%;
-    right: 20%;
-    border: 2px solid black;
-    border-radius: 10px;
-    padding: 50px;
-    text-align: center ;
-    background-color:#F9F7F7;
-    overflow: hidden;
-  
-}
-
-.btn{
-    position: absolute;
-    background-color: #f38e5f;
-    color: white;
-    top: 65%;
-    left: 25%;
-    border-radius: 20px;
-    padding-top: 20px;
-    padding-bottom: 20px;
-}
-
-.btn:hover {
-      background-color: #ee6221;
-      transition: 0.7s;
-      color:white
-  }
-
 </style>

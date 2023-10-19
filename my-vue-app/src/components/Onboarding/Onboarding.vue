@@ -1,5 +1,14 @@
-
-import OnboardingGender from './OnboardingPages/OnboardingGender.vue';
 <template>
-    <OnboardingGender></OnboardingGender>
+    <OnboardingGender/>
 </template>
+
+
+<script>
+export default {
+
+}
+</script>
+
+<style>
+
+</style>

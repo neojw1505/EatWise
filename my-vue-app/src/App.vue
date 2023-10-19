@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Onboarding></Onboarding>
+    <Onboarding/>
     <!-- <Onboarding></Onboarding> -->
     <!-- <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
     Display supermarket data here
