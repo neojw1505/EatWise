@@ -13,14 +13,11 @@
 
 
 <script>
-import NavbarLandingPage from '../../Navbar/NavbarLandingPage.vue';
 
 export default {
     name: 'login',
     data() {
     },
-    methods: {},
-    components: { NavbarLandingPage }
 }
 </script>
 

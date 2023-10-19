@@ -13,15 +13,12 @@
 
 
 <script>
-import NavbarLandingPage from '../../Navbar/NavbarLandingPage.vue';
-import RegistrationFill from './RegiFill/RegistrationFill.vue';
 
 export default {
     name: 'Registration',
     data() {
     },
     methods: {},
-    components: { NavbarLandingPage, RegistrationFill }
 }
 </script>
 
