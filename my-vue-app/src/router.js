@@ -15,21 +15,12 @@ const routes = [
     { path: '/find-recipes/SelectedRecipeCard', component: SelectedRecipeCard },
     { path: '/market', component: Market },
     { path: '/saved-recipes', component: SavedRecipe },
-<<<<<<< Updated upstream
-    {path: '/LoginPage', component: LoginPage},
-=======
->>>>>>> Stashed changes
     // { path: '/view-promotions', component: ViewPromos },
     // { path: '/profile', component:  },
     { path: '/insights', component: Insights},
     // { path: '/consumption', component: }
-<<<<<<< Updated upstream
-    { path: '/register', component: RegistrationPage},
-    // { path: '/login', component: LoginPage },
-=======
     { path: '/register', component: Registration},
     { path: '/login', component: Login},
->>>>>>> Stashed changes
     // Add more routes as needed
   ];
 
