@@ -1,7 +1,7 @@
 <template>
   <div class="mx-3">
     <div class="d-flex justify-content-between align-items-center">
-      <h5 class="fw-bold" style="color: #7aaab4">All Result:</h5>
+      <h5 class="fw-bold" >All Result:</h5>
       <div class="d-flex align-items-center">
         <h5 class="d-inline px-2 m-0">Filter Recipes:</h5>
         <button
@@ -9,7 +9,7 @@
           type="button"
           data-bs-toggle="collapse"
           data-bs-target="#filter"
-          style="background-color: #7aaab4"
+          style="background-color: #F4976C"
           aria-expanded="false"
           aria-controls="filter"
         >

@@ -6,7 +6,7 @@
       data-bs-target="#FilterByCaloriesOptions"
       aria-expanded="false"
       aria-controls="FilterByCaloriesOptions"
-      style="background-color: #4f919f"
+      style="background-color: #FFB18D"
     >
       <div>By Calories</div>
       <div class="arrow-down"></div>

@@ -1,8 +1,8 @@
 <template>
-    <router-link class="nav-link active py-0 d-flex mx-auto" aria-current="page" :to="eachLink.routeTo">
+    <router-link class="nav-link active py-0 d-flex mx-auto p-2 " aria-current="page" :to="eachLink.routeTo">
     <li :class="highlighLink(eachLink)" >
         <img class="logo" :src="eachLink.linkLogo" alt="" />
-        <div class="fw-semibold">{{eachLink.linkName}}</div> 
+        <div class="fw-semibold" v-html="`&nbsp;&nbsp;${eachLink.linkName}&nbsp;&nbsp;`"></div> 
     </li>
     </router-link>
   </template>
@@ -22,7 +22,7 @@ export default {
 
 <style scoped>
 .highlightBackground{
-    background-color: #7AAAB4;
+    background-color: #FFB18D;
     border-radius: 25px;
 }
 .logo{
@@ -30,7 +30,7 @@ export default {
     height: 25px;
 }
 li:hover{
-            background-color: #7AAAB4;
+            background-color: #FBE8A6;
             border-radius: 25px;
         }
 </style>
