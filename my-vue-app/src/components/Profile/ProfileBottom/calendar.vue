@@ -47,7 +47,22 @@
         return [...leadingBlanks, ...dates, ...trailingBlanks];
       },
       formattedDate(){
-        return this.selectedDateOnCalendar.toLocaleString().split(",")[0];
+        let tempDate= this.selectedDateOnCalendar.toLocaleString().split(",")[0].split("/");
+        let month={
+          '1':"January",
+          '2':"February",
+          '3':"March",
+          '4':"April",
+          '5':"May",
+          '6':"June",
+          '7':"July",
+          '8':"August",
+          '9':"September",
+          '10':"October",
+          '11':"November",
+          '12':"December",
+        };
+        return tempDate[1]+" "+month[tempDate[0]]+" "+tempDate[2];
       }
     },
     methods: {
@@ -88,9 +103,6 @@
   border-radius: 100%;
   border: 2px solid black;
 }
-  
-
-  
   
   .calendar-day {
     flex: 1;

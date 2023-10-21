@@ -22,6 +22,7 @@
 </template>
 
 <script>
+
 import healthymeal from "./healthymeal.jpeg";
 
 export default {
@@ -51,8 +52,11 @@ export default {
         },
 
       }
-    }}
-}
+    }},
+
+      
+    }
+
 </script>
 
 <style>
