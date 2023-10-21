@@ -1,6 +1,6 @@
 <template>
   <!-- <router-link :to="routerTO"> -->
-    <div class="card col cardStyle mx-2 px-0">
+    <div class="card cardStyle mx-2 px-0 my-2">
       <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" />
       <div class="card-body img-fluid">
         <h4 class="card-title" style="font-size: large; height: 50px">
