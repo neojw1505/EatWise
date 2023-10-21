@@ -3,9 +3,9 @@
     <!-- <NavbarSearch /> -->
     <NavbarlinkCard
       v-for="eachLink in linksToPages2"
-      v-bind:eachLink="eachLink"
       :key="eachLink.linkName"
-      :imgUrl="eachLink.linkLogo"
+      :icon="eachLink.linkIcon"
+      :eachLink="eachLink"
     />
   </ul>
 </template>
@@ -13,30 +13,25 @@
 <script>
 // this page the all the navigation data(find recipe, view promotion, market) which consist of
 // link name, link logo and the path they are directing once click
-
-import saved from "../images/saved.png";
-import profile from "../images/profile.png";
-
 import NavbarlinkCard from "./NavbarlinkCard.vue";
-import NavbarSearch from "./NavbarSearch.vue";
+// import NavbarSearch from "./NavbarSearch.vue";
 
 export default {
   name: "NavbarLinkSection1",
   components: {
     NavbarlinkCard,
-    NavbarSearch,
   },
   data() {
     return {
       linksToPages2: [
         {
           linkName: "Saved Recipes",
-          linkLogo: saved,
+          linkIcon: ["fas", "bookmark"],
           routeTo: "/saved-recipes",
         },
         {
           linkName: "Profile",
-          linkLogo: profile,
+          linkIcon: ["fas", "user"],
           routeTo: "/profile",
         },
       ],
