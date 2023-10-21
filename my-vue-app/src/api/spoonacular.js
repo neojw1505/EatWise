@@ -175,13 +175,22 @@ class SpoonacularAPI {
     maxCal = 10000
   ) {
     try {
-      const mealTypesQuery = mealTypes.join(",");
-      const dietTypesQuery = dietTypes.join(",");
-      const includeIngredientsQuery = includeIngredients.join(",");
-      const excludeIngredientsQuery = excludeIngredients.join(",");
-      const response = await this.axios.get(
-        `/recipes/complexSearch?query=${query}&diet=${dietTypesQuery}&type=${mealTypesQuery}&includeIngredients=${includeIngredientsQuery}&excludeIngredients=${excludeIngredientsQuery}&number=${number}&minCalories=${minCal}&maxCalories=${maxCal}`
-      );
+      const fullSearchQuery = [];
+
+      if (mealTypes.length > 0) fullSearchQuery.push(`type=${mealTypes.join(",")}`);
+      if (dietTypes.length > 0) fullSearchQuery.push(`diet=${dietTypes.join(",")}`);
+      if (query) fullSearchQuery.push(`query=${query}`);
+      if (includeIngredients.length > 0) fullSearchQuery.push(`includeIngredients=${includeIngredients.join(",")}`);
+      if (excludeIngredients.length > 0) fullSearchQuery.push(`excludeIngredients=${excludeIngredients.join(",")}`);
+      
+      fullSearchQuery.push(`number=${number}`);
+      fullSearchQuery.push(`minCalories=${minCal}`);
+      fullSearchQuery.push(`maxCalories=${maxCal}`);
+      
+      const queryString = fullSearchQuery.join('&');
+      console.log(queryString);
+      const response = await this.axios.get(`/recipes/complexSearch?${queryString}`);
+      
       // extract the ids
       const recipeIDsArr = [];
       // console.log(response.data);
