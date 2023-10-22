@@ -1,14 +1,10 @@
 <template>
-    <OnboardingGender/>
+    <!-- <OnboardingGender/> -->
+    <OnboardingUserDetails/>
 </template>
 
 
 <script>
-export default {
 
-}
 </script>
 
-<style>
-
-</style>
