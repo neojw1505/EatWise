@@ -7,7 +7,6 @@ import Market from "./components/Market/Market.vue";
 import SavedRecipe from "./components/SavedRecipe/SavedRecipe.vue";
 import Insights from "./components/Insights/Insights.vue";
 
-
 const routes = [
     { path: '/', component: Home },
     { path: '/find-recipes', component: FindRecipes },
@@ -18,6 +17,13 @@ const routes = [
     // { path: '/profile', component:  },
     { path: '/insights', component: Insights},
     // { path: '/consumption', component: }
+
+    { path: '/register', component: Registration},
+    { path: '/login', component: Login},
+    { path: '/profile', component: Profile},
+    { path: '/profile/setting', component: Setting},
+
+
 
   ];
 
