@@ -274,7 +274,28 @@ class SpoonacularAPI {
       throw error;
     }
   }
+
+  // get random food joke 
+  async getRandomFoodJoke(){
+    try {
+      const response = await this.axios.get('/food/jokes/random')
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // get random food fact 
+  async getRandomFoodFact(){
+    try {
+      const response = await this.axios.get('/food/trivia/random')
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
+
 
 const spoonacularObj = new SpoonacularAPI();
 
