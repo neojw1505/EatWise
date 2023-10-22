@@ -1,15 +1,266 @@
 // this file will contain methods to fetch data from firebase
-import { getDatabase, ref, get } from 'firebase/database';
-import { initializeApp } from 'firebase/app';
-import firebaseConfig from './firebaseConfig'; // Import your Firebase configuration
+import { getDatabase, ref, get, set, remove, update } from "firebase/database";
+import { initializeApp } from "firebase/app";
+import firebaseConfig from "./firebaseConfig"; // Import your Firebase configuration
+import {
+  getAuth,
+  createUserWithEmailAndPassword,
+  sendEmailVerification,
+  signInWithEmailAndPassword,
+  onAuthStateChanged,
+  updateProfile,
+  signOut,
+  deleteUser,
+  updateEmail,
+  reauthenticateWithCredential,
+  updatePassword,
+  sendPasswordResetEmail,
+} from "firebase/auth";
 
 // Initialize Firebase
 const firebaseApp = initializeApp(firebaseConfig);
 const database = getDatabase(firebaseApp);
+const auth = getAuth();
+export { auth };
 
-const baseURL = 'allSuperMarketsGroceries'
+export const createUser = async (
+  email,
+  password,
+  displayName,
+  profilePhotoURL,
+  dob,
+  gender,
+  userWeight,
+  userHeight,
+  goals,
+  activityLevel
+) => {
+  try {
+    const userCredential = await createUserWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    const user = userCredential.user;
 
-export const fetchProducts = async (searchQuery = '', minPrice = 0, maxPrice = Number.POSITIVE_INFINITY, onPromotion = false, ascending = true, supermarketName = '') => {
+    // Set the displayName for the user
+    await updateProfile(user, {
+      displayName: displayName,
+      photoURL: profilePhotoURL,
+    });
+
+    console.log("Display name and profile photo set");
+
+    // Create a user node in the Realtime Database under the "users" node
+    const userRef = ref(database, "users/" + user.uid);
+    set(userRef, {
+      dob: dob,
+      gender: gender,
+      fullName: user.displayName,
+      weight: userWeight,
+      height: userHeight,
+      goals: goals,
+      activityLevel: activityLevel,
+      profilePhoto: user.photoURL,
+      email: user.email,
+      isEmailVerified: user.emailVerified,
+    });
+
+    console.log("User data stored in Realtime Database");
+
+    // Send email verification
+    sendEmailVerification(user)
+      .then(() => {
+        // Email verification sent successfully
+        console.log("Email verification sent");
+      })
+      .catch((error) => {
+        console.error("Email verification error:", error);
+      });
+
+    return userCredential.user; // Return the user object
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error("User creation error:", errorCode, errorMessage);
+    throw error;
+  }
+};
+
+// This function will be called whenever the authentication state changes.
+onAuthStateChanged(auth, (user) => {
+  if (user) {
+    // User is signed in. You can access user properties here.
+    if (user.emailVerified) {
+      // Get the user's UID
+      const userUid = user.uid;
+
+      // Update the email verification status in the Realtime Database
+      const userRef = ref(database, "users/" + userUid);
+      update(userRef, { isEmailVerified: true });
+
+      console.log("User is signed in and verified.");
+      // You can also update your app's UI or perform other actions here.
+    } else {
+      console.log("User is signed in but email is not verified.");
+      // Log out unverified users
+      signOut(auth).then(() => {
+        console.log("User logged out due to unverified email.");
+      });
+    }
+  } else {
+    // User is signed out.
+    console.log("User is signed out.");
+    // Handle UI changes for logged-out users if necessary.
+  }
+});
+
+// sign in with email and password but check if user has verified, if not verified cannot login
+export const login = async (email, password) => {
+  try {
+    const userCredential = await signInWithEmailAndPassword(
+      auth,
+      email,
+      password
+    );
+    // No need to check email verification here. onAuthStateChanged will handle it.
+    return userCredential.user;
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error("Login error:", errorCode, errorMessage);
+    throw error;
+  }
+};
+
+// Function to delete a user and their data
+export const deleteAccount = async () => {
+  try {
+    // Delete the user from Firebase Authentication
+    await deleteUser(auth.currentUser);
+
+    // Delete the user's data from the Realtime Database
+    const userRef = ref(database, "users/" + auth.uid);
+    await remove(userRef);
+
+    console.log("User and data deleted successfully.");
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error("User deletion error:", errorCode, errorMessage);
+    throw error;
+  }
+};
+
+export const updateUserProfile = async (
+  newDisplayName,
+  newEmail,
+  newProfilePhotoURL,
+  newDOB,
+  newGender,
+  newWeight,
+  newHeight,
+  newGoal,
+  activityLevel,
+  currentPassword
+) => {
+  try {
+    // Update the current user node in the Realtime Database
+    const userRef = ref(database, "users/" + auth.uid);
+    await update(userRef, {
+      dob: newDOB,
+      gender: newGender,
+      fullName: newDisplayName,
+      weight: newWeight,
+      height: newHeight,
+      goals: newGoal,
+      activityLevel: activityLevel,
+      profilePhoto: newProfilePhotoURL,
+      email: newEmail,
+    });
+
+    // Reauthenticate the user
+    const credentials = EmailAuthProvider.credential(
+      auth.currentUser.email,
+      currentPassword
+    );
+    await reauthenticateWithCredential(auth.currentUser, credentials);
+    console.log("User reaunthenticated successfully!");
+    // Update the email
+    await updateEmail(auth.currentUser, newEmail);
+
+    // Update the Authentication side data for the user
+    await updateProfile(auth.currentUser, {
+      displayName: newDisplayName,
+      photoURL: newProfilePhotoURL,
+    });
+
+    console.log("Profile and email successfully updated!");
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error("Update profile error:", errorCode, errorMessage);
+    throw error;
+  }
+};
+
+export const updateUserPassword = async (currentPassword, newPassword) => {
+  try {
+    // Reauthenticate the user to confirm their identity
+    const credentials = EmailAuthProvider.credential(
+      auth.currentUser.email,
+      currentPassword
+    );
+    await reauthenticateWithCredential(auth.currentUser, credentials);
+
+    // Update the password using auth.currentUser
+    await updatePassword(auth.currentUser, newPassword);
+
+    console.log("Password updated successfully.");
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error("Password update error:", errorCode, errorMessage);
+    throw error;
+  }
+};
+
+// Function to send a password reset email
+export const passwordReset = async (email) => {
+  try {
+    await sendPasswordResetEmail(auth, email);
+    console.log("Password reset email sent successfully.");
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error("Password reset email error:", errorCode, errorMessage);
+    throw error;
+  }
+};
+
+// Reference to the "users" node
+// const usersRef = ref(database, "users");
+
+// // Remove the "users" node
+// remove(usersRef)
+//   .then(() => {
+//     console.log("Users node removed successfully.");
+//   })
+//   .catch((error) => {
+//     console.error("Error removing users node:", error);
+//   });
+
+// ######################################################################################## //
+const baseURL = "allSuperMarketsGroceries";
+
+export const fetchProducts = async (
+  searchQuery = "",
+  minPrice = 0,
+  maxPrice = Number.POSITIVE_INFINITY,
+  onPromotion = false,
+  ascending = true,
+  supermarketNames = []
+) => {
   const path = `/${baseURL}`;
   const dataRef = ref(database, path);
 
@@ -19,18 +270,26 @@ export const fetchProducts = async (searchQuery = '', minPrice = 0, maxPrice = N
       const allProducts = snapshot.val();
       const matchingProducts = [];
 
-      // Iterate through the supermarkets and filter products based on criteria
       for (const superName in allProducts) {
-        if (allProducts.hasOwnProperty(superName) && (supermarketName === '' || supermarketName === superName)) {
+        if (
+          allProducts.hasOwnProperty(superName) &&
+          (supermarketNames.length === 0 ||
+            supermarketNames.includes(superName))
+        ) {
           const products = allProducts[superName];
 
           const filteredProducts = products.filter((product) => {
             const productTitle = product.product_title.toLowerCase();
-            const productPrice = parseFloat(product.product_price.replace('$', ''));
-            const productPromotion = product.product_promo && product.product_promo !== 'No promotion available';
+            const productPrice = parseFloat(
+              product.product_price.replace("$", "")
+            );
+            const productPromotion =
+              product.product_promo &&
+              product.product_promo !== "No promotion available";
 
             return (
-              (productTitle.includes(searchQuery.toLowerCase()) || searchQuery === '') &&
+              (productTitle.includes(searchQuery.toLowerCase()) ||
+                searchQuery === "") &&
               productPrice >= minPrice &&
               productPrice <= maxPrice &&
               (!onPromotion || (onPromotion && productPromotion))
@@ -41,24 +300,24 @@ export const fetchProducts = async (searchQuery = '', minPrice = 0, maxPrice = N
         }
       }
 
-      // Sort matching products based on ascending or descending order
       matchingProducts.sort((a, b) => {
-        const priceA = parseFloat(a.product_price.replace('$', ''));
-        const priceB = parseFloat(b.product_price.replace('$', ''));
+        const priceA = parseFloat(a.product_price.replace("$", ""));
+        const priceB = parseFloat(b.product_price.replace("$", ""));
         const comparison = ascending ? priceA - priceB : priceB - priceA;
         return comparison;
       });
 
       return matchingProducts;
     } else {
-      console.log('No data available');
+      console.log("No data available");
       return null;
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     throw error;
   }
-}
+};
+
 // Fetch all products with optional ascending sorting by price
 export const fetchAllProducts = async (ascending = true) => {
   const path = `/${baseURL}`; // Set the path to the root
@@ -79,25 +338,28 @@ export const fetchAllProducts = async (ascending = true) => {
 
       // Sort the products based on product_price in ascending or descending order
       allProductsArray.sort((a, b) => {
-        const priceA = parseFloat(a.product_price.replace('$', ''));
-        const priceB = parseFloat(b.product_price.replace('$', ''));
+        const priceA = parseFloat(a.product_price.replace("$", ""));
+        const priceB = parseFloat(b.product_price.replace("$", ""));
         const comparison = ascending ? priceA - priceB : priceB - priceA;
         return comparison;
       });
 
       return allProductsArray;
     } else {
-      console.log('No data available');
+      console.log("No data available");
       return null;
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 };
 
 // Function to fetch all products from a specific supermarket sorted by price (ascending or descending)
-export const fetchProductsBySupermarket = async (supermarketName, ascending = true) => {
+export const fetchProductsBySupermarket = async (
+  supermarketName,
+  ascending = true
+) => {
   const path = `${baseURL}/${supermarketName}`;
   const dataRef = ref(database, path);
 
@@ -119,7 +381,7 @@ export const fetchProductsBySupermarket = async (supermarketName, ascending = tr
       return null;
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 };
@@ -139,13 +401,18 @@ export const fetchProductsByTitle = async (title, ascending = true) => {
         if (allSupermarkets.hasOwnProperty(supermarketName)) {
           const products = allSupermarkets[supermarketName];
           for (const product of products) {
-            if (product.product_title.toLowerCase().includes(title.toLowerCase())) {
+            if (
+              product.product_title.toLowerCase().includes(title.toLowerCase())
+            ) {
               // Use a regular expression to extract the price in the format '$X.XX'
               const priceMatch = product.product_price.match(/\$([\d.]+)/);
               if (priceMatch) {
                 const productPrice = parseFloat(priceMatch[1]);
                 // Create a new object with the original data and an additional parsed_price field
-                const productWithParsedPrice = { ...product, parsed_price: productPrice };
+                const productWithParsedPrice = {
+                  ...product,
+                  parsed_price: productPrice,
+                };
                 matchingProducts.push(productWithParsedPrice);
               }
             }
@@ -155,16 +422,18 @@ export const fetchProductsByTitle = async (title, ascending = true) => {
 
       // Sort matching products by parsed_price (price extracted from the format '$X.XX')
       matchingProducts.sort((a, b) => {
-        return ascending ? a.parsed_price - b.parsed_price : b.parsed_price - a.parsed_price;
+        return ascending
+          ? a.parsed_price - b.parsed_price
+          : b.parsed_price - a.parsed_price;
       });
 
       return matchingProducts;
     } else {
-      console.log('No data available');
+      console.log("No data available");
       return null;
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 };
@@ -185,7 +454,9 @@ export const fetchProductsByPrice = async (price, ascending = true) => {
           const products = allProducts[supermarketName];
           const matchingProducts = products.filter((product) => {
             // Parse the product price and user input price to numbers
-            const productPrice = parseFloat(product.product_price.replace('$', ''));
+            const productPrice = parseFloat(
+              product.product_price.replace("$", "")
+            );
             const userInputPrice = parseFloat(price);
             // Compare the parsed prices based on ascending or descending sorting
             return productPrice <= userInputPrice;
@@ -197,24 +468,28 @@ export const fetchProductsByPrice = async (price, ascending = true) => {
 
       // Sort the filtered products based on product_price in descending order
       filteredProducts.sort((a, b) => {
-        const priceA = parseFloat(a.product_price.replace('$', ''));
-        const priceB = parseFloat(b.product_price.replace('$', ''));
+        const priceA = parseFloat(a.product_price.replace("$", ""));
+        const priceB = parseFloat(b.product_price.replace("$", ""));
         return ascending ? priceA - priceB : priceB - priceA;
       });
 
       return filteredProducts;
     } else {
-      console.log('No data available');
+      console.log("No data available");
       return null;
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 };
 
 // Function to fetch products by title, price, and sorting order
-export const fetchProductsByTitleAndPrice = async (title, maxPrice, ascending = true) => {
+export const fetchProductsByTitleAndPrice = async (
+  title,
+  maxPrice,
+  ascending = true
+) => {
   const path = `/${baseURL}`; // Set the path to the root
   const dataRef = ref(database, path);
 
@@ -229,9 +504,12 @@ export const fetchProductsByTitleAndPrice = async (title, maxPrice, ascending = 
         if (allProducts.hasOwnProperty(supermarketName)) {
           const products = allProducts[supermarketName];
 
-          const filteredProducts = products.filter((product) =>
-            product.product_title.toLowerCase().includes(title.toLowerCase()) &&
-            parseFloat(product.product_price.replace('$', '')) <= maxPrice
+          const filteredProducts = products.filter(
+            (product) =>
+              product.product_title
+                .toLowerCase()
+                .includes(title.toLowerCase()) &&
+              parseFloat(product.product_price.replace("$", "")) <= maxPrice
           );
 
           matchingProducts.push(...filteredProducts);
@@ -240,19 +518,19 @@ export const fetchProductsByTitleAndPrice = async (title, maxPrice, ascending = 
 
       // Sort the matching products based on sorting order
       matchingProducts.sort((a, b) => {
-        const priceA = parseFloat(a.product_price.replace('$', ''));
-        const priceB = parseFloat(b.product_price.replace('$', ''));
+        const priceA = parseFloat(a.product_price.replace("$", ""));
+        const priceB = parseFloat(b.product_price.replace("$", ""));
         const comparison = ascending ? priceA - priceB : priceB - priceA;
         return comparison;
       });
 
       return matchingProducts;
     } else {
-      console.log('No data available');
+      console.log("No data available");
       return null;
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 };
@@ -271,8 +549,10 @@ export const fetchProductsByPromo = async (ascending = true) => {
       for (const supermarketName in allProducts) {
         if (allProducts.hasOwnProperty(supermarketName)) {
           const products = allProducts[supermarketName];
-          const matchingProducts = products.filter((product) =>
-            product.product_promo && product.product_promo !== 'No promotion available'
+          const matchingProducts = products.filter(
+            (product) =>
+              product.product_promo &&
+              product.product_promo !== "No promotion available"
           );
 
           promotedProducts.push(...matchingProducts);
@@ -296,16 +576,19 @@ export const fetchProductsByPromo = async (ascending = true) => {
 
       return promotedProducts;
     } else {
-      console.log('No data available');
+      console.log("No data available");
       return null;
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 };
 
-export const fetchProductsByPromoAndSupermarket = async (supermarketName = '', ascending = true) => {
+export const fetchProductsByPromoAndSupermarket = async (
+  supermarketName = "",
+  ascending = true
+) => {
   try {
     const path = `/${baseURL}`;
     const dataRef = ref(database, path);
@@ -319,10 +602,11 @@ export const fetchProductsByPromoAndSupermarket = async (supermarketName = '', a
       for (const superName in allProducts) {
         if (allProducts.hasOwnProperty(superName)) {
           const products = allProducts[superName];
-          const matchingProducts = products.filter((product) =>
-            product.product_promo &&
-            product.product_promo !== 'No promotion available' &&
-            (supermarketName === '' || supermarketName === superName)
+          const matchingProducts = products.filter(
+            (product) =>
+              product.product_promo &&
+              product.product_promo !== "No promotion available" &&
+              (supermarketName === "" || supermarketName === superName)
           );
 
           promotedProducts.push(...matchingProducts);
@@ -346,11 +630,11 @@ export const fetchProductsByPromoAndSupermarket = async (supermarketName = '', a
 
       return promotedProducts;
     } else {
-      console.log('No data available');
+      console.log("No data available");
       return null;
     }
   } catch (error) {
-    console.error('Error fetching data:', error);
+    console.error("Error fetching data:", error);
     throw error;
   }
 };
