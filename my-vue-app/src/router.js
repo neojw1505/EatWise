@@ -11,7 +11,6 @@ import Login from "./components/LandingPage/LoginPage/Login.vue";
 import Profile from "./components/Profile/Profile.vue";
 import Setting from "./components/Profile/setting/Setting.vue";
 
-
 const routes = [
     { path: '/', component: Home },
     { path: '/find-recipes', component: FindRecipes },
@@ -26,7 +25,6 @@ const routes = [
     { path: '/login', component: Login},
     { path: '/profile', component: Profile},
     { path: '/profile/setting', component: Setting},
-    // Add more routes as needed 
   ];
 
 const router = createRouter({

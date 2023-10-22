@@ -152,6 +152,31 @@ export const deleteAccount = async () => {
   }
 };
 
+// get login user data from the users node using uid
+export const getLoginUserProfile = async () => {
+  try {
+    if (auth.currentUser){
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const dataRef = ref(database, '/users/' + userUid);
+      const snapshot = await get(dataRef);
+      if (snapshot.exists()){
+        console.log('Retrieved user data successfully');
+        return snapshot.val();
+      } else {
+        console.log('User data not found.');
+        return null; // Return null if data doesn't exist
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
 export const updateUserProfile = async (
   newDisplayName,
   newEmail,
@@ -166,7 +191,7 @@ export const updateUserProfile = async (
 ) => {
   try {
     // Update the current user node in the Realtime Database
-    const userRef = ref(database, "users/" + auth.uid);
+    const userRef = ref(database, "/users/" + auth.uid);
     await update(userRef, {
       dob: newDOB,
       gender: newGender,
