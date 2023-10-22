@@ -12,8 +12,14 @@
         />
       </div>
       
+      <div v-else-if="visibleItems.length == 0 && data!=null" class="mt-3 d-flex mx-auto justify-content-center">
+      <div class="mx-auto text-center">
+        No Result Found
+        <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
+      </div>
+      </div>
 
-      <div v-else class="d-flex mx-auto justify-content-center">
+      <div v-else class="mt-3 d-flex mx-auto justify-content-center">
       <div class="mx-auto">
         <div class="d-inline mx-auto">
           <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
@@ -21,20 +27,14 @@
       </div>
     </div>
 
-      <div v-if="data && data.length==0" class="row d-flex mx-auto justify-content-center">
-        <h1 class="d-inline">
-          <i>No Reciepe found </i>
-          <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
-        </h1>
-      </div>
 
       <!-- buttons for pagination -->
-      <div class="d-flex justify-content-center my-3">
+      <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
         <button class="btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
         <button class="btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
       </div>
       <!-- pages -->
-      <div class="d-flex justify-content-center">
+      <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
       <button
         v-for="page in limitedPages"
         :key="page"
@@ -96,8 +96,16 @@ export default {
     // async getSelectedRecipeGeneralInfo() {
     //   this.data = await this.$spoonAPI.getSelectedRecipeGeneralInfo();
     // },
-
+    // mealTypes = [],
+    // dietTypes = [],
+    // query = "",
+    // number = 10,
+    // includeIngredients = [],
+    // excludeIngredients = [],
+    // minCal = 0,
+    // maxCal = 10000
     async getFilteredRecipes() {
+      this.data=null;
       this.data = await this.$spoonAPI.getFilteredRecipes(
         this.PassMealType,
         this.PassDietType,

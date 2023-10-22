@@ -206,7 +206,10 @@ class SpoonacularAPI {
     } catch (error) {
       // Handle errors here
       // console.error(`Error fetching nutrition for recipe with ID ${recipeID}:`, error);
-      throw error;
+      // throw error;
+      console.log("no recipe found")
+      return [];
+
     }
   }
 
@@ -231,7 +234,7 @@ class SpoonacularAPI {
       const response = await this.axios.get(
         `/recipes/${id}/nutritionWidget.json`
       );
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw error;
