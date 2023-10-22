@@ -1,3 +1,5 @@
+
+import OnboardingActivityLevel from './OnboardingPages/OnboardingActivityLevel.vue';
 <template>
     <!-- <OnboardingGender/> -->
     <!-- <OnboardingUserDetails/> -->
@@ -8,6 +10,5 @@
 <script>
 
 </script>
-
-
 </style>
+
