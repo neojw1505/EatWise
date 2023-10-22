@@ -1,6 +1,9 @@
+
+import OnboardingActivityLevel from './OnboardingPages/OnboardingActivityLevel.vue';
 <template>
     <!-- <OnboardingGender/> -->
-    <OnboardingUserDetails/>
+    <!-- <OnboardingUserDetails/> -->
+    <OnboardingActivityLevel/>
 </template>
 
 
