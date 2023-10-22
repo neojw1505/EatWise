@@ -206,7 +206,10 @@ class SpoonacularAPI {
     } catch (error) {
       // Handle errors here
       // console.error(`Error fetching nutrition for recipe with ID ${recipeID}:`, error);
-      throw error;
+      // throw error;
+      console.log("no recipe found")
+      return [];
+
     }
   }
 
@@ -231,7 +234,7 @@ class SpoonacularAPI {
       const response = await this.axios.get(
         `/recipes/${id}/nutritionWidget.json`
       );
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw error;
@@ -275,7 +278,28 @@ class SpoonacularAPI {
       throw error;
     }
   }
+
+  // get random food joke 
+  async getRandomFoodJoke(){
+    try {
+      const response = await this.axios.get('/food/jokes/random')
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
+
+  // get random food fact 
+  async getRandomFoodFact(){
+    try {
+      const response = await this.axios.get('/food/trivia/random')
+      return response.data;
+    } catch (error) {
+      console.log(error);
+    }
+  }
 }
+
 
 const spoonacularObj = new SpoonacularAPI();
 

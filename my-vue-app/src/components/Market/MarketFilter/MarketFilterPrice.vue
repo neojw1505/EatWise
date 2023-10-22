@@ -7,6 +7,7 @@
             class="form-control d-inline"
             type="number"
             style="width: 80px"
+            @keyup="handlePrice"
           />
           to
           <input
@@ -14,6 +15,7 @@
             class="form-control d-inline"
             type="number"
             style="width: 80px"
+            @keyup="handlePrice"
           />
         </div>
     </div>
@@ -28,7 +30,9 @@
       };
     },
     methods: {
-    
+      handlePrice(){
+        this.$emit('getPrice',[this.minPrice,this.maxPrice]);
+      }
     },
   };
   </script>

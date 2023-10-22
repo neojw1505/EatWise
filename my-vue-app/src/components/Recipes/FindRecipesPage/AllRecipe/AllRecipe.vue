@@ -40,23 +40,23 @@ export default {
     },
     handleDietTypeInput(data) {
       // console.log(data)
-      this.MealType=data;
+      this.DietType=data;
     },
     handleIncludeIngredientInput(data) {
       // console.log(data)
-      this.MealType=data;
+      this.IncludeIngredient=data;
     },
     handleExcludeIngredientInput(data) {
       // console.log(data)
-      this.MealType=data;
+      this.ExcludeIngredient=data;
     },
     handleMinCalInput(data) {
       // console.log(data)
-      this.MealType=data;
+      this.MinCal=data;
     },
     handleMaxCalInput(data) {
       // console.log(data)
-      this.MealType=data;
+      this.MaxCal=data;
     },
   },
   watch: {

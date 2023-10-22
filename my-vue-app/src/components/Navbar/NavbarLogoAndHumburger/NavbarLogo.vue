@@ -2,7 +2,7 @@
   <div class="text-center mx-2">
     <router-link class="navbar-brand p-0 m-0" to="/">
     <li :class="this.$route.path==='/' ? 'highlightBackground' : ''" @click="highlighLink" style="list-style: none">
-        <img class="logo" src="../images/companyLogo.png" alt="" type="button" />
+        <font-awesome-icon :icon="['fas', 'money-bill-wheat']" size="xl" />
         <div class="fw-semibold">EatWise</div>
     </li>
   </router-link>
@@ -17,7 +17,7 @@ export default {
 
 <style scoped>
 .highlightBackground{
-    background-color: #FFB18D;
+    color: #FBE8A6;
     border-radius: 25px;
 }
 .logo{
@@ -25,7 +25,7 @@ export default {
     height: 25px;
 }
 li:hover{
-            background-color: #FBE8A6;
-            border-radius: 25px;
-        }
+    color: #FBE8A6;
+    border-radius: 25px;
+}
 </style>

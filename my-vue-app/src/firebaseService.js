@@ -335,7 +335,7 @@ export const fetchProducts = async (
       return matchingProducts;
     } else {
       console.log("No data available");
-      return null;
+      return matchingProducts;
     }
   } catch (error) {
     console.error("Error fetching data:", error);

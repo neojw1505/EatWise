@@ -1,5 +1,4 @@
 <template>
-
     <!-- <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
     Display supermarket data here
     <div class="owl-carousel">
@@ -25,6 +24,7 @@
 </template>
 
 <script>
+
 export default {
     data() {
         return {
@@ -49,6 +49,7 @@ export default {
                 await this.$smAPI.fetchProductsByPromoAndSupermarket(this.supermarketName, false);
         },
     },
+
 };
 
 </script>

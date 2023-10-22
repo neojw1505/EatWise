@@ -14,13 +14,19 @@
     </div>
     <!-- filter -->
     <div class="collapse show" id="marketFilter">
-      <MarketFilterInput/>
+      <MarketFilterInput @getInput="handleInput"/>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods:{
+    handleInput(data){
+      this.$emit('getInput',data)
+    }
+  }
+};
 </script>
 
 <style></style>
