@@ -8,6 +8,13 @@
       />
     </div>
 
+    <div v-else-if="visibleItems.length == 0 && result!=null" class="d-flex mx-auto justify-content-center">
+      <div class="mx-auto text-center">
+        No Result Found
+        <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
+      </div>
+    </div>
+
     <div v-else class="d-flex mx-auto justify-content-center">
       <div class="mx-auto">
         <div class="d-inline mx-auto">
@@ -15,6 +22,8 @@
         </div>
       </div>
     </div>
+
+
 
     <div class="d-flex justify-content-center my-3">
       <button class="btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>

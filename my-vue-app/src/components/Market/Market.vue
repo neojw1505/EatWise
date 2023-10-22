@@ -58,12 +58,14 @@ export default {
         // console.log(this.sortBy);
     },
     handleInput(data){
+      this.dataResult=null
       console.log(data)
       this.marketSearchQuery=data[0];
       this.minPrice=data[1];
       this.maxPrice=data[2];
       if(data[3]!=''){
-        this.supermarket=data[3][0].split(' ').join('');
+        this.supermarket=data[3].map(market=>(market.split(' ').join('')));
+        console.log(this.supermarket)
       }
       this.fetchProducts();
       
@@ -78,10 +80,7 @@ export default {
       }
       this.onPromotion= this.sortBy.includes("On Promotion") ? true : false
       this.isAscending= this.sortBy.includes("Order By Price(Ascending)") ? true : false
-      //remember to change supermarket after junwei change the api
-      this.dataResult= await this.$smAPI.fetchProducts(this.marketSearchQuery, this.minPrice, this.maxPrice, this.onPromotion, this.isAscending, this.supermarket[0]);
-
-      // console.log(this.dataResult)
+      this.dataResult= await this.$smAPI.fetchProducts(this.marketSearchQuery, this.minPrice, this.maxPrice, this.onPromotion, this.isAscending, this.supermarket);
     }
   },
   mounted() {
@@ -91,6 +90,7 @@ export default {
     sortBy: {
       deep: true,
       handler(newVal, oldVal) {
+        this.dataResult=null
         this.fetchProducts();
       },
     },

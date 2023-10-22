@@ -25,8 +25,8 @@
   export default {
     data() {
       return {
-        minPrice: 0,
-        maxPrice: Number.POSITIVE_INFINITY,
+        minPrice: "",
+        maxPrice: "",
       };
     },
     methods: {
