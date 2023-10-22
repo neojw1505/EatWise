@@ -42,7 +42,7 @@ export default {
 
 <style>
 .highlightBackground {
-  color: #FBE8A6;
+
   border-radius: 25px;
 }
 
