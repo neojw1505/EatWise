@@ -6,6 +6,10 @@ import SelectedRecipeCard from "./components/Recipes/SelectedRecipePage/Selected
 import Market from "./components/Market/Market.vue";
 import SavedRecipe from "./components/SavedRecipe/SavedRecipe.vue";
 import Insights from "./components/Insights/Insights.vue";
+import Login from "./components/LandingPage/LoginPage/Login.vue";
+import Profile from "./components/Profile/Profile.vue";
+import Setting from "./components/Profile/setting/Setting.vue";
+import Registration from "./components/LandingPage/RegistrationPage/Registration.vue";
 
 const routes = [
     { path: '/', component: Home },
