@@ -1,65 +1,112 @@
 <template>
   <div class="p-4 pt-2 shadow border rounded-4 my-3 mt-4 d-flex row">
-    <MarketPreviewCard
-      v-for="product in MarketResult"
-      :key="product.title"
-      :ProductData="product"
-      :backgroundStyle="supermarketStyle[product.supermarket]"
-    />
+    <div v-if="visibleItems.length > 0" class="d-flex flex-wrap">
+      <MarketPreviewCard
+        v-for="product in visibleItems"
+        :ProductData="product"
+        :key="product.id"
+      />
+    </div>
+
+    <div v-else-if="visibleItems.length == 0 && result!=null" class="mt-3 d-flex mx-auto justify-content-center">
+      <div class="mx-auto text-center">
+        No Result Found
+        <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
+      </div>
+    </div>
+
+    <div v-else class="mt-3 d-flex mx-auto justify-content-center">
+      <div class="mx-auto">
+        <div class="d-inline mx-auto">
+          <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
+        </div>
+      </div>
+    </div>
+
+
+
+    <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
+      <button class="btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
+      <button class="btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
+    </div>
+
+    <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
+      <button
+        v-for="page in limitedPages"
+        :key="page"
+        @click="goToPage(page)"
+        :class="{ 'active': page === currentPage }"
+        class="btn"
+      >
+        {{ page + 1 }}
+      </button>
+    </div>
   </div>
 </template>
 
 <script>
-import productImage from "./healthymeal.jpeg";
-
 export default {
+  props: ["result"],
   data() {
     return {
-        supermarketStyle:{
-            "FairPrice":"background-image: linear-gradient(to bottom right, #ff0000, #ffffff);",
-            "Cold Storage":"background-image: linear-gradient(to bottom right, #ff0000, #25b800,#ffffff);",
-            "Sheng Shiong":"background-image: linear-gradient(to bottom right,#05fa11, #0059ff, #0077ff);"
-        },
-      MarketResult: [
-        {
-          supermarket: "FairPrice",
-          title: "Zavier",
-          image: productImage,
-          price: 3.30,
-          promotion: "jun wei for free",
-        },
-        {
-          supermarket: "Cold Storage",
-          title: "Jun Wei",
-          image: productImage,
-          price: 3.30,
-          promotion: "jun wei for free",
-        },
-        {
-          supermarket: "Sheng Shiong",
-          title: "Lumuel",
-          image: productImage,
-          price: 3.30,
-          promotion: "jun wei for free",
-        },
-        {
-          supermarket: "FairPrice",
-          title: "Zhen Yue",
-          image: productImage,
-          price: 3.30,
-          promotion: "jun wei for free",
-        },
-        {
-          supermarket: "Sheng Shiong",
-          title: "Kai Jie",
-          image: productImage,
-          price: 3.30,
-          promotion: "jun wei for free",
-        },
-      ],
+      itemsPerPage: 30,
+      currentPage: 0,
     };
+  },
+  computed: {
+    maxPage() {
+      if(!this.result){
+        return ""
+      }
+      return Math.ceil(this.result.length / this.itemsPerPage) - 1;
+    },
+    visibleItems() {
+      if(!this.result){
+        return ""
+      }
+      const start = this.currentPage * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.result.slice(start, end);
+    },
+
+    limitedPages() {
+      // Determine the range of visible pages (last 5 pages or less)
+      const rangeStart = Math.max(0, this.currentPage - 4);
+      const rangeEnd = Math.min(this.maxPage, rangeStart + 4);
+      return Array.from({ length: rangeEnd - rangeStart + 1 }, (_, index) => rangeStart + index);
+    },
+  },
+  methods: {
+    nextPage() {
+      if (this.currentPage < this.maxPage) {
+        this.currentPage++;
+        this.scrollToTop();
+      }
+    },
+    previousPage() {
+      if (this.currentPage > 0) {
+        this.currentPage--;
+        this.scrollToTop();
+      }
+    },
+    goToPage(page) {
+      this.currentPage = page;
+      this.scrollToTop();
+    },
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
   },
 };
 </script>
 
-<style></style>
+<style scoped>
+.active {
+  color: white;
+  padding: 5px 10px;
+  margin: 0 3px;
+  border-radius: 5px;
+  border: 1px solid #d8d7d7;
+  cursor: pointer;
+}
+</style>

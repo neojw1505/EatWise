@@ -6,7 +6,7 @@
       data-bs-target="#FilterDietTypeOptions"
       aria-expanded="false"
       aria-controls="FilterDietTypeOptions"
-      style="background-color: #4F919F;"
+      style="background-color: #FFB18D;"
     >
     <div> Diet Type</div>
     <div class="arrow-down"></div>

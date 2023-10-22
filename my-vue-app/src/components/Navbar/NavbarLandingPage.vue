@@ -12,7 +12,7 @@
             src="./images/companyLogo.png"
             alt=""
         />
-        <div class="fw-semibold">EATWISE</div>
+        <div class="fw-semibold">EatWise</div>
         </div>
       </div>
       <!-- show the register and login -->

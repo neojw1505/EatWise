@@ -24,9 +24,11 @@
           id="submit"
           class="btn my-5 bg-warning px-5 fs-5 fw-semibold"
           type="submit"
+          @click="nextPage()"
         >
           Next
         </button>
+        <router-view></router-view>
       </div>
     </div>
   </div>
@@ -57,6 +59,9 @@ export default {
       }
       // console.log(this.selectedGender);
     },
+    nextPage(){
+      
+    }
   },
 };
 </script>
@@ -67,5 +72,7 @@ body {
   width: 100%;
   height: 100%;
   object-fit: cover;
+  background-size: cover;
+  /* background-repeat: no-repeat; */
 }
 </style>

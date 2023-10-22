@@ -23,13 +23,14 @@
           e.target.className=this.filterOption;
           let index = this.filterBy.indexOf(e.target.value);
           this.filterBy.splice(index,1);
-          console.log(this.filterBy)
+          // console.log(this.filterBy)
         }
         else{
           e.target.className=this.filterOptionCheck;
           this.filterBy.push(e.target.value)
-          console.log(this.filterBy)
+          // console.log(this.filterBy)
         }
+        this.$emit('getSupermarket',this.filterBy);
       }
     }
   };

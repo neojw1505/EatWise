@@ -6,7 +6,7 @@ import SelectedRecipeCard from "./components/Recipes/SelectedRecipePage/Selected
 import Market from "./components/Market/Market.vue";
 import SavedRecipe from "./components/SavedRecipe/SavedRecipe.vue";
 import Insights from "./components/Insights/Insights.vue";
-import Onboarding from "./components/Onboarding/Onboarding.vue";
+// import Onboarding from "./components/Onboarding/Onboarding.vue";
 
 const routes = [
     { path: '/', component: Home },
@@ -20,10 +20,6 @@ const routes = [
 
     { path: '/OnboardingPages', component:Onboarding},
     // { path: '/consumption', component: }
-    // { path: '/register', component: }
-    // { path: '/login', component: }
-    // { path: '/Onboarding', component: Onboarding}
-    // Add more routes as needed
 
   ];
 

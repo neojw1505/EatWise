@@ -1,18 +1,29 @@
 <template>
-  <div
-    class="shadow p-3 rounded-5 my-3"
-    style="background-color: #fbe8a6"
-  >
-    <h1 class="fw-bold mb-3">Recipe of the Day</h1>
-    <div class="rando-recipe-content row">
-      <!-- show the image of recipe of the day -->
-      <div class="rando-recipe-img col-sm-12 col-md-6">
-        <img class="rando-img img-fluid" :src="imgUrl" alt="Recipe Image" />
+  <div class="row">
+    <div
+      class="col-lg-8 col-md-12  pt-2 shadow border rounded-4 px-4 my-3 mx-1 "
+      style="background-color: #fbe8a6"
+    >
+      <h1 class="fw-bold mb-3">Recipe of the Day</h1>
+      <div class="row py-3 pt-0">
+        <!-- show the image of recipe of the day -->
+        <div class="col-sm-12 col-md-6">
+          <img class="img-fluid rounded-4" :src="imgUrl" alt="Recipe Image" />
+        </div>
+        <!-- show the recipe description -->
+        <div class="col-sm-12 col-md-6">
+          <h4>{{ formattedRecipeName }}</h4>
+        </div>
       </div>
-      <!-- show the recipe description -->
-      <div class="col-sm-12 col-md-6">
-        <h4 class="">{{ formattedRecipeName }}</h4>
-      </div>
+    </div>
+    <!-- joke of the day -->
+    <div
+      class="pt-2 shadow border rounded-4 my-3 col-lg col-md-12 d-flex flex-column align-items-center justify-content-between mx-1"
+      v-if="windowWidth>992"
+    >
+      <div class="shadow border rounded-4">Random Food Fact?</div>
+      <div class="shadow border rounded-4">Random Food Joke?</div>
+      <div class="shadow border rounded-4">Calories Tracker?</div>
     </div>
   </div>
 </template>
@@ -29,6 +40,7 @@ export default {
       imgUrl: "",
       CookingSteps: [],
       Summary: "",
+      windowWidth: window.innerWidth
     };
   },
   created() {
@@ -48,6 +60,10 @@ export default {
       this.Summary = this.RandomRecipe.instructions;
       console.log(this.CookingSteps);
     },
+    onResize() {
+      this.windowWidth = window.innerWidth
+      console.log(this.windowWidth)
+    }
   },
   computed: {
     //in the event that the name of the recipe is too long, we shorten the name
@@ -57,57 +73,18 @@ export default {
         : this.Title;
     },
   },
+  mounted() {
+    this.$nextTick(() => {
+      window.addEventListener('resize', this.onResize);
+    })
+  },
+
+  beforeDestroy() { 
+    window.removeEventListener('resize', this.onResize); 
+  },
 };
 </script>
 
 <style scoped>
-.rando-recipe-header {
-  color: black;
-  font-size: 1.5em;
-  word-wrap: break-word;
-  margin-bottom: 10px;
-}
 
-.rando-recipe-content {
-  display: flex;
-  align-items: top;
-  max-height: 100%;
-}
-
-.rando-recipe-img {
-  border-radius: 1.2rem;
-  max-width: 100%;
-  max-height: 100%;
-}
-
-.rando-img {
-  max-height: 100%;
-  max-width: 100%;
-  object-fit: contain;
-  border-radius: 20px;
-}
-
-.recipe-title {
-  margin-left: 1.5rem;
-  color: black;
-  font-size: 2rem;
-  font-weight: 400;
-  word-wrap: break-word;
-  max-width: none;
-  max-height: none;
-  overflow: hidden;
-  flex-grow: 1;
-}
-
-.recipe-content {
-  margin-left: 1.5rem;
-  color: black;
-  font-size: 1.5rem;
-  word-wrap: break-word;
-  max-width: none;
-  font-weight: 400;
-  max-height: none;
-  overflow: hidden;
-  flex-grow: 1;
-}
 </style>

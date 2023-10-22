@@ -7,20 +7,26 @@
         type="button"
         data-bs-toggle="collapse"
         data-bs-target="#marketFilter"
-        style="background-color: #7aaab4"
+        style="background-color: #FFB18D"
       >
         <img src="./filter.png" style="width: 50px" />
       </button>
     </div>
     <!-- filter -->
     <div class="collapse show" id="marketFilter">
-      <MarketFilterInput/>
+      <MarketFilterInput @getInput="handleInput"/>
     </div>
   </div>
 </template>
 
 <script>
-export default {};
+export default {
+  methods:{
+    handleInput(data){
+      this.$emit('getInput',data)
+    }
+  }
+};
 </script>
 
 <style></style>

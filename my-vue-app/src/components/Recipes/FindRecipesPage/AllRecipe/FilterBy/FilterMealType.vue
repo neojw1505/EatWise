@@ -6,7 +6,7 @@
       data-bs-target="#FilterMealTypeOptions"
       aria-expanded="false"
       aria-controls="FilterMealTypeOptions"
-      style="background-color: #4F919F;"
+      style="background-color: #FFB18D;"
     >
     <div> Meal Type</div>
     <div class="arrow-down"></div>
