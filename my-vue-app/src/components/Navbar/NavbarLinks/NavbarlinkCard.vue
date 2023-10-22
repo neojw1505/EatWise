@@ -1,15 +1,17 @@
 <template>
-    <router-link class="nav-link active py-0 d-flex mx-auto" aria-current="page" :to="eachLink.routeTo">
+    <router-link class="nav-link active py-0 d-flex mx-auto p-2 " aria-current="page" :to="eachLink.routeTo">
     <li :class="highlighLink(eachLink)" >
-        <img class="logo" :src="eachLink.linkLogo" alt="" />
-        <div class="fw-semibold">{{eachLink.linkName}}</div> 
+        <div>
+          <font-awesome-icon :icon="icon" size="lg" /> <!-- Use icon prop to set the Font Awesome icon -->
+        </div>
+        <div class="fw-semibold" v-html="`&nbsp;&nbsp;${eachLink.linkName}&nbsp;&nbsp;`"></div> 
     </li>
     </router-link>
   </template>
 <script>
 export default {
     name: "NavbarLink",
-    props:['eachLink'],
+    props:['eachLink','icon'],
     methods:{
         highlighLink(eachLink){
             // console.log(this.$route.path);
@@ -22,7 +24,7 @@ export default {
 
 <style scoped>
 .highlightBackground{
-    background-color: #FFB18D;
+    color: #FBE8A6;
     border-radius: 25px;
 }
 .logo{
@@ -30,7 +32,7 @@ export default {
     height: 25px;
 }
 li:hover{
-            background-color: #FBE8A6;
-            border-radius: 25px;
-        }
+    color: #FBE8A6;
+    border-radius: 25px;
+}
 </style>

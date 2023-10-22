@@ -1,48 +1,73 @@
 <template>
   <div class="Chart-Container container">
     <canvas id="lineChart" class="mx-auto" style="max-height: 500px;"></canvas>
+    <div class="row justify-content-center my-2">
+        <div class="d-flex justify-content-center">
+          <button class="btn shadow mx-1" @click="changeTimeFrame('day')">Day</button>
+          <button class="btn shadow mx-1" @click="changeTimeFrame('week')">Week</button>
+          <button class="btn shadow mx-1" @click="changeTimeFrame('month')">Month</button>
+        </div>
+    </div>
   </div>
 </template>
 
 <script>
-import Chart from 'chart.js/auto';
+import Chart, { Colors } from 'chart.js/auto';
+import 'chartjs-adapter-date-fns';
 
 export default {
   name: 'LineChart',
   mounted() {
     const ctx = document.getElementById('lineChart');
 
-    new Chart(ctx, {
+    var day = [
+      { x: Date.parse('2021-11-01 00:00:00 GMT+0800'), y: 18 },
+      { x: Date.parse('2021-11-02 00:00:00 GMT+0800'), y: 16 },
+      { x: Date.parse('2021-11-03 00:00:00 GMT+0800'), y: 5 },
+      { x: Date.parse('2021-11-04 00:00:00 GMT+0800'), y: 3 },
+      { x: Date.parse('2021-11-05 00:00:00 GMT+0800'), y: 12 },
+      { x: Date.parse('2021-11-06 00:00:00 GMT+0800'), y: 8 },
+      { x: Date.parse('2021-11-07 00:00:00 GMT+0800'), y: 22 }
+    ];
+    var week = [
+      { x: Date.parse('2021-10-31 00:00:00 GMT+0800'), y: 50 },
+      { x: Date.parse('2021-11-07 00:00:00 GMT+0800'), y: 60 },
+      { x: Date.parse('2021-11-14 00:00:00 GMT+0800'), y: 80 },
+      { x: Date.parse('2021-11-21 00:00:00 GMT+0800'), y: 40},
+      { x: Date.parse('2021-11-28 00:00:00 GMT+0800'), y: 30 },
+    ];
+
+    var month = [
+      { x: Date.parse('2021-08-01 00:00:00 GMT+0800'), y: 400 },
+      { x: Date.parse('2021-09-02 00:00:00 GMT+0800'), y: 200 },
+      { x: Date.parse('2021-10-03 00:00:00 GMT+0800'), y: 400 },
+      { x: Date.parse('2021-11-04 00:00:00 GMT+0800'), y: 300 },
+    ];
+
+    // Define the Chart object
+    let myChart = new Chart(ctx, {
       type: 'line',
       data: {
-        labels: [
-    "2023-01-01", "2023-01-02", "2023-01-03", "2023-01-04", "2023-01-05",
-    "2023-01-06", "2023-01-07", "2023-01-08", "2023-01-09", "2023-01-10",
-    "2023-01-11", "2023-01-12", "2023-01-13", "2023-01-14", "2023-01-15",
-    "2023-01-16", "2023-01-17", "2023-01-18", "2023-01-19", "2023-01-20",
-    "2023-01-21", "2023-01-22", "2023-01-23", "2023-01-24", "2023-01-25",
-    "2023-01-26", "2023-01-27", "2023-01-28", "2023-01-29", "2023-01-30",
-    "2023-01-31", "2023-02-01", "2023-02-02", "2023-02-03", "2023-02-04",
-    "2023-02-05", "2023-02-06", "2023-02-07", "2023-02-08", "2023-02-09",
-    "2023-02-10", "2023-02-11", "2023-02-12", "2023-02-13", "2023-02-14",
-    "2023-02-15", "2023-02-16", "2023-02-17", "2023-02-18", "2023-02-19",
-    "2023-02-20", "2023-02-21", "2023-02-22", "2023-02-23", "2023-02-24",
-],
         datasets: [
           {
-            label: '# of Calories',
-            data: [1000, 1423, 3245, 5453, 1235, 4123, 5674, 1244, 2325, 1234, 2134, 3213, 2650, 3987, 1756, 2890, 1732, 4501, 2843, 1378, 3905, 2587, 2098, 3650, 4321, 1890, 3190, 2445, 2999, 2732, 3666, 2187, 1723, 2435, 2890, 3562, 4223, 1987, 2450, 3222, 2765, 3510, 4125, 1923, 3378, 2690, 3244, 3998, 2110, 2976, 2645, 4100, 2934, 2621],
-            borderWidth: 1,
+            label: 'Calorie Intake',
+            data: day,
+            borderWidth: 3,
             fill: true,
-            borderColor: 'rgb(75, 192, 192)',
-            tension: 0.1,
+            borderColor: 'rgb(255, 177, 141)',
+            tension: 0.35,
+            pointBackgroundColor: 'rgb(255, 177, 141)',
           }
         ]
       },
-
-      
       options: {
         scales: {
+          x: {
+            type: 'time',
+            time: {
+              unit: 'day'
+            }
+          },
           y: {
             beginAtZero: true
           }
@@ -50,9 +75,35 @@ export default {
         responsive: true
       }
     });
+
+    // Method to change the timeframe of the graph (fml)
+    this.changeTimeFrame = function(period) {
+      if (period === 'day') {
+        myChart.config.options.scales.x.time.unit = 'day';
+        myChart.config.data.datasets[0].data = day;
+      }
+      else if (period === 'week') {
+        myChart.config.options.scales.x.time.unit = 'week';
+        myChart.config.data.datasets[0].data = week;
+      }
+      else if (period === 'month') {
+        myChart.config.options.scales.x.time.unit = 'month';
+        myChart.config.data.datasets[0].data = month;
+      }
+      myChart.update(); // Update the chart without refreshing page
+    };
   }
 };
 </script>
 
-<style scopedd>
+<style scoped>
+
+.btn {
+  background-color: #303C6C;
+  color: #fff;
+}
+.btn:hover {
+  background-color: #fff;
+  color: #303C6C;
+}
 </style>

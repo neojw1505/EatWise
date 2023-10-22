@@ -1,7 +1,4 @@
 <template>
-  <div>
-    <Onboarding/>
-    <!-- <Onboarding></Onboarding> -->
     <!-- <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
     Display supermarket data here
     <div class="owl-carousel">
@@ -20,16 +17,13 @@
     </div>
     <br /> -->
     <router-view>
-      <!-- <Onboarding></Onboarding> -->
-      <!-- <Home></Home> -->
+
     </router-view>
 
-  </div>
+    
 </template>
 
 <script>
-import Onboarding from './components/Onboarding/Onboarding.vue';
-
 
 export default {
     data() {
@@ -55,7 +49,7 @@ export default {
                 await this.$smAPI.fetchProductsByPromoAndSupermarket(this.supermarketName, false);
         },
     },
-    components: { Onboarding }
+
 };
 
 </script>

@@ -6,7 +6,7 @@
       data-bs-target="#FilterByKeywordOptions"
       aria-expanded="false"
       aria-controls="FilterByKeywordOptions"
-      style="background-color: #4f919f"
+      style="background-color: #FFB18D"
     >
       <div>By Keyword</div>
       <div class="arrow-down"></div>

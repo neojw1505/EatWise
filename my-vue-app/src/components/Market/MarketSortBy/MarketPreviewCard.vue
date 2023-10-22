@@ -1,17 +1,19 @@
 <template>
   <!-- <router-link :to="routerTO"> -->
-
-  <div class="card col-4 cardStyle mx-3 py-3 px-0 my-3 " :style="backgroundStyle">
-    <h5 class="card-text border bg-primary-subtle mx-auto rounded-4 p-1 fw-bold">{{ ProductData.supermarket }}</h5>
+<a :href="ProductData.product_link" class="text-decoration-none">
+  <div class="card col-4 cardStyle mx-3 py-3 px-0 my-3 " >
+    <h5 class="card-text border bg-primary-subtle mx-auto rounded-4 p-1 fw-bold">{{ ProductData.supermarket_name }}</h5>
     <div class="text-center">
-        <img class="card-img-top mx-0" :src="ProductData.image" alt="Product Image" />
-        <h4 class="card-title fs-5 fw-bold" style="height: 25px">
-        {{ formattedRecipeName }}
-      </h4>
+      <img class="card-img-top mx-0" :src="ProductData.product_img" alt="Product Image" />
+      <div class="card-title fw-bold" style="height: 25px">
+        {{ formattedProductName }}
+      </div>
     </div>
-      <div class="card-text fw-bold mx-auto">${{ ProductData.price.toFixed(2) }}</div>
-      <div class="card-text fw-bold mx-auto">${{ ProductData.promotion }}</div>
+    <div class="card-text fw-bold mx-auto">{{ ProductData.product_price }}</div>
+    <div class="card-text fw-bold mx-auto">{{ ProductData.product_promo }}</div>
   </div>
+</a>
+  
   <!-- </router-link> -->
 
 </template>
@@ -22,13 +24,13 @@ export default {
   data() {
     return {};
   },
-  props: ["ProductData","backgroundStyle"],
+  props: ["ProductData"],
   computed: {
     //in the event that the name of the recipe is too long, we shorten the name
-    formattedRecipeName() {
-      return this.ProductData.title.length > 20
-        ? this.ProductData.title.slice(0, 17) + "..."
-        : this.ProductData.title;
+    formattedProductName() {
+      return this.ProductData.product_title.length > 20
+        ? this.ProductData.product_title.slice(0, 17) + "..."
+        : this.ProductData.product_title;
     },
   },
 };
@@ -37,12 +39,10 @@ export default {
 <style scoped>
 .cardStyle {
   border: #000000 solid 1px;
+  background-image: linear-gradient(to bottom right, #ff5100, #fac400);
   border-radius: 30px;
-  width: 234px;
-  height: 320px;
+  width: 200px;
+  height: 350px;
   color: black;
-}
-.fairprice{
-    
 }
 </style>

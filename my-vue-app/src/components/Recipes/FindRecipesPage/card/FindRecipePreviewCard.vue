@@ -1,6 +1,6 @@
 <template>
   <!-- <router-link :to="routerTO"> -->
-    <div class="card col-2 cardStyle mx-3 px-0">
+    <div class="card cardStyle mx-2 px-0 my-2">
       <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" />
       <div class="card-body img-fluid">
         <h4 class="card-title" style="font-size: large; height: 50px">
@@ -46,11 +46,11 @@ export default {
 
 <style scoped>
 .cardStyle {
-  border: #2ccfda solid 1px;
+  border: #FFB18D solid 1px;
   border-bottom-left-radius: 30px;
   width: 200px;
   height: 250px;
-  background-image: linear-gradient(to bottom right, #95ad61, #2ccfda);
+  background-image: linear-gradient(to bottom right, #ff5100, #fac400);
   color: black;
 }
 </style>

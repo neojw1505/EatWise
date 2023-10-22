@@ -3,10 +3,10 @@
     <Navbar />
     <div class="mx-auto">
       <h2 class="m-3">Market Place</h2>
-      <div class="mx-3 container row mx-auto" style="max-width: 1700px">
+      <div class="mx-3 container row mx-auto" style="max-width: 1200px">
         <!-- left side -->
         <div class="col-md-12 col-lg-4 mb-5">
-            <MarketFilter/>
+            <MarketFilter @getInput="handleInput"/>
         </div>
         <!-- right side -->
         <div class=" col-lg-8 col-md-12">
@@ -22,7 +22,8 @@
               />
             </div>
           </div>
-          <MarketResult/>
+
+          <MarketResult :result="dataResult"/>
         </div>
       </div>
     </div>
@@ -34,8 +35,15 @@
 export default {
   data() {
     return {
-      sortOptions: ["Most Relevant","Most Recent","On Promotion","Order By Price(Ascending)"],
+      marketSearchQuery:"",
+      minPrice:0,
+      maxPrice: Number.POSITIVE_INFINITY,
+      onPromotion: false,
+      isAscending:false,
+      sortOptions: ["On Promotion","Order By Price(Ascending)"],
+      supermarket:['FairPrice','ColdStorage','ShengShiong'],
       sortBy:[],
+      dataResult: null
     }
   },
   methods:{
@@ -48,7 +56,44 @@ export default {
             this.sortBy.splice(index,1);
         }
         // console.log(this.sortBy);
+    },
+    handleInput(data){
+      this.dataResult=null
+      console.log(data)
+      this.marketSearchQuery=data[0];
+      this.minPrice=data[1];
+      this.maxPrice=data[2];
+      if(data[3]!=''){
+        this.supermarket=data[3].map(market=>(market.split(' ').join('')));
+        console.log(this.supermarket)
+      }
+      this.fetchProducts();
+      
+    },  
+    async fetchProducts(){
+      //searchQuery = '', minPrice = 0, maxPrice = Number.POSITIVE_INFINITY, onPromotion = false, ascending = true, supermarketName = ''
+      if(this.minPrice==""){
+        this.minPrice=0;
+      }
+      if(this.maxPrice==""){
+        this.maxPrice=Number.POSITIVE_INFINITY;
+      }
+      this.onPromotion= this.sortBy.includes("On Promotion") ? true : false
+      this.isAscending= this.sortBy.includes("Order By Price(Ascending)") ? true : false
+      this.dataResult= await this.$smAPI.fetchProducts(this.marketSearchQuery, this.minPrice, this.maxPrice, this.onPromotion, this.isAscending, this.supermarket);
     }
+  },
+  mounted() {
+    this.fetchProducts();
+  },
+  watch:{
+    sortBy: {
+      deep: true,
+      handler(newVal, oldVal) {
+        this.dataResult=null
+        this.fetchProducts();
+      },
+    },
   }
 };
 </script>

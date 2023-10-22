@@ -175,13 +175,22 @@ class SpoonacularAPI {
     maxCal = 10000
   ) {
     try {
-      const mealTypesQuery = mealTypes.join(",");
-      const dietTypesQuery = dietTypes.join(",");
-      const includeIngredientsQuery = includeIngredients.join(",");
-      const excludeIngredientsQuery = excludeIngredients.join(",");
-      const response = await this.axios.get(
-        `/recipes/complexSearch?query=${query}&diet=${dietTypesQuery}&type=${mealTypesQuery}&includeIngredients=${includeIngredientsQuery}&excludeIngredients=${excludeIngredientsQuery}&number=${number}&minCalories=${minCal}&maxCalories=${maxCal}`
-      );
+      const fullSearchQuery = [];
+
+      if (mealTypes.length > 0) fullSearchQuery.push(`type=${mealTypes.join(",")}`);
+      if (dietTypes.length > 0) fullSearchQuery.push(`diet=${dietTypes.join(",")}`);
+      if (query) fullSearchQuery.push(`query=${query}`);
+      if (includeIngredients.length > 0) fullSearchQuery.push(`includeIngredients=${includeIngredients.join(",")}`);
+      if (excludeIngredients.length > 0) fullSearchQuery.push(`excludeIngredients=${excludeIngredients.join(",")}`);
+      
+      fullSearchQuery.push(`number=${number}`);
+      fullSearchQuery.push(`minCalories=${minCal}`);
+      fullSearchQuery.push(`maxCalories=${maxCal}`);
+      
+      const queryString = fullSearchQuery.join('&');
+      console.log(queryString);
+      const response = await this.axios.get(`/recipes/complexSearch?${queryString}`);
+      
       // extract the ids
       const recipeIDsArr = [];
       // console.log(response.data);
@@ -197,7 +206,10 @@ class SpoonacularAPI {
     } catch (error) {
       // Handle errors here
       // console.error(`Error fetching nutrition for recipe with ID ${recipeID}:`, error);
-      throw error;
+      // throw error;
+      console.log("no recipe found")
+      return [];
+
     }
   }
 
@@ -222,7 +234,7 @@ class SpoonacularAPI {
       const response = await this.axios.get(
         `/recipes/${id}/nutritionWidget.json`
       );
-      console.log(response.data);
+      // console.log(response.data);
       return response.data;
     } catch (error) {
       throw error;
