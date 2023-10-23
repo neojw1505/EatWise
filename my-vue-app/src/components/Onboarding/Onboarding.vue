@@ -4,30 +4,17 @@
     <!-- <NavbarLandingPage/> -->
     <!-- <OnboardingGender/> -->
     <!-- <OnboardingUserDetails/> -->
-<<<<<<< Updated upstream
     <!-- <OnboardingActivityLevel/> -->
-    <OnboardingDietType/>
+    <!-- <OnboardingDietType/> -->
     <!-- <OnboardFinalPage/> -->
-
-=======
-    <!-- <OnboardingPreferences/> -->
 </div>
->>>>>>> Stashed changes
 </template>
 
 <script>
-import OnboardFinalPage from './OnboardingPages/OnboardFinalPage.vue';
-import OnboardingDietType from './OnboardingPages/OnboardingDietType.vue';
-
-
-<<<<<<< Updated upstream
 </script>
 
-=======
 
-</script>
-
-<!-- <style>
+<style>
 #container{
     width:100%;
     height:100%;
@@ -39,6 +26,5 @@ body {
   object-fit: cover;
   background-size: cover;
   /* background-repeat: no-repeat; */
-}</style> -->
->>>>>>> Stashed changes
+}</style>
 

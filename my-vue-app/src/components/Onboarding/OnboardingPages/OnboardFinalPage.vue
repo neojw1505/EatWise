@@ -1,14 +1,8 @@
 <template>
-<<<<<<< Updated upstream
     <div>
     <NavbarLandingPage></NavbarLandingPage>
     <div class="card col-8 mx-auto mt-5">
       <div class="card-body mx-auto col-sm-12 text-center">
-=======
-    <NavbarLandingPage/>
-    <div class="card col-sm-12">
-      <div class="card-body mx-auto col-sm-12 text-center content-align-center">
->>>>>>> Stashed changes
         <div class="card-title mx-auto">
           <h2>Congratulations!</h2>
         </div>
