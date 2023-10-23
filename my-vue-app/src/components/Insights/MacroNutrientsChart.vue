@@ -10,7 +10,7 @@
             <li v-for="(item, index) in sortedData" :key="index" class="list-group-item d-flex align-items-center">
               <span class="me-2" style="width: 16px; height: 16px; border-radius: 50%;" :style="{ backgroundColor: item.color }"></span>
               <span>{{ item.label }}</span>
-              <span class="text-end">{{ item.data }}%</span>
+              <span class="text-end">{{ item.percentage }}%</span>
             </li>
           </ul>
         </div>
@@ -30,7 +30,7 @@ export default {
         labels: ['Protein', 'Fats', 'Vitamins', 'Minerals', 'Water', 'Carbs'],
         datasets: [
           {
-            data: [20, 15, 10, 5, 25, 30], // Replace with your dummy data
+            data: [2000, 1500, 1000, 500, 2500, 3000], // Replace with your dummy data
             backgroundColor: ['red', 'blue', 'green', 'orange', 'purple', 'pink'],
           },
         ],
@@ -47,7 +47,14 @@ export default {
       label,
       data: data[index],
       color: this.chartData.datasets[0].backgroundColor[index],
+      percentage: 0,
     }));
+
+    // Calculate percentages
+    const total = data.reduce((sum, value) => sum + value, 0);
+    this.sortedData.forEach(item => {
+      item.percentage = ((item.data / total) * 100).toFixed(2);
+    });
 
     // Sort the array by data value
     this.sortedData.sort((a, b) => b.data - a.data);
@@ -66,15 +73,13 @@ export default {
       options: {
         responsive: false,
         legend: {
-          display: false, // Hide default legend
+          display: false, //suppose to hide default legend but its still here
         },
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
               const item = this.sortedData[tooltipItem.index];
-              const total = data.datasets[tooltipItem.datasetIndex].data.reduce((sum, value) => sum + value, 0);
-              const percentage = ((item.data / total) * 100).toFixed(2) + '%';
-              return `${item.label}: ${percentage}`;
+              return `${item.label}: ${item.percentage}%`;
             }.bind(this),
           },
         },
