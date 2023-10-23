@@ -16,6 +16,7 @@
           name="age"
           placeholder="Age"
           v-model="inputAge"
+          required
         />
 
         <input
@@ -24,6 +25,7 @@
           name="weight"
           placeholder="Your Weight (kg)"
           v-model="inputWeight"
+          required
         />
 
         <input
@@ -32,6 +34,7 @@
           name="height"
           placeholder="Your Height (cm)"
           v-model="inputHeight"
+          required
         />
       </div>
     </div>
@@ -52,7 +55,9 @@
           name="weightChoice"
           v-model="inputGoal"
         />
-        <label for="extremelose" class="pe-2" style="color: red;">Extreme Weight Loss</label>
+        <label for="extremelose" class="pe-2" style="color: red"
+          >Extreme Weight Loss</label
+        >
         <input
           type="radio"
           class="mx-1"
@@ -61,7 +66,9 @@
           name="weightChoice"
           v-model="inputGoal"
         />
-        <label for="weightlose" class="pe-2" style="color: orange;">Weight Loss </label>
+        <label for="weightlose" class="pe-2" style="color: orange"
+          >Weight Loss
+        </label>
         <input
           type="radio"
           class="mx-1"
@@ -70,7 +77,9 @@
           name="weightChoice"
           v-model="inputGoal"
         />
-        <label for="mildlose" class="pe-2" style="color: lightsalmon;">Mild Weight Loss</label>
+        <label for="mildlose" class="pe-2" style="color: lightsalmon"
+          >Mild Weight Loss</label
+        >
         <br />
         <input
           type="radio"
@@ -80,7 +89,9 @@
           name="weightChoice"
           v-model="inputGoal"
         />
-        <label for="maintain" class="pe-2" style="color: green;">Mantain Weight</label>
+        <label for="maintain" class="pe-2" style="color: green"
+          >Mantain Weight</label
+        >
         <input
           type="radio"
           class="mx-1"
@@ -89,7 +100,9 @@
           name="weightChoice"
           v-model="inputGoal"
         />
-        <label for="mildgain" class="pe-2" style="color: lightsalmon;">Mild Weight Gain</label>
+        <label for="mildgain" class="pe-2" style="color: lightsalmon"
+          >Mild Weight Gain</label
+        >
         <input
           type="radio"
           class="mx-1"
@@ -98,7 +111,9 @@
           name="weightChoice"
           v-model="inputGoal"
         />
-        <label for="weightgain" class="pe-2" style="color: orange;">Weight Gain</label>
+        <label for="weightgain" class="pe-2" style="color: orange"
+          >Weight Gain</label
+        >
         <input
           type="radio"
           class="mx-1"
@@ -107,7 +122,9 @@
           name="weightChoice"
           v-model="inputGoal"
         />
-        <label for="extremegain" class="pe-2" style="color: red;">Extreme Weight Gain</label>
+        <label for="extremegain" class="pe-2" style="color: red"
+          >Extreme Weight Gain</label
+        >
       </div>
     </div>
     <div class="mx-auto text-center">
@@ -144,13 +161,22 @@ export default {
     goPrevious() {},
 
     goNext() {
-      console.log(
-        "values : ",
-        this.inputAge,
-        this.inputWeight,
-        this.inputHeight,
-        this.inputGoal
-      );
+      if (
+        this.inputAge == null ||
+        this.inputWeight == null ||
+        this.inputHeight == null ||
+        this.inputGoal == null
+      ) {
+        alert("You must fill up all fields!");
+      } else {
+        console.log(
+          "values : ",
+          this.inputAge,
+          this.inputWeight,
+          this.inputHeight,
+          this.inputGoal
+        );
+      }
     },
   }, // methods
 };

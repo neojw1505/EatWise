@@ -1,5 +1,7 @@
 <template>
-    <div class="card col-sm-12">
+    <div>
+    <NavbarLandingPage></NavbarLandingPage>
+    <div class="card col-8 mx-auto mt-5">
       <div class="card-body mx-auto col-sm-12 text-center">
         <div class="card-title mx-auto">
           <h2>Congratulations!</h2>
@@ -16,6 +18,25 @@
         </div>
       </div>
     </div>
+    <div class="mx-auto text-center">
+      <button
+        id="previous"
+        class="btn my-5 mx-2 px-5 bg-warning fw-semibold"
+        type="submit"
+        v-on:click="goPrevious()"
+      >
+        Previous
+      </button>
+      <button
+        id="next"
+        class="btn my-5 mx-2 px-5 bg-warning fw-semibold"
+        type="submit"
+        v-on:click="goNext()"
+      >
+        Next
+      </button>
+    </div>
+</div>
   </template>
   
 
@@ -44,6 +65,7 @@ export default{
 
 
 <style scoped>
+
 
 
 #card{
@@ -96,5 +118,6 @@ h3{
     transition: 0.7s;
     color:white
 }
+
 
 </style>

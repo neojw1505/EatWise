@@ -1,14 +1,19 @@
 
-import OnboardingActivityLevel from './OnboardingPages/OnboardingActivityLevel.vue';
 <template>
     <!-- <OnboardingGender/> -->
     <!-- <OnboardingUserDetails/> -->
-    <OnboardingActivityLevel/>
+    <!-- <OnboardingActivityLevel/> -->
+    <OnboardingDietType/>
+    <!-- <OnboardFinalPage/> -->
+
 </template>
 
 
 <script>
+import OnboardFinalPage from './OnboardingPages/OnboardFinalPage.vue';
+import OnboardingDietType from './OnboardingPages/OnboardingDietType.vue';
+
 
 </script>
-</style>
+
 
