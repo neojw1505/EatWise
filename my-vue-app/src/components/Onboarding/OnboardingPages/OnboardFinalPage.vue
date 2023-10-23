@@ -1,8 +1,14 @@
 <template>
+<<<<<<< Updated upstream
     <div>
     <NavbarLandingPage></NavbarLandingPage>
     <div class="card col-8 mx-auto mt-5">
       <div class="card-body mx-auto col-sm-12 text-center">
+=======
+    <NavbarLandingPage/>
+    <div class="card col-sm-12">
+      <div class="card-body mx-auto col-sm-12 text-center content-align-center">
+>>>>>>> Stashed changes
         <div class="card-title mx-auto">
           <h2>Congratulations!</h2>
         </div>
@@ -93,7 +99,7 @@ h3{
 .card-body {
     display: inline-block;
     justify-content: center;
-    background-color: #F9F7F7 ;
+    background-color: #F9F7F7;
     border-radius: 40px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.50);
     top: 150px;
