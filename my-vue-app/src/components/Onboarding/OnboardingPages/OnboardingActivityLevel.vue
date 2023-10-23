@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavbarLandingPage></NavbarLandingPage>
-    <div class="mx-auto text-center my-5 rounded-4 bg-warning col-6 py-2">
+    <div class="mx-auto text-center my-5 shadow rounded-4 bg-warning col-6 py-2">
       <h1 class="fw-bold fs-5">WHAT IS YOUR DAILY ACTIVITY LEVEL?</h1>
       <h3 class="fw-semibold fs-6">(Select one only)</h3>
     </div>

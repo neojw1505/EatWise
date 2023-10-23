@@ -20,6 +20,8 @@ const routes = [
     // { path: '/view-promotions', component: ViewPromos },
     // { path: '/profile', component:  },
     { path: '/insights', component: Insights},
+
+    { path: '/OnboardingPages', component:Onboarding},
     // { path: '/consumption', component: }
 
     { path: '/register', component: Registration},
