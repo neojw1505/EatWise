@@ -1,26 +1,34 @@
 
 <template>
 <div class="container" >
-    <!-- <NavbarLandingPage/> -->
+    <div>    
+        <NavbarLandingPage/>
+    </div>
+    <div class="MainBody">
     <!-- <OnboardingGender/> -->
     <!-- <OnboardingUserDetails/> -->
     <!-- <OnboardingActivityLevel/> -->
     <!-- <OnboardingDietType/> -->
     <!-- <OnboardFinalPage/> -->
+    <OnboardingExclusion/>
+    </div>
+
 </div>
 </template>
 
 <script>
+
 </script>
 
 
-<style>
+<style scoped>
 #container{
-    width:100%;
-    height:100%;
+    width:100vh;
+    height:100vh;
+
 }
 body {
-  background-image: url(../img/background.png);
+  background-image: url(./img/background.png);
   width: 100%;
   height: 100%;
   object-fit: cover;

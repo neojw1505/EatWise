@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavbarLandingPage></NavbarLandingPage>
       <div class="header mx-auto text-center mt-10">
         <h2>WHAT KIND OF RECIPES DO YOU WANT?</h2>
       </div>

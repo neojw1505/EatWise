@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavbarLandingPage></NavbarLandingPage>
     <div class="mx-auto text-center my-5 rounded-4 bg-warning col-6 py-2">
       <h1 class="fw-bold fs-5">TELL US MORE ABOUT YOURSELF</h1>
     </div>

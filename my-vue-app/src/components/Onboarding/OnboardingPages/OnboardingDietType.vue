@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavbarLandingPage></NavbarLandingPage>
     <div
       class="mx-auto text-center my-5 py-1 shadow rounded-4 bg-warning col-7"
     >

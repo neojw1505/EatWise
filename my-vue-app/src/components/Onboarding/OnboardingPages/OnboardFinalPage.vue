@@ -1,6 +1,5 @@
 <template>
     <div>
-    <NavbarLandingPage></NavbarLandingPage>
     <div class="card col-8 mx-auto mt-5">
       <div class="card-body mx-auto col-sm-12 text-center">
         <div class="card-title mx-auto">
@@ -65,9 +64,6 @@ export default{
 
 
 <style scoped>
-
-
-
 #card{
     width:80%;
     height:auto;

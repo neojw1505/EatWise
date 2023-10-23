@@ -1,6 +1,5 @@
 <template>
   <div>
-    <NavbarLandingPage />
     <div class="container background-image ">
       <div class="mx-auto text-center my-5 rounded-4 bg-warning col-8">
         <h1>Select Your Gender</h1>
