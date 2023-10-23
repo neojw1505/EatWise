@@ -93,7 +93,7 @@ h3{
 .card-body {
     display: inline-block;
     justify-content: center;
-    background-color: #F9F7F7 ;
+    background-color: #F9F7F7;
     border-radius: 40px;
     box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.50);
     top: 150px;

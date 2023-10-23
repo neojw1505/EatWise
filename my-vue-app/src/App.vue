@@ -16,11 +16,9 @@
       </div>
     </div>
     <br /> -->
-    <router-view>
-
+    <router-view>   
     </router-view>
 
-    
 </template>
 
 <script>
@@ -49,7 +47,6 @@ export default {
                 await this.$smAPI.fetchProductsByPromoAndSupermarket(this.supermarketName, false);
         },
     },
-
 };
 
 </script>
