@@ -7,10 +7,10 @@
       <div class="col-md-4 col-sm-12 my-auto">
         <div class="legend-container bg-white">
           <ul class="list-group">
-            <li v-for="(label, index) in chartData.labels" :key="index" class="list-group-item d-flex align-items-center">
-              <span class="me-2" style="width: 16px; height: 16px; border-radius: 50%;" :style="{ backgroundColor: chartData.datasets[0].backgroundColor[index] }"></span>
-              <span>{{ label }}</span>
-              <span class="text-end">{{ chartData.datasets[0].data[index] }}%</span>
+            <li v-for="(item, index) in sortedData" :key="index" class="list-group-item d-flex align-items-center">
+              <span class="me-2" style="width: 16px; height: 16px; border-radius: 50%;" :style="{ backgroundColor: item.color }"></span>
+              <span>{{ item.label }}</span>
+              <span class="text-end">{{ item.data }}%</span>
             </li>
           </ul>
         </div>
@@ -18,9 +18,6 @@
     </div>
   </div>
 </template>
-
-
-
 
 <script>
 import Chart from 'chart.js/auto';
@@ -38,14 +35,34 @@ export default {
           },
         ],
       },
+      sortedData: [],
     };
   },
   mounted() {
     const ctx = document.getElementById('pieChart');
+    const data = this.chartData.datasets[0].data;
+
+    // Create an array of objects with label, data, and color
+    this.sortedData = this.chartData.labels.map((label, index) => ({
+      label,
+      data: data[index],
+      color: this.chartData.datasets[0].backgroundColor[index],
+    }));
+
+    // Sort the array by data value
+    this.sortedData.sort((a, b) => b.data - a.data);
 
     new Chart(ctx, {
       type: 'doughnut',
-      data: this.chartData,
+      data: {
+        labels: this.sortedData.map(item => item.label),
+        datasets: [
+          {
+            data: this.sortedData.map(item => item.data),
+            backgroundColor: this.sortedData.map(item => item.color),
+          },
+        ],
+      },
       options: {
         responsive: false,
         legend: {
@@ -54,12 +71,11 @@ export default {
         tooltips: {
           callbacks: {
             label: function (tooltipItem, data) {
-              const dataset = data.datasets[tooltipItem.datasetIndex];
-              const total = dataset.data.reduce((sum, value) => sum + value, 0);
-              const value = dataset.data[tooltipItem.index];
-              const percentage = ((value / total) * 100).toFixed(2) + '%';
-              return `${data.labels[tooltipItem.index]}: ${percentage}`;
-            },
+              const item = this.sortedData[tooltipItem.index];
+              const total = data.datasets[tooltipItem.datasetIndex].data.reduce((sum, value) => sum + value, 0);
+              const percentage = ((item.data / total) * 100).toFixed(2) + '%';
+              return `${item.label}: ${percentage}`;
+            }.bind(this),
           },
         },
       },
@@ -69,5 +85,4 @@ export default {
 </script>
 
 <style scoped>
-
 </style>
