@@ -26,6 +26,13 @@ const routes = [
     { path: '/register', component: Registration},
     // { path: '/consumption', component: }
 
+    { path: '/register', component: Registration},
+    { path: '/login', component: Login},
+    { path: '/profile', component: Profile},
+    { path: '/profile/setting', component: Setting},
+
+
+
   ];
 
 const router = createRouter({
