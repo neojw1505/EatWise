@@ -10,7 +10,6 @@ import Login from "./components/LandingPage/LoginPage/Login.vue";
 import Profile from "./components/Profile/Profile.vue";
 import Setting from "./components/Profile/setting/Setting.vue";
 import Registration from "./components/LandingPage/RegistrationPage/Registration.vue";
-import Onboarding from "./components/Onboarding/Onboarding.vue";
 
 const routes = [
     { path: '/', component: Home },
@@ -25,6 +24,13 @@ const routes = [
     { path: '/onboarding', component: Onboarding},
     { path: '/register', component: Registration},
     // { path: '/consumption', component: }
+
+    { path: '/register', component: Registration},
+    { path: '/login', component: Login},
+    { path: '/profile', component: Profile},
+    { path: '/profile/setting', component: Setting},
+
+
 
   ];
 
