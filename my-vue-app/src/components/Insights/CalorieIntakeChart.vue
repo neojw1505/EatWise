@@ -1,22 +1,31 @@
 <template>
-  <div class="Chart-Container container">
-    <canvas id="lineChart" class="mx-auto" style="max-height: 500px;"></canvas>
-    <div class="row justify-content-center my-2">
-        <div class="d-flex justify-content-center">
-          <button class="btn shadow mx-1" @click="changeTimeFrame('day')">Day</button>
-          <button class="btn shadow mx-1" @click="changeTimeFrame('week')">Week</button>
-          <button class="btn shadow mx-1" @click="changeTimeFrame('month')">Month</button>
-        </div>
+  <div class="Chart-Container container bg-white">
+    <div class="btn-group-sm dropdown float-end mt-3">
+      <strong>Filter by: </strong><button type="button" style="width: 80px;" class="btn btn-primary dropdown-toggle" data-bs-toggle="dropdown">
+        {{ selectedTimeFrame }}
+      </button>
+      <ul class="dropdown-menu">
+        <li><a class="dropdown-item" @click="changeTimeFrame('day')" :value="Day">Day</a></li>
+        <li><a class="dropdown-item" @click="changeTimeFrame('week')" :value="Week" >Week</a></li>
+        <li><a class="dropdown-item" @click="changeTimeFrame('month')" :value="Month" >Month</a></li>
+      </ul>
     </div>
+    <canvas id="lineChart" class="mx-auto" style="max-height: 300px;"></canvas>
   </div>
 </template>
 
+
 <script>
-import Chart, { Colors } from 'chart.js/auto';
+import Chart from 'chart.js/auto';
 import 'chartjs-adapter-date-fns';
 
 export default {
   name: 'LineChart',
+  data() {
+    return {
+      selectedTimeFrame: 'Day'
+    };
+  },
   mounted() {
     const ctx = document.getElementById('lineChart');
 
@@ -72,7 +81,8 @@ export default {
             beginAtZero: true
           }
         },
-        responsive: true
+        responsive: true,
+        showtooltips: true,
       }
     });
 
@@ -81,14 +91,17 @@ export default {
       if (period === 'day') {
         myChart.config.options.scales.x.time.unit = 'day';
         myChart.config.data.datasets[0].data = day;
+        this.selectedTimeFrame = 'Day';
       }
       else if (period === 'week') {
         myChart.config.options.scales.x.time.unit = 'week';
         myChart.config.data.datasets[0].data = week;
+        this.selectedTimeFrame = 'Week';
       }
       else if (period === 'month') {
         myChart.config.options.scales.x.time.unit = 'month';
         myChart.config.data.datasets[0].data = month;
+        this.selectedTimeFrame = 'Month';
       }
       myChart.update(); // Update the chart without refreshing page
     };
