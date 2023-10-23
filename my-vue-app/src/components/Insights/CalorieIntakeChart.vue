@@ -103,7 +103,7 @@ export default {
         myChart.config.data.datasets[0].data = month;
         this.selectedTimeFrame = 'Month';
       }
-      myChart.update(); // Update the chart without refreshing page
+      myChart.update(); // Update the chart without refreshing page (yay)
     };
   }
 };
