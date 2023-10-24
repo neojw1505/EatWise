@@ -1,26 +1,24 @@
+
 <template>
   <div class="row">
-    <div
-      class="col-lg-8 col-md-12  pt-2 shadow border rounded-4 px-4 my-3 mx-1 "
-      style="background-color: #fbe8a6"
-    >
+    <div class="col-lg-8 col-md-12 pt-2 shadow border rounded-4 px-4 my-3 mx-1" style="background-color: #fbe8a6">
       <h1 class="fw-bold mb-3">Recipe of the Day</h1>
       <div class="row py-3 pt-0">
-        <!-- show the image of recipe of the day -->
         <div class="col-sm-12 col-md-6">
-          <img class="img-fluid rounded-4" :src="imgUrl" alt="Recipe Image" />
+          <img class="img-fluid rounded-3" :src="imgUrl" alt="Recipe Image" />
         </div>
-        <!-- show the recipe description -->
-        <div class="col-sm-12 col-md-6">
+        <div class="col card border-0 pt-2 shadow">
           <h4>{{ formattedRecipeName }}</h4>
+          <p>Preparation Time: <strong>{{ PrepTime }} minutes</strong> </p>
+
+          <div class="diet-types d-flex flex-wrap my-2">
+            <span v-for="(diet, index) in Diets" :key="index" class=" mx-2 px-2 my-1 rounded-4 text-wrap" style="background-color: #FFB18D;">{{ diet }}</span>
+          </div>
+          <p>Dish Types: <strong>{{ DishTypes.join(', ') }}</strong></p>
         </div>
       </div>
     </div>
-    <!-- joke of the day -->
-    <div
-      class="pt-2 shadow border rounded-4 my-3 col-lg col-md-12 d-flex flex-column align-items-center justify-content-between mx-1"
-      v-if="windowWidth>992"
-    >
+    <div class="pt-2 shadow border rounded-4 my-3 col-lg col-md-12 d-flex flex-column align-items-center justify-content-between mx-1" v-if="windowWidth > 992">
       <div class="shadow border rounded-4">Random Food Fact?</div>
       <div class="shadow border rounded-4">Random Food Joke?</div>
       <div class="shadow border rounded-4">Calories Tracker?</div>

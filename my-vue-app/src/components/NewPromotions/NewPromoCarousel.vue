@@ -5,19 +5,12 @@
     <swiper class="carousel rounded-4 shadow-5 px-5 py-4 mySwiper"
     :slidesPerView="1"
     :loop="true"
-    :centeredSlides="true"
+    :centeredSlides="false"
     :slidesPerGroupSkip="0"
     :grabCursor="true"
     :scrollbar="true"
     :navigation="true"
-    :autoplay="{
-      delay: 2500,
-      disableOnInteraction: true,
-    }"
-    :pagination="{
-      clickable: true,
-      
-    }"
+    :pagination="{ clickable: true }"
     :modules="modules"
     :keyboard="{
       enabled: true,
