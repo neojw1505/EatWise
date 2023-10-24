@@ -1,15 +1,15 @@
 <template>
-  <div class="card  my-3 mx-3" style="width: 280px;" v-if="recipeData && nutritionData">
+  <div class="card shadowborder-dark" style="width: 300px;" v-if="recipeData && nutritionData">
     <div class="card-header"><h3>Breakfast</h3></div>
 
     <!-- Display the image or a spinner -->
-  <div class="image-container" v-if="loading">
+  <div class="card align-items-center" v-if="loading">
     <div class="spinner-border" role="status">
       <span class="visually-hidden">Loading...</span>
     </div>
   </div>
 
-  <div class="image-container" v-else>
+  <div class="card shadow" v-else>
     <div class="image-wrapper">
       <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
       <div class="bookmark" >
@@ -24,8 +24,8 @@
 
 
 
-    <div class="card-body" v-if="!loading && imageLoaded">
-      <h4 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h4>
+    <div class="card-body border-0" v-if="!loading && imageLoaded">
+      <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
       <!-- <p class="card-text">
         <span> Servings: {{ recipeData.servings }} </span>
         <span> Carbs: {{ nutritionData.carbs }} </span>
@@ -33,7 +33,7 @@
         <span> Protein: {{ nutritionData.protein }} </span>
       </p> -->
       <!-- Labels based on conditions -->
-      <div style="height: 100px;">
+      <div style="height: 60px;">
       <div class="d-flex justify-content-end flex-wrap">
         <span
           v-for="label in labels"
@@ -54,12 +54,12 @@
       </div>
     </div>
 
-    <div class="card-footer">
-      <button class="btn" @click="refreshRecipe(mealType)">
+    <div class="card-footer border-0">
+      <button class="btn me-2" @click="refreshRecipe(mealType)">
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
-      <button class="btn btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }" style="margin-left: 1rem;">
+      <button class="btn btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
         {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
         <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
@@ -114,8 +114,8 @@ export default {
       return labels;
     },
     formattedRecipeName() {
-      return this.recipeData.title.length > 33
-        ? this.recipeData.title.slice(0, 30) + "..."
+      return this.recipeData.title.length > 42
+        ? this.recipeData.title.slice(0, 41) + "..."
         : this.recipeData.title;
     },
   },
@@ -162,28 +162,22 @@ export default {
 .card {
 
   background-color: #FFB18D;
-  color: #000000;
-  border-radius: 2rem;
-  box-shadow: 5px 5px 10px #888888;
+  border: 0;
 }
 .image-container {
-  
   display: flex;
   justify-content: center;
   align-items: center;
-  position: relative; /* Add this to position the bookmark icon */
 }
 .card-img {
   max-width: 300px;
-  object-fit: contain; /* Ensures the image fully covers the container */
-  border-radius: 0.5rem;
-  box-shadow: 5px 5px 10px #888888;
+  object-fit: fit; /* Ensures the image fully covers the container */
 
 }
 .card .badge {
   font-size: 14px;
   padding: 4px 8px;
-  border-radius: 0.5rem;
+  border-radius: 10px;
   color: #000000;
   background-color: #FBE8A6;
   margin-left: 5px;
@@ -237,7 +231,6 @@ export default {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  box-shadow: 5px 5px 10px #888888;
 }
 
 .badge-content {
@@ -261,8 +254,8 @@ export default {
 /* New styles for the bookmark icon */
 .bookmark {
   position: absolute;
-  top: 2rem;
-  right: 1.5rem;
+  top: 15px;
+  right: 15px;
   box-shadow: 5px 5px 10px #888888;
 }
 

@@ -1,9 +1,9 @@
 <template>
-  <div class="shadow p-3 rounded-4 my-3" style="background-color: #fbe8a6">
+  <div class="shadow rounded-4 " style="background-color: #fbe8a6">
     <h1 class="fw-bold">Your Meal Plan</h1>
 
     <div class="d-flex flex-wrap">
-      <div class="col">
+      <div class="col d-flex justify-content-around">
         <BreakfastRecipe
           v-if="breakfastRecipe && breakfastNutrition"
           :recipeData="breakfastRecipe"
@@ -11,7 +11,7 @@
           @refresh-recipe="refreshRecipe"
         />
       </div>
-      <div class="col">
+      <div class="col d-flex justify-content-around">
         <LunchRecipe
           v-if="lunchRecipe && lunchNutrition"
           :recipeData="lunchRecipe"
@@ -19,8 +19,8 @@
           @refresh-recipe="refreshRecipe"
         />
       </div>
-      <div class="col">
-        <DinnerRecipe
+      <div class="col d-flex justify-content-around">
+        <DinnerRecipe 
           v-if="dinnerRecipe && dinnerNutrition"
           :recipeData="dinnerRecipe"
           :nutritionData="dinnerNutrition"
@@ -126,7 +126,5 @@ export default {
 
 .MealPlanSection {
   background: #fbe8a6;
-  border-radius: 40px;
-  padding: 1.5rem;
 }
 </style>
