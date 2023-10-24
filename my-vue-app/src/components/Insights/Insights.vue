@@ -1,17 +1,12 @@
 <template>
     <div>
       <navbar />
-      <div class="row my-4 mx-2 justify-content-between">
-        <div class="col-md-8 col-12 d-flex flex-column border shadow rounded-4">
-          <MacroNutrientsChart />
-        </div>
-  
-        <div class="col-md-4 col-12 d-flex flex-column border shadow rounded-4">
-          <ActionableInsights />
-        </div>
+      <div class="row my-2 mx-2">
+          <MacroNutrientsChart class="col-md-6 col-12 me-2  border shadow rounded-4" />
+          <ActionableInsights class="col border shadow rounded-4"/>
       </div>
   
-      <div class="col-md-12 col-12 mx-2 my-2 border shadow rounded-4">
+      <div  class="col mx-2 my-2 border shadow rounded-4">
         <CalorieIntakeChart />
       </div>
     </div>
