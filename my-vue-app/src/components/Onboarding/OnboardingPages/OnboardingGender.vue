@@ -59,7 +59,7 @@ export default {
       // console.log(this.selectedGender);
     },
     nextPage(){
-      
+      console.log("values : ", this.selectedGender);
     }
   },
 };

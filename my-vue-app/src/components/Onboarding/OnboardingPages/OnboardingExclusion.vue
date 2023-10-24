@@ -64,7 +64,7 @@ export default {
     goPrevious() {},
 
     goNext() {
-      console.log("values : ", this.activityLevel);
+      console.log("values : ", this.itemList);
     },
 
     // AddItem(){
@@ -83,7 +83,7 @@ export default {
     },
     DeleteItem(index) {
       this.itemList.splice(index, 1);
-      this.showDelete[itemList[index].showDelete].splice(index, 1);
+      this.showDelete[this.itemList[index].showDelete].splice(index, 1);
     },
     showDeleteButton(index) {
       this.$set(this.showDelete, index, true);
