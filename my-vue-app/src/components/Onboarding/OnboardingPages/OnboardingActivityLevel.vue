@@ -178,10 +178,14 @@ export default {
     };
   },
   methods: {
-    goPrevious() {},
+    goPrevious() {
+      this.$emit('buttonAction',"previous")
+    },
 
     goNext() {
       console.log("values : ", this.activityLevel);
+      this.$emit('buttonAction',"next")
+
     },
   }, // methods
 };

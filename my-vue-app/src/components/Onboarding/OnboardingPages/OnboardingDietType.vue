@@ -87,11 +87,14 @@ export default {
     };
   },
   methods: {
-    goPrevious() {},
+    goPrevious() {
+      this.$emit('buttonAction',"previous")
+    },
 
     goNext() {
       if(this.otherOption == "others"){
         console.log("values : ", this.otherOption)
+
         // routing to Other page
       }
     
@@ -102,7 +105,7 @@ export default {
         console.log("values : ", this.dietType);
         // routing to final page
       }
-
+      this.$emit('buttonAction',"next")
     },
   }, // methods
 };

@@ -34,7 +34,10 @@
 </template>
 
 <script>
+
 export default {
+
+// Emit an event
   data() {
     return {
       filterOption: " border rounded-4 p-3 mx-md-5 bg-light shadow text-center",
@@ -60,6 +63,7 @@ export default {
     },
     nextPage(){
       console.log("values : ", this.selectedGender);
+      this.$emit('buttonAction',"next") 
     }
   },
 };

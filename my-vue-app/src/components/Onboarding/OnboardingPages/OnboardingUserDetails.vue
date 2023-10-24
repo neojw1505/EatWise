@@ -157,7 +157,10 @@ export default {
     };
   },
   methods: {
-    goPrevious() {},
+    goPrevious() {
+      this.$emit('buttonAction',"previous")
+      
+    },
 
     goNext() {
       if (
@@ -175,6 +178,7 @@ export default {
           this.inputHeight,
           this.inputGoal
         );
+      this.$emit('buttonAction',"next")
       }
     },
   }, // methods

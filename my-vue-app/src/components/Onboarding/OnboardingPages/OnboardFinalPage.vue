@@ -56,6 +56,12 @@ export default{
                 this.value = this.value/239;
                 this.default_state=true;
             }
+        },
+        goNext(){
+          this.$emit('buttonAction',"next")
+        },
+        goPrevious(){
+          this.$emit('buttonAction',"previous")
         }
     }
 }

@@ -1,7 +1,5 @@
 <template>
   <div class="container">
-
-
   <!-- Main card -->
   <div class="MainBody">
     <div class="header text-center mx-auto my-5 py-1 col-6 bg-warning rounded ">
@@ -61,10 +59,15 @@ export default {
     };
   },
   methods: {
-    goPrevious() {},
+    goPrevious() {
+      this.$emit('buttonAction',"previous")
+      
+    },
 
     goNext() {
       console.log("values : ", this.itemList);
+      this.$emit('buttonAction',"next")
+      
     },
 
     // AddItem(){

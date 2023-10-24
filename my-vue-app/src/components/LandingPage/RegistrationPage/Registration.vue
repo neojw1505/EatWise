@@ -1,8 +1,5 @@
 <template> 
   <div id="container" class="mx-auto d-block">
-    <div>
-      <NavbarLandingPage />
-    </div>
     <div id="background-container">
       <img id="Registration-background" src="../Assets/background.png" alt="background">
       <RegistrationFill />
@@ -14,9 +11,13 @@
 
 <script>
 
+
 export default {
     name: 'Registration',
-    data() {
+    props:['registerUser'],
+    data() {return{
+      gender:null
+    }
     },
     methods: {},
 }
