@@ -2,10 +2,10 @@
   <div class="carousel-container">
     <h1 class="fw-bold">Available Promotions</h1>
     <!-- creating slide container for RecommendedRecipes -->
-    <swiper class="carousel mySwiper"
+    <swiper class="carousel rounded-4 shadow-5 px-5 py-4 mySwiper"
     :slidesPerView="1"
     :loop="true"
-    :centeredSlides="false"
+    :centeredSlides="true"
     :slidesPerGroupSkip="0"
     :grabCursor="true"
     :scrollbar="true"
@@ -46,8 +46,8 @@
       
     </swiper>
 
-    <div class="text-center py-4">
-        <button type="button" class="btn pill">View More</button>
+    <div class="text-center pt-3" >
+        <button type="button" class="btn shadow" style="width: 300px;">View More</button>
     </div>
 
   </div>
@@ -111,7 +111,6 @@ export default {
   .btn {
   background-color: #303C6C;
   color: #fff;
-  box-shadow: 5px 5px 10px #888888;
   }
 
   .btn:hover {
@@ -120,17 +119,9 @@ export default {
   }
   .carousel-container{
     background-color: #FBE8A6;
-    padding: 1.5rem;
-    border-radius: 1.5rem;
-    box-shadow: 5px 5px 10px #888888;
   }
 
   .carousel{
     background-color: #FFB18D;
-    color: #000000;
-    border-radius: 2rem;
-    box-shadow: 5px 5px 10px #888888;
-    padding: 1.25rem 1rem;
-    border-radius: 0.5rem;
   }
 </style>
