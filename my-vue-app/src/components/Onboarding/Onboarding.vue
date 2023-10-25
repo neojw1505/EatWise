@@ -1,6 +1,6 @@
 <template>
   <div>
-    <Navbar/>
+    <NavbarLandingPage/>
     <div>
       <OnboardingGender v-if="pageNumber==0" @buttonAction="buttonAction"/>
       <OnboardingUserDetails v-if="pageNumber==1" @buttonAction="buttonAction"/>

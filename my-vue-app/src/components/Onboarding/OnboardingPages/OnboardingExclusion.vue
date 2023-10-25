@@ -2,7 +2,7 @@
   <div class="container">
   <!-- Main card -->
   <div class="MainBody">
-    <div class="header text-center mx-auto my-5 py-1 col-6 bg-warning rounded ">
+    <div class="header text-center mx-auto my-5 py-1 col-6 rounded " style="background-color:#FFB18D ;">
       <h2>Ingredients to Exclude</h2>
     </div>
     <div class="card text-center mx-auto col-10 rounded shadow">
@@ -14,11 +14,11 @@
 
           <li v-for="(item, index) in itemList" :key="index" @mouseover="showDeleteButton(index)" @mouseleave="hideDeleteButton(index)">
               {{ item }}
-              <button class="btn btn-warning btn-sm" v-show="showDelete[index]" @click="DeleteItem(index)">X</button>
+              <button class="btn btn-sm" v-show="showDelete[index]" @click="DeleteItem(index)" style="background-color: #D7191C;">X</button>
             </li>
 
 
-          <button class="btn btn-sm btn-secondary" @click="AddItem">Add more +</button>
+          <button class="btn btn-sm " @click="AddItem" style="background-color: #FBE8A6;">Add more +</button>
 
         </ul>
       </div>
@@ -29,7 +29,8 @@
     <div class="mx-auto text-center">
       <button
         id="previous"
-        class="btn my-5 mx-2 px-5 bg-warning fw-semibold"
+        class="btn my-5 mx-2 px-5 fw-semibold"
+        style="background-color:#FFB18D ;"
         type="submit"
         v-on:click="goPrevious()"
       >
@@ -37,7 +38,8 @@
       </button>
       <button
         id="next"
-        class="btn my-5 mx-2 px-5 bg-warning fw-semibold"
+        class="btn my-5 mx-2 px-5 fw-semibold"
+        style="background-color:#FFB18D ;"
         type="submit"
         v-on:click="goNext()"
       >
@@ -81,8 +83,10 @@ export default {
 
     AddItem() {
       var input = prompt("What ingredient do you wish to exclude");
-      this.itemList.push(input);
-      this.showDelete.push({item:input,showDelete:false});
+      if (input && input.trim() !== '') {
+        this.itemList.push(input);
+        this.showDelete.push({ item: input, showDelete: false });
+      }
     },
     DeleteItem(index) {
       this.itemList.splice(index, 1);

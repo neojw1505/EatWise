@@ -1,27 +1,25 @@
 <template>
   <div>
-    <div class="container background-image ">
-      <div class="mx-auto text-center my-5 rounded-4 bg-warning col-8">
+    <div class="background-image">
+      <div class="container mx-auto text-center my-5 rounded-4 col-8">
         <h1>Select Your Gender</h1>
       </div>
-      <div
-        class="mx-auto border rounded-4 justify-content-center py-2 px-5 d-flex shadow bg-white col-8"
-      >
+      <div class="mx-auto border rounded-4 d-flex flex-wrap shadow bg-white col-8">
         <!-- male -->
-        <div @click="checked('male')" id="male" :class="filterOption">
-          <img src="../img/male.png" />
+        <div @click="checked('male')" id="male" class="col d-flex card border-0 mx-auto text-center p-4" :class="{ 'selected': selectedGender === 'male' }">
+          <font-awesome-icon :icon="['fas', 'mars']" style="color: #000000;" class="fa-10x" />
           <h3>Male</h3>
         </div>
         <!-- female -->
-        <div @click="checked('female')" id="female" :class="filterOption">
-          <img  src="../img/female.png" />
+        <div @click="checked('female')" id="female" class="col d-flex card border-0 mx-auto text-center p-4" :class="{ 'selected': selectedGender === 'female' }">
+          <font-awesome-icon :icon="['fas', 'venus']" style="color: #000000;" class="fa-10x" />
           <h3>Female</h3>
         </div>
       </div>
       <div class="mx-auto text-center">
         <button
           id="submit"
-          class="btn my-5 bg-warning px-5 fs-5 fw-semibold"
+          class="btn my-5 px-5 fs-5 fw-semibold"
           type="submit"
           @click="nextPage()"
         >
@@ -34,41 +32,37 @@
 </template>
 
 <script>
-
 export default {
-
-// Emit an event
   data() {
     return {
-      filterOption: " border rounded-4 p-3 mx-md-5 bg-light shadow text-center",
-      filterOptionCheck: " border rounded-4 p-3 mx-md-5 bg-warning shadow text-center",
       selectedGender: "",
     };
   },
   methods: {
     checked(gender) {
-      if (this.selectedGender == gender) {
-        this.selectedGender = "";
-        document.getElementById(gender).className = this.filterOption;
-      } else {
-        this.selectedGender = gender;
-        document.getElementById(gender).className = this.filterOptionCheck;
-        if (gender == "male") {
-          document.getElementById("female").className = this.filterOption;
-        } else {
-          document.getElementById("male").className = this.filterOption;
-        }
-      }
-      // console.log(this.selectedGender);
+      this.selectedGender = gender;
+      console.log(gender)
     },
-    nextPage(){
-      console.log("values : ", this.selectedGender);
-      this.$emit('buttonAction',"next") 
-    }
+    nextPage() {
+      this.$emit('buttonAction',"next")
+      // Handle next page navigation here
+    },
   },
 };
 </script>
 
-<style>
+<style scoped>
+.selected {
+  background-color: #FFB18D; 
+}
+.container {
+  background-color: #FFB18D; 
+}
+.btn {
+  background-color: #FFB18D; 
+}
+.card {
+  width: 300px; /* Set the card width */
+}
 
 </style>
