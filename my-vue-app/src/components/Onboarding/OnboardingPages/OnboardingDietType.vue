@@ -1,134 +1,134 @@
 <template>
   <div>
-    <NavbarLandingPage></NavbarLandingPage>
-    <div
-      class="mx-auto text-center my-5 py-1 shadow rounded-4 bg-warning col-7"
-    >
+    <div class="mx-auto text-center my-5 py-1 shadow rounded-4 col-3" style="background-color:#FFB18D ;">
       <h1 class="fw-bold fs-5">WHAT'S YOUR DIET TYPE</h1>
     </div>
-    <div
-      class="container mx-auto border rounded-4 text-start justify-content-end py-2 pe-5 d-flex shadow bg-white col-8"
-    >
+    <div class="container mx-auto border rounded-4 d-flex shadow bg-white col-6">
       <div class="row">
-        <div class="col-6 p-4 text-center">
-          <input name="option" type="radio" id="vegetarian" class="hide" value="vegetarian" v-model="dietType"/>
-          <label for="vegetarian" class="">Vegetarian <h6 class="text-muted fw-normal">No meat or fish</h6></label>
-        </div>
-        <div class="col-6 p-4 text-center">
-          <input
-            name="option"
-            type="radio"
-            id="standard"
-            value="standard"
-            v-model="dietType"
-          />
-          <label for="standard">Standard <br/> <h6 class="text-muted fw-normal">I'm Easy</h6> </label>
-        </div>
-        <div class="col-6 p-4 text-center">
-          <input name="option" type="radio" id="vegan" class="hide" value="vegan" v-model="dietType"/>
-          <label for="vegan">Vegan <h6 class="text-muted fw-normal">No Animal Products</h6></label>
-        </div>
-        <div class="col-6 p-4 text-center">
-          <input name="option" type="radio" id="pescetarian" class="hide" value="pescetarian" v-model="dietType"/>
-          <label for="pescetarian">Pescetarian <h6 class="text-muted fw-normal">Vegetarian + Seafood</h6></label>
-        </div>
-        <div class="col-6 p-4 text-center">
-          <input name="option" type="radio" id="dairy-free" class="hide" value="dairy-free" v-model="dietType"/>
-          <label for="dairy-free" class="">Dairy-Free <h6 class="text-muted fw-normal">No Dairy Products</h6></label>
-        </div>
-        <div class="col-6 p-4 text-center">
-          <input name="option" type="radio" id="paleolithic" class="hide" value="paleolithic" v-model="dietType"/>
-          <label for="paleolithic">Paleolithic <h6 class="text-muted fw-normal">Meat, Fish, Nuts, Veggies</h6></label>
-        </div>
-        <div class="col-6 p-4 text-center">
-          <input name="option" type="radio" id="primal" class="hide" value="primal" v-model="dietType"/>
-          <label for="primal">Primal <h6 class="text-muted fw-normal">Meat Only</h6></label>
-        </div>
-        <div class="col-6 p-4 text-center">
-          <input name="option" type="radio" id="gluten-free" class="hide" value="gluten-free" v-model="dietType"/>
-          <label for="gluten-free">Gluten-Free <h6 class="text-muted fw-normal">No products with gluten</h6></label>
-        </div>
-        <div class="col-6 p-4 text-center">
-          <input name="option" type="radio" id="others" class="hide" value="others" v-model="otherOption"/>
-          <label for="others">Others <h6 class="text-muted fw-normal">Pick Ingredients to Exclude</h6></label>
-        </div>
-        <div class="col-6 p-4 text-center">
-          <input name="option" type="radio" id="whole 30" class="hide" value="whole 30" v-model="dietType"/>
-          <label for="whole 30">Whole 30 <h6 class="text-muted fw-normal">No Alcohol, Sugar, Grains, <br/>Legumes, dairy</h6></label>
+        <div class="d-flex py-2 text-center col-md-6 col-sm-12 " v-for="(diet, index) in dietTypes" :key="index">
+          <input name="option" type="radio" :id="diet.id" :value="diet.value" v-model="dietType" style="display: none;" />
+          <label :for="diet.id" class="card border" :class="{ 'selected': dietType === diet.value }" style="width: 100%;">
+            {{ diet.label }}
+            <h6 class="text-muted fw-normal">{{ diet.description }}</h6>
+          </label>
         </div>
       </div>
     </div>
     <div class="mx-auto text-center">
-      <button
-        id="previous"
-        class="btn my-5 mx-2 px-5 bg-warning fw-semibold"
-        type="submit"
-        v-on:click="goPrevious()"
-      >
-        Previous
-      </button>
-      <button
-        id="next"
-        class="btn my-5 mx-2 px-5 bg-warning fw-semibold"
-        type="submit"
-        v-on:click="goNext()"
-      >
-        Next
-      </button>
+      <button id="previous" class="btn my-5 mx-2 px-5 fw-semibold" type="submit" @click="goPrevious" style="background-color:#FFB18D ;">Previous</button>
+      <button id="next" class="btn my-5 mx-2 px-5 fw-semibold" type="submit" @click="goNext" style="background-color:#FFB18D ;">Next</button>
     </div>
   </div>
 </template>
+
 
 <script>
 export default {
   data() {
     return {
       dietType: null,
+      dietTypes: [
+        {
+          id: "vegetarian",
+          label: "Vegetarian",
+          value: "vegetarian",
+          description: "No meat or fish",
+        },
+        {
+          id: "standard",
+          label: "Standard",
+          value: "standard",
+          description: "I'm Easy",
+        },
+        {
+          id: "vegan",
+          label: "Vegan",
+          value: "vegan",
+          description: "No Animal Products",
+        },
+        {
+          id: "pescetarian",
+          label: "Pescetarian",
+          value: "pescetarian",
+          description: "Vegetarian + Seafood",
+        },
+        {
+          id: "dairy-free",
+          label: "Dairy-Free",
+          value: "dairy-free",
+          description: "No Dairy Products",
+        },
+        {
+          id: "paleolithic",
+          label: "Paleolithic",
+          value: "paleolithic",
+          description: "Meat, Fish, Nuts, Veggies",
+        },
+        {
+          id: "primal",
+          label: "Primal",
+          value: "primal",
+          description: "Meat Only",
+        },
+        {
+          id: "gluten-free",
+          label: "Gluten-Free",
+          value: "gluten-free",
+          description: "No products with gluten",
+        },
+        {
+          id: "others",
+          label: "Others",
+          value: "others",
+          description: "Pick Ingredients to Exclude",
+        },
+        {
+          id: "whole30",
+          label: "Whole 30",
+          value: "whole30",
+          description: "No Alcohol, Sugar, Grains, Legumes, dairy",
+        },
+      ],
       otherOption: null,
     };
   },
   methods: {
-    goPrevious() {},
+    goPrevious() {
+      this.$emit('buttonAction', "previous");
+    },
 
     goNext() {
-      if(this.otherOption == "others"){
-        console.log("values : ", this.otherOption)
+      if (this.otherOption == "others") {
+        console.log("values : ", this.otherOption);
         // routing to Other page
-      }
-    
-      else if (this.dietType == null && this.otherOption == null) {
+      } else if (this.dietType == null && this.otherOption == null) {
         alert("You must select an option!");
-      } 
-      else {
+      } else {
         console.log("values : ", this.dietType);
-        // routing to final page
+        // routing to the final page
       }
-
+      this.$emit('buttonAction', "next");
     },
-  }, // methods
+  },
 };
 </script>
 
 <style scoped>
-label {
-  margin-right: 5vw;
-  margin-left: 5vw;
-  cursor: pointer;
-}
-
+/* Your existing styling remains the same */
 .container {
   direction: rtl;
   text-align: right !important;
   font-size: larger;
   font-weight: bold;
-  /* min-width: ; */
+}
+.card {
+  cursor: pointer;
+  border: none;
+  transition: box-shadow 0.1s;
 }
 
-input[type=radio] {
-    border: 0px;
-    width: auto;
-    height: 2em;
-    
+/* Apply styles to the selected card */
+.card.selected {
+  box-shadow: 0 0 2px 2px #007459;
 }
-
 </style>
