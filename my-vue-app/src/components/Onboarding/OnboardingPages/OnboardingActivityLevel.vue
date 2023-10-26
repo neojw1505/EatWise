@@ -118,9 +118,15 @@ export default {
     },
 
     goNext() {
-      console.log("values : ", this.activityLevel);
-      this.$emit("buttonAction", "next");
-      this.$emit('addActivityLevel', this.activityLevel);
+      if (this.activityLevel == null) {
+        alert('You must fill out all fields!');
+      }
+      else {
+        console.log("values : ", this.activityLevel);
+        this.$emit("buttonAction", "next");
+        this.$emit('addActivityLevel', this.activityLevel);
+      }
+
     },
   },
 };

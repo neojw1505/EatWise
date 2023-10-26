@@ -103,7 +103,7 @@ export default {
         console.log('values : ', this.inputAge, this.inputWeight, this.inputHeight, this.inputGoal);
         this.$emit('buttonAction', 'next');
         this.$emit('addAge', this.inputAge);
-        this.$emit('addHeight', this.inpuHeight);
+        this.$emit('addHeight', this.inputHeight);
         this.$emit('addWeight', this.inputWeight);
         this.$emit('addGoal', this.inputGoal);
       }
