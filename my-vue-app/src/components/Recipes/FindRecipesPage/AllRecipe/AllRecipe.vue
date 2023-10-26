@@ -6,7 +6,8 @@
     @handleIncludeIngredientPassdown="handleIncludeIngredientInput"
     @handleExcludeIngredientPassdown="handleExcludeIngredientInput"
     @handleMinCalPassdown="handleMinCalInput"
-    @handleMaxCalPassdown="handleMaxCalInput"/>
+    @handleMaxCalPassdown="handleMaxCalInput"
+    @performSearchRecipe="this.$refs.AllRecipeResult.getFilteredRecipes()"/>
     <!-- may want to add in "view more" button to expand more view -->
     <AllRecipeResult 
     :PassSearchInput="searchInput"
@@ -15,7 +16,9 @@
     :PassIncludeIngredients="IncludeIngredient"
     :PassExcludeIngredients="ExcludeIngredient"
     :PassMinCal="MinCal"
-    :PassMaxCal="MaxCal"/>
+    :PassMaxCal="MaxCal"
+    ref="AllRecipeResult"
+    />
   </div>
 </template>
 
@@ -58,13 +61,6 @@ export default {
       // console.log(data)
       this.MaxCal=data;
     },
-  },
-  watch: {
-    // Watch someData for changes
-    MealType(newValue, oldValue) {
-      this.MealType=newValue;
-    },
-    
   },
 }
 </script>

@@ -48,6 +48,7 @@
       },
       formattedDate(){
         let tempDate= this.selectedDateOnCalendar.toLocaleString().split(",")[0].split("/");
+        // console.log(tempDate)
         let month={
           '1':"January",
           '2':"February",
@@ -62,7 +63,7 @@
           '11':"November",
           '12':"December",
         };
-        return tempDate[1]+" "+month[tempDate[0]]+" "+tempDate[2];
+        return tempDate[0]+" "+month[tempDate[1]]+" "+tempDate[2];
       }
     },
     methods: {
@@ -79,7 +80,7 @@
         this.currentMonth.getMonth(),
         date
       );
-      this.$emit('getCalendarDate',this.formattedDate)
+      this.$emit('getCalendarDate',this.selectedDateOnCalendar)
     },
     isDateSelected(date) {
       // Check if the date matches the selected date.

@@ -44,5 +44,9 @@ export default {
   width: 200px;
   height: 350px;
   color: black;
+  transition: transform 0.3s;
+}
+.cardStyle:hover {
+  transform: scale(1.05); /* Scale up by 10% on hover */
 }
 </style>

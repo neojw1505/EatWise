@@ -11,7 +11,7 @@
       @getMaxCalInput="handleMaxCalInput"
     />
     <div class="d-flex justify-content-end">
-      <button class="btn my-1 fw-bold" style="background-color: #FFB18D">
+      <button @click="this.$emit('performSearchRecipe')" class="btn my-1 fw-bold" style="background-color: #FFB18D">
         Filter
       </button>
     </div>
