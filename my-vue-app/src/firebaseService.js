@@ -27,13 +27,17 @@ export const createUser = async (
   email,
   password,
   displayName,
+  age,
   profilePhotoURL,
   dob,
   gender,
   userWeight,
   userHeight,
   goals,
-  activityLevel
+  activityLevel,
+  ingredientRemove,
+  DailyCalories,
+  dietType
 ) => {
   try {
     const userCredential = await createUserWithEmailAndPassword(
@@ -65,6 +69,9 @@ export const createUser = async (
       profilePhoto: user.photoURL,
       email: user.email,
       isEmailVerified: user.emailVerified,
+      ingredientRemove:ingredientRemove,
+      DailyCalories:DailyCalories,
+      dietType:dietType
     });
 
     console.log("User data stored in Realtime Database");

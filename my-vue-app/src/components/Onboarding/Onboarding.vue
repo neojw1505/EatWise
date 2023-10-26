@@ -7,7 +7,7 @@
       <OnboardingActivityLevel @addActivityLevel="addActivityLevel" v-if="pageNumber==2" @buttonAction="buttonAction"/>
       <OnboardingDietType @addDietType="addDietType" v-if="pageNumber==3" @buttonAction="buttonAction"/>
       <OnboardingExclusion @addExclusion="addExclusion" v-if="pageNumber==4" @buttonAction="buttonAction"/>
-      <OnboardFinalPage v-if="pageNumber==5" @buttonAction="buttonAction"/>
+      <OnboardFinalPage v-if="pageNumber==5" @buttonAction="buttonAction" :registerUser="UserData" @passDailyCalorie="handleDailyCalories"/>
       <Registration @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword" v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
     </div>
   </div>
@@ -33,6 +33,8 @@ export default {
       'email':null,
       'dob': null,
       'password': null,
+      'DailyCalories': null,
+      'DietType':null
     }
   }
   },
@@ -45,6 +47,9 @@ export default {
       else{
         this.pageNumber--;
       }
+    },
+    handleDailyCalories(data){
+      this.UserData.DailyCalories=data;
     },
 
     addGender(data){

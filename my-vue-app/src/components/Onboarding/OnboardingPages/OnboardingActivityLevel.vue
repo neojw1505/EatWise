@@ -14,7 +14,7 @@
               name="product"
               class="card-input-element"
               :id="level.id"
-              :value="level.value"
+              :value="level.id"
               v-model="activityLevel"
             />
 

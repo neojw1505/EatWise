@@ -2,7 +2,7 @@
   <div id="container" class="mx-auto d-block">
     <div id="background-container">
       <img id="Registration-background" src="../Assets/background.png" alt="background">
-      <RegistrationFill @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword"/>
+      <RegistrationFill  :registerUser="registerUser"/>
     </div>
 
   </div>
@@ -23,22 +23,7 @@ export default {
     }
     },
     methods: {
-      addName(data){
-      this.UserData.name = data;
-      this.$emit('addName', this.name);
-    },
-    addEmail(data){
-      this.UserData.email = data;
-      this.$emit('addEmail', this.email);
-    },
-    addDOB(data){
-      this.UserData.dob = data;
-      this.$emit('addDOB', this.dataOfBirth);
-    },
-    addPassword(data){
-      this.UserData.password = data;
-      this.$emit('addPassword', this.password);
-    }
+      
     },
     // created(){
     //   console.log(this.registerUser)
