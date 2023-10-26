@@ -55,6 +55,13 @@
 </template>
 
 <script>
+import heavy from '../img/heavy.png';
+import light from "../img/light.png";
+import sendentary from "../img/sedentary.png";
+import moderate from "../img/moderate.png";
+import veryHeavy from "../img/very-heavy.png";
+import intense from "../img/extreme.png";
+
 export default {
   data() {
     return {
@@ -65,42 +72,42 @@ export default {
           label: "Sedentary:",
           description: "Little to no exercise",
           value: "Sedentary: little or no exercise",
-          imgSrc: "../img/sedentary.png",
+          imgSrc: sendentary,
         },
         {
           id: "3",
           label: "Light",
           description: "Regular Exercise 1-3 times/week",
           value: "Exercise 1-3 times/week",
-          imgSrc: "../img/light.png",
+          imgSrc: light,
         },
         {
           id: "4",
           label: "Moderate",
           description: "Regular Exercise 4-5 times/week",
           value: "Exercise 4-5 times/week",
-          imgSrc: "../img/moderate.png",
+          imgSrc: moderate,
         },
         {
           id: "5",
           label: "Heavy",
           description: "Intense Exercise 3-4 times/week",
           value: "Daily exercise or intense exercise 3-4 times/week",
-          imgSrc: "../img/heavy.png",
+          imgSrc: heavy,
         },
         {
           id: "6",
           label: "Very Heavy",
           description: "Intense Exercise 5-6 times/week",
           value: "Intense exercise 6-7 times/week",
-          imgSrc: "../img/very-heavy.png",
+          imgSrc: veryHeavy,
         },
         {
           id: "7",
           label: "Extreme",
           description: "Intense Daily Exercise",
           value: "Very intense exercise daily, or physical job",
-          imgSrc: "../img/extreme.png",
+          imgSrc: intense,
         },
       ],
     };
@@ -113,6 +120,7 @@ export default {
     goNext() {
       console.log("values : ", this.activityLevel);
       this.$emit("buttonAction", "next");
+      this.$emit('addActivityLevel', this.activitylevel);
     },
   },
 };

@@ -108,6 +108,7 @@ export default {
         // routing to the final page
       }
       this.$emit('buttonAction', "next");
+      this.$emit('addDietType', this.dietType);
     },
   },
 };

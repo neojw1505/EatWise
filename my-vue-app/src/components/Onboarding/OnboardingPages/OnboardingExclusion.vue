@@ -69,7 +69,7 @@ export default {
     goNext() {
       console.log("values : ", this.itemList);
       this.$emit('buttonAction',"next")
-      
+      this.$emit('addExclusion', this.itemList);
     },
 
     // AddItem(){
