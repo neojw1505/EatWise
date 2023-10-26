@@ -57,6 +57,7 @@ export const createUser = async (
       dob: dob,
       gender: gender,
       fullName: user.displayName,
+      age: age,
       weight: userWeight,
       height: userHeight,
       goals: goals,
