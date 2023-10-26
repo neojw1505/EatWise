@@ -6,14 +6,17 @@
           <h2>Congratulations!</h2>
         </div>
         <div class="card-text">
-          <p>Your custom plan is ready, and you're one step closer to healthy eating.</p>
+          <p>
+            Your custom plan is ready, and you're one step closer to healthy
+            eating.
+          </p>
           <h3>Your net kilojoule goal is:</h3>
         </div>
         <div class="text-group">
           <div class="d-flex justify-content-between align-items-center">
             <h1 class="col-6">{{ value }}</h1>
             <button class="btn btn-primary col-6" @click="convertToCalories()">
-              {{ default_state ? 'Kilojoules' : 'Calories' }}
+              {{ default_state ? "Kilojoules" : "Calories" }}
             </button>
           </div>
         </div>
@@ -22,7 +25,7 @@
     <div class="mx-auto text-center">
       <button
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color:#FFB18D ;"
+        style="background-color: #ffb18d"
         type="submit"
         @click="goPrevious"
       >
@@ -30,7 +33,7 @@
       </button>
       <button
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color:#FFB18D ;"
+        style="background-color: #ffb18d"
         type="submit"
         @click="goNext"
       >
@@ -42,10 +45,11 @@
 
 <script>
 export default {
+  props: ["registerUser"],
   data() {
     return {
-      value: 19999,
-      default_state: true
+      value: 1,
+      default_state: true,
     };
   },
   methods: {
@@ -59,12 +63,27 @@ export default {
       }
     },
     goNext() {
-      this.$emit('buttonAction', 'next');
+      this.$emit("buttonAction", "next");
+      this.$emit("passDailyCalorie", this.value);
     },
     goPrevious() {
-      this.$emit('buttonAction', 'previous');
-    }
-  }
+      this.$emit("buttonAction", "previous");
+    },
+    async getDailyCaloriesMacros() {
+      let temp= await this.$fitCalcAPI.getDailyCaloriesMacros(
+        this.registerUser.age,
+        this.registerUser.gender,
+        this.registerUser.height,
+        this.registerUser.weight,
+        this.registerUser.activityLevel,
+        this.registerUser.goal
+      );
+      this.value=Math.floor(temp.calorie);
+    },
+  },
+  created() {
+    this.getDailyCaloriesMacros()
+  },
 };
 </script>
 
@@ -75,7 +94,7 @@ export default {
 }
 
 .card-body {
-  background-color: #F9F7F7;
+  background-color: #f9f7f7;
   border-radius: 40px;
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.5);
   padding: 5% 5% 0 5%;
