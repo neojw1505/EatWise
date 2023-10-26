@@ -75,32 +75,25 @@ export default {
     };
   },
   methods: {
-    async register() {
+    register() {
       if (this.password!=this.confirmPassword){
-        this.error.push("password and confirmPassword mismatch");
+        this.error.push("password and confirm password mismatch");
         return
       }
       if (this.password.length<6){
         this.error.push("Password should have at least 6 characters");
         return
       }
+      else{
+        this.$emit('addName', this.name);
+        this.$emit('addEmail', this.email);
+        this.$emit('addPassword', this.password);
+        this.$emit('addDOB', this.dataOfBirth);
+      }
       // console.log(this.email);
       // console.log(this.password);
       // console.log(this.name);
       // console.log(this.dateOfBirth);
-
-      await this.$smAPI.createUser(
-        this.email,
-        this.password,
-        this.name,
-        "",
-        this.dateOfBirth,
-        "M",
-        "80",
-        "180",
-        "weightlose",
-        "5"
-      );
     },
 
   },

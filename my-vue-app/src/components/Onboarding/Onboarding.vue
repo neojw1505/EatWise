@@ -2,13 +2,13 @@
   <div>
     <NavbarLandingPage/>
     <div>
-      <OnboardingGender v-if="pageNumber==0" @buttonAction="buttonAction"/>
-      <OnboardingUserDetails v-if="pageNumber==1" @buttonAction="buttonAction"/>
-      <OnboardingActivityLevel v-if="pageNumber==2" @buttonAction="buttonAction"/>
-      <OnboardingDietType v-if="pageNumber==3" @buttonAction="buttonAction"/>
-      <OnboardingExclusion v-if="pageNumber==4" @buttonAction="buttonAction"/>
+      <OnboardingGender v-if="pageNumber==0" @buttonAction="buttonAction" @addGender="addGender"/>
+      <OnboardingUserDetails @addAge="addAge" @addHeight="addHeight" @addWeight="addWeight" @addGoal="addGoal" v-if="pageNumber==1" @buttonAction="buttonAction"/>
+      <OnboardingActivityLevel @addActivityLevel="addActivityLevel" v-if="pageNumber==2" @buttonAction="buttonAction"/>
+      <OnboardingDietType @addDietType="addDietType" v-if="pageNumber==3" @buttonAction="buttonAction"/>
+      <OnboardingExclusion @addExclusion="addExclusion" v-if="pageNumber==4" @buttonAction="buttonAction"/>
       <OnboardFinalPage v-if="pageNumber==5" @buttonAction="buttonAction"/>
-      <Registration v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
+      <Registration @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword" v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
     </div>
   </div>
 </template>
@@ -29,22 +29,60 @@ export default {
       'activityLevel':null,
       'DietType':null,
       'IngredientRemove':[],
+      'name': null,
+      'email':null,
+      'dob': null,
+      'password': null,
     }
   }
   },
   methods:{
-    handlePassData(data){
-
-    },
     buttonAction(data){
       if(data=="next"){
         this.pageNumber++;
+        console.log(this.UserData);
       }
       else{
         this.pageNumber--;
       }
-    }
+    },
 
+    addGender(data){
+      this.UserData.gender = data;
+    },
+    addAge(data){
+      this.UserData.age = data;
+    },
+    addHeight(data){
+      this.UserData.height = data;
+    },
+    addWeight(data){
+      this.UserData.weight = data;
+    },
+    addGoal(data){
+      this.UserData.goal = data;
+    },
+    addActivityLevel(data){
+      this.UserData.activityLevel = data;
+    },
+    addDietType(data){
+      this.UserData.DietType = data;
+    },
+    addExclusion(data){
+      this.UserData.IngredientRemove = data;
+    },
+    addName(data){
+      this.UserData.name = data;
+    },
+    addEmail(data){
+      this.UserData.email = data;
+    },
+    addDOB(data){
+      this.UserData.dob = data;
+    },
+    addPassword(data){
+      this.UserData.password = data;
+    }
   }
 }
 </script>

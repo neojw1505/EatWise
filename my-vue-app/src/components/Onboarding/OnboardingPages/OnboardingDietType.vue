@@ -105,9 +105,11 @@ export default {
         alert("You must select an option!");
       } else {
         console.log("values : ", this.dietType);
+        this.$emit('buttonAction', "next");
+        this.$emit('addDietType', this.dietType);
         // routing to the final page
       }
-      this.$emit('buttonAction', "next");
+
     },
   },
 };

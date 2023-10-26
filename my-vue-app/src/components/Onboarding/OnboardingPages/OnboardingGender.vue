@@ -41,10 +41,12 @@ export default {
   methods: {
     checked(gender) {
       this.selectedGender = gender;
+      this.$emit('addGender', 'gender');
       console.log(gender)
     },
     nextPage() {
-      this.$emit('buttonAction',"next")
+      this.$emit('buttonAction', "next")
+      this.$emit('addGender', this.selectedGender);
       // Handle next page navigation here
     },
   },
