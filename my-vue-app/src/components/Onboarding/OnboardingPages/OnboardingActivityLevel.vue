@@ -120,7 +120,7 @@ export default {
     goNext() {
       console.log("values : ", this.activityLevel);
       this.$emit("buttonAction", "next");
-      this.$emit('addActivityLevel', this.activitylevel);
+      this.$emit('addActivityLevel', this.activityLevel);
     },
   },
 };

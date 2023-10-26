@@ -54,10 +54,10 @@ export default {
       this.UserData.age = data;
     },
     addHeight(data){
-      this.UserData.weight = data;
+      this.UserData.height = data;
     },
     addWeight(data){
-      this.UserData.height = data;
+      this.UserData.weight = data;
     },
     addGoal(data){
       this.UserData.goal = data;
