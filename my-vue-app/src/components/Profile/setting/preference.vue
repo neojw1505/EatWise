@@ -3,28 +3,28 @@
     <!-- fullname -->
     <div class="my-3">
         <label for="ProfileSettingfullname" class="form-label fw-bold">Full Name</label>
-        <input type="text" id="ProfileSettingfullname" class="form-control" :value="userInfo.fullname">
+        <input type="text" id="ProfileSettingfullname" class="form-control"  v-model="userInfo.fullname">
     </div>
     
     <!-- Date of Birth DD/MM/YYYY -->
     <div class="my-3">
         <label for="ProfileSettingDOB" class="form-label fw-bold">Date of Birth (DD/MM/YYYY)</label>
-        <input type="text" id="ProfileSettingDOB" class="form-control" :value="userInfo.DOB">
+        <input type="date" id="ProfileSettingDOB" class="form-control"  v-model="userInfo.DOB">
     </div>
     <!-- Gender -->
     <div class="my-3">
         <label for="ProfileSettingGender" class="form-label fw-bold">Gender</label>
-        <input type="text" id="ProfileSettingGender" class="form-control" :value="userInfo.gender">
+        <input type="text" id="ProfileSettingGender" class="form-control"  v-model="userInfo.gender">
     </div>
     <!-- Weight -->
     <div class="my-3">
         <label for="ProfileSettingWeight" class="form-label fw-bold">Weight</label>
-        <input type="text" id="ProfileSettingWeight" class="form-control" :value="userInfo.weight">
+        <input type="text" id="ProfileSettingWeight" class="form-control"  v-model="userInfo.weight">
     </div>
     <!-- Height -->
     <div class="my-3">
         <label for="ProfileSettingHeight" class="form-label fw-bold">Height</label>
-        <input type="text" id="ProfileSettingHeight" class="form-control" :value="userInfo.height">
+        <input type="text" id="ProfileSettingHeight" class="form-control"  v-model="userInfo.height">
     </div>
     <!-- Goal -->
     <div class="my-3 ">
@@ -108,7 +108,13 @@
         </div>
         </div>
     </div>
+    <!-- saved button -->
+    <div class="my-3 justify-content-end d-flex">
+      <button class="btn fw-bold" style="background-color: #F4976C;" @click="changeSetting">Save</button>
+    </div>
+    <savedNotification ref="notification"/>
   </div>
+  
 </template>
 
 <script>
@@ -119,7 +125,7 @@ export default {
       "DOB":"",
       "gender":"",
       "weight":"",
-      "heigth":"",
+      "height":"",
       "goal":"",
       "dailyActivity":"",
       "dietType":[],
@@ -147,8 +153,39 @@ export default {
       this.userInfo.ExcludeIngredients.splice(index, 1);
       console.log(this.userInfo.ExcludeIngredients);
     },
+    async changeSetting(){
+      await this.$smAPI.updateUserProfile(
+      this.userInfo.fullname,
+      "",
+      this.userInfo.DOB,
+      this.userInfo.gender,
+      this.userInfo.weight,
+      this.userInfo.height,
+      this.userInfo.goal,
+      this.userInfo.dailyActivity,
+      this.userInfo.ExcludeIngredients,
+      this.userInfo.dietType,
+      )
+      this.$refs.notification.showNotification();
+    },  
+    async getUserProfile(){
+      console.log(this.$smAPI.getLoginUserProfile());
+      let userDetails=await this.$smAPI.getLoginUserProfile();
+      this.userInfo.fullname=userDetails.fullName;
+      this.userInfo.DOB=userDetails.dob;
+      this.userInfo.gender=userDetails.gender;
+      this.userInfo.weight=userDetails.weight;
+      this.userInfo.height=userDetails.height;
+      this.userInfo.goal=userDetails.goals;
+      this.userInfo.dailyActivity=userDetails.activityLevel;
+    }
+    
+    },
+    created(){
+      this.getUserProfile()
+    }
   }
-}
+
 </script>
 
 <style>

@@ -8,15 +8,10 @@
       <div class="mx-3">
         <div>
           <button class="btn border m-2" :style="{ 'background-color': showPreference ? 'rgb(239, 138, 91)' : '#f8f9fa' }" @click="changeTab()">Preference</button>
-          <button class="btn border m-2" :style="{ 'background-color': !showPreference ? 'rgb(239, 138, 91)' : '#f8f9fa' }" @click="changeTab()">Change Email and Password</button>
+          <button class="btn border m-2" :style="{ 'background-color': !showPreference ? 'rgb(239, 138, 91)' : '#f8f9fa' }" @click="changeTab()">Change Password</button>
         </div>
         <preference :class="{'d-none':!showPreference}"/>
-        <changePasswordAndEmail :class="{'d-none':showPreference}"/>
-        <!-- saved button -->
-        <div class="my-3 justify-content-end d-flex">
-          <button class="btn fw-bold" style="background-color: #F4976C;" @click="saveSetting">Save</button>
-        </div>
-        <savedNotification ref="notification"/>
+        <changePassword :class="{'d-none':showPreference}"/>
     </div>
   </div>
     </div>
@@ -28,12 +23,10 @@ export default {
     showPreference: true
   }},
   methods:{
-    saveSetting(){
-      this.$refs.notification.showNotification();
-    },
     changeTab(){
       this.showPreference=!this.showPreference;
-    }
+    },
+    
   }
 }
 </script>
