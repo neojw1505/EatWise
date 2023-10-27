@@ -41,7 +41,6 @@ export default {
   methods: {
     checked(gender) {
       this.selectedGender = gender;
-      this.$emit('addGender', 'gender');
       console.log(gender)
     },
     nextPage() {

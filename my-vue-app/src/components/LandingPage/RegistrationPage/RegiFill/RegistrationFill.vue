@@ -26,7 +26,7 @@
         />
 
         <input
-          class="password-group col-sm-12 form-control"
+          class="password-group col-sm-12 mt-2 form-control"
           type="password"
           v-model="confirmPassword"
           placeholder="Confirm Password"
