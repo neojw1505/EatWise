@@ -60,7 +60,7 @@ export default {
     },
     onResize() {
       this.windowWidth = window.innerWidth
-      console.log(this.windowWidth)
+      // console.log(this.windowWidth)
     }
   },
   computed: {

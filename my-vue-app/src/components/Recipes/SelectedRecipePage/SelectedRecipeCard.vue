@@ -106,8 +106,11 @@
 import image from "../../Navbar/images/saved.png";
 import healthyImage from "../FindRecipesPage/card/healthymeal.jpeg";
 export default {
+  name: "SelectedRecipeCard",
+  props:['recipeId'],
   data() {
     return {
+    
       savedLogo: image,
       unsavedClass: "rounded-4 border align-items-center bg-light p-1",
       savedClass: "rounded-4 border align-items-center bg-success p-1",
@@ -159,6 +162,10 @@ export default {
       this.isSaved = !this.isSaved;
     },
   },
+  created(){
+    const recipeId = this.$route.params.id;
+    console.log(this.$route)
+  }
 };
 </script>
 

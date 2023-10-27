@@ -1,9 +1,9 @@
 <template>
   <!-- <router-link :to="routerTO"> -->
-    <div class="card cardStyle mx-2 px-0 my-2">
+    <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2">
       <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" />
       <div class="card-body img-fluid">
-        <h4 class="card-title" style="font-size: large; height: 50px">
+        <h4 class="card-title" style="font-size: large; height: 50px" >
           {{ formattedRecipeName }}
         </h4>
         <p class="card-text">{{cal}}cal</p>
@@ -36,10 +36,14 @@ export default {
       let recipeObj= await this.$spoonAPI.getSelectedRecipeNutritions(this.recipe.id);
       this.cal=recipeObj.calories;
     },
+    async selectRecipe() {
+      // Use router to navigate to the SelectedRecipe component with the recipe id as a parameter
+      this.$router.push({ path: '/find-recipes/SelectedRecipeCard/:id', qeury:{id: "1234" }})
+    },
   },
   created(){
     // console.log(this.recipe);
-    this.getSelectedRecipeNutritions();
+    // this.getSelectedRecipeNutritions();
   },  
 };
 </script>
@@ -52,5 +56,9 @@ export default {
   height: 250px;
   background-image: linear-gradient(to bottom right, #ff5100, #fac400);
   color: black;
+  transition: transform 0.3s;
+}
+.cardStyle:hover {
+  transform: scale(1.05); /* Scale up by 10% on hover */
 }
 </style>

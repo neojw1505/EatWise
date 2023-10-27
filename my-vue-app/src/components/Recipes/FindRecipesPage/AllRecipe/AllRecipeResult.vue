@@ -142,58 +142,7 @@ export default {
     console.log(this.PassSearchInput);
     this.getFilteredRecipes();
   },
-  watch: {
-    // Watch someData for changes
-    PassSearchInput: {
-      deep: true,
-      handler(newVal, oldVal) {
-        console.log("PassSearchInput changed:", newVal);
-        this.getFilteredRecipes();
-      },
-    },
-    PassMealType: {
-      deep: true,
-      handler(newVal, oldVal) {
-        console.log("PassSearchInput changed:", newVal);
-        this.getFilteredRecipes();
-      },
-    },
-    PassDietType: {
-      deep: true,
-      handler(newVal, oldVal) {
-        console.log("PassSearchInput changed:", newVal);
-        this.getFilteredRecipes();
-      },
-    },
-    PassIncludeIngredients: {
-      deep: true,
-      handler(newVal, oldVal) {
-        console.log("PassSearchInput changed:", newVal);
-        this.getFilteredRecipes();
-      },
-    },
-    PassExcludeIngredients: {
-      deep: true,
-      handler(newVal, oldVal) {
-        console.log("PassSearchInput changed:", newVal);
-        this.getFilteredRecipes();
-      },
-    },
-    PassMinCal: {
-      deep: true,
-      handler(newVal, oldVal) {
-        console.log("PassSearchInput changed:", newVal);
-        this.getFilteredRecipes();
-      },
-    },
-    PassMaxCal: {
-      deep: true,
-      handler(newVal, oldVal) {
-        console.log("PassSearchInput changed:", newVal);
-        this.getFilteredRecipes();
-      },
-    },
-  },
+
 };
 </script>
 

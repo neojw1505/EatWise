@@ -25,6 +25,7 @@
     @handleExcludeIngredient="handleExcludeIngredientInput"
     @handleMinCal="handleMinCalInput"
     @handleMaxCal="handleMaxCalInput"
+    @performSearchRecipe="this.$emit('performSearchRecipe')"
     />
 
   </div>
