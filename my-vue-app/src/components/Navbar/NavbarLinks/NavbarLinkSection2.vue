@@ -15,6 +15,7 @@
 // link name, link logo and the path they are directing once click
 import NavbarlinkCard from "./NavbarlinkCard.vue";
 // import NavbarSearch from "./NavbarSearch.vue";
+import { auth } from '../../../../src/firebaseService';
 
 export default {
   name: "NavbarLinkSection1",
@@ -30,7 +31,7 @@ export default {
           routeTo: "/saved-recipes",
         },
         {
-          linkName: "Profile",
+          linkName: "Profile"   ,
           linkIcon: ["fas", "user"],
           routeTo: "/profile",
         },

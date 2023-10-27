@@ -8,11 +8,12 @@
 </template>
 
 <script>
+import { auth } from '../../firebaseService';
 import Navbar from '../Navbar/Navbar.vue'
 export default {
   components: { Navbar },
   data(){return{
-    ProfileName: "Ben Dover",
+    ProfileName: auth.currentUser.displayName,
   }}
 
 }

@@ -15,6 +15,7 @@ import {
   reauthenticateWithCredential,
   updatePassword,
   sendPasswordResetEmail,
+  EmailAuthProvider
 } from "firebase/auth";
 
 // Initialize Firebase
@@ -187,7 +188,6 @@ export const getLoginUserProfile = async () => {
 
 export const updateUserProfile = async (
   newDisplayName,
-  newEmail,
   newProfilePhotoURL,
   newDOB,
   newGender,
@@ -195,7 +195,9 @@ export const updateUserProfile = async (
   newHeight,
   newGoal,
   activityLevel,
-  currentPassword
+  ingredientRemove,
+  dietType
+  
 ) => {
   try {
     // Update the current user node in the Realtime Database
@@ -209,18 +211,9 @@ export const updateUserProfile = async (
       goals: newGoal,
       activityLevel: activityLevel,
       profilePhoto: newProfilePhotoURL,
-      email: newEmail,
+      ingredientRemove:ingredientRemove,
+      dietType:dietType
     });
-
-    // Reauthenticate the user
-    const credentials = EmailAuthProvider.credential(
-      auth.currentUser.email,
-      currentPassword
-    );
-    await reauthenticateWithCredential(auth.currentUser, credentials);
-    console.log("User reaunthenticated successfully!");
-    // Update the email
-    await updateEmail(auth.currentUser, newEmail);
 
     // Update the Authentication side data for the user
     await updateProfile(auth.currentUser, {
@@ -237,14 +230,11 @@ export const updateUserProfile = async (
   }
 };
 
-export const updateUserPassword = async (currentPassword, newPassword) => {
+export const updateUserPassword = async (currentPassword,newPassword) => {
   try {
     // Reauthenticate the user to confirm their identity
-    const credentials = EmailAuthProvider.credential(
-      auth.currentUser.email,
-      currentPassword
-    );
-    await reauthenticateWithCredential(auth.currentUser, credentials);
+    const credentials = promptForCredentials();
+    reauthenticateWithCredential(auth.currentUser, credentials);
 
     // Update the password using auth.currentUser
     await updatePassword(auth.currentUser, newPassword);
