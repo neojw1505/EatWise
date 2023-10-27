@@ -48,7 +48,7 @@ export default {
   props: ["registerUser"],
   data() {
     return {
-      value: 1,
+      value: "Calculating...",
       default_state: true,
     };
   },
