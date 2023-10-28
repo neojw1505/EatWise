@@ -241,6 +241,8 @@ export default {
       this.userInfo.height=userDetails.height;
       this.userInfo.goal=userDetails.goals;
       this.userInfo.dailyActivity=userDetails.activityLevel;
+      this.userInfo.ExcludeIngredients=userDetails.ingredientRemove;
+      this.userInfo.dietType=userDetails.dietType;
     }
     
     },
