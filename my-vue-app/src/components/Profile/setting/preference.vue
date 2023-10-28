@@ -230,37 +230,38 @@ export default {
       }
 
       this.$refs.notification.showNotification();
-    },
-    async getUserProfile() {
-      let userDetails = await this.$smAPI.getLoginUserProfile();
-      this.userInfo.fullname = userDetails.fullName;
-      this.userInfo.DOB = userDetails.dob;
-      this.userInfo.gender = userDetails.gender;
-      this.userInfo.weight = userDetails.weight;
-      this.userInfo.height = userDetails.height;
-      this.userInfo.goal = userDetails.goals;
-      this.userInfo.dailyActivity = userDetails.activityLevel;
-      this.userInfo.ExcludeIngredients = userDetails.ingredientRemove;
-      this.userInfo.dietType = userDetails.dietType;
-    },
-  },
-  async created() {
-    // Ensure the user is authenticated before fetching the user profile
-    try {
-      await this.$smAPI.auth.onAuthStateChanged(async (user) => {
-        if (user) {
-          // User is authenticated, fetch user profile
-          await this.getUserProfile();
-        } else {
-          // Handle the case when the user is not authenticated
-          console.error("User not authenticated.");
-        }
-      });
-    } catch (error) {
-      console.error("Error checking authentication state", error);
+    },  
+    async getUserProfile(){
+      console.log(this.$smAPI.getLoginUserProfile());
+      let userDetails=await this.$smAPI.getLoginUserProfile();
+      this.userInfo.fullname=userDetails.fullName;
+      this.userInfo.DOB=userDetails.dob;
+      this.userInfo.gender=userDetails.gender;
+      this.userInfo.weight=userDetails.weight;
+      this.userInfo.height=userDetails.height;
+      this.userInfo.goal=userDetails.goals;
+      this.userInfo.dailyActivity=userDetails.activityLevel;
     }
-  },
-};
+    
+    },
+  async created() {
+      // Ensure the user is authenticated before fetching the user profile
+      try {
+        await this.$smAPI.auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            // User is authenticated, fetch user profile
+            await this.getUserProfile();
+          } else {
+            // Handle the case when the user is not authenticated
+            console.error("User not authenticated.");
+          }
+        });
+      } catch (error) {
+        console.error("Error checking authentication state", error);
+      }
+    },
+  }
+
 </script>
 
 <style></style>
