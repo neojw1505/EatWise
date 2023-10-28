@@ -8,6 +8,9 @@ import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
 
 
+//Import Sweet Alert 2
+import VueSweetalert2 from 'vue-sweetalert2';
+import 'sweetalert2/dist/sweetalert2.min.css';
 
 // Import Font Awesome
 import { library } from '@fortawesome/fontawesome-svg-core';
@@ -21,6 +24,9 @@ library.add(fas);
 
 // Initialise app
 const app = createApp(App);
+
+// Register Sweet Alert 2
+app.use(VueSweetalert2);
 
 // Register Font Awesome component
 app.component('font-awesome-icon', FontAwesomeIcon);

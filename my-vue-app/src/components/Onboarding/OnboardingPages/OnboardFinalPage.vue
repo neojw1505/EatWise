@@ -10,7 +10,7 @@
             Your custom plan is ready, and you're one step closer to healthy
             eating.
           </p>
-          <h3>Your net kilojoule goal is:</h3>
+          <h3>Your net {{ default_state ? "Kilojoules" : "Calories" }} goal is:</h3>
         </div>
         <div class="text-group">
           <div class="d-flex justify-content-between align-items-center">

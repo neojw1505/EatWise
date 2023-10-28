@@ -23,6 +23,7 @@
 
 
 <script>
+import Swal from 'sweetalert2'; // Import SweetAlert2
 export default {
   data() {
     return {
@@ -102,7 +103,12 @@ export default {
         console.log("values : ", this.otherOption);
         // routing to Other page
       } else if (this.dietType == null && this.otherOption == null) {
-        alert("You must select an option!");
+        // Show an alert if no gender is selected
+        Swal.fire({
+                  icon: 'error',
+                  title: 'Error',
+                  text: 'Please select an option!',
+                });
       } else {
         console.log("values : ", this.dietType);
         this.$emit('buttonAction', "next");

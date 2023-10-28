@@ -55,6 +55,7 @@
 </template>
 
 <script>
+import Swal from 'sweetalert2'; // Import SweetAlert2
 import heavy from '../img/heavy.png';
 import light from "../img/light.png";
 import sendentary from "../img/sedentary.png";
@@ -119,7 +120,12 @@ export default {
 
     goNext() {
       if (this.activityLevel == null) {
-        alert('You must fill out all fields!');
+      // Show an alert if no gender is selected
+      Swal.fire({
+                icon: 'error',
+                title: 'Error',
+                text: 'Please select an option!',
+              });
       }
       else {
         console.log("values : ", this.activityLevel);
