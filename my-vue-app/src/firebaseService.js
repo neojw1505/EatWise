@@ -187,7 +187,9 @@ export const getLoginUserProfile = async () => {
 }
 
 export const updateUserProfile = async (
+  userUID,
   newDisplayName,
+  newEmail,
   newProfilePhotoURL,
   newDOB,
   newGender,
@@ -197,11 +199,10 @@ export const updateUserProfile = async (
   activityLevel,
   ingredientRemove,
   dietType
-  
 ) => {
   try {
     // Update the current user node in the Realtime Database
-    const userRef = ref(database, "/users/" + auth.uid);
+    const userRef = ref(database, "/users/" + userUID);
     await update(userRef, {
       dob: newDOB,
       gender: newGender,
@@ -211,9 +212,18 @@ export const updateUserProfile = async (
       goals: newGoal,
       activityLevel: activityLevel,
       profilePhoto: newProfilePhotoURL,
-      ingredientRemove:ingredientRemove,
-      dietType:dietType
+      email: newEmail,
     });
+
+    // Reauthenticate the user
+    const credentials = EmailAuthProvider.credential(
+      auth.currentUser.email,
+      currentPassword
+    );
+    await reauthenticateWithCredential(auth.currentUser, credentials);
+    console.log("User reaunthenticated successfully!");
+    // Update the email
+    await updateEmail(auth.currentUser, newEmail);
 
     // Update the Authentication side data for the user
     await updateProfile(auth.currentUser, {
@@ -221,7 +231,7 @@ export const updateUserProfile = async (
       photoURL: newProfilePhotoURL,
     });
 
-    console.log("Profile and email successfully updated!");
+    console.log("Profile successfully updated!");
   } catch (error) {
     const errorCode = error.code;
     const errorMessage = error.message;
@@ -233,8 +243,10 @@ export const updateUserProfile = async (
 export const updateUserPassword = async (currentPassword,newPassword) => {
   try {
     // Reauthenticate the user to confirm their identity
-    const credentials = promptForCredentials();
-    reauthenticateWithCredential(auth.currentUser, credentials);
+    const user = auth.currentUser;
+    console.log();
+    const credentials = EmailAuthProvider.credential(user.email, currentPassword);
+    await reauthenticateWithCredential(auth.currentUser, credentials);
 
     // Update the password using auth.currentUser
     await updatePassword(auth.currentUser, newPassword);

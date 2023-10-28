@@ -8,12 +8,12 @@
         <!--New Password -->
     <div class="my-3">
       <label for="ProfileSettingPassword" class="form-label fw-bold">Password</label>
-      <input type="password" id="ProfileSettingPassword" class="form-control" v-model="userInfo.password">
+      <input type="password" id="ProfileSettingPassword" class="form-control" v-model="userInfo.NewPassword">
     </div>
     <!-- Confirm Password -->
     <div class="my-3">
       <label for="ProfileSettingConfirmPassword" class="form-label fw-bold">Confirm Password</label>
-      <input type="password" id="ProfileSettingConfirmPassword" class="form-control" v-model="userInfo.confirmPassword">
+      <input type="password" id="ProfileSettingConfirmPassword" class="form-control" v-model="userInfo.confirmNewPassword">
     </div>
     <div v-if="error.length>0" class="mt-3 p-2 border border-2 rounded-4 border-danger-subtle">
       Errors:
@@ -35,23 +35,23 @@ export default {
   data(){return{
     userInfo:{
       "CurrentPassword":"",
-      "password":"",
-      "confirmPassword":"",
+      "NewPassword":"",
+      "confirmNewPassword":"",
     },
     error:[]
   }},
   methods:{
-    saveSetting(){
+    async saveSetting(){
+      
       if(this.userInfo.password!=this.userInfo.confirmPassword){
         this.error.push("New password and Confirm new password mismatched");
         return
       }
-      
-      // let success=this.$smAPI.updateUserPassword(this.userInfo.confirmPassword)
-      // if(!success){
-      //   this.error.push("Current Password Invalid");
-      //   return
-      // }
+      try {
+        await this.$smAPI.updateUserPassword(this.userInfo.CurrentPassword, this.userInfo.confirmNewPassword)
+      } catch (error) {
+        this.error.push(error)
+      }
       this.$refs.notification.showNotification();
       this.error=[];
     },
