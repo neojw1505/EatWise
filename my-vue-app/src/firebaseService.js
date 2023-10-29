@@ -142,6 +142,19 @@ export const login = async (email, password) => {
   }
 };
 
+export const checkEmailExist = async (email) => {
+  try {
+    await fetchSignInMethodsForEmail(email);
+    console.log('Email exist in firebase');
+  } catch (error) {
+    const errorCode = error.code;
+    const errorMessage = error.message;
+    console.error("Email doesn't exist:", errorCode, errorMessage);
+    throw error;
+  }
+}
+
+
 // Function to delete a user and their data
 export const deleteAccount = async () => {
   try {
