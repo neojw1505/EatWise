@@ -51,9 +51,12 @@ export default {
   },
   methods: {
     async login() {
-      let user = await this.$smAPI.login(this.email, this.password);
-      if (user) {
-        this.$router.push({ path: '/'}).then(() => { this.$router.go() });
+      try {
+        await this.$smAPI.login(this.email, this.password);
+        this.$router.push({ path: '/' });
+      } catch (error) {
+        // Handle login error, show a message, or take appropriate action.
+        console.error(error);
       }
     },
     forgotPassword() {
