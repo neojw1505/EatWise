@@ -43,7 +43,14 @@ export default {
         async logout(){
             await this.$smAPI.logout();
             this.$router.push({path:'/login'}).then(() => { this.$router.go() })
+        },
+        async getMaxCalories(){
+            let user=await this.$smAPI.getLoginUserProfile();
+            this.maxCalories=user.DailyCalories
         }
+    },
+    created(){
+        this.getMaxCalories()
     }
 
 }
