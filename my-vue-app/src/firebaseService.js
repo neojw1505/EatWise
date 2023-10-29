@@ -186,10 +186,14 @@ export const getLoginUserProfile = async () => {
   }
 }
 
+export const logout = async () => {
+  await signOut(auth);
+}
+
+
 export const updateUserProfile = async (
   userUID,
   newDisplayName,
-  newEmail,
   newProfilePhotoURL,
   newDOB,
   newGender,
@@ -212,18 +216,9 @@ export const updateUserProfile = async (
       goals: newGoal,
       activityLevel: activityLevel,
       profilePhoto: newProfilePhotoURL,
-      email: newEmail,
+      ingredientRemove:ingredientRemove,
+      dietType:dietType
     });
-
-    // Reauthenticate the user
-    const credentials = EmailAuthProvider.credential(
-      auth.currentUser.email,
-      currentPassword
-    );
-    await reauthenticateWithCredential(auth.currentUser, credentials);
-    console.log("User reaunthenticated successfully!");
-    // Update the email
-    await updateEmail(auth.currentUser, newEmail);
 
     // Update the Authentication side data for the user
     await updateProfile(auth.currentUser, {
