@@ -36,8 +36,8 @@
           class="col-12 form-control"
           type="date"
           v-model="dateOfBirth"
-          placeholder="Date of Birth"
           id="date"
+          placeholder="dd-mm-yyyy"
         />
       </div>
       <div
@@ -79,6 +79,7 @@ export default {
   },
   methods: {
     async register() {
+      this.error=[];
       if (this.password != this.confirmPassword) {
         this.error.push("password and confirm password mismatch");
         return;
