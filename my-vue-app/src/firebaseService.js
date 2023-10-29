@@ -15,7 +15,8 @@ import {
   reauthenticateWithCredential,
   updatePassword,
   sendPasswordResetEmail,
-  EmailAuthProvider
+  EmailAuthProvider,
+  fetchSignInMethodsForEmail,
 } from "firebase/auth";
 
 // Initialize Firebase
@@ -141,19 +142,6 @@ export const login = async (email, password) => {
     throw error;
   }
 };
-
-export const checkEmailExist = async (email) => {
-  try {
-    await fetchSignInMethodsForEmail(email);
-    console.log('Email exist in firebase');
-  } catch (error) {
-    const errorCode = error.code;
-    const errorMessage = error.message;
-    console.error("Email doesn't exist:", errorCode, errorMessage);
-    throw error;
-  }
-}
-
 
 // Function to delete a user and their data
 export const deleteAccount = async () => {

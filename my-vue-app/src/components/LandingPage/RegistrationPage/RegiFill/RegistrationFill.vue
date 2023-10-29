@@ -40,15 +40,6 @@
           placeholder="dd-mm-yyyy"
         />
       </div>
-      <div
-        v-if="error.length > 0"
-        class="mt-3 p-2 border border-2 rounded-4 border-danger-subtle"
-      >
-        Errors:
-        <ul>
-          <li v-for="e in error" :key="e">{{ e }}</li>
-        </ul>
-      </div>
       <div class="form-group text-center">
         <button
           id="register"
@@ -64,6 +55,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "RegistrationFill",
   props: ["registerUser"],
@@ -84,15 +76,15 @@ export default {
         this.error.push("password and confirm password mismatch");
         return;
       }
-      if (this.password.length < 6) {
-        this.error.push("Password should have at least 6 characters");
-        return;
-      }
+
+  
       // console.log(this.email);
       // console.log(this.password);
       // console.log(this.name);
       // console.log(this.dateOfBirth);
-      await this.$smAPI.createUser(
+
+      try {
+        await this.$smAPI.createUser(
         this.email,
         this.password,
         this.name,
@@ -106,14 +98,37 @@ export default {
         this.registerUser.activityLevel,
         this.registerUser.IngredientRemove,
         this.registerUser.DailyCalories,
-        this.registerUser.DietType
+        this.registerUser.DietType)
+      } catch (error) {
+        this.displayFirebaseError(error); // Display other errors with their message
+        }
+    },
+    displayFirebaseError(errorObj) {
+      this.error = [];
+      if (errorObj.code == 'auth/email-already-in-use') {
+        this.error.push('Email already in use!')
+      }
+      if (errorObj.code == 'auth/invalid-email') {
+        this.error.push('Email is not valid!')
+      }
+      if (errorObj.code == 'auth/weak-password') {
+        this.error.push('Password must be at least 6 characters!')
+      }
+      console.log(this.error);
+      const errorList = this.error.map((error) => `<li>${error}</li>`).join('');
+      const errorMessage = `<ul>${errorList}</ul>`;
 
-      );
+      Swal.fire({
+        title: 'Error',
+        html: errorMessage,
+        icon: 'error',
+      });
     },
   },
-  created() {
-    console.log(this.registerUser);
-  },
+  // please kai jie wtf do this thanks. Now it is passing 1 error obj at a time, we need to collate all the errors into an array then loop through the array in order to push each error into the this.error
+    created() {
+      console.log(this.registerUser);
+    },
 };
 </script>
 
