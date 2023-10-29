@@ -1,7 +1,7 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light sticky-top"
-    style="background-color: #EF8A5B"
+    class="navbar navbar-expand-lg navbar-light mx-auto"
+    style="background-color: #7A8CEA"
   >
     <div class="container-fluid">
       <div class="d-flex">
@@ -34,4 +34,11 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.navbar{
+border-radius: 40px;
+width:95%;
+margin-top:10px;
+position: fixed;
+}
+</style>
