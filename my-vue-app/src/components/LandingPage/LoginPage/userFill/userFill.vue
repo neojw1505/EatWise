@@ -4,7 +4,7 @@
       <div class="card-body">
         <h5 class="card-title text-center mb-4">Member Login</h5>
         <input
-          type="text"
+          type="email"
           class="form-control mb-3"
           id="email"
           placeholder="Email Address"
@@ -17,7 +17,9 @@
           placeholder="Password"
           v-model="password"
         />
-        <a href="#" class="card-link" @click="forgotPassword">Forgot Password?</a>
+        <a href="#" class="card-link" @click="forgotPassword"
+          >Forgot Password?</a
+        >
         <div class="form-group text-center">
           <button
             id="login"
@@ -39,7 +41,7 @@
 </template>
 
 <script>
-import Swal from 'sweetalert2';
+import Swal from "sweetalert2";
 
 export default {
   name: "userFill",
@@ -61,29 +63,29 @@ export default {
     },
     forgotPassword() {
       Swal.fire({
-        title: 'Forgot Password',
-        input: 'email',
-        inputLabel: 'Enter your email address',
-        inputPlaceholder: 'Email address',
+        title: "Forgot Password",
+        input: "email",
+        inputLabel: "Enter your email address",
+        inputPlaceholder: "Email address",
         showCancelButton: true,
-        confirmButtonText: 'Send',
-        cancelButtonText: 'Cancel',
+        confirmButtonText: "Send",
+        cancelButtonText: "Cancel",
         preConfirm: (email) => {
           if (!email) {
-            Swal.showValidationMessage('Email address is required');
+            Swal.showValidationMessage("Email address is required");
           } else {
             this.sendPasswordResetEmail(email);
           }
         },
       });
     },
-    sendPasswordResetEmail(email) {
-      // Add the logic here to send a reset password link to the provided email address @junwei
+    async sendPasswordResetEmail(email) {
       Swal.fire({
-        title: 'Password Reset Email Sent',
-        text: 'A password reset email has been sent to ' + email,
-        icon: 'success',
+        title: "Password Reset Email Sent",
+        text: "A password reset email has been sent to " + email,
+        icon: "success",
       });
+      await this.$smAPI.passwordReset(email);
     },
   },
 };
