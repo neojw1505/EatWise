@@ -103,7 +103,7 @@
           <label class="form-label fw-semibold">
             <input
               class="form-check-input"
-              type="checkbox"
+              type="radio"
               :value="diet"
               v-model="userInfo.dietType"
             />
@@ -171,7 +171,7 @@ export default {
         height: "",
         goal: "",
         dailyActivity: "",
-        dietType: [],
+        dietType: "",
         ExcludeIngredients: [],
       },
       addIngredientsToFilter: "",
