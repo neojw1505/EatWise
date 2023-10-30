@@ -61,32 +61,19 @@ class SpoonacularAPI {
   }
 
   // Function to get a single random breakfast recipe
-  async getBreakfastRecipe(breakfastCategories, number) {
+  async getBreakfastRecipe() {
     try {
       // Make a request to the Spoonacular API for random recipes
       const response = await this.axios.get("/recipes/random", {
         params: {
-          number: number, // Number of recipes to retrieve
+          number: 1, // Number of recipes to retrieve
+          tags: 'breakfast'
         },
       });
+        // Get the random recipe data
+        const randomBreakfastRecipe = response.data.recipes;
+        return randomBreakfastRecipe
 
-      // Get the random recipe data
-      const randomRecipes = response.data.recipes;
-
-      // Filter recipes to find a breakfast recipe
-      const breakfastRecipe = randomRecipes.find((recipe) =>
-        recipe.dishTypes.some((dishType) =>
-          breakfastCategories.includes(dishType.toLowerCase())
-        )
-      );
-
-      if (breakfastRecipe) {
-        // If a breakfast recipe is found, return it
-        return breakfastRecipe;
-      } else {
-        // If no breakfast recipe is found, recursively call the function again to get more random recipes
-        return this.getBreakfastRecipe(breakfastCategories, number);
-      }
     } catch (error) {
       // Handle errors here
       console.error("Error fetching random breakfast recipe:", error);
@@ -94,74 +81,47 @@ class SpoonacularAPI {
     }
   }
 
-  async getLunchRecipe(lunchCategories, number) {
+    // Function to get a single random breakfast recipe
+    async getLunchRecipe() {
+      try {
+        // Make a request to the Spoonacular API for random recipes
+        const response = await this.axios.get("/recipes/random", {
+          params: {
+            number: 1, // Number of recipes to retrieve
+            tags: 'lunch'
+          },
+        });
+          // Get the random recipe data
+          const randomLunchRecipe = response.data.recipes;
+          return randomLunchRecipe
+  
+      } catch (error) {
+        // Handle errors here
+        console.error("Error fetching random Lunch recipe:", error);
+        throw error;
+      }
+    }
+
+      // Function to get a single random breakfast recipe
+  async getDinnerRecipe() {
     try {
       // Make a request to the Spoonacular API for random recipes
       const response = await this.axios.get("/recipes/random", {
         params: {
-          number: number, // Number of recipes to retrieve
+          number: 1, // Number of recipes to retrieve
+          tags: 'dinner'
         },
       });
+        // Get the random recipe data
+        const randomDinnerRecipe = response.data.recipes;
+        return randomDinnerRecipe
 
-      // Get the random recipe data
-      const randomRecipes = response.data.recipes;
-
-      // Filter recipes to find a lunch recipe
-      const lunchRecipe = randomRecipes.find((recipe) =>
-        recipe.dishTypes.some((dishType) =>
-          lunchCategories.includes(dishType.toLowerCase())
-        )
-      );
-
-      if (lunchRecipe) {
-        // If a lunch recipe is found, return it
-        return lunchRecipe;
-      } else {
-        // If no lunch recipe is found, recursively call the function again to get more random recipes
-        return this.getLunchRecipe(lunchCategories, number);
-      }
     } catch (error) {
       // Handle errors here
-      console.error("Error fetching random lunch recipe:", error);
+      console.error("Error fetching random Dinner recipe:", error);
       throw error;
     }
   }
-
-  // Function to get a single random dinner recipe
-  async getDinnerRecipe(dinnerCategories, number) {
-    try {
-      // Make a request to the Spoonacular API for random recipes
-      const response = await this.axios.get("/recipes/random", {
-        params: {
-          number: number, // Number of recipes to retrieve
-        },
-      });
-
-      // Get the random recipe data
-      const randomRecipes = response.data.recipes;
-
-      // Filter recipes to find a dinner recipe
-      const dinnerRecipe = randomRecipes.find((recipe) =>
-        recipe.dishTypes.some((dishType) =>
-          dinnerCategories.includes(dishType.toLowerCase())
-        )
-      );
-
-      if (dinnerRecipe) {
-        // If a dinner recipe is found, return it
-        return dinnerRecipe;
-      } else {
-        // If no dinner recipe is found, recursively call the function again to get more random recipes
-        return this.getDinnerRecipe(dinnerCategories, number);
-      }
-    } catch (error) {
-      // Handle errors here
-      console.error("Error fetching random dinner recipe:", error);
-      throw error;
-    }
-  }
-
-
   ///find-recipes
   // return list of filtered recipes based on users filter selection
   async getFilteredRecipes(
