@@ -59,6 +59,7 @@ export default {
   methods: {
     async getBreakfastRecipe() {
       this.breakfastRecipeObj = await this.$smAPI.getBreakfastRecipeFromFB() ?? await this.$smAPI.setBreakfastRecipeInFB();
+      console.log(this.breakfastRecipeObj);
       this.breakfastRecipe = this.breakfastRecipeObj.recipe[0]
       this.breakfastNutrition = this.breakfastRecipeObj.nutrition
     },
