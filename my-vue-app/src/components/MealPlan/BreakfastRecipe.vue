@@ -13,7 +13,7 @@
     <div class="image-wrapper">
       <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
       <div class="bookmark" >
-        <button class="bookmark-button" @click="toggleBookmarkState()">
+        <button class="bookmark-button" @click="toggleBookmarkState(recipeData.id, recipeData)">
           <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #007459;" />
           <font-awesome-icon  v-else :icon="['fas', 'bookmark']" size="2xl" style="color: #ffffff;" />
         </button>
@@ -92,6 +92,9 @@ export default {
       required: true,
     },
   },
+  async created() {
+    this.isBookmarked = await this.$smAPI.isRecipeAlreadyBookmarked(this.recipeData.id)
+  },
   computed: {
     labels() {
       const labels = [];
@@ -126,7 +129,6 @@ export default {
 
       this.isConsumed = false;
       this.isBookmarked = false;
-
     },
     onImageLoad() {
       // This method is called when the image has finished loading
@@ -138,11 +140,19 @@ export default {
     this.isConsumed = !this.isConsumed;
     },
 
-    async toggleBookmarkState() {
-    this.isBookmarked = !this.isBookmarked;
+    async toggleBookmarkState(recipeId, newSavedRecipe) {
+      console.log(this.isBookmarked);
+      if (this.isBookmarked) {
+        // if already saved in firebase, remove it because user uncheck bookmark
+        this.isBookmarked = !this.isBookmarked;
+        this.$smAPI.removeSavedRecipeInFB(recipeId)
+      } else {
+        // if not in firebase, add it into firebase because user click button to bookmark
+        this.isBookmarked = !this.isBookmarked;
+        this.$smAPI.addSavedRecipesInFB(recipeId, newSavedRecipe)
+      }
     },
   },
-
   watch: {
     // Watch for changes in recipeData and reset imageLoaded and loading
     recipeData() {
