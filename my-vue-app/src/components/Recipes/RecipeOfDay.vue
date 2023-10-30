@@ -45,16 +45,33 @@ export default {
     };
   },
   created() {
-    this.getRandomRecipe(); // Automatically call getRandomRecipe on component load
+    // Call getRandomRecipe immediately on component load
+    this.getRandomRecipe();
     this.getUserDailyCaloriesFromFB();
     this.getRandomFoodJokeFromFB();
     this.getRandomFoodFactFromFB();
+
+    // Calculate the time until midnight
+    const now = new Date();
+    const midnight = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() + 1, // Next day at midnight
+      0, 0, 0
+    );
+    const timeUntilMidnight = midnight - now;
+
+    // Schedule getRandomRecipe to run at midnight
+    setTimeout(() => {
+      this.getRandomRecipe();
+    }, timeUntilMidnight);
   },
 
   methods: {
     async getRandomRecipe() {
       let RandomRecipeObj = await this.$smAPI.getRecipeOfDayFromFB() ?? await this.$smAPI.setRecipeOfDayInFB();
-      this.RandomRecipe = RandomRecipeObj.recipe.recipes[0];
+      console.log(RandomRecipeObj);
+      this.RandomRecipe = RandomRecipeObj.recipes.recipes[0];
       this.Title = this.RandomRecipe.title;
       this.DishTypes = this.RandomRecipe.dishTypes;
       this.Diets = this.RandomRecipe.diets;
