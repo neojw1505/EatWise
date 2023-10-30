@@ -6,7 +6,8 @@ import spoonacularObj from './api/spoonacular';
 import FitnessCalculatorObj from './api/fitness-calculator';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
-
+import AOS from 'aos'
+import 'aos/dist/aos.css'
 
 //Import Sweet Alert 2
 import VueSweetalert2 from 'vue-sweetalert2';
@@ -24,7 +25,7 @@ library.add(fas);
 
 // Initialise app
 const app = createApp(App);
-
+AOS.init()
 // Register Sweet Alert 2
 app.use(VueSweetalert2);
 
