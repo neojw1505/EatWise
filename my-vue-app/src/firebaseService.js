@@ -768,6 +768,28 @@ export const isRecipeAlreadyBookmarked = async (recipeId) => {
   }
 }
 
+export const getUserSavedRecipes = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/savedRecipes');
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) { 
+        return snapshot.val()
+      } else {
+        await set(userRef, {})
+        return {}
+      }
+    }
+  } catch (error){
+    console.log(error);
+    throw error
+  }
+}
+
+
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 
