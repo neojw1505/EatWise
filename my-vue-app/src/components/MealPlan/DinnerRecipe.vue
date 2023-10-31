@@ -1,5 +1,5 @@
 <template>
-  <div class="card shadow border-dark" style="width: 300px;" v-if="recipeData && nutritionData">
+  <div class="card shadow border-light" style="width: 500px;" v-if="recipeData && nutritionData">
     <div class="card-header"><h3>Dinner</h3></div>
 
     <!-- Display the image or a spinner -->
@@ -26,12 +26,12 @@
 
     <div class="card-body border-0" v-if="!loading && imageLoaded">
       <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
-      <!-- <p class="card-text">
+      <p class="card-text">
         <span> Servings: {{ recipeData.servings }} </span>
         <span> Carbs: {{ nutritionData.carbs }} </span>
         <span> Fat: {{ nutritionData.fat }} </span>
         <span> Protein: {{ nutritionData.protein }} </span>
-      </p> -->
+      </p>
       <!-- Labels based on conditions -->
       <div style="height: 60px;">
       <div class="d-flex justify-content-end flex-wrap">
@@ -55,11 +55,11 @@
     </div>
 
     <div class="card-footer border-0">
-      <button class="btn me-2" @click="refreshRecipe(mealType)">
+      <button class="btn btn-lg rounded-4 me-2" @click="refreshRecipe(mealType)">
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
-      <button class="btn btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
+      <button class="btn btn-lg rounded-4 btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
         {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
         <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
@@ -160,9 +160,10 @@ export default {
       stroke-width: 30;
   }
 .card {
-
-  background-color: #FFB18D;
-  border: 0;
+  border-radius: 20px;
+  border: 1px solid #FFF;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.62) 71.87%, rgba(0, 0, 0, 0.00) 100%);
+  color:white;
 }
 .image-container {
   display: flex;
@@ -179,7 +180,7 @@ export default {
   padding: 4px 8px;
   border-radius: 10px;
   color: #000000;
-  background-color: #FBE8A6;
+  background-color: #7A8CEA;
   margin-left: 5px;
   
 }

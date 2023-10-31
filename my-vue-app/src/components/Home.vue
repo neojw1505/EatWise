@@ -1,10 +1,7 @@
 <!-- Home.vue -->
 <template>
-  <div style="width: 100%;">
-    <div>
-      <Navbar/>
-    </div>
-    
+  <div class="container-fluid">
+    <Navbar/>
         <div class="section1"> 
           <div class="row-left col-6">
             <video loop autoplay preload="auto"  src="./homepageAsset/gif.mp4" alt="gif"></video>
@@ -13,7 +10,6 @@
             <!-- <img id="background-s1" src="./homepageAsset/background-s1.png">
             <img class="img-overlay" src="./homepageAsset/slogan.png"> -->
             <div class="img-overlay">
-
             </div>
           </div>
         </div>
@@ -22,14 +18,14 @@
           <p style="text-indent: -999px;">.</p> <!--hidden text so that image extends-->
           <RecipeOfDay />
         </div>
+
         <div class="section3">
-          <span style="font-size: large; color:white"> Place the Meal Planner of the day here</span>
-          <!-- <MealPlan class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "  /> -->
+          <MealPlan class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "  />
         </div>
+
         <div class="section4">
           <span style="font-size: large; color:white"> Place the Current promotions here</span>
           <!-- <NewPromoCarousel  class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "/>  -->
-
         </div>
 
     </div>
@@ -45,6 +41,7 @@
   flex-direction: column; /* Change to column for responsive design */
   width: 100vw; /* Set the container's width to the viewport width */
   height: 100vh; /* Set the container's height to the viewport height */
+
 }
 
 

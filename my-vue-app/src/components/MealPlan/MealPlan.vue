@@ -1,7 +1,6 @@
 <template>
-  <div class="shadow rounded-4 " style="background-color: #fbe8a6">
-    <!-- <h1 class="fw-bold">Your Meal Plan</h1>
-
+  <div class="shadow rounded-4">
+    <h1 style="font-size: 100px; color:white">Meal <span style="color:#7A8CEA">Planner</span> </h1>
     <div class="d-flex flex-wrap">
       <div class="col d-flex justify-content-around">
         <BreakfastRecipe
@@ -27,16 +26,16 @@
           @refresh-recipe="refreshRecipe"
         />
       </div>
-    </div> -->
+    </div>
   </div>
 </template>
 
 <script>
 export default {
   mounted() {
-    // this.getBreakfastRecipe();
-    // this.getLunchRecipe();
-    // this.getDinnerRecipe();
+    this.getBreakfastRecipe();
+    this.getLunchRecipe();
+    this.getDinnerRecipe();
   },
   data() {
     return {
@@ -125,6 +124,8 @@ export default {
   } */
 
 .MealPlanSection {
-  background: #fbe8a6;
+  /* background: #fbe8a6; */
 }
+
+
 </style>

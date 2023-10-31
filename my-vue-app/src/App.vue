@@ -17,6 +17,7 @@
     </div>
     <br /> -->
     <router-view>   
+    <home/>
     </router-view>
 
 </template>
