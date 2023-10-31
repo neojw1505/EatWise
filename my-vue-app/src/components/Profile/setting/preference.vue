@@ -106,28 +106,31 @@
       </div>
     </div>
 
-    <!-- Exclude ingredients -->
-    <div class="my-3">
-      <label for="ProfileSettingExcludeIngredient" class="form-label fw-bold">Exclude ingredients</label>
-      <div class="d-flex align-items-center">
-        <input id="ProfileSettingExcludeIngredient" class="form-control d-inline" v-model="addIngredientsToFilter" />
-        <span @click="addIngredient()" class="btn border rounded-3 mx-2 px-2 border-2 bg-light" type="button">+</span>
-      </div>
-      <div class="m-3 d-flex justify-content-start" style="flex-wrap: wrap">
-        <div v-for="i in userInfo.ExcludeIngredients" :key="i" class="rounded-5 border bg-dark-subtle p-2 align-items-center mx-1" :value="i">
-          {{ i }}<span class="fw-bolder border rounded-5 bg-light px-2 pb-1 align-items-center" @click="removeIngredient(i)">x</span>
-        </div>
+  <!-- Exclude ingredients -->
+  <div class="my-3">
+    <label for="ProfileSettingExcludeIngredient" class="form-label fw-bold">Exclude ingredients</label>
+    <div class="d-flex align-items-center">
+      <input placeholder="Type here to exclude ingredients..." id="ProfileSettingExcludeIngredient" class="form-control d-inline" v-model="addIngredientsToFilter" />
+      <span @click="addIngredient(addIngredientsToFilter)" class="btn border-0 rounded-3 mx-2 px-2 border-2 bg-light" type="button">Add</span>
+    </div>
+    <div class="m-3 d-flex justify-content-start" style="flex-wrap: wrap">
+      <div v-for="ingredient in userInfo.exclusionList" :key="ingredient" class="rounded-5 border bg-white px-3 py-2 align-items-center mx-1">
+        <strong>{{ ingredient }}</strong><span class="btn btn-sm rounded-3 btn-danger ms-2" @click="removeIngredient(ingredient)"><strong>X</strong></span>
       </div>
     </div>
+  </div>
+
+ 
     <!-- saved button -->
     <div class="my-3 justify-content-end d-flex">
-      <button class="btn fw-bold" style="background-color: #f4976c" @click="changeSetting">Save</button>
+      <button class="btn fw-bold" style="background-color: #f4976c" @click="changeSetting()">Save</button>
     </div>
   </div>
 </template>
 
 
 <script>
+import Swal from 'sweetalert2';
 export default {
   data() {
     return {
@@ -140,7 +143,7 @@ export default {
         goal: "",
         dailyActivity: "",
         dietType: "",
-        ExcludeIngredients: [],
+        exclusionList: [],
       },
       addIngredientsToFilter: "",
       gendersInput: [
@@ -178,44 +181,60 @@ export default {
     };
   },
   methods: {
-    addIngredient() {
-      // console.log(this.addIngredientsToFilter)
-      if (this.addIngredientsToFilter == "") {
-        return;
+    addIngredient(ingredient) {
+      if (this.addIngredientsToFilter !== "") {
+        this.userInfo.exclusionList.push(ingredient);
+        this.addIngredientsToFilter = ""; // Clear the input field after adding
       }
-      this.userInfo.ExcludeIngredients.push(this.addIngredientsToFilter);
-      this.addIngredientsToFilter = "";
-      console.log(this.userInfo.ExcludeIngredients);
+      else{
+        // add sweet alert
+      }
     },
-    removeIngredient(i) {
-      let index = this.userInfo.ExcludeIngredients.indexOf(i);
-      this.userInfo.ExcludeIngredients.splice(index, 1);
-      console.log(this.userInfo.ExcludeIngredients);
-    },
-    async changeSetting() {
-      try {
-        await this.$smAPI.auth.onAuthStateChanged(async (user) => {
-          if (user) {
-            console.log(user);
-            await this.$smAPI.updateUserProfile(
-              user.uid,
-              this.userInfo.fullname,
-              "",
-              this.userInfo.DOB,
-              this.userInfo.gender,
-              this.userInfo.weight,
-              this.userInfo.height,
-              this.userInfo.goal,
-              this.userInfo.dailyActivity,
-              this.userInfo.ExcludeIngredients,
-              this.userInfo.dietType
-            );
-          }
+    removeIngredient(ingredient) {
+      const index = this.userInfo.exclusionList.indexOf(ingredient);
+      if (index !== -1) {
+        this.userInfo.exclusionList.splice(index, 1);
+      }
+  },
+  async changeSetting() {
+  try {
+    await this.$smAPI.auth.onAuthStateChanged(async (user) => {
+      if (user) {
+        console.log(user);
+        await this.$smAPI.updateUserProfile(
+          user.uid,
+          this.userInfo.fullname,
+          "",
+          this.userInfo.DOB,
+          this.userInfo.gender,
+          this.userInfo.weight,
+          this.userInfo.height,
+          this.userInfo.goal,
+          this.userInfo.dailyActivity,
+          this.userInfo.exclusionList,
+          this.userInfo.dietType
+        );
+        
+        // Show a success message using SweetAlert
+        Swal.fire({
+          title: 'Profile Updated',
+          text: 'Profile successfully updated!',
+          icon: 'success',
         });
-      } catch (error) {
-        console.error(error);
       }
-    },  
+    });
+  } catch (error) {
+    console.error(error);
+    
+      // Show an error message using SweetAlert
+      Swal.fire({
+        title: 'Error',
+        text: 'An error occurred while updating the profile',
+        icon: 'error',
+      });
+    }
+  },
+ 
     async getUserProfile(){
       console.log(this.$smAPI.getLoginUserProfile());
       let userDetails=await this.$smAPI.getLoginUserProfile();
@@ -226,7 +245,7 @@ export default {
       this.userInfo.height=userDetails.height;
       this.userInfo.goal=userDetails.goals;
       this.userInfo.dailyActivity=userDetails.activityLevel;
-      this.userInfo.ExcludeIngredients=userDetails.ingredientRemove;
+      this.userInfo.exclusionList=userDetails.ingredientRemove;
       this.userInfo.dietType=userDetails.dietType;
     }
     
@@ -251,7 +270,7 @@ export default {
 
 </script>
 
-<style>
+<style scoped>
 .card {
   text-align: center;
   width: 200px;
