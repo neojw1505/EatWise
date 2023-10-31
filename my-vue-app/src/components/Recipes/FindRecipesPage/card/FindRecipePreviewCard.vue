@@ -6,7 +6,7 @@
         <h4 class="card-title" style="font-size: large; height: 50px" >
           {{ formattedRecipeName }}
         </h4>
-        <p class="card-text">{{cal}}cal</p>
+        <p class="card-text">{{recipe.nutrition.nutrients[0].amount.toFixed(0)}} kcals</p>
       </div>
     </div>
   <!-- </router-link> -->
@@ -41,10 +41,7 @@ export default {
       this.$router.push({ path: '/find-recipes/SelectedRecipeCard/:id', qeury:{id: "1234" }})
     },
   },
-  created(){
-    // console.log(this.recipe);
-    // this.getSelectedRecipeNutritions();
-  },  
+  
 };
 </script>
 
@@ -60,5 +57,6 @@ export default {
 }
 .cardStyle:hover {
   transform: scale(1.05); /* Scale up by 10% on hover */
+  cursor: pointer;
 }
 </style>

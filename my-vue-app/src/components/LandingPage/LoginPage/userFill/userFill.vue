@@ -57,8 +57,11 @@ export default {
         await this.$smAPI.login(this.email, this.password);
         this.$router.push({ path: '/' });
       } catch (error) {
-        // Handle login error, show a message, or take appropriate action.
-        console.error(error);
+        Swal.fire({
+        title: "Error",
+        text: "Incorrect email or password",
+        icon: "error",
+      })
       }
     },
     forgotPassword() {

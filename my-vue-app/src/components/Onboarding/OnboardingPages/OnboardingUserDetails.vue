@@ -25,7 +25,7 @@
     </div>
     <div class="border rounded-4 p-4 mx-auto shadow bg-white text-center col-10">
       <div class="row">
-        <div class="col" v-for="(goal, index) in goals" :key="goal.value">
+        <div class="col m-0 p-0" v-for="(goal, index) in goals" :key="goal.value">
           <label>
             <input
               type="radio"
@@ -35,8 +35,8 @@
               name="weightChoice"
               v-model="inputGoal"
             />
-            <div class="card card-input my-2">
-              <div style="height: 80px; width: 140px;" class="card-header text-center d-flex align-items-center justify-content-center">
+            <div class="card card-input my-2 mx-0">
+              <div style="height: 70px; width: 120px;" class="card-header text-center d-flex align-items-center justify-content-center">
                 <span :style="'color: ' + goal.color + '; font-weight: ' + fontWeight(index)">
                   {{ goal.label }}
                 </span>
@@ -77,9 +77,9 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 export default {
   data() {
     return {
-      inputAge: null,
-      inputWeight: null,
-      inputHeight: null,
+      inputAge: '',
+      inputWeight: '',
+      inputHeight: '',
       inputGoal: null,
       goals: [
         { value: 'extremelose', label: 'Extreme Weight Loss', color: 'red' },
@@ -110,20 +110,20 @@ export default {
     },
     goNext() {
       const errors = [];
-      if (this.inputAge == null || this.inputWeight == null || this.inputHeight == null || this.inputGoal == null) {
+      if (this.inputAge == '' || this.inputWeight == '' || this.inputHeight == '' || this.inputGoal == null) {
         errors.push('Please fill in all fields!')
       }
       if (isNaN(this.inputAge)) {
         errors.push('Age must be numeric!');
-        this.inputAge = null;
+        this.inputAge = '';
       }
       if (isNaN(this.inputWeight)) {
         errors.push('Weight must be numeric!');
-        this.inputWeight = null;
+        this.inputWeight = '';
       }
       if (isNaN(this.inputHeight)) {
         errors.push('Height must be numeric!');
-        this.inputHeight = null;
+        this.inputHeight = '';
       }
       
       if (errors.length > 0) {
