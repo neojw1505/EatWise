@@ -41,7 +41,7 @@ export default {
   methods: {
     async getUserSavedRecipes() {
       this.data = await this.$smAPI.getUserSavedRecipes();
-      console.log(this.data);
+      // console.log(this.data);
     },
   },
   async created(){

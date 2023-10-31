@@ -1,15 +1,13 @@
 <template>
-  <!-- <router-link :to="routerTO"> -->
-    <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2">
-      <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" />
-      <div class="card-body img-fluid">
-        <h4 class="card-title" style="font-size: large; height: 50px" >
-          {{ formattedRecipeName }}
-        </h4>
-        <p class="card-text">{{recipe.nutrition.nutrients[0].amount.toFixed(0)}} kcals</p>
-      </div>
+  <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2">
+    <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" />
+    <div class="card-body img-fluid">
+      <h4 class="card-title" style="font-size: large; height: 50px" >
+        {{ formattedRecipeName }}
+      </h4>
+      <p class="card-text">{{recipe.nutrition.nutrients[0].amount.toFixed(0)}} kcals</p>
     </div>
-  <!-- </router-link> -->
+  </div>
 </template>
 
 <script>
@@ -38,7 +36,8 @@ export default {
     },
     async selectRecipe() {
       // Use router to navigate to the SelectedRecipe component with the recipe id as a parameter
-      this.$router.push({ path: '/find-recipes/SelectedRecipeCard/:id', qeury:{id: "1234" }})
+      const objectString = JSON.stringify(this.recipe);
+      this.$router.push({ path: '/find-recipes/SelectedRecipeCard/', params: { data: objectString }, query:{data:objectString}});
     },
   },
   
