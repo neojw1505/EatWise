@@ -163,7 +163,12 @@ export default {
     },
   },
   created(){
-    const recipeId = this.$route.params.id;
+    const objectString = this.$route.query.data;
+    if (objectString) {
+      const recipe = JSON.parse(objectString);
+      console.log(recipe.title)
+    }
+    console.log(objectString)
     console.log(this.$route)
   }
 };
