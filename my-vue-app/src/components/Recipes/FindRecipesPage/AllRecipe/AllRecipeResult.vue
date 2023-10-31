@@ -142,8 +142,17 @@ export default {
     console.log(this.PassSearchInput);
     this.getFilteredRecipes();
   },
+  watch:{
+    PassSearchInput: {
+    deep: true, // Enable deep watch
+    handler: function (newValue, oldValue) {
+      console.log(newValue);
+      this.getFilteredRecipes();
+    },
+  }
+}
 
-};
+}
 </script>
 
 <style scoped>

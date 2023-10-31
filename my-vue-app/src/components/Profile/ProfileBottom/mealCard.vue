@@ -33,14 +33,14 @@
       },
     },
     methods: {
-      async getSelectedRecipeNutritions() {
-        let recipeObj= await this.$spoonAPI.getSelectedRecipeNutritions(this.recipe.id);
-        this.cal=recipeObj.calories;
-      },
+      // async getSelectedRecipeNutritions() {
+      //   let recipeObj= await this.$spoonAPI.getSelectedRecipeNutritions(this.recipe.id);
+      //   this.cal=recipeObj.calories;
+      // },
     },
     created(){
       // console.log(this.recipe);
-      this.getSelectedRecipeNutritions();
+      // this.getSelectedRecipeNutritions();
     },  
   };
   </script>
@@ -53,6 +53,9 @@
     height: 280px;
     background-image: linear-gradient(to bottom right, #ff5100, #fac400);
     color: black;
+  }
+  .cardStyle:hover {
+    cursor: pointer;
   }
   </style>
   

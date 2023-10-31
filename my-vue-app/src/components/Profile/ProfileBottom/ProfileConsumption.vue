@@ -70,7 +70,7 @@ export default {
           '11':"November",
           '12':"December",
         };
-        return tempDate[1]+" "+month[tempDate[0]]+" "+tempDate[2];
+        return tempDate[0]+" "+month[tempDate[1]]+" "+tempDate[2];
       }
     }
 
