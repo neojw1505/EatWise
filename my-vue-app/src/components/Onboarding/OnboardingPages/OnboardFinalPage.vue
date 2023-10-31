@@ -48,6 +48,7 @@ export default {
   props: ["registerUser"],
   data() {
     return {
+      calorie: '',
       value: "Calculating...",
       default_state: true,
     };
@@ -66,7 +67,7 @@ export default {
     },
     goNext() {
       this.$emit("buttonAction", "next");
-      this.$emit("passDailyCalorie", this.value);
+      this.$emit("passDailyCalorie", this.calorie);
     },
     goPrevious() {
       this.$emit("buttonAction", "previous");
@@ -80,6 +81,7 @@ export default {
         this.registerUser.activityLevel,
         this.registerUser.goal
       );
+      this.calorie=Math.floor(temp.calorie);
       this.value=Math.floor(temp.calorie);
     },
   },
