@@ -9,7 +9,7 @@
     </div>
   </div>
 
-  <div class="card shadow" v-else>
+  <div class="card shadow text-center" v-else>
     <div class="image-wrapper">
       <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
       <div class="bookmark" >
