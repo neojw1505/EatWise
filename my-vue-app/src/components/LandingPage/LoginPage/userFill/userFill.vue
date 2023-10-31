@@ -59,7 +59,7 @@ export default {
       } catch (error) {
         Swal.fire({
         title: "Error",
-        text: error.message,
+        text: "Incorrect email or password",
         icon: "error",
       })
       }
