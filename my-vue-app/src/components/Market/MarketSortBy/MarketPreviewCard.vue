@@ -1,6 +1,6 @@
 <template>
   <!-- <router-link :to="routerTO"> -->
-<a :href="ProductData.product_link" class="text-decoration-none">
+<a :href="ProductData.product_link" target="_blank" class="text-decoration-none">
   <div class="card col-4 cardStyle mx-3 py-3 px-0 my-3 " >
     <h5 class="card-text border bg-primary-subtle mx-auto rounded-4 p-1 fw-bold">{{ ProductData.supermarket_name }}</h5>
     <div class="text-center">

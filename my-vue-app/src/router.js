@@ -25,7 +25,6 @@ const routes = [
   { path: '/profile/setting', component: Setting, meta: { requiresAuth: true },},
   { path: '/insights', component: Insights, meta: { requiresAuth: true },},
   { path: '/register', name: 'Register', component: Onboarding , meta: { requiresAuth: false },},
-  // { path: '/consumption', component: }
   { path: '/profile', component: Profile, meta: { requiresAuth: true },},
 
 ];
