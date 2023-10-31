@@ -77,9 +77,9 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 export default {
   data() {
     return {
-      inputAge: null,
-      inputWeight: null,
-      inputHeight: null,
+      inputAge: '',
+      inputWeight: '',
+      inputHeight: '',
       inputGoal: null,
       goals: [
         { value: 'extremelose', label: 'Extreme Weight Loss', color: 'red' },
@@ -110,20 +110,20 @@ export default {
     },
     goNext() {
       const errors = [];
-      if (this.inputAge == null || this.inputWeight == null || this.inputHeight == null || this.inputGoal == null) {
+      if (this.inputAge == '' || this.inputWeight == '' || this.inputHeight == '' || this.inputGoal == null) {
         errors.push('Please fill in all fields!')
       }
       if (isNaN(this.inputAge)) {
         errors.push('Age must be numeric!');
-        this.inputAge = null;
+        this.inputAge = '';
       }
       if (isNaN(this.inputWeight)) {
         errors.push('Weight must be numeric!');
-        this.inputWeight = null;
+        this.inputWeight = '';
       }
       if (isNaN(this.inputHeight)) {
         errors.push('Height must be numeric!');
-        this.inputHeight = null;
+        this.inputHeight = '';
       }
       
       if (errors.length > 0) {
