@@ -25,7 +25,7 @@
     </div>
     <div class="border rounded-4 p-4 mx-auto shadow bg-white text-center col-10">
       <div class="row">
-        <div class="col" v-for="(goal, index) in goals" :key="goal.value">
+        <div class="col m-0 p-0" v-for="(goal, index) in goals" :key="goal.value">
           <label>
             <input
               type="radio"
@@ -35,8 +35,8 @@
               name="weightChoice"
               v-model="inputGoal"
             />
-            <div class="card card-input my-2">
-              <div style="height: 80px; width: 140px;" class="card-header text-center d-flex align-items-center justify-content-center">
+            <div class="card card-input my-2 mx-0">
+              <div style="height: 70px; width: 120px;" class="card-header text-center d-flex align-items-center justify-content-center">
                 <span :style="'color: ' + goal.color + '; font-weight: ' + fontWeight(index)">
                   {{ goal.label }}
                 </span>

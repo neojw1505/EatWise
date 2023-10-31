@@ -9,7 +9,7 @@
         <div v-for="day in days" class="calendar-day text-dark" :key="day">{{ day }}</div>
       </div>
       <div class="calendar-grid">
-        <div v-for="date in calendarDates" :key="date" class="calendar-cell" @click="selectDate(date)"
+        <div  v-for="date in calendarDates" :key="date" class="calendar-cell" @click="selectDate(date)"
         :class="{ 'selected-date': isDateSelected(date) }">
           {{ date }}
         </div>
@@ -63,8 +63,7 @@
           '11':"November",
           '12':"December",
         };
-        console.log(tempDate[1]+" "+month[tempDate[0]]+" "+tempDate[2])
-        return tempDate[1]+" "+month[tempDate[0]]+" "+tempDate[2];
+        return tempDate[0]+" "+month[tempDate[1]]+" "+tempDate[2];
       }
     },
     methods: {
@@ -120,6 +119,10 @@
     padding: 10px;
     min-height: 50px;
     text-align: center;
+  }
+
+  .calendar-cell:hover {
+    cursor: pointer;
   }
   </style>
   
