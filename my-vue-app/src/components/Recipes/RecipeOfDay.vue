@@ -1,28 +1,22 @@
 
 <template>
-  <div class="row">
-    <div class="col-lg-8 col-md-12 pt-2 shadow border rounded-4 px-4 my-3 mx-1" style="background-color: #fbe8a6">
-      <h1 class="fw-bold mb-3">Recipe of the Day</h1>
-      <div class="row py-3 pt-0">
-        <div class="col-sm-12 col-md-6">
-          <img class="img-fluid rounded-3" :src="imgUrl" alt="Recipe Image" />
-        </div>
-        <div class="col card border-0 pt-2 shadow">
-          <h4>{{ formattedRecipeName }}</h4>
-          <p>Preparation Time: <strong>{{ PrepTime }} minutes</strong> </p>
-
-          <div class="diet-types d-flex flex-wrap my-2">
-            <span v-for="(diet, index) in Diets" :key="index" class=" mx-2 px-2 my-1 rounded-4 text-wrap" style="background-color: #FFB18D;">{{ diet }}</span>
-          </div>
-          <p>Dish Types: <strong>{{ DishTypes.join(', ') }}</strong></p>
-        </div>
+  <div class="row" style="height: 100%;">
+    <div class="col-6 rounded-4 d-flex my-auto align-items-center justify-content-center" >
+      <img class="img-fluid rounded-4 col-10 " :src="imgUrl" alt="Recipe Image" style="object-fit: fill;"/>
+    </div>
+    <div class="col-6 text-start my-auto">
+      <h1 class="fw-bold mb-3">Recipe Of The Day</h1>
+      <br/>
+      <h4>{{ formattedRecipeName }}</h4>
+      <br/>
+      <p>Preparation Time: <strong>{{ PrepTime }} minutes</strong> </p>
+      <br/>
+      <p>Description: {{ splicedDescription }}</p>
+      <div class="row">
+            <span v-for="(diet, index) in Diets" :key="index" class=" mx-2 px-2 py-2 col-3 my-1 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white;">{{ diet }} </span>
       </div>
     </div>
-    <div class="pt-2 shadow border rounded-4 my-3 col-lg col-md-12 d-flex flex-column align-items-center justify-content-between mx-1" v-if="windowWidth > 992">
-      <div class="shadow border rounded-4">Random Food Fact?</div>
-      <div class="shadow border rounded-4">Random Food Joke?</div>
-      <div class="shadow border rounded-4">Calories Tracker?</div>
-    </div>
+
   </div>
 </template>
 
@@ -70,6 +64,14 @@ export default {
         ? this.Title.slice(0, 57) + "..."
         : this.Title;
     },
+
+    splicedDescription(){
+    var spliceOne = this.Summary.replaceAll("<ol>", ' ')
+    var spliceTwo = spliceOne.replaceAll("<li>", ' ')
+    var spliceThree = spliceTwo.replaceAll("</li>", ' ')
+    var spliceFour = spliceThree.replaceAll("</ol>", ' ')
+    return spliceFour
+    }
   },
   mounted() {
     this.$nextTick(() => {
@@ -84,5 +86,5 @@ export default {
 </script>
 
 <style scoped>
-
+  
 </style>

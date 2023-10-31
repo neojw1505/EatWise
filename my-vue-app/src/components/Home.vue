@@ -1,7 +1,10 @@
 <!-- Home.vue -->
 <template>
-  <div class="container-fluid">
-    <Navbar/>
+  <div style="width: 100%;">
+    <div>
+      <Navbar/>
+    </div>
+    
         <div class="section1"> 
           <div class="row-left col-6">
             <video loop autoplay preload="auto"  src="./homepageAsset/gif.mp4" alt="gif"></video>
@@ -16,8 +19,8 @@
         </div>
 
         <div class="section2">
-          <span style="font-size: large; color:black"> Place the Recipe of the Day here </span>
-          <!-- <RecipeOfDay class="pt-2 my-3 mx-3 "/> -->
+          <p style="text-indent: -999px;">.</p> <!--hidden text so that image extends-->
+          <RecipeOfDay />
         </div>
         <div class="section3">
           <span style="font-size: large; color:white"> Place the Meal Planner of the day here</span>
