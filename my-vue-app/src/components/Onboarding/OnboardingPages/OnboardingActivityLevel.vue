@@ -1,7 +1,7 @@
 <template>
 <!-- This code has some errors, the images are not showing -->
   <div>
-    <div class="mx-auto text-center my-5 rounded-4 col-6 py-2" style="background-color: #FFB18D;">
+    <div class="mx-auto text-center my-5 rounded-4 col-6 py-2" style="background-color: #7A8CEA;">
       <h1 class="fw-bold fs-5">WHAT IS YOUR DAILY ACTIVITY LEVEL?</h1>
       <h3 class="fw-semibold fs-6">(Select one only)</h3>
     </div>
@@ -35,7 +35,7 @@
       <button
         id="previous"
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color: #FFB18D;"
+        style="background-color: #7A8CEA;"
         type="submit"
         @click="goPrevious"
       >
@@ -44,7 +44,7 @@
       <button
         id="next"
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color: #FFB18D;"
+        style="background-color: #7A8CEA;"
         type="submit"
         @click="goNext"
       >

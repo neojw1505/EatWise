@@ -40,9 +40,10 @@
   .home-container {
   display: flex;
   flex-direction: column; /* Change to column for responsive design */
-  width: 100%;
-  height: 100%;
+  width: 100vw; /* Set the container's width to the viewport width */
+  height: 100vh; /* Set the container's height to the viewport height */
 }
+
 
 .section1 {
   display: flex;

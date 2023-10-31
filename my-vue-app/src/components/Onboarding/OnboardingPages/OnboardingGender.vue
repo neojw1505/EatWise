@@ -70,11 +70,11 @@ export default {
 }
 
 .container {
-  background-color: #FFB18D;
+  background-color: #7A8CEA;
 }
 
 .btn {
-  background-color: #FFB18D;
+  background-color: #7A8CEA;
 }
 
 .card {

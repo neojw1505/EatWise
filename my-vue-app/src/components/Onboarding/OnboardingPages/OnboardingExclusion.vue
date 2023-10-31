@@ -2,7 +2,7 @@
   <div class="container">
   <!-- Main card -->
   <div class="MainBody">
-    <div class="header text-center mx-auto my-5 py-1 col-6 rounded " style="background-color:#FFB18D ;">
+    <div class="header text-center mx-auto my-5 py-1 col-6 rounded " style="background-color:#7A8CEA ;">
       <h2>Ingredients to Exclude</h2>
     </div>
     <div class="card text-center mx-auto col-10 rounded shadow">
@@ -14,11 +14,11 @@
 
           <li v-for="(item, index) in itemList" :key="index" @mouseover="showDeleteButton(index)" @mouseleave="hideDeleteButton(index)">
               {{ item }}
-              <button class="btn btn-sm" v-show="showDelete[index]" @click="DeleteItem(index)" style="background-color: #D7191C;">X</button>
+              <button class="btn btn-sm" v-show="showDelete[index]" @click="DeleteItem(index)" style="background-color: #939393;">X</button>
             </li>
 
 
-          <button class="btn btn-sm " @click="AddItem" style="background-color: #FBE8A6;">Add more +</button>
+          <button class="btn btn-sm " @click="AddItem" style="background-color: #7A8CEA;">Add more +</button>
 
         </ul>
       </div>
@@ -30,7 +30,7 @@
       <button
         id="previous"
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color:#FFB18D ;"
+        style="background-color:#7A8CEA ;"
         type="submit"
         v-on:click="goPrevious()"
       >
@@ -39,7 +39,7 @@
       <button
         id="next"
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color:#FFB18D ;"
+        style="background-color:#7A8CEA ;"
         type="submit"
         v-on:click="goNext()"
       >

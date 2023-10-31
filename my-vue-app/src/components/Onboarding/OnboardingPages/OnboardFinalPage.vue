@@ -25,7 +25,7 @@
     <div class="mx-auto text-center">
       <button
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color: #ffb18d"
+        style="background-color: #7A8CEA"
         type="submit"
         @click="goPrevious"
       >
@@ -33,7 +33,7 @@
       </button>
       <button
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color: #ffb18d"
+        style="background-color: #7A8CEA"
         type="submit"
         @click="goNext"
       >
@@ -101,7 +101,7 @@ export default {
 }
 
 .btn-primary {
-  background-color: #f38e5f;
+  background-color: #7A8CEA;
   color: white;
   border-radius: 20px;
   padding: 20px;
@@ -110,7 +110,7 @@ export default {
 }
 
 .btn-primary:hover {
-  background-color: #ee6221;
+  background-color: #7A8CEA;
   transition: 0.7s;
   color: white;
 }
