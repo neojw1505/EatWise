@@ -798,10 +798,15 @@ export const addIngredientToExclude = async (ingredient) => {
           
           // Update the ingredientRemove key with the updated list
           await set(userRef, currentIngredientRemove);
+          const snapshot = await get(userRef)
+          return snapshot.val()
         }
+        return snapshot.val()
       } else {
         // If ingredientRemove doesn't exist, create a new array with the ingredient
         await set(userRef, [ingredient]);
+        const snapshot =  await get(userRef)
+        return snapshot.val()
       }
     }
   } catch (error) {
@@ -810,6 +815,39 @@ export const addIngredientToExclude = async (ingredient) => {
   }
 }
 
+export const removeIngredientFromExclude = async (ingredient) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/ingredientRemove');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        // If ingredientRemove exists, retrieve its current value
+        let currentIngredientRemove = snapshot.val();
+
+        // Check if it's an array and if it contains the ingredient
+        if (Array.isArray(currentIngredientRemove) && currentIngredientRemove.includes(ingredient)) {
+          // Remove the ingredient from the list
+          currentIngredientRemove = currentIngredientRemove.filter(item => item !== ingredient);
+
+          // Update the ingredientRemove key with the updated list
+          await set(userRef, currentIngredientRemove);
+          const updatedSnapshot = await get(userRef);
+          return updatedSnapshot.val();
+        }
+      }
+      return snapshot.val(); // Return the existing list (unchanged)
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 
