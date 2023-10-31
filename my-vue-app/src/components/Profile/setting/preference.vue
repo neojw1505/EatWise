@@ -181,21 +181,19 @@ export default {
     };
   },
   methods: {
-    addIngredient(ingredient) {
+    async addIngredient(ingredient) {
       if (this.addIngredientsToFilter !== "") {
-        this.userInfo.exclusionList.push(ingredient);
+        this.userInfo.exclusionList = await this.$smAPI.addIngredientToExclude(ingredient);
         this.addIngredientsToFilter = ""; // Clear the input field after adding
       }
       else{
         // add sweet alert
       }
     },
-    removeIngredient(ingredient) {
-      const index = this.userInfo.exclusionList.indexOf(ingredient);
-      if (index !== -1) {
-        this.userInfo.exclusionList.splice(index, 1);
-      }
-  },
+    async removeIngredient(ingredient) {
+        this.userInfo.exclusionList = await this.$smAPI.removeIngredientFromExclude(ingredient);
+        this.addIngredientsToFilter = ""; // Clear the input field after adding
+    },
   async changeSetting() {
   try {
     await this.$smAPI.auth.onAuthStateChanged(async (user) => {
