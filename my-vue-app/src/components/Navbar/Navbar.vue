@@ -37,8 +37,9 @@ export default {
 <style scoped>
 .navbar{
 border-radius: 40px;
-width:95%;
+width:100%;
 margin-top:10px;
+
 position: fixed;
 }
 </style>
