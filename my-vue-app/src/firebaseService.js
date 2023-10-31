@@ -678,7 +678,7 @@ export const addSavedRecipesInFB = async (recipeId, newSavedRecipe, nutritionDat
         }
         // Modify the currentData with your updates
         currentData[recipeId] = newSavedRecipe;
-        currentData['nutrition'] = nutritionData;
+        currentData[recipeId]['nutrition'] = nutritionData;
         return currentData; // Return the updated data
       });
 

@@ -6,7 +6,7 @@
           <h4 class="card-title" style="font-size: large; height: 50px" >
             {{ formattedRecipeName }}
           </h4>
-          <p class="card-text">{{recipe.nutrition.nutrients[0].amount.toFixed(0)}} kcals</p>
+          <p class="card-text">{{recipe.nutrition.calories}} kcals</p>
         </div>
       </div>
     <!-- </router-link> -->
@@ -26,6 +26,7 @@
     computed: {
       //in the event that the name of the recipe is too long, we shorten the name
       formattedRecipeName() {
+        console.log(this.recipe)
         return this.recipe.title.length > 30
           ? this.recipe.title.slice(0, 27) + "..."
           : this.recipe.title;

@@ -15,8 +15,6 @@
       <div class="bookmark" >
         <button class="bookmark-button" @click="toggleBookmarkState(recipeData.id, recipeData, nutritionData)">
           <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #FFFF00;" />
-        <button class="bookmark-button" @click="toggleBookmarkState(recipeData.id, recipeData)">
-          <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #FFFF00;" />
           <font-awesome-icon  v-else :icon="['fas', 'bookmark']" size="2xl" style="color: #ffffff;" />
         </button>
       </div>
