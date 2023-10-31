@@ -46,8 +46,8 @@ export default {
       console.log(this.data);
     }
   },
-  created(){
-    this.getUserSavedRecipes();
+  async created(){
+    await this.getUserSavedRecipes();
   }
 };
 </script>
