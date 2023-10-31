@@ -71,18 +71,14 @@ export default {
   },
   methods: {
     async register() {
-      this.error=[];
+      this.error = [];
+
       if (this.password != this.confirmPassword) {
-        this.error.push("password and confirm password mismatch");
+        this.error.push("Password and confirm password mismatch");
+        this.showErrors();
         return;
       }
-
-  
-      // console.log(this.email);
-      // console.log(this.password);
-      // console.log(this.name);
-      // console.log(this.dateOfBirth);
-
+      
       try {
         await this.$smAPI.createUser(
         this.email,
@@ -100,34 +96,43 @@ export default {
         this.registerUser.DailyCalories,
         this.registerUser.DietType)
 
+        Swal.fire({
+          title: "Success",
+          text: "Verification email sent",
+          icon: "success",
+        });
+
         this.$router.push({path:'/login'})
       } catch (error) {
         this.displayFirebaseError(error); // Display other errors with their message
-        }
+      }
     },
     displayFirebaseError(errorObj) {
       this.error = [];
-      if (errorObj.code == 'auth/email-already-in-use') {
-        this.error.push('Email already in use!')
-      }
-      if (errorObj.code == 'auth/invalid-email') {
-        this.error.push('Email is not valid!')
-      }
-      if (errorObj.code == 'auth/weak-password') {
-        this.error.push('Password must be at least 6 characters!')
-      }
-      console.log(this.error);
-      const errorList = this.error.map((error) => `<li>${error}</li>`).join('');
-      const errorMessage = `<ul>${errorList}</ul>`;
 
-      Swal.fire({
-        title: 'Error',
-        html: errorMessage,
-        icon: 'error',
-      });
+      if (errorObj.code == "auth/email-already-in-use") {
+        this.error.push("Email already in use!");
+      }
+      if (errorObj.code == "auth/invalid-email") {
+        this.error.push("Email is not valid!");
+      }
+      if (errorObj.code == "auth/weak-password") {
+        this.error.push("Password must be at least 6 characters!");
+      }
+
+      this.showErrors();
+    },
+    showErrors() {
+      // Use SweetAlert to display errors
+      if (this.error.length > 0) {
+        Swal.fire({
+          title: "Error",
+          text: this.error.join("\n"), // Display errors with line breaks
+          icon: "error",
+        });
+      }
     },
   },
-  // please kai jie wtf do this thanks. Now it is passing 1 error obj at a time, we need to collate all the errors into an array then loop through the array in order to push each error into the this.error
     created() {
       console.log(this.registerUser);
     },
