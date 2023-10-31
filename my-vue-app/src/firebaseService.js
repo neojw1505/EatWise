@@ -1,5 +1,5 @@
 // this file will contain methods to fetch data from firebase
-import { getDatabase, ref, get, set, remove, update } from "firebase/database";
+import { getDatabase, ref, get, set, remove, update, runTransaction } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./firebaseConfig"; // Import your Firebase configuration
 import spoonacularObj from './api/spoonacular';
@@ -670,30 +670,21 @@ export const addSavedRecipesInFB = async (recipeId, newSavedRecipe) => {
   try {
     if (auth.currentUser) {
       const userUid = auth.currentUser.uid; // Get the user's UID
-
-      // Form a reference to the user's data in the database
       const userRef = ref(database, '/users/' + userUid + '/savedRecipes');
-      const snapshot = await get(userRef);
 
-      if (!snapshot.exists()) {
-        // If the data doesn't exist, initialize it as an empty object
-        await set(userRef, {});
-      }
-
-      // Get the current saved recipes
-      const currentSavedRecipes = snapshot.val() || {};
-
-      // Add the newSavedRecipe to the object using the recipeId as the key
-      currentSavedRecipes[recipeId] = newSavedRecipe;
-      currentSavedRecipes[recipeId]['nutrition'] = await spoonacularObj.getSelectedRecipeNutritions(recipeId);
-      // Update the data in Firebase with the updated saved recipes
-      await set(userRef, currentSavedRecipes);
+      await runTransaction(userRef, (currentData) => {
+        if (!currentData) {
+          currentData = {};
+        }
+        // Modify the currentData with your updates
+        currentData[recipeId] = newSavedRecipe;
+        currentData[recipeId]['nutrition'] = spoonacularObj.getSelectedRecipeNutritions(recipeId);
+        return currentData; // Return the updated data
+      });
 
       console.log('Added savedRecipes successfully');
-      return currentSavedRecipes;
     } else {
       console.log('User is not authenticated.');
-      return null; // Return null if the user is not authenticated
     }
   } catch (error) {
     console.log(error);
