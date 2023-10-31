@@ -666,7 +666,7 @@ export const getRandomFoodFactFromFB = async () => {
 }
 
 // ####### Saved Recipes ######## //
-export const addSavedRecipesInFB = async (recipeId, newSavedRecipe) => {
+export const addSavedRecipesInFB = async (recipeId, newSavedRecipe, nutritionData) => {
   try {
     if (auth.currentUser) {
       const userUid = auth.currentUser.uid; // Get the user's UID
@@ -678,7 +678,7 @@ export const addSavedRecipesInFB = async (recipeId, newSavedRecipe) => {
         }
         // Modify the currentData with your updates
         currentData[recipeId] = newSavedRecipe;
-        currentData[recipeId]['nutrition'] = spoonacularObj.getSelectedRecipeNutritions(recipeId);
+        currentData['nutrition'] = nutritionData;
         return currentData; // Return the updated data
       });
 
