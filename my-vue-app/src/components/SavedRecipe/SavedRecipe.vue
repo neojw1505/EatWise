@@ -3,7 +3,7 @@
     <Navbar />
     <div class="mx-auto">
       <h2 class="m-3">Saved Recipes</h2>
-
+      <button @click="getUserSavedRecipes">getUserSavedRecipes</button>
       <div class="mx-auto" style="max-width: 1700px">
         <div class="p-4 pt-2 shadow border rounded-4 my-3 d-flex mx-3">
           <div
@@ -32,6 +32,12 @@ export default {
       data: [{}],
     };
   },
+  methods: {
+    async getUserSavedRecipes() {
+      this.data = await this.$smAPI.getUserSavedRecipes();
+      console.log(this.data);
+    }
+  }
 };
 </script>
 

@@ -99,6 +99,8 @@ export default {
         this.registerUser.IngredientRemove,
         this.registerUser.DailyCalories,
         this.registerUser.DietType)
+
+        this.$router.push({path:'/login'})
       } catch (error) {
         this.displayFirebaseError(error); // Display other errors with their message
         }
