@@ -13,8 +13,8 @@
     <div class="image-wrapper">
       <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
       <div class="bookmark" >
-        <button class="bookmark-button" @click="toggleBookmarkState(recipeData.id, recipeData)">
-          <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #007459;" />
+        <button class="bookmark-button" @click="toggleBookmarkState(recipeData.id, recipeData, nutritionData)">
+          <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #FFFF00;" />
           <font-awesome-icon  v-else :icon="['fas', 'bookmark']" size="2xl" style="color: #ffffff;" />
         </button>
       </div>
@@ -140,7 +140,7 @@ export default {
     this.isConsumed = !this.isConsumed;
     },
 
-    async toggleBookmarkState(recipeId, newSavedRecipe) {
+    async toggleBookmarkState(recipeId, newSavedRecipe, nutritionData) {
       console.log(this.isBookmarked);
       if (this.isBookmarked) {
         // if already saved in firebase, remove it because user uncheck bookmark
@@ -149,7 +149,7 @@ export default {
       } else {
         // if not in firebase, add it into firebase because user click button to bookmark
         this.isBookmarked = !this.isBookmarked;
-        this.$smAPI.addSavedRecipesInFB(recipeId, newSavedRecipe)
+        this.$smAPI.addSavedRecipesInFB(recipeId, newSavedRecipe, nutritionData)
       }
     },
   },
