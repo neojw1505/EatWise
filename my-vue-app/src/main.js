@@ -9,6 +9,10 @@ import 'bootstrap/dist/js/bootstrap.min.js'
 import AOS from 'aos'
 import 'aos/dist/aos.css'
 
+//import eventBus
+import store from "./store"
+
+
 //Import Sweet Alert 2
 import VueSweetalert2 from 'vue-sweetalert2';
 import 'sweetalert2/dist/sweetalert2.min.css';
@@ -53,4 +57,5 @@ function registerComponent(context, app) {
 const componentContext = import.meta.globEager('./components/**/*.vue');
 registerComponent(componentContext, app);
 app.use(router)
+app.use(store)
 app.mount('#app')

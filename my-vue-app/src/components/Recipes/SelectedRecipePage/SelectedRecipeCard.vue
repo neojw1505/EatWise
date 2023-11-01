@@ -1,121 +1,127 @@
 <template>
   <div>
     <Navbar />
-    <div
-      class="p-5 pt-2 shadow border rounded-4 my-3 mx-auto"
-      style="max-width: 1600px"
-    >
+    <div class="p-5 pt-2 rounded-4 my-3 mx-auto" style="max-width: 1200px">
       <!-- name and picture -->
-      <div class="m-2 d-flex justify-content-between align-items-center">
+      <div
+        class="cardStyle m-2 d-flex justify-content-between align-items-center"
+      >
         <div>
-          <h1>{{ selectedRecipe.name }}</h1>
+          <h1>{{ recipeDetails.title }}</h1>
         </div>
-        <div :class="isSaved ? savedClass : unsavedClass" @click="save">
-          Saved<img style="width: 25px" :src="savedLogo" alt="" />
-        </div>
+        <button
+          class="bookmark-button"
+          @click="toggleBookmarkState(recipeDetails.id, recipeDetails)"
+        >
+          <font-awesome-icon
+            v-if="isBookmarked"
+            :icon="['fas', 'bookmark']"
+            size="2xl"
+            style="color: #ffff00"
+          />
+          <font-awesome-icon
+            v-else
+            :icon="['fas', 'bookmark']"
+            size="2xl"
+            style="color: #ffffff"
+          />
+        </button>
       </div>
       <div class="row">
         <!-- left side -->
-        <div class="col-8 justify-content-center">
+        <div class="col-lg-6 justify-content-center">
           <div
-            class="col-6 mx-auto p-1 shadow rounded-5"
+            class="col-10 mx-auto p-1 shadow rounded-5"
             style="background-color: #4f919f"
           >
-            <img
-              class="img-fluid rounded-5"
-              :src="selectedRecipe.recipeImage"
-            />
+            <img class="img-fluid rounded-5" :src="recipeDetails.image" />
           </div>
           <!-- prep and serving size -->
           <div class="text-center py-2 fw-bold">
             <span class="mx-2">
-              <font-awesome-icon :icon="['fas', 'user-group']" />
-              Prep: {{ selectedRecipe.preparationTime }} Mins
+              <font-awesome-icon :icon="['fas', 'clock']" />
+              Preparation and Cooking Time:
+              {{ recipeDetails.readyInMinutes }} Mins
             </span>
             <span class="mx-2">
-              <font-awesome-icon :icon="['fas', 'clock']" />
-              Serving Size: {{ selectedRecipe.servingSize }}
+              <font-awesome-icon :icon="['fas', 'user-group']" />
+              Serving Size: {{ recipeDetails.servings }}
             </span>
           </div>
           <!-- give description -->
           <div class="my-2">
-            <div
-              class="btn rounded-4 text-body-secondary my-1"
-              style="background-color: #4f919f"
-            >
-              Description:
+            <div class="my-3" >
+              <span class="fw-semibold rounded-4 p-2" style="background-color: #4f919f">Description:</span>
             </div>
-            <div class="mx-4">{{ selectedRecipe.description }}</div>
+            <div
+              class="mx-4 text-decoration-none"
+              v-html="computedDescription"
+            ></div>
           </div>
 
           <!-- give inggredients -->
           <div>
-            <div
-              class="btn rounded-4 text-body-secondary my-1"
-              style="background-color: #4f919f"
-            >
-              Ingredients:
-            </div>
-            <div class="mx-4" v-for="i in selectedRecipe.ingredients" :key="i">
-              {{ i }}
-            </div>
-          </div>
-          <!-- give step -->
-          <div>
-            <div
-              class="btn rounded-4 text-body-secondary my-1"
-              style="background-color: #4f919f"
-            >
-              Preparation Steps:
+            <div class="my-3" >
+              <span class="fw-semibold rounded-4 p-2" style="background-color: #4f919f">Ingredients:</span>
             </div>
             <div
-              class="mx-4 my-2"
-              v-for="(step,index) in selectedRecipe.preparationSteps"
-              :key="step"
+              class="mx-4"
+              v-for="i in recipeDetails.extendedIngredients"
+              :key="i"
             >
-              <b>Step {{ index+1 }}:</b> {{ step }}
+              <li>{{ i.name }}</li>
             </div>
           </div>
         </div>
 
         <!-- right side -->
-        <div class="col-4">
-        <div class="my-2">
-            <div
-              class="btn rounded-4 text-body-secondary my-1"
-              style="background-color: #4f919f"
-            >
-              Nutritional Info:
+        <div class="col-lg-6">
+          <div class="my-2">
+            <div class="my-3">
+              <span class="fw-semibold rounded-4 p-2" style="background-color: #4f919f">Nutritional Info:</span>
             </div>
-            <table class="mx-2 my-2 table table-bordered table-striped ">
-                <tr v-for="(num, fact) in selectedRecipe.nutritionalInfo" :key="fact">
-                    <td>{{ fact }}</td>
-                    <td class="text-end">{{ num }}</td>
-                </tr>
+            <table class="mx-2 my-2 table table-bordered table-striped">
+              <tr
+                v-for="(fact, num) in recipeDetails.nutrition.nutrients"
+                :key="num"
+              >
+                <td>{{ fact.name }}</td>
+                <td class="text-end">{{ fact.amount }} {{ fact.unit }}</td>
+              </tr>
             </table>
           </div>
+        </div>
       </div>
-
+      <!-- give step -->
+      <div>
+        <div class="my-3">
+          <span
+            class="fw-semibold rounded-4 p-2"
+            style="background-color: #4f919f"
+            >Preparation Steps:</span
+          >
+        </div>
+        <div
+          class="mx-4 my-2"
+          v-for="(step, index) in this.recipeDetails.analyzedInstructions[0].steps"
+          :key="step"
+        >
+          <b>Step {{ index + 1 }}:</b> {{ step.step }}
+        </div>
       </div>
-      
     </div>
   </div>
 </template>
 
 <script>
-import image from "../../Navbar/images/saved.png";
 import healthyImage from "../FindRecipesPage/card/healthymeal.jpeg";
 export default {
   name: "SelectedRecipeCard",
-  props:['recipeId'],
   data() {
     return {
-    
-      savedLogo: image,
-      unsavedClass: "rounded-4 border align-items-center bg-light p-1",
-      savedClass: "rounded-4 border align-items-center bg-success p-1",
-      isSaved: false,
+      recipeDetails: null,
 
+      isBookmarked: false,
       selectedRecipe: {
         name: "Burrito",
         dietType: ["DietType1", "DietType2", "DietType3"],
@@ -157,21 +163,85 @@ export default {
       },
     };
   },
+  computed: {
+    computedDescription() {
+      let temp = this.recipeDetails.summary.split(".");
+      let res = [];
+      let addInChar = true;
+      for (let eachLine of temp) {
+        if (!eachLine.includes("$") && !eachLine.includes("{")) {
+          res.push(eachLine);
+        } else if (eachLine.includes("{")) {
+          let tempsentence = "";
+          for (let char of eachLine) {
+            if (addInChar && char != "{") {
+              tempsentence += char;
+            } else if (char == "{") {
+              addInChar = false;
+            } else if (char == "}") {
+              addInChar = true;
+            }
+          }
+          res.push(tempsentence);
+        }
+      }
+      return res.join(". ");
+    },
+  },
   methods: {
     save() {
       this.isSaved = !this.isSaved;
     },
+    getRecipeDetails() {
+      this.recipeDetails = this.$store.getters.getSharedData;
+      console.log(this.recipeDetails);
+    },
+    async toggleBookmarkState() {
+      console.log(this.isBookmarked);
+      if (this.isBookmarked) {
+        // if already saved in firebase, remove it because user uncheck bookmark
+        this.isBookmarked = !this.isBookmarked;
+        this.$smAPI.removeSavedRecipeInFB(recipeId);
+      } else {
+        // if not in firebase, add it into firebase because user click button to bookmark
+        this.isBookmarked = !this.isBookmarked;
+        console.log(this.recipeDetails.nutrition);
+        this.$smAPI.addSavedRecipesInFB(
+          this.recipeDetails.id,
+          this.recipeDetails,
+          this.recipeDetails.nutrition
+        );
+      }
+    },
   },
-  created(){
-    const objectString = this.$route.query.data;
-    if (objectString) {
-      const recipe = JSON.parse(objectString);
-      console.log(recipe.title)
-    }
-    console.log(objectString)
-    console.log(this.$route)
-  }
+  async created() {
+    await this.getRecipeDetails();
+    this.isBookmarked = await this.$smAPI.isRecipeAlreadyBookmarked(
+      this.recipeDetails.id
+    );
+  },
 };
 </script>
 
-<style></style>
+<style scope>
+.cardStyle {
+  background: linear-gradient(
+    to bottom,
+    rgba(255, 255, 255, 0) 100%,
+    rgba(255, 255, 255, 1) 10%
+  );
+}
+
+.bookmark-button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+}
+div a {
+  text-decoration: none;
+  pointer-events: none;
+  color: black;
+  cursor: text;
+}
+</style>
