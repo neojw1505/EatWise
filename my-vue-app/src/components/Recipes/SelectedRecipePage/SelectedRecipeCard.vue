@@ -3,9 +3,7 @@
     <Navbar />
     <div class="p-5 pt-2 rounded-4 my-3 mx-auto" style="max-width: 1200px">
       <!-- name and picture -->
-      <div
-        class="cardStyle m-2 d-flex justify-content-between align-items-center"
-      >
+      <div class="m-2 d-flex justify-content-between align-items-center">
         <div>
           <h1>{{ recipeDetails.title }}</h1>
         </div>
@@ -30,39 +28,41 @@
       <div class="row">
         <!-- left side -->
         <div class="col-lg-6 justify-content-center">
-          <div
-            class="col-10 mx-auto p-1 shadow rounded-5"
-            style="background-color: #4f919f"
-          >
-            <img class="img-fluid rounded-5" :src="recipeDetails.image" />
-          </div>
-          <!-- prep and serving size -->
-          <div class="text-center py-2 fw-bold">
-            <span class="mx-2">
-              <font-awesome-icon :icon="['fas', 'clock']" />
-              Preparation and Cooking Time:
-              {{ recipeDetails.readyInMinutes }} Mins
-            </span>
-            <span class="mx-2">
-              <font-awesome-icon :icon="['fas', 'user-group']" />
-              Serving Size: {{ recipeDetails.servings }}
-            </span>
-          </div>
-          <!-- give description -->
-          <div class="my-2">
-            <div class="my-3" >
-              <span class="fw-semibold rounded-4 p-2" style="background-color: #4f919f">Description:</span>
+          <div class="cardStyle p-2 rounded-4">
+            <div class="col-lg-10 col-sm-8 col-md-6 mx-auto p-1 rounded-5">
+              <img
+                class="img-fluid rounded-5 border"
+                :src="recipeDetails.image"
+              />
             </div>
+            <!-- prep and serving size -->
             <div
-              class="mx-4 text-decoration-none"
-              v-html="computedDescription"
-            ></div>
+              class="text-center py-2 fw-bold d-flex flex-wrap justify-content-center"
+            >
+              <div class="mx-2">
+                <font-awesome-icon :icon="['fas', 'clock']" />
+                Preparation and Cooking Time:
+                {{ recipeDetails.readyInMinutes }} Mins
+              </div>
+              <div class="mx-2">
+                <font-awesome-icon :icon="['fas', 'user-group']" />
+                Serving Size: {{ recipeDetails.servings }}
+              </div>
+            </div>
           </div>
 
-          <!-- give inggredients -->
-          <div>
-            <div class="my-3" >
-              <span class="fw-semibold rounded-4 p-2" style="background-color: #4f919f">Ingredients:</span>
+          <!-- give description -->
+          <div class="cardStyle p-2 rounded-4 my-1">
+            <div>
+              <span class="fw-semibold">Description:</span>
+            </div>
+            <div class="removeA mx-4" v-html="computedDescription"></div>
+          </div>
+
+          <!-- give ingredients -->
+          <div class="cardStyle p-2 rounded-4 my-1">
+            <div>
+              <span class="fw-semibold">Ingredients:</span>
             </div>
             <div
               class="mx-4"
@@ -76,9 +76,9 @@
 
         <!-- right side -->
         <div class="col-lg-6">
-          <div class="my-2">
-            <div class="my-3">
-              <span class="fw-semibold rounded-4 p-2" style="background-color: #4f919f">Nutritional Info:</span>
+          <div class="cardStyle p-4 py-2 rounded-4">
+            <div>
+              <span class="fw-semibold">Nutritional Info:</span>
             </div>
             <table class="mx-2 my-2 table table-bordered table-striped">
               <tr
@@ -93,17 +93,14 @@
         </div>
       </div>
       <!-- give step -->
-      <div>
-        <div class="my-3">
-          <span
-            class="fw-semibold rounded-4 p-2"
-            style="background-color: #4f919f"
-            >Preparation Steps:</span
-          >
+      <div class="cardStyle p-2 rounded-4">
+        <div>
+          <span class="fw-semibold">Preparation Steps:</span>
         </div>
         <div
           class="mx-4 my-2"
-          v-for="(step, index) in this.recipeDetails.analyzedInstructions[0].steps"
+          v-for="(step, index) in this.recipeDetails.analyzedInstructions[0]
+            .steps"
           :key="step"
         >
           <b>Step {{ index + 1 }}:</b> {{ step.step }}
@@ -114,7 +111,6 @@
 </template>
 
 <script>
-import healthyImage from "../FindRecipesPage/card/healthymeal.jpeg";
 export default {
   name: "SelectedRecipeCard",
   data() {
@@ -185,11 +181,12 @@ export default {
 
 <style scope>
 .cardStyle {
-  background: linear-gradient(
+  background-image: linear-gradient(
     to bottom,
-    rgba(255, 255, 255, 0) 100%,
-    rgba(255, 255, 255, 1) 10%
+    rgba(0, 0, 0, 0.6),
+    rgba(0, 0, 0, 0.3)
   );
+  color: white;
 }
 
 .bookmark-button {
@@ -198,9 +195,10 @@ export default {
   padding: 0;
   cursor: pointer;
 }
-div a {
+.removeA a {
   text-decoration: none;
-  color: black;
+  color: white;
   cursor: text;
+  pointer-events: none;
 }
 </style>
