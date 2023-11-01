@@ -1,6 +1,6 @@
 <!-- Home.vue -->
 <template>
-  <div style="width: 100%;">
+  <div>
     <div>
       <Navbar/>
     </div>
@@ -27,8 +27,8 @@
           <!-- <MealPlan class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "  /> -->
         </div>
         <div class="section4">
-          <span style="font-size: large; color:white"> Place the Current promotions here</span>
-          <!-- <NewPromoCarousel  class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "/>  -->
+          <p style="text-indent: -999px;">.</p> <!--hidden text so that image extends-->
+          <NewPromoCarousel  class="p-4 pt-2  rounded-4 mx-3 my-3"/> 
 
         </div>
 

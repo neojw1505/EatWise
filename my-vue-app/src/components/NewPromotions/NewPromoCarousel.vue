@@ -1,8 +1,8 @@
 <template>
   <div class="carousel-container">
-    <h1 class="fw-bold">Available Promotions</h1>
+    <h1 class="fw-bold text-center pb-4 pt-5" style="color:#fff">Current <span style="color:#7A8CEA">Promotions</span></h1>
     <!-- creating slide container for RecommendedRecipes -->
-    <swiper class="carousel rounded-4 shadow-5 px-5 py-4 mySwiper"
+    <swiper class="carousel rounded-4 shadow-5 px-5 py-4 pt-5 mySwiper"
     :slidesPerView="1"
     :loop="true"
     :centeredSlides="false"
@@ -111,10 +111,19 @@ export default {
   color: #303C6C;
   }
   .carousel-container{
-    background-color: #FBE8A6;
+    background-color: transparent;
   }
 
   .carousel{
-    background-color: #FFB18D;
+    background-color: transparent;
+  }
+
+  h1 {
+  font-size: 128px;
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.64px;  
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
   }
 </style>
