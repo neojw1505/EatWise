@@ -59,7 +59,7 @@
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
-      <button class="btn btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
+      <button class="btn btn-fail" @click="toggleConsumedState(currentDate)" :class="{ 'consumed-btn-green': isConsumed }">
         {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
         <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
@@ -94,6 +94,7 @@ export default {
   },
   async created() {
     this.isBookmarked = await this.$smAPI.isRecipeAlreadyBookmarked(this.recipeData.id)
+    this.isConsumed = await this.$smAPI.isMealAlreadySetForDate('lunch', this.currentDate)
   },
   computed: {
     labels() {
@@ -121,6 +122,23 @@ export default {
         ? this.recipeData.title.slice(0, 41) + "..."
         : this.recipeData.title;
     },
+    currentDate() {
+      let date = new Date()
+      // Extracting date components
+      let year = date.getFullYear();
+      let month = date.getMonth() + 1; // Month is zero-based, so add 1
+      let day = date.getDate();
+      let formattedDate = `${year}-${month}-${day}`;
+      return formattedDate
+    },
+    currentTime(){
+      let date = new Date()
+      let hours = date.getHours();
+      let minutes = date.getMinutes();
+      let seconds = date.getSeconds();
+      let formattedTime = `${hours}:${minutes}:${seconds}`;
+      return formattedTime
+    }
   },
   methods: {
     async refreshRecipe(mealType) {
@@ -137,8 +155,14 @@ export default {
       this.loading = false; // Set loading to false after the image is loaded
     },
 
-    async toggleConsumedState() {
-    this.isConsumed = !this.isConsumed;
+    async toggleConsumedState(date) {
+        if (this.isConsumed) {
+          this.isConsumed = !this.isConsumed;
+          this.$smAPI.RemoveLunchConsumptionHistory(date)
+        } else {
+          this.isConsumed = !this.isConsumed;
+          this.SetEatenLunchinFB()
+        }
     },
 
     async toggleBookmarkState(recipeId, newSavedRecipe, nutritionData) {
@@ -153,6 +177,10 @@ export default {
         this.$smAPI.addSavedRecipesInFB(recipeId, newSavedRecipe, nutritionData)
       }
     },
+
+    async SetEatenLunchinFB() {
+      await this.$smAPI.SetEatenLunchinFB(this.recipeData, this.nutritionData, this.currentDate, this.currentTime);
+    }
   },
 
   watch: {
