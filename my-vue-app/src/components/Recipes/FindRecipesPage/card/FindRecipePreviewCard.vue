@@ -11,6 +11,7 @@
 </template>
 
 <script>
+
 export default {
   name: "FindRecipePreviewCard",
   data(){return{
@@ -21,6 +22,7 @@ export default {
   //routerTo is the path which will bring the user to view the complete recipe
 
   props: ["recipe", "routerTO"],
+  
   computed: {
     //in the event that the name of the recipe is too long, we shorten the name
     formattedRecipeName() {
@@ -35,9 +37,8 @@ export default {
       this.cal=recipeObj.calories;
     },
     async selectRecipe() {
-      // Use router to navigate to the SelectedRecipe component with the recipe id as a parameter
-      const objectString = JSON.stringify(this.recipe);
-      this.$router.push({ path: '/find-recipes/SelectedRecipeCard/', params: { data: objectString }, query:{data:objectString}});
+      this.$store.dispatch('setSharedData', this.recipe);
+      this.$router.push({ path: '/find-recipes/SelectedRecipeCard' }); // Navigate to the receiver component
     },
   },
   
