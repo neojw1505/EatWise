@@ -848,6 +848,162 @@ export const removeIngredientFromExclude = async (ingredient) => {
     throw error;
   }
 }
+
+export const SetEatenBreakfastinFB = async (breakfastRecipeObj, breakfastNutrition, date, time) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/breakfast');
+      
+      // Create an object for breakfast data
+      breakfastRecipeObj['nutrition'] = breakfastNutrition
+      const breakfastData = {
+        recipe: breakfastRecipeObj,
+        timeConsumed: time
+      };
+
+      // Set the breakfast data under the userRef
+      await set(userRef, breakfastData);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const RemoveBreakfastConsumptionHistory = async (date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/breakfast');
+      
+      // Remove the breakfast data under the userRef
+      await remove(userRef);
+      console.log('removed breakfast from consumption history at date: ' + date);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const SetEatenLunchinFB = async (lunchRecipeObj, lunchNutrition, date, time) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/lunch');
+      
+      // Update the lunchRecipeObj with nutrition
+      lunchRecipeObj['nutrition'] = lunchNutrition;
+
+      // Create an object for lunch data
+      const lunchData = {
+        recipe: lunchRecipeObj,
+        timeConsumed: time
+      };
+
+      // Set the lunch data under the userRef
+      await set(userRef, lunchData);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const RemoveLunchConsumptionHistory = async (date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/lunch');
+      
+      // Remove the lunch data under the userRef
+      await remove(userRef);
+      console.log('removed lunch from consumption history at date: ' + date);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const SetEatenDinnerinFB = async (dinnerRecipeObj, dinnerNutrition, date, time) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/dinner');
+      
+      // Update the dinnerRecipeObj with nutrition
+      dinnerRecipeObj['nutrition'] = dinnerNutrition;
+
+      // Create an object for dinner data
+      const dinnerData = {
+        recipe: dinnerRecipeObj,
+        timeConsumed: time
+      };
+
+      // Set the dinner data under the userRef
+      await set(userRef, dinnerData);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const RemoveDinnerConsumptionHistory = async (date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/dinner');
+      
+      // Remove the dinner data under the userRef
+      await remove(userRef);
+      console.log('removed dinner from consumption history at date: ' + date);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const GetConsumptionHistoryForDate = async (date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date);
+
+      // Retrieve the data for the specified date
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        const consumptionData = snapshot.val();
+        return consumptionData;
+      } else {
+        console.log("No data found for the specified date");
+        return null;
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+export const isMealAlreadySetForDate = async (mealType, date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database for the specified meal type
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/' + mealType);
+      const snapshot = await get(userRef);
+
+      // Check if data exists for the specified meal type and date
+      return snapshot.exists();
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 
