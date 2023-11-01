@@ -1004,6 +1004,25 @@ export const isMealAlreadySetForDate = async (mealType, date) => {
     throw error;
   }
 }
+
+export const deleteSavedRecipes = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database for the specified meal type
+      const userRef = ref(database, '/users/' + userUid + '/savedRecipes');
+      await remove(userRef);
+
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 
