@@ -120,47 +120,7 @@ export default {
   data() {
     return {
       recipeDetails: null,
-
       isBookmarked: false,
-      selectedRecipe: {
-        name: "Burrito",
-        dietType: ["DietType1", "DietType2", "DietType3"],
-        recipeImage: healthyImage,
-        preparationTime: 15,
-        servingSize: 2,
-        ingredients: [
-          "Lettuce: 1.5",
-          "Tomato: 2",
-          "Potato: 3",
-          "Jun Wei: 100000000",
-          "Conola Oil: 2 tablespoon",
-        ],
-        preparationSteps: [
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        ],
-        description:
-          "Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book.",
-        nutritionalInfo: {
-          Calories: "123cal",
-          Carbohydrate: "123kcal",
-          Fat: "16.8g",
-          Iron: "22.7%",
-          Fat: "16.8g",
-          Fat: "16.8g",
-          Fat: "16.8g",
-          Fat: "16.8g",
-          Fat: "16.8g",
-          Fat: "16.8g",
-          Fat: "16.8g",
-          Fat: "16.8g",
-          Fat: "16.8g",
-          Fat: "16.8g",
-        },
-      },
     };
   },
   computed: {
@@ -240,7 +200,6 @@ export default {
 }
 div a {
   text-decoration: none;
-  pointer-events: none;
   color: black;
   cursor: text;
 }
