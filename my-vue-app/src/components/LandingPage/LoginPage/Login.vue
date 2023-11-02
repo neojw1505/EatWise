@@ -4,7 +4,12 @@
       <NavbarLandingPage />
     </div>
     <div class="background-container">
-      <userFill />
+      <div class="col-4">
+        <!-- <video loop autoplay src="./homepageAsset/gif.mp4"></video> -->
+      </div>
+      <div class="col-8">  
+        <userFill /> 
+      </div>
     </div>
 
   </div>
@@ -22,7 +27,6 @@ export default {
 
 <style scoped>
 #container{
-  position: fixed;
   display: flex;
   justify-content: center;
   width:100%;
@@ -30,15 +34,13 @@ export default {
 }
 
 .background-container {
-  background-image: url('../Assets/background.png');
-  
+  /* background-image: url('../Assets/background.png'); */
+  object-fit: cover; /* Scales the image while maintaining aspect ratio */
+  background-size: contain; /* Scale image to fit container */
+  background-repeat: no-repeat; /* Prevent repeating the image */
+  background-position: center center; /* Center the image */
 }
 
-#login-background {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Scales the image while maintaining aspect ratio */
-}
 #login-body{
   margin-top:200px;
 

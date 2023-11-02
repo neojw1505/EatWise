@@ -25,13 +25,13 @@
 
 
     <div class="card-body border-0" v-if="!loading && imageLoaded">
-      <!-- <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
+      <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
       <p class="card-text">
         <span> Servings: {{ recipeData.servings }} </span>
         <span> Carbs: {{ nutritionData.carbs }} </span>
         <span> Fat: {{ nutritionData.fat }} </span>
         <span> Protein: {{ nutritionData.protein }} </span>
-      </p> -->
+      </p>
       <!-- Labels based on conditions -->
       <div style="height: 60px;">
       <div class="d-flex justify-content-end flex-wrap">

@@ -2,7 +2,7 @@
   <div class="container">
     <div id="logincard" class="card shadow">
       <div class="card-body">
-        <h5 class="card-title text-center mb-4">Member Login</h5>
+        <h5 class="card-title text-center mb-4">Login</h5>
         <input
           type="email"
           class="form-control mb-3"
@@ -93,7 +93,7 @@ export default {
 
 <style scoped>
 .btn {
-  background-color: #f4976c;
+  background-color: #7A8CEA;
   color: white;
 }
 

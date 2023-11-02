@@ -1,5 +1,5 @@
 <template>
-  <!-- <div class="shadow rounded-4">
+  <div class="shadow rounded-4">
     <h1 style="font-size: 100px; color:white">Meal <span style="color:#7A8CEA">Planner</span> </h1>
     <div class="d-flex flex-wrap">
       <div class="col d-flex justify-content-around">
@@ -27,15 +27,15 @@
         />
       </div>
     </div>
-  </div> -->
+  </div>
 </template>
 
 <script>
 export default {
   mounted() {
-    // this.getBreakfastRecipe();
-    // this.getLunchRecipe();
-    // this.getDinnerRecipe();
+    this.getBreakfastRecipe();
+    this.getLunchRecipe();
+    this.getDinnerRecipe();
   },
   data() {
     return {
