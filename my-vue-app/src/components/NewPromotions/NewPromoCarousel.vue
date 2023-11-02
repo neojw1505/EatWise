@@ -3,18 +3,9 @@
     <h1 class="fw-bold">Available Promotions</h1>
     <!-- creating slide container for RecommendedRecipes -->
     <swiper class="carousel rounded-4 shadow-5 px-5 py-4 mySwiper"
-    :slidesPerView="1"
-    :loop="true"
-    :centeredSlides="false"
-    :slidesPerGroupSkip="0"
-    :grabCursor="true"
-    :scrollbar="true"
     :navigation="true"
-    :pagination="{ clickable: true }"
+    :pagination="true"
     :modules="modules"
-    :keyboard="{
-      enabled: true,
-    }"
     :breakpoints="{
       '760': {
         slidesPerView: 1,
@@ -51,15 +42,12 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 
   // Import Swiper styles
 import 'swiper/css';
-
-import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { Keyboard, Scrollbar, Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 export default {
   setup() {
       return {
-        modules: [Keyboard, Scrollbar, Navigation, Pagination],
+        modules: [Navigation, Pagination],
       };
     },
   components: {
