@@ -40,7 +40,7 @@
     </swiper>
 
     <div class="text-center pt-3" >
-        <button type="button" class="btn shadow" style="width: 300px;">View More</button>
+        <button type="button" class="btn shadow" style="width: 300px;" @click="goToMarket">View More</button>
     </div>
 
   </div>
@@ -96,6 +96,10 @@ export default {
           false
         );
     },
+    goToMarket(){
+      this.$store.dispatch('setviewPromo', true);
+      this.$router.push({ path: '/market' }); // Navigate to the receiver component
+    }
   },
 };
 </script>
