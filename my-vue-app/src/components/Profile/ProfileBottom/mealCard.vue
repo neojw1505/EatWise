@@ -1,8 +1,8 @@
 <template>
     <!-- <router-link :to="routerTO"> -->
-      <div class="card cardStyle mx-2 px-0 mb-2">
+      <div class="card cardStyle mx-2 px-0 mb-auto">
         <div class="text-center m-1 fw-semibold">{{mealType}}</div>
-        <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" />
+        <img class="card-img-top mx-auto rounded-6" :src="recipe.image" alt="Recipe Image" />
         <div class="card-body img-fluid">
           <h4 class="card-title" style="font-size: large; height: 50px">
             {{ formattedRecipeName }}
@@ -47,12 +47,12 @@
   
   <style scoped>
   .cardStyle {
-    border: #FFB18D solid 1px;
-    border-bottom-left-radius: 30px;
+    border: 1px solid #FFF;
+    border-radius: 20px;
     width: 200px;
     height: 280px;
-    background-image: linear-gradient(to bottom right, #ff5100, #fac400);
-    color: black;
+    background: linear-gradient(180deg, rgba(0, 0, 0, 0.62) 71.87%, rgba(0, 0, 0, 0.00) 100%);
+    color: white;
   }
   </style>
   

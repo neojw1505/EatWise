@@ -3,8 +3,7 @@
     <div>
       <NavbarLandingPage />
     </div>
-    <div id="background-container">
-      <img id="login-background" src="../Assets/background.png" alt="background">
+    <div class="background-container">
       <userFill />
     </div>
 
@@ -30,13 +29,9 @@ export default {
   height:100%;
 }
 
-#background-container {
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  overflow: hidden;
-
+.background-container {
+  background-image: url('../Assets/background.png');
+  
 }
 
 #login-background {

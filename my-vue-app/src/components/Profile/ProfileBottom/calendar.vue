@@ -1,15 +1,15 @@
 <template>
     <div class="m-0 text-align-center ">
-      <div class="d-flex justify-content-between align-items-center p-3 rounded-4 rounded-bottom-0 border border-2 border-dark" style="background-color: #F4976C;">
-        <button class="btn bg-warning-subtle border border-warning" @click="previousMonth">&lt;</button>
+      <div class="d-flex justify-content-between align-items-center p-3 rounded-4 rounded-bottom-0 " style="background-color: transparent; color:white">
+        <button class="btn btn-secondary bg-transparent-subtle border-transparent" @click="previousMonth">&lt;</button>
         <h4>{{ formattedDate }}</h4>
-        <button class="btn bg-warning-subtle border border-warning" @click="nextMonth">&gt;</button>
+        <button class="btn btn-secondary bg-transparent-subtle border-transparent" @click="nextMonth">&gt;</button>
       </div>
-      <div class="d-flex border border-2 border-dark" style="background-color: #F4976C;">
-        <div v-for="day in days" class="calendar-day text-dark" :key="day">{{ day }}</div>
+      <div class="d-flex" style="background-color: transparent;">
+        <div v-for="day in days" class="calendar-day text-light" :key="day">{{ day }}</div>
       </div>
-      <div class="calendar-grid">
-        <div v-for="date in calendarDates" :key="date" class="calendar-cell" @click="selectDate(date)"
+      <div class="calendar-grid" style="background-color: rgba(255, 255, 255, 0.8);; ">
+        <div v-for="date in calendarDates" :key="date" class="calendar-cell d-flex justify-content-center align-items-center col-sm-7 col-xs-4 col-md-5 col-lg-10 " @click="selectDate(date)"
         :class="{ 'selected-date': isDateSelected(date) }">
           {{ date }}
         </div>
@@ -100,9 +100,9 @@
   
   <style scoped>
 .selected-date {
-  background-color: #F4976C;
+  background-color: grey;
   color: black;
-  border-radius: 100%;
+  border-radius: 50%;
   border: 2px solid black;
 }
   
