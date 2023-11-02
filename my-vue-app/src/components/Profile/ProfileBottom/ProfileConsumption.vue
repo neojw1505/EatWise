@@ -70,6 +70,7 @@ export default {
           '11':"November",
           '12':"December",
         };
+        console.log(tempDate)
         return tempDate[0]+" "+month[tempDate[1]]+" "+tempDate[2];
       }
     }

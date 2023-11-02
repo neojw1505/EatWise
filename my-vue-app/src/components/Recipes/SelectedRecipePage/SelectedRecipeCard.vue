@@ -93,14 +93,13 @@
         </div>
       </div>
       <!-- give step -->
-      <div class="cardStyle p-2 rounded-4">
+      <div class="cardStyle p-2 rounded-4" v-if="recipeDetails.instructions">
         <div>
           <span class="fw-semibold">Preparation Steps:</span>
         </div>
         <div
           class="mx-4 my-2"
-          v-for="(step, index) in this.recipeDetails.analyzedInstructions[0]
-            .steps"
+          v-for="(step, index) in recipeDetails.analyzedInstructions[0].steps"
           :key="step"
         >
           <b>Step {{ index + 1 }}:</b> {{ step.step }}
