@@ -1,31 +1,49 @@
 <template>
-  <div class="card shadow border-dark" style="width: 300px;" v-if="recipeData && nutritionData">
+  <div
+    class="card shadow border-dark"
+    style="width: 300px"
+    v-if="recipeData && nutritionData"
+  >
     <div class="card-header"><h3>Dinner</h3></div>
 
     <!-- Display the image or a spinner -->
-  <div class="card align-items-center" v-if="loading">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-
-  <div class="card shadow" v-else>
-    <div class="image-wrapper">
-      <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
-      <div class="bookmark" >
-        <button class="bookmark-button" @click="toggleBookmarkState(recipeData.id, recipeData,nutritionData)">
-          <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #FFFF00;" />
-          <font-awesome-icon  v-else :icon="['fas', 'bookmark']" size="2xl" style="color: #ffffff;" />
-        </button>
+    <div class="card align-items-center" v-if="loading">
+      <div class="spinner-border" role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
-
     </div>
-  </div>
 
-
+    <div class="card shadow" v-else>
+      <div class="image-wrapper">
+        <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
+        <div class="bookmark">
+          <button
+            class="bookmark-button"
+            @click="
+              toggleBookmarkState(recipeData.id, recipeData, nutritionData)
+            "
+          >
+            <font-awesome-icon
+              v-if="isBookmarked"
+              :icon="['fas', 'bookmark']"
+              size="2xl"
+              style="color: #ffff00"
+            />
+            <font-awesome-icon
+              v-else
+              :icon="['fas', 'bookmark']"
+              size="2xl"
+              style="color: #ffffff"
+            />
+          </button>
+        </div>
+      </div>
+    </div>
 
     <div class="card-body border-0" v-if="!loading && imageLoaded">
-      <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
+      <h5 class="card-title overflow-hidden" style="height: 60px">
+        {{ formattedRecipeName }}
+      </h5>
       <!-- <p class="card-text">
         <span> Servings: {{ recipeData.servings }} </span>
         <span> Carbs: {{ nutritionData.carbs }} </span>
@@ -33,15 +51,15 @@
         <span> Protein: {{ nutritionData.protein }} </span>
       </p> -->
       <!-- Labels based on conditions -->
-      <div style="height: 60px;">
-      <div class="d-flex justify-content-end flex-wrap">
-        <span
-          v-for="label in labels"
-          :key="label"
-          class="badge d-sm-inline-block m-1"
-          >{{ label }}</span
-        >
-      </div>
+      <div style="height: 60px">
+        <div class="d-flex justify-content-end flex-wrap">
+          <span
+            v-for="label in labels"
+            :key="label"
+            class="badge d-sm-inline-block m-1"
+            >{{ label }}</span
+          >
+        </div>
       </div>
       <!-- Top Right Label for Kcal and PrepTime -->
       <div class="badge badge-circular">
@@ -59,17 +77,32 @@
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
-      <button class="btn btn-fail" @click="toggleConsumedState(currentDate)" :class="{ 'consumed-btn-green': isConsumed }">
-        {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
-        <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
-        <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
+      <button
+        class="btn btn-fail"
+        @click="toggleConsumedState(currentDate)"
+        :class="{ 'consumed-btn-green': isConsumed }"
+      >
+        {{ isConsumed ? "Eaten" : "Not Eaten" }}
+        <font-awesome-icon
+          v-if="isConsumed"
+          :icon="['fas', 'check']"
+          style="color: #ffffff"
+          size="lg"
+        />
+        <font-awesome-icon
+          v-else
+          :icon="['fas', 'xmark']"
+          style="color: #ffffff"
+          size="lg"
+        />
       </button>
-
     </div>
   </div>
 </template>
 
 <script>
+import Swal from "sweetalert2";
+
 export default {
   data() {
     return {
@@ -79,7 +112,6 @@ export default {
 
       isConsumed: false,
       isBookmarked: false,
-
     };
   },
   props: {
@@ -93,8 +125,13 @@ export default {
     },
   },
   async created() {
-    this.isBookmarked = await this.$smAPI.isRecipeAlreadyBookmarked(this.recipeData.id)
-    this.isConsumed = await this.$smAPI.isMealAlreadySetForDate('dinner', this.currentDate)
+    this.isBookmarked = await this.$smAPI.isRecipeAlreadyBookmarked(
+      this.recipeData.id
+    );
+    this.isConsumed = await this.$smAPI.isMealAlreadySetForDate(
+      "dinner",
+      this.currentDate
+    );
   },
   computed: {
     labels() {
@@ -123,22 +160,22 @@ export default {
         : this.recipeData.title;
     },
     currentDate() {
-      let date = new Date()
+      let date = new Date();
       // Extracting date components
       let year = date.getFullYear();
       let month = date.getMonth() + 1; // Month is zero-based, so add 1
       let day = date.getDate();
       let formattedDate = `${year}-${month}-${day}`;
-      return formattedDate
+      return formattedDate;
     },
-    currentTime(){
-      let date = new Date()
+    currentTime() {
+      let date = new Date();
       let hours = date.getHours();
       let minutes = date.getMinutes();
       let seconds = date.getSeconds();
       let formattedTime = `${hours}:${minutes}:${seconds}`;
-      return formattedTime
-    }
+      return formattedTime;
+    },
   },
   methods: {
     async refreshRecipe(mealType) {
@@ -147,7 +184,6 @@ export default {
 
       this.isConsumed = false;
       this.isBookmarked = false;
-
     },
     onImageLoad() {
       // This method is called when the image has finished loading
@@ -156,30 +192,101 @@ export default {
     },
 
     async toggleConsumedState(date) {
-        if (this.isConsumed) {
-          this.isConsumed = !this.isConsumed;
-          this.$smAPI.RemoveDinnerConsumptionHistory(date)
-        } else {
-          this.isConsumed = !this.isConsumed;
-          this.SetEatenDinnerinFB()
-        }
+      if (this.isConsumed) {
+        this.isConsumed = !this.isConsumed;
+        this.$smAPI.RemoveDinnerConsumptionHistory(date);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        Toast.fire({
+          icon: "error",
+          title: `You did not eat <b style='color: red;'>${this.recipeData.title}</b> for Dinner!`,
+        });
+      } else {
+        this.isConsumed = !this.isConsumed;
+        this.SetEatenDinnerinFB();
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        Toast.fire({
+          icon: "success",
+          title: `You ate <b style='color: green'>${this.recipeData.title}</b> for Dinner!`,
+        });
+      }
     },
 
     async toggleBookmarkState(recipeId, newSavedRecipe, nutritionData) {
-      console.log(this.isBookmarked);
       if (this.isBookmarked) {
         // if already saved in firebase, remove it because user uncheck bookmark
         this.isBookmarked = !this.isBookmarked;
-        this.$smAPI.removeSavedRecipeInFB(recipeId)
+        this.$smAPI.removeSavedRecipeInFB(recipeId);
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+
+        Toast.fire({
+          background: 'green',
+          color: 'white',
+          title: `Removed <b style='color:gold'>${this.recipeData.title}</b> from Saved Recipes!`,
+        });
       } else {
         // if not in firebase, add it into firebase because user click button to bookmark
         this.isBookmarked = !this.isBookmarked;
-        this.$smAPI.addSavedRecipesInFB(recipeId, newSavedRecipe, nutritionData)
+        this.$smAPI.addSavedRecipesInFB(
+          recipeId,
+          newSavedRecipe,
+          nutritionData
+        );
+        const Toast = Swal.mixin({
+          toast: true,
+          position: "top-end",
+          showConfirmButton: false,
+          timer: 3000,
+          timerProgressBar: true,
+          didOpen: (toast) => {
+            toast.addEventListener("mouseenter", Swal.stopTimer);
+            toast.addEventListener("mouseleave", Swal.resumeTimer);
+          },
+        });
+        Toast.fire({
+          background: 'green',
+          color: 'white',
+          title: `Added <b style='color:gold'>${this.recipeData.title}</b> to Saved Recipes!`,
+        });
       }
     },
     async SetEatenDinnerinFB() {
-      await this.$smAPI.SetEatenDinnerinFB(this.recipeData, this.nutritionData, this.currentDate, this.currentTime);
-    }
+      await this.$smAPI.SetEatenDinnerinFB(
+        this.recipeData,
+        this.nutritionData,
+        this.currentDate,
+        this.currentTime
+      );
+    },
   },
 
   watch: {
@@ -189,18 +296,16 @@ export default {
       this.loading = false;
     },
   },
-
 };
 </script>
 
 <style scoped>
-  svg.fa-bookmark {
-      stroke: black;
-      stroke-width: 30;
-  }
+svg.fa-bookmark {
+  stroke: black;
+  stroke-width: 30;
+}
 .card {
-
-  background-color: #FFB18D;
+  background-color: #ffb18d;
   border: 0;
 }
 .image-container {
@@ -211,37 +316,34 @@ export default {
 .card-img {
   max-width: 300px;
   object-fit: fit; /* Ensures the image fully covers the container */
-
 }
 .card .badge {
   font-size: 14px;
   padding: 4px 8px;
   border-radius: 10px;
   color: #000000;
-  background-color: #FBE8A6;
+  background-color: #fbe8a6;
   margin-left: 5px;
-  
 }
 .card-footer {
   text-align: center;
-  
 }
 .btn {
-  background-color: #303C6C;
+  background-color: #303c6c;
   color: #fff;
   box-shadow: 5px 5px 10px #888888;
 }
 .btn:hover {
   background-color: #fff;
-  color: #303C6C;
+  color: #303c6c;
 }
 .btn-fail {
-  background-color: #D7191C;
+  background-color: #d7191c;
   color: #fff;
 }
 .btn-fail:hover {
   background-color: #fff;
-  color: #D7191C;
+  color: #d7191c;
 }
 .consumed-btn-green {
   background-color: #007459;
@@ -254,8 +356,7 @@ export default {
 .spinner-border {
   width: 10rem;
   height: 10rem;
-  color:#303C6C
-  
+  color: #303c6c;
 }
 .badge-circular {
   min-width: 70px;
@@ -275,7 +376,6 @@ export default {
 .badge-content {
   text-align: center;
   font-size: larger;
-
 }
 
 @keyframes pulsate {
@@ -303,7 +403,5 @@ export default {
   border: none;
   padding: 0;
   cursor: pointer;
-
 }
 </style>
-
