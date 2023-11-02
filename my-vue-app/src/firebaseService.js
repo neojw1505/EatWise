@@ -1023,6 +1023,68 @@ export const deleteSavedRecipes = async () => {
     throw error;
   }
 }
+// To set a saved recipe as breakfast in mealplan
+export const setBreakfastFromSavedRecipes = async (breakfastRecipeObj, breakfastNutrition) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/breakfast');
+      await update(userRef, {
+        recipe: [breakfastRecipeObj],
+        nutrition: breakfastNutrition
+      });
+      console.log("Update Breakfast!");
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+// To set a saved recipe as lunch in mealplan
+export const setLunchFromSavedRecipes = async (lunchRecipeObj, lunchNutrition) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/lunch');
+      await update(userRef, {
+        recipe: [lunchRecipeObj],
+        nutrition: lunchNutrition
+      });
+      console.log("Update Lunch!");
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+// To set a saved recipe as dinner in mealplan
+export const setDinnerFromSavedRecipes = async (dinnerRecipeObj, dinnerNutrition) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/dinner');
+      await update(userRef, {
+        recipe: [dinnerRecipeObj],
+        nutrition: dinnerNutrition
+      });
+      console.log("Update Dinner!");
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 
@@ -1210,6 +1272,7 @@ export const fetchProductsByTitle = async (title, ascending = true) => {
     throw error;
   }
 };
+
 
 // Function to fetch products by product price with optional ascending sorting
 export const fetchProductsByPrice = async (price, ascending = true) => {

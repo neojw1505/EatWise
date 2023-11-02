@@ -7,6 +7,9 @@
         <div>
           <h1>{{ recipeDetails.title }}</h1>
         </div>
+        <button @click="setBreakfastFromSavedRecipes">Set as Breakfast</button>
+        <button @click="setLunchFromSavedRecipes">Set as Lunch</button>
+        <button @click="setDinnerFromSavedRecipes">Set as Dinner</button>
         <button
           class="bookmark-button"
           @click="toggleBookmarkState(recipeDetails.id, recipeDetails)"
@@ -174,6 +177,15 @@ export default {
     searchInMarket(item){
       this.$store.dispatch('setIngredientquery', item);
       this.$router.push({ path: '/market' }); // Navigate to the receiver component
+    },
+    async setBreakfastFromSavedRecipes() {
+        await this.$smAPI.setBreakfastFromSavedRecipes(this.recipeDetails, this.recipeDetails.nutrition)
+    },
+    async setLunchFromSavedRecipes() {
+      await this.$smAPI.setLunchFromSavedRecipes(this.recipeDetails, this.recipeDetails.nutrition)
+    },
+    async setDinnerFromSavedRecipes() {
+      await this.$smAPI.setDinnerFromSavedRecipes(this.recipeDetails, this.recipeDetails.nutrition)
     }
   },
   async created() {
