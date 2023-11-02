@@ -6,7 +6,7 @@
           <h4 class="card-title" style="font-size: large; height: 50px" >
             {{ formattedRecipeName }}
           </h4>
-          <p class="card-text">{{recipe.nutrition.calories ?? recipe.nutrition.nutrients[0].amount.toFixed(0)}} kcals</p>
+          <p class="card-text">{{formattedCal}} kcals</p>
         </div>
       </div>
     <!-- </router-link> -->
@@ -31,6 +31,12 @@
           ? this.recipe.title.slice(0, 27) + "..."
           : this.recipe.title;
       },
+      formattedCal(){
+        if (this.recipe.nutrition.calories ){
+          return this.recipe.nutrition.calories 
+        }   
+        return this.recipe.nutrition.nutrients[0].amount.toFixed(0)
+      }
     },
     methods: {
       async getSelectedRecipeNutritions() {

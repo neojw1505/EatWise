@@ -91,7 +91,7 @@ export default {
   },
   methods: {
     async deletela(){
-      await this.$smAPI.removeSavedRecipeInFB();
+      await this.$smAPI.deleteSavedRecipes();
     },
     
     nextPage() {
