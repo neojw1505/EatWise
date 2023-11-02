@@ -1,5 +1,5 @@
 <template>
-  <div class="bg row mx-3 container mx-auto pt-3" style="max-width: 1200px;">
+  <div class="bg row mx-3 container mx-auto pb-4" style="max-width: 1200px;">
     <ProfileUser :userName="userName" />
     <ProfileCaloriesTracker/>
   </div>

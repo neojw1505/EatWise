@@ -17,16 +17,11 @@
     </div>
     <br /> -->
     <router-view>  
-        <Home/>
     </router-view>
 
 </template>
 
 <script>
-import Home from './components/Home.vue';
-import MealPlan from './components/MealPlan/MealPlan.vue';
-
-
 
 export default {
     data() {
@@ -52,7 +47,6 @@ export default {
                 await this.$smAPI.fetchProductsByPromoAndSupermarket(this.supermarketName, false);
         },
     },
-    components: { MealPlan, Home }
 };
 
 </script>
