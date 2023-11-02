@@ -6,8 +6,9 @@
     <div class="rectangle-overlay shadow">
       <div class="promo-text">{{ product.product_promo }}</div>
     </div>
+    
     <div class="card-content">
-      <h5 class="card-title text-truncate-2">{{ product.product_title }}</h5>
+      <h5 class="card-title text-truncate-2 mt-1">{{ product.product_title }}</h5>
       <div>
         <p class="card-text">
           <strong>{{ product.product_price }}</strong> <br />
@@ -35,7 +36,7 @@ export default {
 <style scoped>
 /* Add hover effect to the card */
 .card:hover {
-  background-color: #D2FDFF;
+  background-color: #7A8CEA;
   transition: background-color 0.3s ease;
 }
 .card-img-top {
@@ -55,11 +56,14 @@ export default {
   width: 100%;
   width: 300px;
   height: 350px;
-  border: none;
-  border-radius: 10px;
+  border: 2px solid #000;
+  border-radius: 20px;
   transition: transform 0.2s;
   display: flex;
   text-align: center;
+  background: linear-gradient(180deg, rgba(255, 255, 255, 0.50) 99.99%, rgba(84, 84, 84, 0.00) 100%);
+  box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  
 }
 /* Style the rectangle-overlay */
 .rectangle-overlay {
