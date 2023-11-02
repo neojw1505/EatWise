@@ -15,9 +15,10 @@
           <div>
             <div class="d-flex  flex-wrap">
               <MarketSortBy
-                v-for="option in sortOptions"
+                v-for="(bool,option) in sortOptions"
                 :key="option"
                 :eachOption="option"
+                :bool="bool"
                 @isCheck="handdleCheckoption"
               />
             </div>
@@ -40,7 +41,7 @@ export default {
       maxPrice: Number.POSITIVE_INFINITY,
       onPromotion: false,
       isAscending:false,
-      sortOptions: ["On Promotion","Order By Price(Ascending)"],
+      sortOptions: {"On Promotion":false,"Order By Price(Ascending)":false},
       supermarket:['FairPrice','ColdStorage','ShengShiong'],
       sortBy:[],
       dataResult: null
@@ -49,9 +50,11 @@ export default {
   methods:{
     handdleCheckoption(data){
         if(data[1]==true && !this.sortBy.includes(data[0])){
+            this.sortOptions[data[0]]=data[1]
             this.sortBy.push(data[0])
         }
         else if(data[1]==false && this.sortBy.includes(data[0])){
+            this.sortOptions[data[0]]=data[1]
             let index=this.sortBy.indexOf(data[0]);
             this.sortBy.splice(index,1);
         }
@@ -78,12 +81,29 @@ export default {
       if(this.maxPrice==""){
         this.maxPrice=Number.POSITIVE_INFINITY;
       }
+      //account for query from selected recipe
+      let tempquery = this.$store.getters.getIngredientquery;
+      if(tempquery!=""){
+        this.marketSearchQuery=tempquery;
+      }
+      if(this.marketSearchQuery==null){
+        this.marketSearchQuery=""
+      }
+      //account for view more promotion from home page
+
+      if(this.$store.getters.getviewPromo){
+        this.sortBy.push("On Promotion");
+        this.sortOptions["On Promotion"]=true;
+        this.$store.dispatch('setviewPromo', false);
+      }
+
       this.onPromotion= this.sortBy.includes("On Promotion") ? true : false
       this.isAscending= this.sortBy.includes("Order By Price(Ascending)") ? true : false
       this.dataResult= await this.$smAPI.fetchProducts(this.marketSearchQuery, this.minPrice, this.maxPrice, this.onPromotion, this.isAscending, this.supermarket);
+      this.$store.dispatch('setIngredientquery', "");
     }
   },
-  mounted() {
+  created() {
     this.fetchProducts();
   },
   watch:{

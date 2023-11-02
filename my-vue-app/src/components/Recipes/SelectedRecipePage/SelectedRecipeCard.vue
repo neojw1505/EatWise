@@ -61,13 +61,16 @@
 
           <!-- give ingredients -->
           <div class="cardStyle p-2 rounded-4 my-1">
-            <div>
+            <div class=" d-flex justify-content-between">
               <span class="fw-semibold">Ingredients:</span>
+              <span class="fw-semibold">*Click ingredient to view in market</span>
             </div>
             <div
               class="mx-4"
               v-for="i in recipeDetails.extendedIngredients"
               :key="i"
+              @click="searchInMarket(i.name)"
+              style="cursor: pointer;"
             >
               <li>{{ i.name }}</li>
             </div>
@@ -168,6 +171,10 @@ export default {
         );
       }
     },
+    searchInMarket(item){
+      this.$store.dispatch('setIngredientquery', item);
+      this.$router.push({ path: '/market' }); // Navigate to the receiver component
+    }
   },
   async created() {
     await this.getRecipeDetails();
