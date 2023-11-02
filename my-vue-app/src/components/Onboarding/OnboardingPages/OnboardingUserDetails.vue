@@ -8,13 +8,19 @@
         <h3 class="fw-bold fs-4 py-3">Basic Information</h3>
         <div class="row">
           <div class="col col-sm-4 mb-3">
-            <input type="text" class="form-control" name="age" placeholder="Age" v-model="inputAge" required>
+            <label for="customRange3" class="form-label">Age</label>
+            <input type="range" name="age" class="form-range" min="0" max="80" step="1" v-model="inputAge" @input="updateAge" required>
+            <span class="fs-5">{{ inputAge }}</span>
           </div>
           <div class="col col-sm-4 mb-3">
-            <input type="text" class="form-control" name="weight" placeholder="Your Weight (kg)" v-model="inputWeight" required>
+            <label for="customRange3" class="form-label">Weight (kg)</label>
+            <input type="range" name="weight" class="form-range" min="40" max="160" step="1" v-model="inputWeight" required>
+            <span class="fs-5">{{ inputWeight }}</span>
           </div>
           <div class="col col-sm-4 mb-3">
-            <input type="text" class="form-control" name="height" placeholder="Your Height (cm)" v-model="inputHeight" required>
+            <label for="customRange3" class="form-label">Height (cm)</label>
+            <input type="range" name="height" class="form-range" min="130" max="230" step="1" v-model="inputHeight" required>
+            <span class="fs-5">{{ inputHeight }}</span>
           </div>
         </div>
       </div>
@@ -77,9 +83,9 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 export default {
   data() {
     return {
-      inputAge: '',
-      inputWeight: '',
-      inputHeight: '',
+      inputAge: 0,
+      inputWeight: 40,
+      inputHeight: 130,
       inputGoal: null,
       goals: [
         { value: 'extremelose', label: 'Extreme Weight Loss', color: 'red' },
