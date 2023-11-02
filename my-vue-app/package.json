@@ -24,6 +24,7 @@
     "chartjs-plugin-zoom": "^2.0.1",
     "dotenv": "^16.3.1",
     "firebase": "^10.4.0",
+    "gsap": "^3.12.2",
     "jquery": "^3.7.1",
     "luxon": "^3.4.3",
     "owl-carousel": "^1.0.0",
