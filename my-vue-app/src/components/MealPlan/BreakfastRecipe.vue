@@ -127,7 +127,7 @@ export default {
       // Extracting date components
       let year = date.getFullYear();
       let month = date.getMonth() + 1; // Month is zero-based, so add 1
-      let day = date.getDate().toString().padStart(2, '0');
+      let day = date.getDate();
       let formattedDate = `${year}-${month}-${day}`;
       return formattedDate
     },
