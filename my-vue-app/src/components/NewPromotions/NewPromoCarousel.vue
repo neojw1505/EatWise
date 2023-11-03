@@ -112,10 +112,12 @@ export default {
 
 .carousel-container{
   background-color: transparent;
+  z-index: 0;
 }
 
 .carousel{
   background-color: transparent;
+  z-index: 0;
 }
 
 h1 {
