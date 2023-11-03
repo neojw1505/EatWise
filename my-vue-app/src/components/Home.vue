@@ -4,16 +4,8 @@
     <div>
       <Navbar />
     </div>
-    <div class="row">
+    <div>
       <div class="section1">
-        <!-- <div class="col-lg-6" id="video">
-            <video loop autoplay preload="auto"  src="./homepageAsset/gif.mp4" alt="gif" style="width: 100%; height: 100%; object-fit:fill;"></video>
-          </div>
-          <div class="col-lg-6" id="rightCol">
-     
-            <div class="img-overlay">
-            </div>
-          </div> -->
         <video
           loop
           autoplay
@@ -24,9 +16,8 @@
           style="width: 100%; height: 100%; object-fit: fill"
         ></video>
         <div class="overlay">
-          <h1
+          <h1 class="main-text"
             style="
-              font-size: 5vw;
               color: whitesmoke;
               font-family: Georgia, 'Times New Roman', Times;
             "
@@ -34,9 +25,8 @@
             EatWise
           </h1>
           <br />
-          <h1
+          <h1 class="sub-text"
             style="
-              font-size: 2vw;
               font-family: Georgia, 'Times New Roman', Times;
             "
           >
@@ -46,24 +36,15 @@
           </h1>
         </div>
       </div>
-
-      <div class="section2">
-        <p style="text-indent: -999px">.</p>
+      <div class="section2" style="padding-top: 80px; padding-bottom: 80px">
         <!--hidden text so that image extends-->
         <RecipeOfDay />
       </div>
-      <div class="section3">
-        <p style="text-indent: -999px">.</p>
-        <!--hidden text so that image extends-->
-
-        <!-- <span style="font-size: large; color:white"> Place the Meal Planner of the day here</span> -->
-        <MealPlan class="py-5" />
+      <div class="section3" style="padding-top: 60px; padding-bottom: 60px">
+        <MealPlan/>
       </div>
-
-      <div class="section4">
-        <p style="text-indent: -999px">.</p>
-        <!--hidden text so that image extends-->
-        <NewPromoCarousel class="p-4 pt-2 shadow rounded-4 my-3 mx-3" />
+      <div class="section4" style="padding-top: 40px; padding-bottom: 40px">
+        <NewPromoCarousel class="p-4 pt-2 rounded-4 my-3 mx-3" />
       </div>
     </div>
   </div>
@@ -105,16 +86,43 @@ export default {
 </script>
 
 <style scoped>
+
+  h1.maintext {
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.64px;  
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+  }
+
+@media screen and (min-width: 601px) {
+  h1.main-text {
+    font-size: 80px;
+  }
+  h1.sub-text {
+    font-size: 30px;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  h1.main-text {
+    font-size: 40px;
+  }
+
+  h1.sub-text {
+    font-size: 15px;
+  }
+}
 .section1 {
   display: relative;
   width: 100%;
-  height: 100vh;
+  height: 600px;
   transition: all 1s ease;
 }
 
 .section1 video {
   position: relative;
-  z-index: 0;
 }
 
 .overlay {
@@ -136,7 +144,6 @@ export default {
 
 .section2 {
   /* width: 100%; */
-  height: 100vh;
   background-image: url(./homepageAsset/background-s2.png);
   background-size: cover; /* Scale image to fit container */
   background-repeat: no-repeat; /* Prevent repeating the image */
@@ -144,7 +151,6 @@ export default {
 }
 .section3 {
   /* width: 100%; */
-  height: 100vh;
   background-image: url(./homepageAsset/background-s3.png);
   background-size: cover;
   background-repeat: no-repeat; /* Prevent repeating the image */
@@ -152,7 +158,6 @@ export default {
 }
 .section4 {
   /* width: 100%; */
-  height: 100vh;
   background-image: url(./homepageAsset/background-s4.png);
   background-size: cover; /* Scale image to fit container */
   background-repeat: no-repeat; /* Prevent repeating the image */

@@ -1,9 +1,9 @@
 <template>
   <div class="shadow rounded-4">
     <h1 class="text-center" style="color:white">Meal <span style="color:#7A8CEA">Planner</span> </h1>
-    <div class="row pt-5">
+    <div class="d-flex flex-wrap justify-content-between justify-content-center pt-5">
      
-      <div class="col-4 justify-content-around">
+      <div class="mx-auto mb-2">
         <BreakfastRecipe
           v-if="breakfastRecipe && breakfastNutrition"
           :recipeData="breakfastRecipe"
@@ -11,7 +11,7 @@
           @refresh-recipe="refreshBreakfastRecipe"
         />
       </div>
-      <div class="col-4 justify-content-around">
+      <div class="mx-auto mb-2">
         <LunchRecipe
           v-if="lunchRecipe && lunchNutrition"
           :recipeData="lunchRecipe"
@@ -19,7 +19,7 @@
           @refresh-recipe="refreshLunchRecipe"
         />
       </div>
-      <div class="col-4 justify-content-around">
+      <div class="mx-auto mb-2">
         <DinnerRecipe 
           v-if="dinnerRecipe && dinnerNutrition"
           :recipeData="dinnerRecipe"
@@ -93,11 +93,27 @@ export default {
 </script>
 
 <style scoped>
-/* h1 {
-    color: #FFF;
-  } */
 
+h1 {
+  font-style: normal;
+  font-weight: 600;
+  line-height: normal;
+  letter-spacing: -0.64px;  
+  text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
+}
 
+@media screen and (min-width: 601px) {
+  h1 {
+    font-size: 80px;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 40px;
+  }
+}
 
 
 </style>

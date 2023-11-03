@@ -1,6 +1,6 @@
 <template>
-  <div class="card shadow border-light mx-auto" style=" overflow: auto; min-width: 150px; max-width: 500px;" v-if="recipeData && nutritionData">
-    <div class="card-header"><h3 style="font-size: 2.5vw;">Dinner</h3></div>
+  <div class="card shadow border-light mx-auto" style=" overflow: auto; width: 335px" v-if="recipeData && nutritionData">
+    <div class="card-header"><h3>Dinner</h3></div>
 
     <!-- Display the image or a spinner -->
   <div class="card align-items-center" v-if="loading">
@@ -68,8 +68,8 @@
         </div>
       </div>
       <!-- Top Right Label for Kcal and PrepTime -->
-      <div class="badge badge-circular" style="width: 5vw;">
-        <div class="badge-content" style="font-size: 0.9vw;">
+      <div class="badge badge-circular">
+        <div class="badge-content">
           <font-awesome-icon :icon="['fas', 'fire-flame-curved']" />
           {{ nutritionData.calories }}kcal<br />
           <font-awesome-icon :icon="['fas', 'clock']" />
@@ -326,7 +326,6 @@ svg.fa-bookmark {
 .btn {
   background-color: #303c6c;
   color: #fff;
-  box-shadow: 5px 5px 10px #888888;
 }
 .btn:hover {
   background-color: #fff;
