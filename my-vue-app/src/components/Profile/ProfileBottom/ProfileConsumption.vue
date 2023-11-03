@@ -25,19 +25,19 @@
       <table class="table mx-auto">
         <tr>
           <th>Total Calories:</th>
-          <td>{{ totalCalories }} kcal</td>
+          <td>{{ totalCalories.toFixed(1) }} kcal</td>
         </tr>
         <tr>
           <th>Total Carbs:</th>
-          <td>{{ totalCarbs }} g</td>
+          <td>{{ totalCarbs.toFixed(1) }} g</td>
         </tr>
         <tr>
           <th>Total Fats:</th>
-          <td>{{ totalFats }} g</td>
+          <td>{{ totalFats.toFixed(1) }} g</td>
         </tr>
         <tr>
           <th>Total Protein:</th>
-          <td>{{ totalProtein }} g</td>
+          <td>{{ totalProtein.toFixed(1) }} g</td>
         </tr>
       </table>
     </div>
@@ -71,7 +71,7 @@ export default {
       this.mealplan = await this.$smAPI.GetConsumptionHistoryForDate(
         dateToPassinFB
       );
-
+      console.log(this.mealplan)
       //  reset values
        this.totalCalories = 0;
        this.totalCarbs = 0;
@@ -80,45 +80,61 @@ export default {
 
       for (const key in this.mealplan) {
           // this.totalCalories += this.mealplan.key.recipe.calories
-        this.totalCalories += Number(this.mealplan[key]['recipe']['nutrition']['calories']);
-        this.totalCarbs += Number(this.mealplan[key]['recipe']['nutrition']['carbs'].replace('g',''));
-        this.totalFats += Number(this.mealplan[key]['recipe']['nutrition']['fat'].replace('g',''));
-        this.totalProtein += Number(this.mealplan[key]['recipe']['nutrition']['protein'].replace('g',''));
+        let diffFormat=false;
+        if(this.mealplan[key]['recipe']['nutrition']['calories']){
+          diffFormat=true;
+        }
+        let totalCal= this.mealplan[key]['recipe']['nutrition']['calories'] ?? this.mealplan[key]['recipe']['nutrition']['nutrients'][0].amount
+        let carbs=this.mealplan[key]['recipe']['nutrition']['carbs'] ??  this.mealplan[key]['recipe']['nutrition']['nutrients'][3].amount
+        let protein=this.mealplan[key]['recipe']['nutrition']['protein'] ??  this.mealplan[key]['recipe']['nutrition']['nutrients'][8].amount
+        let fat=this.mealplan[key]['recipe']['nutrition']['fat'] ??  this.mealplan[key]['recipe']['nutrition']['nutrients'][1].amount
+        // console.log(this.mealplan[key]['recipe']['nutrition'])
+        if(diffFormat){
+          carbs=carbs.replace('g','')
+          protein=protein.replace('g','')
+          fat=fat.replace('g','')
+        }
+        this.totalCalories += Number(totalCal);
+        this.totalCarbs += Number(carbs);
+        this.totalFats += Number(fat);
+        this.totalProtein += Number(protein);
       }
       
     },
   },
   computed: {
     formattedDate() {
-      let tempDate = this.consumptionDate
-        .toLocaleString()
-        .split(",")[0]
-        .split("/");
-      let month = {
-        1: "January",
-        2: "February",
-        3: "March",
-        4: "April",
-        5: "May",
-        6: "June",
-        7: "July",
-        8: "August",
-        9: "September",
-        10: "October",
-        11: "November",
-        12: "December",
+      let date=this.consumptionDate.getDate();
+      let month=this.consumptionDate.getMonth();
+      let year=this.consumptionDate.getFullYear();
+
+      let monthObj={
+        '1':"January",
+        '2':"February",
+        '3':"March",
+        '4':"April",
+        '5':"May",
+        '6':"June",
+        '7':"July",
+        '8':"August",
+        '9':"September",
+        '10':"October",
+        '11':"November",
+        '12':"December",
       };
-      return tempDate[1] + " " + month[tempDate[0]] + " " + tempDate[2];
+      return date+" "+monthObj[month]+" "+year;
     },
   },
   watch: {
     consumptionDate: {
       handler(newDate, oldDate) {
         // Call the API when consumptionDate changes
-        let tempDate = newDate.toLocaleString().split(",")[0].split("/");
-        let dateToPassinFB =
-          tempDate[2] + "-" + tempDate[0] + "-" + tempDate[1];
-        this.GetConsumptionHistoryForDate(dateToPassinFB);
+        let passdate=newDate.getDate();
+        let passmonth=newDate.getMonth()+1;
+        let passyear=newDate.getFullYear();
+        let dateToPassinFB = passyear + "-" + passmonth + "-" + passdate;
+          console.log(dateToPassinFB)
+        this.GetConsumptionHistoryForDate(dateToPassinFB.toString());
       },
       immediate: true, // To trigger the handler when the component is first created
     },
