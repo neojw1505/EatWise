@@ -195,57 +195,79 @@ export default {
         this.userInfo.exclusionList = await this.$smAPI.removeIngredientFromExclude(ingredient);
         this.addIngredientsToFilter = ""; // Clear the input field after adding
     },
-  async changeSetting() {
-  try {
-    await this.$smAPI.auth.onAuthStateChanged(async (user) => {
-      if (user) {
-        const macrosObj = await this.$fitCalcAPI.getDailyCaloriesMacros(this.userInfo.age, this.userInfo.gender, this.userInfo.height, this.userInfo.weight, this.userInfo.dailyActivity, this.userInfo.goal) // update new daily calories 
-        const newDailyCalories = macrosObj.calorie;
-        const currentDietType = await this.$smAPI.getUserDietType();
-        console.log(`Current Diet Type: ${currentDietType}`);
-        await this.$smAPI.updateUserProfile(
-          user.uid,
-          this.userInfo.fullname,
-          "",
-          this.userInfo.DOB,
-          this.userInfo.gender,
-          this.userInfo.weight,
-          this.userInfo.height,
-          this.userInfo.goal,
-          this.userInfo.dailyActivity,
-          this.userInfo.exclusionList,
-          this.userInfo.dietType,
-          newDailyCalories // Update Daily Calories
-        );
+    async changeSetting() {
+      // Show a custom loading message using SweetAlert
+      Swal.fire({
+        title: 'Updating Profile',
+        html: '<div style="text-align: center;">' +
+        '<img src="https://i.pinimg.com/originals/50/7e/92/507e92e1d92210aac1a7130c8757a0dd.gif" class=""></img>' +
+        '<div>Loading...</div>' +
+        '</div>',
+        showConfirmButton: false, // Hide the "Okay" button
+        allowOutsideClick: false, // Prevent users from closing the message
+        allowEscapeKey: false,
+      })
+
+      try {
+        await this.$smAPI.auth.onAuthStateChanged(async (user) => {
+          if (user) {
+            const macrosObj = await this.$fitCalcAPI.getDailyCaloriesMacros(this.userInfo.age, this.userInfo.gender, this.userInfo.height, this.userInfo.weight, this.userInfo.dailyActivity, this.userInfo.goal);
+            const newDailyCalories = macrosObj.calorie;
+            const currentDietType = await this.$smAPI.getUserDietType();
+            console.log(`Current Diet Type: ${currentDietType}`);
+            
+            await this.$smAPI.updateUserProfile(
+              user.uid,
+              this.userInfo.fullname,
+              "",
+              this.userInfo.DOB,
+              this.userInfo.gender,
+              this.userInfo.weight,
+              this.userInfo.height,
+              this.userInfo.goal,
+              this.userInfo.dailyActivity,
+              this.userInfo.exclusionList,
+              this.userInfo.dietType,
+              newDailyCalories // Update Daily Calories
+            );
+            
+            // Update Diet Type
+            const newDietType = this.userInfo.dietType
+            console.log(`New Diet Type: ${newDietType}`);
+            
+            if (currentDietType != newDietType) {
+              // Refresh meal plan if new dietType is different from the initial one
+              await this.$smAPI.setBreakfastRecipeInFB()
+              await this.$smAPI.setLunchRecipeInFB()
+              await this.$smAPI.setDinnerRecipeInFB()
+              console.log("Meal Plan refreshed to accommodate new Diet Type");
+            }
+
+            // Close the loading message when the operation is complete
+            Swal.close();
+
+            // Show a success message
+            Swal.fire({
+              title: 'Profile Updated',
+              text: 'Profile successfully updated!',
+              icon: 'success',
+            });
+          }
+        });
+      } catch (error) {
+        console.error(error);
         
-        // Update Diet Type
-        const newDietType = this.userInfo.dietType
-        console.log(`New Diet Type: ${newDietType}`);
-        if (currentDietType != newDietType){
-          // refresh meal plan if new dietType different from initial
-          await this.$smAPI.setBreakfastRecipeInFB()
-          await this.$smAPI.setLunchRecipeInFB()
-          await this.$smAPI.setDinnerRecipeInFB()
-          console.log("Meal Plan refreshed to accomodate new Diet Type");
-        }
+        // Close the loading message when an error occurs
+        Swal.close();
+
+        // Show an error message
         Swal.fire({
-          title: 'Profile Updated',
-          text: 'Profile successfully updated!',
-          icon: 'success',
+          title: 'Error',
+          text: 'An error occurred while updating the profile',
+          icon: 'error',
         });
       }
-    });
-  } catch (error) {
-    console.error(error);
-    
-      // Show an error message using SweetAlert
-      Swal.fire({
-        title: 'Error',
-        text: 'An error occurred while updating the profile',
-        icon: 'error',
-      });
-    }
-  },
+    },
  
     async getUserProfile(){
       let userDetails=await this.$smAPI.getLoginUserProfile();
