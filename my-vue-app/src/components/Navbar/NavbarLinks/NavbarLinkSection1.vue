@@ -10,7 +10,7 @@
 </template>
 
 <script>
-// import NavbarlinkCard from "./NavbarlinkCard.vue";
+import NavbarlinkCard from "./NavbarlinkCard.vue";
 
 export default {
   name: "NavbarLinkSection1",

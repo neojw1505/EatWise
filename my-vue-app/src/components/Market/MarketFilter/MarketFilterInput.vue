@@ -5,7 +5,7 @@
     <MarketFilterPrice @getPrice="handlePrice"/>
     <MarketFilterSuperMarket @getSupermarket="handleSupermarket"/>
     <div class="d-flex justify-content-end">
-    <button class="btn border rounded-3 fw-semibold" style="background-color: #F4976C;" @click="passInput">Filter</button>
+    <button class="btn border rounded-3 fw-semibold" style="background-color: #7A8CEA;" @click="passInput">Filter</button>
     </div>
   </div>
 </template>

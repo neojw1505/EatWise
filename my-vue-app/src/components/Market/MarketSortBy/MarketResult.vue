@@ -1,6 +1,6 @@
 <template>
-  <div class="p-4 pt-2 shadow border rounded-4 my-3 mt-4 d-flex row" style="background:linear-gradient(180deg, rgba(0, 0, 0, 0.71) 1%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%)">
-    <div v-if="visibleItems.length > 0" class="d-flex flex-wrap">
+  <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4 d-flex row" style="background:#b7b3b3">
+    <div v-if="visibleItems.length > 0" class="d-flex flex-wrap mx-auto justify-content-center">
       <MarketPreviewCard
         v-for="product in visibleItems"
         :ProductData="product"

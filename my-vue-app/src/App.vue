@@ -17,7 +17,6 @@
     </div>
     <br /> -->
   <router-view> 
-    <Navbar/>
   </router-view>
 </template>
 

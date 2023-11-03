@@ -2,15 +2,16 @@
   <!-- <router-link :to="routerTO"> -->
 <a :href="ProductData.product_link" target="_blank" class="text-decoration-none">
   <div class="card col-4 cardStyle mx-3 py-3 px-0 my-3 " >
-    <h5 class="card-text border bg-primary-subtle mx-auto rounded-4 p-1 fw-bold">{{ ProductData.supermarket_name }}</h5>
     <div class="text-center">
       <img class="card-img-top mx-0 rounded-4" :src="ProductData.product_img" alt="Product Image" />
+      
+      <h5 class="card-text border bg-primary-subtle mx-auto rounded-4 mt-2 py-2 fw-bold">{{ ProductData.supermarket_name }}</h5>
       <div class="card-title fw-bold text-white" style="height: 25px">
         {{ formattedProductName }}
       </div>
     </div>
     <div class="card-text fw-bold mx-auto text-white">{{ ProductData.product_price }}</div>
-    <div class="card-text fw-bold mx-auto text-white">{{ ProductData.product_promo }}</div>
+    <div class="card-text bg-warning rounded-4 p-2 mt-2 fw-bold mx-auto text-white">{{ ProductData.product_promo }}</div>
   </div>
 </a>
   
@@ -49,5 +50,8 @@ export default {
 }
 .cardStyle:hover {
   transform: scale(1.05); /* Scale up by 10% on hover */
+}
+img{
+  width:80%;
 }
 </style>

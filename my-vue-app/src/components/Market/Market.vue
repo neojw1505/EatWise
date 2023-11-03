@@ -1,20 +1,26 @@
 <template>
   <div class="overall">
     <Navbar />
-    <div class="mx-auto" style="padding-top:80px">
-      <h2 class="m-3 text-white fw-bold fs-1">Market Place</h2>
-      <div class="mx-3 container row mx-auto" style="max-width: 1200px">
+    <div class="mx-auto" >
+      <div class="header">
+        <!-- Add background Image -->
+        <div class="img">
+          <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:100px; padding-left:30px; font-size:60px">Market Place</h2>
+        </div>
+      </div>
+
+      <div class="mx-3 container row mx-auto" style="max-width: 1400px">
         <!-- left side -->
 
-        <div class="col-md-12 col-lg-4 mb-5" v-if="showFilter">
+        <div class="col-md-12 col-sm-12 col-lg-4 mb-5" v-if="showFilter">
             <MarketFilter @getInput="handleInput"/>
         </div>
         <!-- right side -->
-        <div class="col col-lg-8 col-md-12">
+        <div class="col">
           <!-- sort by -->
           <h5 class="fw-bold text-white fs-1">Sort By:</h5>
           <div>
-            <div class="d-flex  flex-wrap">
+            <div class="d-flex flex-wrap mx-auto">
               <MarketSortBy
                 v-for="(bool,option) in sortOptions"
                 :key="option"
@@ -22,8 +28,8 @@
                 :bool="bool"
                 @isCheck="handdleCheckoption"
               />
-              <button class="btn btn-light rounded-4" @click="toggleFilter">
-          <font-awesome-icon :icon="['fas', 'filter']" /> Filter 
+              <button class="btn btn-dark rounded-4" @click="toggleFilter">
+                Apply Filter <font-awesome-icon :icon="['fas', 'filter']" /> 
         </button>
             </div>
           </div>
@@ -128,11 +134,11 @@ export default {
 </script>
 
 <style scoped>
-.overall{
-  /* background-image: url(../homepageAsset/marketbg.jpeg); */
+.img{
+  background-image: url(../homepageAsset/marketplacebackground.jpeg);
   width: 100%;
-  height: 100%;
-  object-fit: cover;
+  height: 50vh;
+  object-fit: fill;
   background-size: 100%;
   background-repeat: no-repeat;
 }
