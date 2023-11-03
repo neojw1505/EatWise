@@ -1,19 +1,17 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light mx-auto"
-    style="background-color: #7A8CEA"
-  >
+    class="navbar navbar-expand-lg navbar-light mx-auto border shadow rounded-6 px-3"
+    style="background-color: #ffff">
     <div class="container-fluid">
       <div class="d-flex">
         <!-- eatwise logo and dropdown button -->
         <NavbarHamburger />
-        <NavbarLogo />
+        <NavbarLogo /> 
       </div>
 
       <div
         class="collapse navbar-collapse justify-content-between"
-        id="navbarSupportedContent"
-      >
+        id="navbarSupportedContent">
         <!-- show the left logos -->
         <NavbarLinkSection1 />
         <NavbarLinkSection2 />
@@ -23,14 +21,14 @@
 </template>
 
 <script>
-import NavbarLinkSection1 from "./NavbarLinks/NavbarLinkSection1.vue"
-import NavbarLinkSection2 from "./NavbarLinks/NavbarLinkSection2.vue"
+// import NavbarLinkSection1 from "./NavbarLinks/NavbarLinkSection1.vue"
+// import NavbarLinkSection2 from "./NavbarLinks/NavbarLinkSection2.vue"
 
 export default {
   name: 'Navbar',
-  components:{
-    NavbarLinkSection1, NavbarLinkSection2
-  },
+  // components:{
+  //   NavbarLinkSection1, NavbarLinkSection2
+  // },
 };
 </script>
 

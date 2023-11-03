@@ -17,7 +17,7 @@
     </div>
     <br /> -->
   <router-view> 
-    <Market/>
+    <Navbar/>
   </router-view>
 </template>
 

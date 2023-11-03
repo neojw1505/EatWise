@@ -10,7 +10,7 @@
 </template>
 
 <script>
-import NavbarlinkCard from "./NavbarlinkCard.vue";
+// import NavbarlinkCard from "./NavbarlinkCard.vue";
 
 export default {
   name: "NavbarLinkSection1",
@@ -23,7 +23,7 @@ export default {
       linksToPages1: [
         {
           linkName: "Find Recipes",
-          linkIcon: ["fas", "bowl-rice"],
+          linkIcon: ["fas", "bowl-food"],
           routeTo: "/find-recipes",
         },
         {
