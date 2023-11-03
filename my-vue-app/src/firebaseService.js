@@ -1,7 +1,8 @@
 // this file will contain methods to fetch data from firebase
-import { getDatabase, ref, get, set, remove, update } from "firebase/database";
+import { getDatabase, ref, get, set, remove, update, runTransaction } from "firebase/database";
 import { initializeApp } from "firebase/app";
 import firebaseConfig from "./firebaseConfig"; // Import your Firebase configuration
+import spoonacularObj from './api/spoonacular';
 import {
   getAuth,
   createUserWithEmailAndPassword,
@@ -15,7 +16,8 @@ import {
   reauthenticateWithCredential,
   updatePassword,
   sendPasswordResetEmail,
-  EmailAuthProvider
+  EmailAuthProvider,
+  fetchSignInMethodsForEmail,
 } from "firebase/auth";
 
 // Initialize Firebase
@@ -70,13 +72,12 @@ export const createUser = async (
       profilePhoto: user.photoURL,
       email: user.email,
       isEmailVerified: user.emailVerified,
-      ingredientRemove:ingredientRemove,
+      ingredientRemove: ingredientRemove,
       DailyCalories:DailyCalories,
       dietType:dietType
     });
 
     console.log("User data stored in Realtime Database");
-
     // Send email verification
     sendEmailVerification(user)
       .then(() => {
@@ -267,11 +268,10 @@ export const passwordReset = async (email) => {
     throw error;
   }
 };
-
 // Reference to the "users" node
-// const usersRef = ref(database, "users");
 
-// // Remove the "users" node
+// Remove the "users" node
+// const usersRef = ref(database, "users");
 // remove(usersRef)
 //   .then(() => {
 //     console.log("Users node removed successfully.");
@@ -280,6 +280,811 @@ export const passwordReset = async (email) => {
 //     console.error("Error removing users node:", error);
 //   });
 
+// ##################################################################################################//
+
+// ##### Breakfast ###### //
+export const setBreakfastRecipeInFB = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/breakfast');
+      const snapshot = await get(userRef);
+      const breakfastRecipeObj = await spoonacularObj.getBreakfastRecipe();
+      const breakfastRecipeNutrition = await spoonacularObj.getSelectedRecipeNutritions(
+        breakfastRecipeObj[0].id
+      );
+
+      if (!snapshot.exists()) {
+        // Create the path if it doesn't exist
+        await set(userRef, {
+          recipe: breakfastRecipeObj,
+          nutrition: breakfastRecipeNutrition
+        });
+
+        console.log('created breakfast recipe successfully');
+        
+        const snapshot = await get(userRef)
+        return snapshot.val();
+      } else {
+        // Update the data if the path exists
+        await update(userRef, {
+          recipe: breakfastRecipeObj,
+          nutrition: breakfastRecipeNutrition
+        });
+        console.log('updated breakfast recipe successfully');
+      }
+      
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getBreakfastRecipeFromFB = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/breakfast');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        // If the data exists, return it
+        console.log('Retrieved breakfast recipe successfully');
+        return snapshot.val();
+      } else {
+        // If the data doesn't exist, you may want to handle this case, e.g., set the breakfast recipe
+        console.log('Breakfast recipe data not found.');
+        return null; // Return null if data doesn't exist
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+// ##### Lunch ###### //
+export const setLunchRecipeInFB = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/lunch');
+      const snapshot = await get(userRef);
+      const lunchRecipeObj = await spoonacularObj.getLunchRecipe();
+      const lunchRecipeNutrition = await spoonacularObj.getSelectedRecipeNutritions(
+        lunchRecipeObj[0].id
+      );
+
+      if (!snapshot.exists()) {
+        // Create the path if it doesn't exist
+        await set(userRef, {
+          recipe: lunchRecipeObj,
+          nutrition: lunchRecipeNutrition
+        });
+        console.log('created lunch recipe successfully');
+
+        const snapshot = await get(userRef)
+        return snapshot.val();
+      } else {
+        // Update the data if the path exists
+        await update(userRef, {
+          recipe: lunchRecipeObj,
+          nutrition: lunchRecipeNutrition
+        });
+        console.log('updated lunch recipe successfully');
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getLunchRecipeFromFB = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/lunch');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        // If the data exists, return it
+        console.log('Retrieved lunch recipe successfully');
+        return snapshot.val();
+      } else {
+        // If the data doesn't exist, you may want to handle this case, e.g., set the lunch recipe
+        console.log('lunch recipe data not found.');
+        return null; // Return null if data doesn't exist
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+// #### DINNER ######## //
+export const setDinnerRecipeInFB = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/dinner');
+      const snapshot = await get(userRef);
+      const dinnerRecipeObj = await spoonacularObj.getDinnerRecipe();
+      const dinnerRecipeNutrition = await spoonacularObj.getSelectedRecipeNutritions(
+        dinnerRecipeObj[0].id
+      );
+
+      if (!snapshot.exists()) {
+        // Create the path if it doesn't exist
+        await set(userRef, {
+          recipe: dinnerRecipeObj,
+          nutrition: dinnerRecipeNutrition
+        });
+        console.log('created dinner recipe successfully');
+        const snapshot = await get(userRef)
+        return snapshot.val();
+      } else {
+        // Update the data if the path exists
+        await update(userRef, {
+          recipe: dinnerRecipeObj,
+          nutrition: dinnerRecipeNutrition
+        });
+        console.log('updated dinner recipe successfully');
+      }
+
+      return snapshot.val();
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.error(error);
+  }
+};
+
+export const getDinnerRecipeFromFB = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/dinner');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        // If the data exists, return it
+        console.log('Retrieved dinner recipe successfully');
+        return snapshot.val();
+      } else {
+        // If the data doesn't exist, you may want to handle this case, e.g., set the dinner recipe
+        console.log('dinner recipe data not found.');
+        return null; // Return null if data doesn't exist
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+// #### Recipe of the Day ####### // 
+export const setRecipeOfDayInFB = async () => {
+  try {
+    if (auth.currentUser){
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/recipeOfDay');
+      const snapshot = await get(userRef);
+      const RecipeOfDayObj = await spoonacularObj.getRandomRecipe()
+     
+      if (!snapshot.exists()){
+        await set(userRef, {
+          recipes: RecipeOfDayObj,
+        });
+        console.log('updated recipe of day recipe successfully');
+        
+        const snapshot = await get(userRef)
+        return snapshot.val();
+
+      } else {
+        await update(userRef, {
+          recipes: RecipeOfDayObj,
+        })
+        console.log("updated recipe of day");
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getRecipeOfDayFromFB = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/recipeOfDay');
+      const snapshot = await get(userRef);
+
+      return snapshot.val()
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+// ###### Random Food Joke ############## //
+export const setRandomFoodJokeInFB = async () => {
+  try {
+    if (auth.currentUser){
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/randomFoodJoke');
+      const snapshot = await get(userRef);
+      const RandomFoodJokeObj = await spoonacularObj.getRandomFoodJoke()
+
+      if (!snapshot.exists()){
+        await set(userRef, {
+          joke: RandomFoodJokeObj,
+        });
+        console.log('updated RandomFoodJokeObj successfully');
+        const snapshot = await get(userRef);
+        return snapshot.val();
+      } else {
+        await update(userRef, {
+          joke: RandomFoodJokeObj,
+        });
+      } 
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getRandomFoodJokeFromFB = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/randomFoodJoke');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        // If the data exists, return it
+        console.log('Retrieved randomFoodJoke successfully');
+        return snapshot.val();
+      } else {
+        // If the data doesn't exist, you may want to handle this case, e.g., set the dinner recipe
+        console.log('randomFoodJoke data not found.');
+        return null; // Return null if data doesn't exist
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+// ###### Random Food Fact ############## //
+export const setRandomFoodFactInFB = async () => {
+  try {
+    if (auth.currentUser){
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/randomFoodFact');
+      const snapshot = await get(userRef);
+      const RandomFoodFactObj = await spoonacularObj.getRandomFoodFact()
+
+      if (!snapshot.exists()){
+        console.log('updated RandomFoodFactObj successfully');
+        await set(userRef, {
+          Fact: RandomFoodFactObj,
+        });
+        const snapshot = await get(userRef);
+        return snapshot.val();
+      } else {
+        await update(userRef, {
+          Fact: RandomFoodFactObj,
+        });
+        console.log('updated fact successfully');
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const getRandomFoodFactFromFB = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/randomFoodFact');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        // If the data exists, return it
+        console.log('Retrieved randomFoodFact successfully');
+        return snapshot.val();
+      } else {
+        // If the data doesn't exist, you may want to handle this case, e.g., set the dinner recipe
+        console.log('randomFoodFact data not found.');
+        return null; // Return null if data doesn't exist
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.error(error);
+    throw error;
+  }
+}
+
+// ####### Saved Recipes ######## //
+export const addSavedRecipesInFB = async (recipeId, newSavedRecipe, nutritionData) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/savedRecipes');
+
+      await runTransaction(userRef, (currentData) => {
+        if (!currentData) {
+          currentData = {};
+        }
+        // Modify the currentData with your updates
+        currentData[recipeId] = newSavedRecipe;
+        currentData[recipeId]['nutrition'] = nutritionData;
+        return currentData; // Return the updated data
+      });
+
+      console.log('Added savedRecipes successfully');
+    } else {
+      console.log('User is not authenticated.');
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export const removeSavedRecipeInFB = async (recipeId) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/savedRecipes');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        const savedRecipes = snapshot.val();
+
+        // Check if the recipeId exists in the savedRecipes object
+        if (savedRecipes.hasOwnProperty(recipeId)) {
+          // Remove the specific recipeId from savedRecipes
+          delete savedRecipes[recipeId];
+
+          // Update the data in Firebase with the updated savedRecipes
+          await set(userRef, savedRecipes);
+
+          console.log('Recipe removed from savedRecipes successfully');
+        } else {
+          console.log('Recipe not found in savedRecipes.');
+        }
+      } else {
+        console.log('User has no saved recipes.');
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+};
+
+export const isRecipeAlreadyBookmarked = async (recipeId) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/savedRecipes');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        const savedRecipes = snapshot.val();
+        
+        // Check if the recipeId is a key in the savedRecipes object
+        const isBookmarked = savedRecipes.hasOwnProperty(recipeId);
+
+        return isBookmarked;
+      } else {
+        console.log('recipeId not bookmarked.');
+        return false; // Return false if there are no saved recipes
+      }
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export const getUserSavedRecipes = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/savedRecipes');
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) { 
+        return snapshot.val()
+      } else {
+        await set(userRef, {})
+        return {}
+      }
+    }
+  } catch (error){
+    console.log(error);
+    throw error
+  }
+}
+
+export const addIngredientToExclude = async (ingredient) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/ingredientRemove');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        // If ingredientRemove exists, retrieve its current value
+        let currentIngredientRemove = snapshot.val();
+        
+        // Check if it's an array and not already containing the ingredient
+        if (Array.isArray(currentIngredientRemove) && !currentIngredientRemove.includes(ingredient)) {
+          currentIngredientRemove.push(ingredient);
+          
+          // Update the ingredientRemove key with the updated list
+          await set(userRef, currentIngredientRemove);
+          const snapshot = await get(userRef)
+          return snapshot.val()
+        }
+        return snapshot.val()
+      } else {
+        // If ingredientRemove doesn't exist, create a new array with the ingredient
+        await set(userRef, [ingredient]);
+        const snapshot =  await get(userRef)
+        return snapshot.val()
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export const removeIngredientFromExclude = async (ingredient) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      // Form a reference to the user's data in the database
+      const userRef = ref(database, '/users/' + userUid + '/ingredientRemove');
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        // If ingredientRemove exists, retrieve its current value
+        let currentIngredientRemove = snapshot.val();
+
+        // Check if it's an array and if it contains the ingredient
+        if (Array.isArray(currentIngredientRemove) && currentIngredientRemove.includes(ingredient)) {
+          // Remove the ingredient from the list
+          currentIngredientRemove = currentIngredientRemove.filter(item => item !== ingredient);
+
+          // Update the ingredientRemove key with the updated list
+          await set(userRef, currentIngredientRemove);
+          const updatedSnapshot = await get(userRef);
+          return updatedSnapshot.val();
+        }
+      }
+      return snapshot.val(); // Return the existing list (unchanged)
+    } else {
+      console.log('User is not authenticated.');
+      return null; // Return null if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export const SetEatenBreakfastinFB = async (breakfastRecipeObj, breakfastNutrition, date, time) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/breakfast');
+      
+      // Create an object for breakfast data
+      breakfastRecipeObj['nutrition'] = breakfastNutrition
+      const breakfastData = {
+        recipe: breakfastRecipeObj,
+        timeConsumed: time
+      };
+
+      // Set the breakfast data under the userRef
+      await set(userRef, breakfastData);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const RemoveBreakfastConsumptionHistory = async (date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/breakfast');
+      
+      // Remove the breakfast data under the userRef
+      await remove(userRef);
+      console.log('removed breakfast from consumption history at date: ' + date);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const SetEatenLunchinFB = async (lunchRecipeObj, lunchNutrition, date, time) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/lunch');
+      
+      // Update the lunchRecipeObj with nutrition
+      lunchRecipeObj['nutrition'] = lunchNutrition;
+
+      // Create an object for lunch data
+      const lunchData = {
+        recipe: lunchRecipeObj,
+        timeConsumed: time
+      };
+
+      // Set the lunch data under the userRef
+      await set(userRef, lunchData);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const RemoveLunchConsumptionHistory = async (date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/lunch');
+      
+      // Remove the lunch data under the userRef
+      await remove(userRef);
+      console.log('removed lunch from consumption history at date: ' + date);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const SetEatenDinnerinFB = async (dinnerRecipeObj, dinnerNutrition, date, time) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/dinner');
+      
+      // Update the dinnerRecipeObj with nutrition
+      dinnerRecipeObj['nutrition'] = dinnerNutrition;
+
+      // Create an object for dinner data
+      const dinnerData = {
+        recipe: dinnerRecipeObj,
+        timeConsumed: time
+      };
+
+      // Set the dinner data under the userRef
+      await set(userRef, dinnerData);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const RemoveDinnerConsumptionHistory = async (date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/dinner');
+      
+      // Remove the dinner data under the userRef
+      await remove(userRef);
+      console.log('removed dinner from consumption history at date: ' + date);
+    }
+  } catch (error) {
+    console.log(error);
+  }
+}
+
+export const GetConsumptionHistoryForDate = async (date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date);
+
+      // Retrieve the data for the specified date
+      const snapshot = await get(userRef);
+
+      if (snapshot.exists()) {
+        const consumptionData = snapshot.val();
+        return consumptionData;
+      } else {
+        console.log("No data found for the specified date");
+        return null;
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    return null;
+  }
+}
+
+export const isMealAlreadySetForDate = async (mealType, date) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database for the specified meal type
+      const userRef = ref(database, '/users/' + userUid + '/consumptionHistory/' + date + '/' + mealType);
+      const snapshot = await get(userRef);
+
+      // Check if data exists for the specified meal type and date
+      return snapshot.exists();
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+export const deleteSavedRecipes = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+
+      // Form a reference to the user's data in the database for the specified meal type
+      const userRef = ref(database, '/users/' + userUid + '/savedRecipes');
+      await remove(userRef);
+
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+// To set a saved recipe as breakfast in mealplan
+export const setBreakfastFromSavedRecipes = async (breakfastRecipeObj, breakfastNutrition) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/breakfast');
+      await update(userRef, {
+        recipe: [breakfastRecipeObj],
+        nutrition: breakfastNutrition
+      });
+      console.log("Update Breakfast!");
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+// To set a saved recipe as lunch in mealplan
+export const setLunchFromSavedRecipes = async (lunchRecipeObj, lunchNutrition) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/lunch');
+      await update(userRef, {
+        recipe: [lunchRecipeObj],
+        nutrition: lunchNutrition
+      });
+      console.log("Update Lunch!");
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+// To set a saved recipe as dinner in mealplan
+export const setDinnerFromSavedRecipes = async (dinnerRecipeObj, dinnerNutrition) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/mealplan/dinner');
+      await update(userRef, {
+        recipe: [dinnerRecipeObj],
+        nutrition: dinnerNutrition
+      });
+      console.log("Update Dinner!");
+    } else {
+      console.log('User is not authenticated.');
+      return false; // Return false if the user is not authenticated
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 
@@ -467,6 +1272,7 @@ export const fetchProductsByTitle = async (title, ascending = true) => {
     throw error;
   }
 };
+
 
 // Function to fetch products by product price with optional ascending sorting
 export const fetchProductsByPrice = async (price, ascending = true) => {

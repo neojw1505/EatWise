@@ -10,13 +10,13 @@
             Your custom plan is ready, and you're one step closer to healthy
             eating.
           </p>
-          <h3>Your net {{ default_state ? "Kilojoules" : "Calories" }} goal is:</h3>
+          <h3>Your net {{ default_state ? "Calories" : "Kilojoules" }} goal is:</h3>
         </div>
         <div class="text-group">
           <div class="d-flex justify-content-between align-items-center">
-            <h1 class="col-6">{{ value }}</h1>
-            <button class="btn btn-primary col-6" @click="convertToCalories()">
-              {{ default_state ? "Kilojoules" : "Calories" }}
+            <h1 class="col-6">{{ value }} {{ default_state ? "(kcal)" : "(kJ)" }}</h1>
+            <button class="btn btn-primary col-6" @click="toggleConversion()">
+              {{ default_state ? "Calories" : "Kilojoules" }}
             </button>
           </div>
         </div>
@@ -48,23 +48,26 @@ export default {
   props: ["registerUser"],
   data() {
     return {
+      calorie: '',
       value: "Calculating...",
       default_state: true,
     };
   },
   methods: {
-    convertToCalories() {
+    toggleConversion() {
       if (this.default_state) {
-        this.value = this.value * 239;
-        this.default_state = false;
+        this.value = (this.value * 4.18).toFixed(2);
       } else {
-        this.value = this.value / 239;
-        this.default_state = true;
+        this.value = (this.value / 4.18).toFixed(2);
       }
+      this.default_state = !this.default_state;
+    },
+    formatValue() {
+      return this.default_state ? this.value : this.value.replace(/(\d)(?=(\d{3})+(?!\d))/g, '$1,');
     },
     goNext() {
       this.$emit("buttonAction", "next");
-      this.$emit("passDailyCalorie", this.value);
+      this.$emit("passDailyCalorie", this.calorie);
     },
     goPrevious() {
       this.$emit("buttonAction", "previous");
@@ -78,6 +81,7 @@ export default {
         this.registerUser.activityLevel,
         this.registerUser.goal
       );
+      this.calorie=Math.floor(temp.calorie);
       this.value=Math.floor(temp.calorie);
     },
   },

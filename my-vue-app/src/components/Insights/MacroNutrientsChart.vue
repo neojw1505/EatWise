@@ -29,11 +29,11 @@ export default {
   data() {
     return {
       chartData: {
-        labels: ['Protein', 'Fats', 'Vitamins', 'Minerals', 'Water', 'Carbs'],
+        labels: ['Protein', 'Fats', 'Carbs'],
         datasets: [
           {
-            data: [2000, 1500, 1000, 500, 2500, 3000], // Replace with your dummy data
-            backgroundColor: ['red', 'blue', 'green', 'orange', 'purple', 'pink'],
+            data: [500, 2500, 3000], // Replace with your dummy data
+            backgroundColor: ['orange', 'purple', 'pink'],
           },
         ],
       },

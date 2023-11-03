@@ -1,5 +1,5 @@
 <template>
-    <!-- <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
+  <!-- <button @click="fetchProductsByPromo">Fetch Supermarket Data</button>
     Display supermarket data here
     <div class="owl-carousel">
       <div class="card" style="width: 18rem" v-for="product in supermarketData" :key="product.product_link">
@@ -16,46 +16,43 @@
       </div>
     </div>
     <br /> -->
-    <router-view>  
-        <Home/>
-    </router-view>
-
+  <router-view> </router-view>
 </template>
 
 <script>
-import Home from './components/Home.vue';
-import MealPlan from './components/MealPlan/MealPlan.vue';
-
-
-
 export default {
-    data() {
-        return {
-            supermarketData: [],
-            ascending: true, // default value is true, sort in increasing price
-        };
+  data() {
+    return {
+      supermarketData: [],
+      ascending: true, // default value is true, sort in increasing price
+    };
+  },
+  methods: {
+    async fetchProductsByPromo() {
+      this.supermarketData = await this.$smAPI.fetchProductsByPromo(false);
+      this.initOwlCarousel();
     },
-    methods: {
-        async fetchProductsByPromo() {
-            this.supermarketData = await this.$smAPI.fetchProductsByPromo(false);
-            this.initOwlCarousel();
-        },
-        initOwlCarousel() {
-            $(document).ready(function () {
-                $(".owl-carousel").owlCarousel({
-                    items: 3
-                });
-            });
-        },
-        async fetchProductsByPromoAndSupermarket() {
-            this.supermarketData =
-                await this.$smAPI.fetchProductsByPromoAndSupermarket(this.supermarketName, false);
-        },
+    initOwlCarousel() {
+      $(document).ready(function () {
+        $(".owl-carousel").owlCarousel({
+          items: 3,
+        });
+      });
     },
-    components: { MealPlan, Home }
+    async fetchProductsByPromoAndSupermarket() {
+      this.supermarketData =
+        await this.$smAPI.fetchProductsByPromoAndSupermarket(
+          this.supermarketName,
+          false
+        );
+    },
+  },
 };
-
 </script>
 
 <style>
+* {
+  cursor: url(https://cur.cursors-4u.net/nature/nat-10/nat927.ani),
+    url(https://cur.cursors-4u.net/nature/nat-10/nat927.png), auto !important;
+}
 </style>

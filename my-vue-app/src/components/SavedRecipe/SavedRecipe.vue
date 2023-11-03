@@ -1,38 +1,142 @@
 <template>
-  <div>
+    <div>
     <Navbar />
     <div class="mx-auto">
       <h2 class="m-3">Saved Recipes</h2>
+      <button @click="deletela">hello</button>
+  <div class="mx-auto " style="max-width: 1200px">
+    <div class="p-4 pt-2 shadow border rounded-4 my-3 d-flex mx-3 d-flex row" style="background-color: #FBE8A6;">
+      
+      <div v-if="visibleItems.length > 0" class="d-flex flex-wrap">
+        <SavedRecipeCard
+          v-for="item in visibleItems"
+          :key="item.id"
+          :recipe="item"
+          :routerTO="item.id"
+          style="text-decoration: none"
+        />
+      </div>
+      
+      <div v-else-if="visibleItems.length == 0 && data!=null" class="mt-3 d-flex mx-auto justify-content-center">
+      <div class="mx-auto text-center">
+        No Result Found
+        <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
+      </div>
+      </div>
 
-      <div class="mx-auto" style="max-width: 1700px">
-        <div class="p-4 pt-2 shadow border rounded-4 my-3 d-flex mx-3">
-          <div
-            class="row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4 row-cols-xl-5 row-cols-xxl-6 justify-content-start g-4"
-            v-if="data"
-          >
-            <!-- <FindRecipePreviewCard
-              v-for="item in data"
-              :key="item.id"
-              :recipe="item"
-              :routerTO="item.id"
-              style="text-decoration: none"
-            /> -->
-          </div>
+      <div v-else class="mt-3 d-flex mx-auto justify-content-center">
+      <div class="mx-auto">
+        <div class="d-inline mx-auto">
+          <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
         </div>
       </div>
     </div>
+
+
+      <!-- buttons for pagination -->
+      <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
+        <button class="btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
+        <button class="btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
+      </div>
+      <!-- pages -->
+      <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
+      <button
+        v-for="page in limitedPages"
+        :key="page"
+        @click="goToPage(page)"
+        :class="{ 'active': page === currentPage }"
+        class="btn"
+      >
+        {{ page + 1 }}
+      </button>
+    </div>
+
+    </div>
+  </div>
+  </div>
   </div>
 </template>
 
 <script>
-
-export default {
+export default {  
   data() {
     return {
-      data: [{}],
+      data: null,
+      itemsPerPage: 40,
+      currentPage: 0,
     };
   },
-};
+  computed: {
+    maxPage() {
+      if(!this.data){
+        return ""
+      }
+      return Math.ceil(this.data.length / this.itemsPerPage) - 1;
+    },
+    visibleItems() {
+      if(!this.data){
+        return ""
+      }
+      const start = this.currentPage * this.itemsPerPage;
+      const end = start + this.itemsPerPage;
+      return this.data.slice(start, end);
+    },
+
+    limitedPages() {
+      // Determine the range of visible pages (last 5 pages or less)
+      const rangeStart = Math.max(0, this.currentPage - 4);
+      const rangeEnd = Math.min(this.maxPage, rangeStart + 4);
+      return Array.from({ length: rangeEnd - rangeStart + 1 }, (_, index) => rangeStart + index);
+    },
+  },
+  methods: {
+    async deletela(){
+      await this.$smAPI.deleteSavedRecipes();
+    },
+    
+    nextPage() {
+      if (this.currentPage < this.maxPage) {
+        this.currentPage++;
+        this.scrollToTop();
+      }
+    },
+    previousPage() {
+      if (this.currentPage > 0) {
+        this.currentPage--;
+        this.scrollToTop();
+      }
+    },
+    goToPage(page) {
+      this.currentPage = page;
+      this.scrollToTop();
+    },
+    scrollToTop() {
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    },
+    async getUserSavedRecipes() {
+      let temp = await this.$smAPI.getUserSavedRecipes();
+      this.data=[];
+      for(let recipe in temp){
+        this.data.push(temp[recipe]);
+      }
+      console.log(this.data);
+    },
+  },
+  async created(){
+    await this.getUserSavedRecipes();
+  }
+
+}
 </script>
 
-<style></style>
+<style scoped>
+.active {
+  color: white;
+  padding: 5px 10px;
+  margin: 0 3px;
+  border-radius: 5px;
+  border: 1px solid #d8d7d7;
+  cursor: pointer;
+}
+</style>
+

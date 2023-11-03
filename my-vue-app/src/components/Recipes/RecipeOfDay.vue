@@ -16,7 +16,6 @@
             <span v-for="(diet, index) in Diets" :key="index" class=" mx-2 px-2 py-2 col-3 my-1 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white;">{{ diet }} </span>
       </div>
     </div>
-
   </div>
 </template>
 
@@ -32,17 +31,40 @@ export default {
       imgUrl: "",
       CookingSteps: [],
       Summary: "",
-      windowWidth: window.innerWidth
+      windowWidth: window.innerWidth,
+      DailyCalories: 0,
+      RandomFoodJoke: '',
+      RandomFoodFact: ''
     };
   },
   created() {
-    this.getRandomRecipe(); // Automatically call getRandomRecipe on component load
+    // Call getRandomRecipe immediately on component load
+    this.getRandomRecipe();
+    this.getUserDailyCaloriesFromFB();
+    this.getRandomFoodJokeFromFB();
+    this.getRandomFoodFactFromFB();
+
+    // Calculate the time until midnight
+    const now = new Date();
+    const midnight = new Date(
+      now.getFullYear(),
+      now.getMonth(),
+      now.getDate() + 1, // Next day at midnight
+      0, 0, 0
+    );
+    const timeUntilMidnight = midnight - now;
+
+    // Schedule getRandomRecipe to run at midnight
+    setTimeout(() => {
+      this.getRandomRecipe();
+    }, timeUntilMidnight);
   },
 
   methods: {
     async getRandomRecipe() {
-      let RandomRecipeObj = await this.$spoonAPI.getRandomRecipe();
-      this.RandomRecipe = RandomRecipeObj.recipes[0];
+      let RandomRecipeObj = await this.$smAPI.getRecipeOfDayFromFB() ?? await this.$smAPI.setRecipeOfDayInFB();
+      console.log(RandomRecipeObj);
+      this.RandomRecipe = RandomRecipeObj.recipes.recipes[0];
       this.Title = this.RandomRecipe.title;
       this.DishTypes = this.RandomRecipe.dishTypes;
       this.Diets = this.RandomRecipe.diets;
@@ -50,11 +72,24 @@ export default {
       this.imgUrl = this.RandomRecipe.image;
       this.CookingSteps = this.RandomRecipe.analyzedInstructions;
       this.Summary = this.RandomRecipe.instructions;
-      console.log(this.CookingSteps);
     },
     onResize() {
       this.windowWidth = window.innerWidth
       // console.log(this.windowWidth)
+    },
+    async getRandomFoodJokeFromFB() {
+      let RandomFoodJokeObj = await this.$smAPI.getRandomFoodJokeFromFB() ?? await this.$smAPI.setRandomFoodJokeInFB();
+      this.RandomFoodJoke = RandomFoodJokeObj.joke.text
+      console.log(RandomFoodJokeObj.joke.text);
+    },
+    async getRandomFoodFactFromFB() {
+      let RandomFoodFactObj = await this.$smAPI.getRandomFoodFactFromFB() ?? await this.$smAPI.setRandomFoodFactInFB();
+      this.RandomFoodFact = RandomFoodFactObj.Fact.text
+      console.log(RandomFoodFactObj.Fact.text);
+    },
+    async getUserDailyCaloriesFromFB() {
+      let user = await this.$smAPI.getLoginUserProfile();
+      this.DailyCalories = user.DailyCalories;
     }
   },
   computed: {

@@ -6,6 +6,11 @@ import spoonacularObj from './api/spoonacular';
 import FitnessCalculatorObj from './api/fitness-calculator';
 import 'bootstrap/dist/css/bootstrap.min.css'
 import 'bootstrap/dist/js/bootstrap.min.js'
+import AOS from 'aos'
+import 'aos/dist/aos.css'
+
+//import eventBus
+import store from "./store"
 
 
 //Import Sweet Alert 2
@@ -24,7 +29,7 @@ library.add(fas);
 
 // Initialise app
 const app = createApp(App);
-
+AOS.init()
 // Register Sweet Alert 2
 app.use(VueSweetalert2);
 
@@ -52,4 +57,5 @@ function registerComponent(context, app) {
 const componentContext = import.meta.globEager('./components/**/*.vue');
 registerComponent(componentContext, app);
 app.use(router)
+app.use(store)
 app.mount('#app')

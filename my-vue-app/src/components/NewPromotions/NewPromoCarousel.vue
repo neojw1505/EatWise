@@ -2,19 +2,10 @@
   <div class="carousel-container">
     <h1 class="fw-bold text-center pb-4 pt-5" style="color:#fff; font-size:5vw;">Current <span style="color:#7A8CEA">Promotions</span></h1>
     <!-- creating slide container for RecommendedRecipes -->
-    <swiper class="carousel rounded-4 shadow-5 px-5 py-4 pt-5 mySwiper"
-    :slidesPerView="1"
-    :loop="true"
-    :centeredSlides="false"
-    :slidesPerGroupSkip="0"
-    :grabCursor="true"
-    :scrollbar="true"
+    <swiper class="carousel rounded-4 shadow-5 px-5 py-4 mySwiper"
     :navigation="true"
-    :pagination="{ clickable: true }"
+    :pagination="true"
     :modules="modules"
-    :keyboard="{
-      enabled: true,
-    }"
     :breakpoints="{
       '760': {
         slidesPerView: 1,
@@ -40,7 +31,7 @@
     </swiper>
 
     <div class="text-center pt-3" >
-        <button type="button" class="btn shadow" style="width: 30vw;">View More</button>
+        <button type="button" class="btn shadow" style="width: 300px;" @click="goToMarket">View More</button>
     </div>
 
   </div>
@@ -51,15 +42,12 @@ import { Swiper, SwiperSlide } from 'swiper/vue';
 
   // Import Swiper styles
 import 'swiper/css';
-
-import 'swiper/css/scrollbar';
 import 'swiper/css/navigation';
-import 'swiper/css/pagination';
-import { Keyboard, Scrollbar, Navigation, Pagination } from 'swiper/modules';
+import { Navigation, Pagination } from 'swiper/modules';
 export default {
   setup() {
       return {
-        modules: [Keyboard, Scrollbar, Navigation, Pagination],
+        modules: [Navigation, Pagination],
       };
     },
   components: {
@@ -96,6 +84,10 @@ export default {
           false
         );
     },
+    goToMarket(){
+      this.$store.dispatch('setviewPromo', true);
+      this.$router.push({ path: '/market' }); // Navigate to the receiver component
+    }
   },
 };
 </script>
