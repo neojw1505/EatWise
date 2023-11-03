@@ -1,10 +1,12 @@
 <template>
   <div>
     <div>        
-      <!-- <Navbar /> -->
+      <Navbar />
     </div>
-
     <div class="section1">
+      <div> 
+        <span class="d-flex text-center" style="justify-content: right;" ><Logout/></span>
+      </div>
     <ProfileTop :userName="ProfileName" />
     <!-- <hr
       class="border border-dark border-1 opacity-100 mx-3 mx-auto"
@@ -19,11 +21,13 @@
 
 <script>
 import Navbar from "../Navbar/Navbar.vue";
+import Logout from "./ProfileTop/Logout.vue";
 export default {
-  components: { Navbar },
+  components: { Navbar, Logout },
   data() {
     return {
-      ProfileName: '',
+      ProfileName: 'Welcome back, Jun Wei', 
+      // Added a placeholder here
     };
   },
  async created() {
@@ -43,17 +47,18 @@ export default {
 <style>
 .section1{
   background-image: url(../homepageAsset/profilepagebg.png);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   background-size: cover;
   background-repeat: no-repeat;
+  padding-top: 80px;
 }
 
 .section2{
   background-image: url(../homepageAsset/background-s3.png);
-  width: 100vw;
-  height: 100vh;
+  width: 100%;
+  height: 100%;
   object-fit: cover;
   background-size: cover;
   background-repeat: no-repeat;

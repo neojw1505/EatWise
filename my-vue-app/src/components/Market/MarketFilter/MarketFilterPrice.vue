@@ -1,5 +1,5 @@
 <template>
-    <div>
+    <div class="pt-2">
         <div class="my-2">
           <b> Price Range: </b>
           <input

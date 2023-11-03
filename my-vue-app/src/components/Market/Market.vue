@@ -1,8 +1,8 @@
 <template>
-  <div>
+  <div class="overall">
     <Navbar />
-    <div class="mx-auto">
-      <h2 class="m-3">Market Place</h2>
+    <div class="mx-auto" style="padding-top:80px">
+      <h2 class="m-3 text-white fw-bold fs-1">Market Place</h2>
       <div class="mx-3 container row mx-auto" style="max-width: 1200px">
         <!-- left side -->
         <div class="col-md-12 col-lg-4 mb-5">
@@ -11,7 +11,7 @@
         <!-- right side -->
         <div class=" col-lg-8 col-md-12">
           <!-- sort by -->
-          <h5 class="fw-bold ">Sort By:</h5>
+          <h5 class="fw-bold text-white fs-1">Sort By:</h5>
           <div>
             <div class="d-flex  flex-wrap">
               <MarketSortBy
@@ -27,6 +27,7 @@
           <MarketResult :result="dataResult"/>
         </div>
       </div>
+      
     </div>
   </div>
 </template>
@@ -118,4 +119,13 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.overall{
+  background-image: url(../homepageAsset/marketbg.jpeg);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+</style>

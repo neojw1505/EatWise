@@ -42,5 +42,6 @@ margin-top:10px;
 z-index: 1;
 
 position: fixed;
+z-index:2;
 }
 </style>
