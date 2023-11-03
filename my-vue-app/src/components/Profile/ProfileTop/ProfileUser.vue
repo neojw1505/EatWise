@@ -42,6 +42,7 @@ export default {
     methods:{
         async logout(){
             await this.$smAPI.logout();
+            this.$store.dispatch('setShowLoginNotification', false)
             this.$router.push({path:'/login'}).then(() => { this.$router.go() })
         },
         async getMaxCalories(){

@@ -1,10 +1,12 @@
 import { createStore } from 'vuex';
+import createPersistedState from 'vuex-persistedstate';
 
 export default createStore({
   state: {
     sharedData: null,
-    Ingredientquery:null,
+    Ingredientquery: null,
     viewPromo: false,
+    loginNotificationShown: false, // Add a flag for the notification
   },
   mutations: {
     setSharedData(state, data) {
@@ -15,6 +17,9 @@ export default createStore({
     },
     setviewPromo(state, data) {
       state.viewPromo = data;
+    },
+    setLoginNotificationShown(state, value) {
+      state.loginNotificationShown = value;
     },
   },
   actions: {
@@ -27,10 +32,15 @@ export default createStore({
     setviewPromo(context, data) {
       context.commit('setviewPromo', data);
     },
+    setShowLoginNotification(context, value) {
+      context.commit('setLoginNotificationShown', value);
+    },
   },
   getters: {
     getSharedData: (state) => state.sharedData,
     getIngredientquery: (state) => state.Ingredientquery,
     getviewPromo: (state) => state.viewPromo,
+    isLoginNotificationShown: (state) => state.loginNotificationShown,
   },
+  plugins: [createPersistedState({ paths: ['loginNotificationShown'] })],
 });
