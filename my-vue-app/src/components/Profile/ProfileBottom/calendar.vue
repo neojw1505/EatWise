@@ -72,9 +72,11 @@
     methods: {
       previousMonth() {
         this.currentMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() - 1, 1);
+        this.selectedDateOnCalendar=new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), 1)
       },
       nextMonth() {
         this.currentMonth = new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth() + 1, 1);
+        this.selectedDateOnCalendar=new Date(this.currentMonth.getFullYear(), this.currentMonth.getMonth(), 1)
       },
       selectDate(date) {
       // When a calendar cell is clicked, update the selected date.
