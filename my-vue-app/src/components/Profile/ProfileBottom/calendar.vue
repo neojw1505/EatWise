@@ -8,8 +8,8 @@
       <div class="d-flex" style="background-color: transparent;">
         <div v-for="day in days" class="calendar-day text-light" :key="day">{{ day }}</div>
       </div>
-      <div class="calendar-grid" style="background-color: rgba(255, 255, 255, 0.8);; ">
-        <div v-for="date in calendarDates" :key="date" class="calendar-cell d-flex justify-content-center align-items-center col-sm-7 col-xs-4 col-md-5 col-lg-10 " @click="selectDate(date)"
+      <div class="calendar-grid">
+        <div  v-for="date in calendarDates" :key="date" class="calendar-cell" @click="selectDate(date)"
         :class="{ 'selected-date': isDateSelected(date) }">
           {{ date }}
         </div>
@@ -63,7 +63,6 @@
           '11':"November",
           '12':"December",
         };
-        console.log(tempDate[1]+" "+month[tempDate[0]]+" "+tempDate[2])
         return tempDate[1]+" "+month[tempDate[0]]+" "+tempDate[2];
       }
     },
@@ -120,6 +119,10 @@
     padding: 10px;
     min-height: 50px;
     text-align: center;
+  }
+
+  .calendar-cell:hover {
+    cursor: pointer;
   }
   </style>
   

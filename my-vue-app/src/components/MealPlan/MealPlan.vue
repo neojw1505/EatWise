@@ -1,29 +1,30 @@
 <template>
   <div class="shadow rounded-4">
-    <h1 style="font-size: 100px; color:white">Meal <span style="color:#7A8CEA">Planner</span> </h1>
-    <div class="d-flex flex-wrap">
-      <div class="col d-flex justify-content-around">
+    <h1 class="text-center" style="color:white">Meal <span style="color:#7A8CEA">Planner</span> </h1>
+    <div class="row pt-5">
+     
+      <div class="col-4 justify-content-around">
         <BreakfastRecipe
           v-if="breakfastRecipe && breakfastNutrition"
           :recipeData="breakfastRecipe"
           :nutritionData="breakfastNutrition"
-          @refresh-recipe="refreshRecipe"
+          @refresh-recipe="refreshBreakfastRecipe"
         />
       </div>
-      <div class="col d-flex justify-content-around">
+      <div class="col-4 justify-content-around">
         <LunchRecipe
           v-if="lunchRecipe && lunchNutrition"
           :recipeData="lunchRecipe"
           :nutritionData="lunchNutrition"
-          @refresh-recipe="refreshRecipe"
+          @refresh-recipe="refreshLunchRecipe"
         />
       </div>
-      <div class="col d-flex justify-content-around">
+      <div class="col-4 justify-content-around">
         <DinnerRecipe 
           v-if="dinnerRecipe && dinnerNutrition"
           :recipeData="dinnerRecipe"
           :nutritionData="dinnerNutrition"
-          @refresh-recipe="refreshRecipe"
+          @refresh-recipe="refreshDinnerRecipe"
         />
       </div>
     </div>
@@ -41,78 +42,51 @@ export default {
     return {
       number: 1, // default 1 recipe
 
+      breakfastRecipeObj: null,
       breakfastRecipe: null,
       breakfastNutrition: null, // Add this
-      BreakfastRecipesCategory: [
-        "morning meal",
-        "brunch",
-        "breakfast",
-        "bread",
-        "soup",
-        "salad",
-        "side dish",
-      ],
+
+      lunchRecipeObj: null,
       lunchRecipe: null,
       lunchNutrition: null, // Add this
-      LunchRecipesCategory: [
-        "lunch",
-        "main course",
-        "main dish",
-        "salad",
-        "side dish",
-      ],
+     
+      dinnerRecipeObj: null,
       dinnerRecipe: null,
       dinnerNutrition: null, // Add this
-      DinnerRecipesCategory: [
-        "main course",
-        "main dish",
-        "dinner",
-        "dessert",
-        "salad",
-        "side dish",
-      ],
+     
     };
   },
   methods: {
     async getBreakfastRecipe() {
-      this.breakfastRecipe = await this.$spoonAPI.getBreakfastRecipe(
-        this.BreakfastRecipesCategory,
-        this.number
-      );
-      this.breakfastNutrition =
-        await this.$spoonAPI.getSelectedRecipeNutritions(
-          this.breakfastRecipe.id
-        );
-      console.log(this.breakfastRecipe);
-      console.log(this.breakfastNutrition);
+      this.breakfastRecipeObj = await this.$smAPI.getBreakfastRecipeFromFB() ?? await this.$smAPI.setBreakfastRecipeInFB();
+      console.log(this.breakfastRecipeObj);
+      this.breakfastRecipe = this.breakfastRecipeObj.recipe[0]
+      this.breakfastNutrition = this.breakfastRecipeObj.nutrition
     },
     async getLunchRecipe() {
-      this.lunchRecipe = await this.$spoonAPI.getLunchRecipe(
-        this.LunchRecipesCategory,
-        this.number
-      );
-      this.lunchNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(
-        this.lunchRecipe.id
-      );
+      this.lunchRecipeObj = await this.$smAPI.getLunchRecipeFromFB() ?? await this.$smAPI.setLunchRecipeInFB();
+      this.lunchRecipe = this.lunchRecipeObj.recipe[0]
+      this.lunchNutrition = this.lunchRecipeObj.nutrition
     },
     async getDinnerRecipe() {
-      this.dinnerRecipe = await this.$spoonAPI.getDinnerRecipe(
-        this.DinnerRecipesCategory,
-        this.number
-      );
-      this.dinnerNutrition = await this.$spoonAPI.getSelectedRecipeNutritions(
-        this.dinnerRecipe.id
-      );
+      this.dinnerRecipeObj = await this.$smAPI.getDinnerRecipeFromFB() ?? await this.$smAPI.setDinnerRecipeInFB();
+      this.dinnerRecipe = this.dinnerRecipeObj.recipe[0]
+      this.dinnerNutrition = this.dinnerRecipeObj.nutrition
     },
-    async refreshRecipe(mealType) {
-      if (mealType === "breakfast") {
+    async refreshBreakfastRecipe() {
         // Fetch a new breakfast recipe when the child requests a refresh for breakfast
+        await this.$smAPI.setBreakfastRecipeInFB();
         await this.getBreakfastRecipe();
-      } else if (mealType === "lunch") {
-        await this.getLunchRecipe();
-      } else if (mealType === "dinner") {
-        await this.getDinnerRecipe();
-      }
+    },
+    async refreshLunchRecipe() {
+      // Fetch a new lunch recipe when the child requests a refresh for lunch
+      await this.$smAPI.setLunchRecipeInFB();
+      await this.getLunchRecipe();
+    },
+    async refreshDinnerRecipe() {
+      // Fetch a new dinner recipe when the child requests a refresh for dinner
+      await this.$smAPI.setDinnerRecipeInFB();
+      await this.getDinnerRecipe();
     },
   },
 };
@@ -123,9 +97,7 @@ export default {
     color: #FFF;
   } */
 
-.MealPlanSection {
-  /* background: #fbe8a6; */
-}
+
 
 
 </style>

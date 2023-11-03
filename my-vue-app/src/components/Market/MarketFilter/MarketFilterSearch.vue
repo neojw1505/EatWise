@@ -23,7 +23,17 @@ export default {
     passSearch() {
       this.$emit("getSearch", this.search);
     },
+    async getquery() {
+      this.search = await this.$store.getters.getIngredientquery;
+      if(this.search==null){
+        this.search="";
+      }
+      console.log(this.search);
+    },
   },
+  async mounted(){
+    await this.getquery()
+  }
 };
 </script>
 

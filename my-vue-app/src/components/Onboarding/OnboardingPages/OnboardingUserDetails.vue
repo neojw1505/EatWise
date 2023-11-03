@@ -8,13 +8,19 @@
         <h3 class="fw-bold fs-4 py-3">Basic Information</h3>
         <div class="row">
           <div class="col col-sm-4 mb-3">
-            <input type="text" class="form-control" name="age" placeholder="Age" v-model="inputAge" required>
+            <label for="customRange3" class="form-label">Age</label>
+            <input type="range" name="age" class="form-range" min="0" max="80" step="1" v-model="inputAge" @input="updateAge" required>
+            <span class="fs-5">{{ inputAge }}</span>
           </div>
           <div class="col col-sm-4 mb-3">
-            <input type="text" class="form-control" name="weight" placeholder="Your Weight (kg)" v-model="inputWeight" required>
+            <label for="customRange3" class="form-label">Weight (kg)</label>
+            <input type="range" name="weight" class="form-range" min="40" max="160" step="1" v-model="inputWeight" required>
+            <span class="fs-5">{{ inputWeight }}</span>
           </div>
           <div class="col col-sm-4 mb-3">
-            <input type="text" class="form-control" name="height" placeholder="Your Height (cm)" v-model="inputHeight" required>
+            <label for="customRange3" class="form-label">Height (cm)</label>
+            <input type="range" name="height" class="form-range" min="130" max="230" step="1" v-model="inputHeight" required>
+            <span class="fs-5">{{ inputHeight }}</span>
           </div>
         </div>
       </div>
@@ -25,7 +31,7 @@
     </div>
     <div class="border rounded-4 p-4 mx-auto shadow bg-white text-center col-10">
       <div class="row">
-        <div class="col" v-for="(goal, index) in goals" :key="goal.value">
+        <div class="col m-0 p-0" v-for="(goal, index) in goals" :key="goal.value">
           <label>
             <input
               type="radio"
@@ -35,8 +41,8 @@
               name="weightChoice"
               v-model="inputGoal"
             />
-            <div class="card card-input my-2">
-              <div style="height: 80px; width: 140px;" class="card-header text-center d-flex align-items-center justify-content-center">
+            <div class="card card-input my-2 mx-0">
+              <div style="height: 70px; width: 120px;" class="card-header text-center d-flex align-items-center justify-content-center">
                 <span :style="'color: ' + goal.color + '; font-weight: ' + fontWeight(index)">
                   {{ goal.label }}
                 </span>
@@ -77,9 +83,9 @@ import Swal from 'sweetalert2'; // Import SweetAlert2
 export default {
   data() {
     return {
-      inputAge: null,
-      inputWeight: null,
-      inputHeight: null,
+      inputAge: 0,
+      inputWeight: 40,
+      inputHeight: 130,
       inputGoal: null,
       goals: [
         { value: 'extremelose', label: 'Extreme Weight Loss', color: 'red' },
@@ -110,20 +116,20 @@ export default {
     },
     goNext() {
       const errors = [];
-      if (this.inputAge == null || this.inputWeight == null || this.inputHeight == null || this.inputGoal == null) {
+      if (this.inputAge == '' || this.inputWeight == '' || this.inputHeight == '' || this.inputGoal == null) {
         errors.push('Please fill in all fields!')
       }
       if (isNaN(this.inputAge)) {
         errors.push('Age must be numeric!');
-        this.inputAge = null;
+        this.inputAge = '';
       }
       if (isNaN(this.inputWeight)) {
         errors.push('Weight must be numeric!');
-        this.inputWeight = null;
+        this.inputWeight = '';
       }
       if (isNaN(this.inputHeight)) {
         errors.push('Height must be numeric!');
-        this.inputHeight = null;
+        this.inputHeight = '';
       }
       
       if (errors.length > 0) {

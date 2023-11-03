@@ -36,11 +36,6 @@ export default {
           linkIcon: ["fas", "chart-column"],
           routeTo: "/insights",
         },
-        {
-          linkName: "Consumption",
-          linkIcon: ["fas", "utensils"],
-          routeTo: "/consumption",
-        },
       ],
     };
   },

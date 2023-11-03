@@ -14,14 +14,18 @@
     </div>
     <div class="d-flex">
 <!-- setting button -->
-    <router-link  class="text-decoration-none text-dark" to="/profile/setting">
+    <router-link  class="text-decoration-none text-dark" to="/profile/setting" style="cursor: pointer;">
         <div class="m-2 border border-2 border-dark rounded-4 bg-light p-2" style="width: 100px;">
             <font-awesome-icon :icon="['fas', 'gear']" />
             <span class="fw-semibold">Settings</span>
         </div>
     </router-link>
     <!-- logout button -->
+<<<<<<< HEAD
     <!-- <div class="m-2 border border-2 border-dark rounded-4 bg-light p-2" style="width: 100px;" @click="logout">
+=======
+    <div class="m-2 border border-2 border-dark rounded-4 bg-light p-2" style="width: 100px; cursor: pointer;"  @click="logout">
+>>>>>>> 3ebdf80e5c2cb78550b7a71a46e98915337e92ba
         <font-awesome-icon :icon="['fas', 'right-from-bracket']" />
         <span class="fw-semibold">Logout</span>
     </div> -->
@@ -36,12 +40,29 @@ export default {
         dailyCalories:1400,
         maxCalories:2600
     }},
+<<<<<<< HEAD
     // methods:{
     //     async logout(){
     //         await this.$smAPI.logout();
     //         this.$router.push({path:'/login'}).then(() => { this.$router.go() })
     //     }
     // }
+=======
+    methods:{
+        async logout(){
+            await this.$smAPI.logout();
+            this.$store.dispatch('setShowLoginNotification', false)
+            this.$router.push({path:'/login'}).then(() => { this.$router.go() })
+        },
+        async getMaxCalories(){
+            let user=await this.$smAPI.getLoginUserProfile();
+            this.maxCalories=user.DailyCalories
+        }
+    },
+    created(){
+        this.getMaxCalories()
+    }
+>>>>>>> 3ebdf80e5c2cb78550b7a71a46e98915337e92ba
 
 }
 </script>

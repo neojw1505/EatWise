@@ -30,9 +30,6 @@ export default {
     getRelatedData(){
       this.search=this.tempSearch
     },
-    check(){
-      console.log(this.tempSearch)
-    }
   }
 
 }

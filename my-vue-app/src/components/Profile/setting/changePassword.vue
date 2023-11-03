@@ -15,54 +15,71 @@
       <label for="ProfileSettingConfirmPassword" class="form-label fw-bold">Confirm New Password</label>
       <input type="password" id="ProfileSettingConfirmPassword" class="form-control" v-model="userInfo.confirmNewPassword">
     </div>
-    <!-- error prompt -->
-    <div v-if="error.length>0" class="mt-3 p-2 border border-2 rounded-4 border-danger-subtle">
-      Errors:
-      <ul>
-        <li v-for="e in error" :key="e">{{ e }}</li>
-      </ul>
-    </div>
     <!-- save button -->
     <div class="my-3 justify-content-end d-flex">
       <button class="btn fw-bold" style="background-color: #F4976C;" @click="saveSetting">Save</button>
     </div>
     
-    <savedNotification ref="notification"/>
+    <!-- <savedNotification ref="notification"/> -->
   </div>
 </template>
 
 <script>
+import Swal from 'sweetalert2'
 export default {
   data(){return{
-    userInfo:{
-      "CurrentPassword":"",
-      "NewPassword":"",
-      "confirmNewPassword":"",
+    userInfo: {
+      currentPassword: "",
+      newPassword: "",
+      confirmNewPassword: "",
     },
-    error:[]
+    errors:[]
   }},
   methods:{
-    async saveSetting(){
-      this.error=[];
-      if(this.userInfo.NewPassword!=this.userInfo.confirmNewPassword){
-        this.error.push("New password and Confirm new password mismatched");
-        return
-      }
-      if(this.userInfo.NewPassword.length<6){
-        this.error.push("New password must be at least 6 character");
-        return
-      }
-      try {
-        await this.$smAPI.updateUserPassword(this.userInfo.CurrentPassword, this.userInfo.confirmNewPassword)
-      } catch (error) {
-        console.log(error.message)
-        this.error.push("Current password mismatched")
-        return
-      }
-      this.$refs.notification.showNotification();
-      this.error=[];
-    },
+    async saveSetting() {
+  this.errors = [];
+  if (this.userInfo.NewPassword !== this.userInfo.confirmNewPassword) {
+    this.errors.push("New password and Confirm new password mismatched");
   }
+  if (this.userInfo.NewPassword.length < 6) {
+    this.errors.push("New password must be at least 6 characters");
+  }
+
+  // Check if there are any errors
+  if (this.errors.length > 0) {
+    // If there are errors, display them using SweetAlert2
+    Swal.fire({
+      icon: 'error',
+      title: 'Oops...',
+      text: 'There are some errors in your submission:',
+      html: this.errors.join('<br>'),
+    });
+  } else {
+    try {
+      await this.$smAPI.updateUserPassword(this.userInfo.CurrentPassword, this.userInfo.confirmNewPassword);
+      // this.$refs.notification.showNotification(); // Show success notification
+
+      // Display a success message using SweetAlert2
+      Swal.fire({
+        icon: 'success',
+        title: 'Success!',
+        text: 'Your password has been changed successfully.',
+      });
+    } catch (error) {
+      console.log(error.message);
+      this.errors.push("Current password mismatched");
+
+      // If there are errors, display them using SweetAlert2
+      Swal.fire({
+        icon: 'error',
+        title: 'Oops...',
+        text: 'There are some errors in your submission:',
+        html: this.errors.join('<br>'),
+      });
+    }
+  }
+}
+}
 }
 </script>
 
