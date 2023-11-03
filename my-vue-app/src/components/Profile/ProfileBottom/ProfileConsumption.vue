@@ -98,8 +98,7 @@ export default {
         this.totalCarbs += Number(carbs);
         this.totalFats += Number(fat);
         this.totalProtein += Number(protein);
-      }
-      
+      }    
     },
   },
   computed: {
@@ -133,7 +132,7 @@ export default {
         let passmonth=newDate.getMonth()+1;
         let passyear=newDate.getFullYear();
         let dateToPassinFB = passyear + "-" + passmonth + "-" + passdate;
-          console.log(dateToPassinFB)
+          // console.log(dateToPassinFB)
         this.GetConsumptionHistoryForDate(dateToPassinFB.toString());
       },
       immediate: true, // To trigger the handler when the component is first created

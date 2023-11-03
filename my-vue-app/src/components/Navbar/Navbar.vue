@@ -33,13 +33,8 @@ export default {
 </script>
 
 <style scoped>
-.navbar{
-border-radius: 40px;
-width:100%;
-margin-top:10px;
-z-index: 1;
-
-position: fixed;
-z-index:2;
-}
+/* .navbar {
+  position: fixed;
+  z-index: 1;
+} */
 </style>

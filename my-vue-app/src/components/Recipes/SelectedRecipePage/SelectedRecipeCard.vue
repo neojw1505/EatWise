@@ -226,110 +226,100 @@ export default {
         this.recipeDetails.nutrition
       );
     },
-    async setMealType(){
-      const date = new Date();
-      let day = date.getDate();
-      let month = date.getMonth() + 1;
-      let year = date.getFullYear();
+    async setMealType() {
+  const date = new Date();
+  let day = date.getDate();
+  let month = date.getMonth() + 1;
+  let year = date.getFullYear();
 
-      // This arrangement can be altered based on how we want the date's format to appear.
-      let currentDate = `${year}-${month}-${day}`;
-      let checkConsumption = await this.$smAPI.GetConsumptionHistoryForDate(currentDate);
-      let error = '';
-      console.log(checkConsumption);
-      
-      console.log(this.meal)
-      if(this.meal=="Breakfast"){
-        if (!("breakfast" in checkConsumption)){
-          this.setBreakfastFromSavedRecipes();
-          Swal.fire({
-                  icon: 'success',
-                  title: 'Breakfast succesfully set',
-                  text: 'Recipe has been set for breakfast!',
-                });
-        }
-        else{
-          error += 'Please uncheck Breakfast in Meal Planner and Try Again'
-        }
-      }
-      else if(this.meal=="Lunch"){
-        if (!("lunch" in checkConsumption)){
-          this.setLunchFromSavedRecipes();
-          Swal.fire({
-                  icon: 'success',
-                  title: 'Lunch succesfully set',
-                  text: 'Recipe has been set for dinner!',
-                });
-        }
-        else {
-          error += 'Please uncheck Lunch in Meal Planner and Try Again'
-        }
-      }
-      else if(this.meal=="Dinner"){
-        if (!("dinner" in checkConsumption)){
-          this.setDinnerFromSavedRecipes();
-          Swal.fire({
-                  icon: 'success',
-                  title: 'Dinner succesfully set',
-                  text: 'Recipe has been set for dinner!',
-                });
-        }
-        else {
-          error += 'Please uncheck Dinner in Meal Planner and Try Again'
-        }
-      }
-      else{
-        if(this.initialMealType=="Breakfast"){
-          if (!("breakfast" in checkConsumption)){
-            await this.$smAPI.setBreakfastRecipeInFB();
-            Swal.fire({
-                  icon: 'success',
-                  title: 'Meal Regenerated',
-                  text: 'Recipe removed from breakfast and has been regenerated',
-                });
-          }
-        else {
-          error += 'Please uncheck Breakfast in Meal Planner and Try Again'
-        }
-      }
-      else if(this.initialMealType=="Lunch"){
-        if (!("lunch" in checkConsumption)){
-          await this.$smAPI.setLunchRecipeInFB();
-          Swal.fire({
-                  icon: 'success',
-                  title: 'Meal Regenerated',
-                  text: 'Recipe removed from lunch and has been regenerated',
-                });
-        }
-        else {
-          error += 'Please uncheck Lunch in Meal Planner and Try Again';
-        }
-      }
-      else if(this.initialMealType=="Dinner"){
-        if (!("dinner" in checkConsumption)){
-          await this.$smAPI.setDinnerRecipeInFB();
-          Swal.fire({
-                  icon: 'success',
-                  title: 'Meal Regenerated',
-                  text: 'Recipe removed from dinner and has been regenerated',
-                });
-        }
-        else {
-          error += 'Please uncheck Dinner in Meal Planner and Try Again'
-        }
-      }
-      }
+  // This arrangement can be altered based on how we want the date's format to appear.
+  let currentDate = `${year}-${month}-${day}`;
+  let checkConsumption = await this.$smAPI.GetConsumptionHistoryForDate(currentDate);
+  let error = '';
+  console.log(checkConsumption);
 
-      if (error != ''){
-        Swal.fire({
-                  icon: 'error',
-                  title: 'Error',
-                  text: error,
-                });
-
-      }
-      this.initialMealType=this.meal
+  console.log(this.meal);
+  
+  if (this.meal == "Breakfast") {
+    if (!checkConsumption || !("breakfast" in checkConsumption)) {
+      this.setBreakfastFromSavedRecipes();
+      Swal.fire({
+        icon: 'success',
+        title: 'Breakfast successfully set',
+        text: 'Recipe has been set for breakfast!',
+      });
+    } else {
+      error += 'Please uncheck Breakfast in Meal Planner and Try Again';
     }
+  } else if (this.meal == "Lunch") {
+    if (!checkConsumption || !("lunch" in checkConsumption)) {
+      this.setLunchFromSavedRecipes();
+      Swal.fire({
+        icon: 'success',
+        title: 'Lunch successfully set',
+        text: 'Recipe has been set for dinner!',
+      });
+    } else {
+      error += 'Please uncheck Lunch in Meal Planner and Try Again';
+    }
+  } else if (this.meal == "Dinner") {
+    if (!checkConsumption || !("dinner" in checkConsumption)) {
+      this.setDinnerFromSavedRecipes();
+      Swal.fire({
+        icon: 'success',
+        title: 'Dinner successfully set',
+        text: 'Recipe has been set for dinner!',
+      });
+    } else {
+      error += 'Please uncheck Dinner in Meal Planner and Try Again';
+    }
+  } else {
+    if (this.initialMealType == "Breakfast") {
+      if (!checkConsumption || !("breakfast" in checkConsumption)) {
+        await this.$smAPI.setBreakfastRecipeInFB();
+        Swal.fire({
+          icon: 'success',
+          title: 'Meal Regenerated',
+          text: 'Recipe removed from breakfast and has been regenerated',
+        });
+      } else {
+        error += 'Please uncheck Breakfast in Meal Planner and Try Again';
+      }
+    } else if (this.initialMealType == "Lunch") {
+      if (!checkConsumption || !("lunch" in checkConsumption)) {
+        await this.$smAPI.setLunchRecipeInFB();
+        Swal.fire({
+          icon: 'success',
+          title: 'Meal Regenerated',
+          text: 'Recipe removed from lunch and has been regenerated',
+        });
+      } else {
+        error += 'Please uncheck Lunch in Meal Planner and Try Again';
+      }
+    } else if (this.initialMealType == "Dinner") {
+      if (!checkConsumption || !("dinner" in checkConsumption)) {
+        await this.$smAPI.setDinnerRecipeInFB();
+        Swal.fire({
+          icon: 'success',
+          title: 'Meal Regenerated',
+          text: 'Recipe removed from dinner and has been regenerated',
+        });
+      } else {
+        error += 'Please uncheck Dinner in Meal Planner and Try Again';
+      }
+    }
+  }
+
+  if (error != '') {
+    Swal.fire({
+      icon: 'error',
+      title: 'Error',
+      text: error,
+    });
+  }
+
+  this.initialMealType = this.meal;
+}
   },
   async created() {
     await this.getRecipeDetails();
@@ -338,6 +328,7 @@ export default {
     );
   },
 };
+
 </script>
 
 <style scope>

@@ -1,14 +1,14 @@
 <template>
     <div class="body">
     <Navbar />
-    <div class="mx-auto">
+    <div class="mx-auto" style="height: 90vw">
       <!-- <h2 class="main-text mt-4" style="color: white ; font-family: Roboto;">Saved Recipes:</h2> -->
       <!-- <button @click="deletela">Delete All Recipes</button> -->
       <div class="border border-2 border-dark rounded-4 p-2 mt-5" style="width: 100px; margin-left: 50px; background-color: tomato ; color: white;" @click="deletela">
         <span class="fw-semibold" @click="DeleteConfirm()"> Delete All</span>
     </div>
     
-  <div class="mx-auto" style="max-width: 1200px">
+  <div class="mx-auto" style="max-width: 1200px;">
     
     <div class="p-4 pt-2 border rounded-4 my-3 d-flex mx-3 d-flex row" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 0%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%);">
       
@@ -100,6 +100,7 @@ export default {
   methods: {
 
     DeleteConfirm() {
+    if(this.visibleItems.length > 0){
     Swal.fire({
         title: 'Are you sure?',
         text: 'This action will delete all items. This cannot be undone.',
@@ -122,7 +123,7 @@ export default {
         } else {
             console.log("Deletion Cancelled"); 
         }
-    });
+    });}
 },
 
     // async deletela(){
@@ -169,24 +170,7 @@ export default {
 
 <style scoped>
 
-@media screen and (min-width: 601px) {
-  h2.main-text {
-    font-size: 80px;
-    text-align: center;     
-    
-  }
-  
-}
 
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-@media screen and (max-width: 600px) {
-  h2.main-text {
-    font-size: 40px;
-    text-align: center;
-  }
-
-
-}
 .active {
   color: white;
   padding: 5px 10px;
@@ -198,6 +182,11 @@ export default {
 
 .body {
   background-image: url(../homepageAsset/saved_recipe_bg.png);
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  background-size: cover;
+  background-repeat: no-repeat;
   
 }
 

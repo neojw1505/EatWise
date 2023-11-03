@@ -5,7 +5,7 @@
   </div>
   <div class="row mx-3 container mx-auto pt-5 pb-5" style="max-width: 1200px;">
     <ProfileCalendar @getCalendarDate="handleCalendarDate"/>
-    <ProfileConsumption :consumptionDate="selectedDate"/>
+    <ProfileConsumption :consumptionDate="selectedDate" />
   </div>
 </div>
 </template>
@@ -18,7 +18,7 @@ export default {
     methods:{
         handleCalendarDate(data){
             this.selectedDate=data
-        }
+        },
     }
 }
 </script>
