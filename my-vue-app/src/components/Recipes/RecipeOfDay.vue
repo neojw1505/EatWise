@@ -1,11 +1,11 @@
 
 <template>
-  <div class="row" style="height: 100%;">
+  <div class="row" style="height: 100%;"> 
     <div class="col-md-6 rounded-4 d-flex my-auto align-items-center justify-content-center" >
       <img class="img-fluid rounded-4 col-10 " :src="imgUrl" alt="Recipe Image" style="object-fit: fill;"/>
     </div>
     <div class="col-md-6 text-start my-auto">
-      <h1 class="fw-bold mb-3" style="font-size:5vw;">Recipe Of The Day</h1>
+      <h1 class="fw-bold mb-3" style="font-size:5vw;">Recipe of the Day</h1>
       <br/>
       <h4 style="font-size:1.5vw;">{{ formattedRecipeName }}</h4>
       <br/>

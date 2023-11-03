@@ -10,8 +10,8 @@
   </div>
 
   <div class="card shadow text-center" v-else>
-    <div class="image-wrapper">
-      <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
+    <div class="image-wrapper d-flex align-items-center justify-content-center">
+      <img class="card-img" :src="recipeData.image" @load="onImageLoad"/>
       <div class="bookmark" >
         <button class="bookmark-button" @click="toggleBookmarkState()">
           <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #007459;" />
@@ -323,7 +323,8 @@ svg.fa-bookmark {
   align-items: center;
 }
 .card-img {
-  max-width: 300px;
+  max-width: 500px;
+  max-height: 200px;
   object-fit: fit; /* Ensures the image fully covers the container */
 }
 .card .badge {

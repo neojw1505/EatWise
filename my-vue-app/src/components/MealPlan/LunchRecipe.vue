@@ -308,7 +308,8 @@ svg.fa-bookmark {
   align-items: center;
 }
 .card-img {
-  max-width: 300px;
+  max-width: 500px;
+  max-height: 200px;
   object-fit: fit; /* Ensures the image fully covers the container */
 }
 .card .badge {
