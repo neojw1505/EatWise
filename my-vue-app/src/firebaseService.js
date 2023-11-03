@@ -203,7 +203,8 @@ export const updateUserProfile = async (
   newGoal,
   activityLevel,
   ingredientRemove,
-  dietType
+  dietType,
+  DailyCalories
 ) => {
   try {
     // Update the current user node in the Realtime Database
@@ -218,7 +219,8 @@ export const updateUserProfile = async (
       activityLevel: activityLevel,
       profilePhoto: newProfilePhotoURL,
       ingredientRemove:ingredientRemove,
-      dietType:dietType
+      dietType:dietType,
+      DailyCalories: DailyCalories
     });
 
     // Update the Authentication side data for the user

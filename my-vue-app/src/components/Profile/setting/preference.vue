@@ -136,6 +136,7 @@ export default {
     return {
       userInfo: {
         fullname: "",
+        age: "",
         DOB: "",
         gender: "",
         weight: "",
@@ -198,7 +199,10 @@ export default {
   try {
     await this.$smAPI.auth.onAuthStateChanged(async (user) => {
       if (user) {
-        console.log(user);
+        const macrosObj = await this.$fitCalcAPI.getDailyCaloriesMacros(this.userInfo.age, this.userInfo.gender, this.userInfo.height, this.userInfo.weight, this.userInfo.dailyActivity, this.userInfo.goal) // update new daily calories 
+        const newDailyCalories = macrosObj.calorie;
+        const currentDietType = await this.$smAPI.getUserDietType();
+        console.log(`Current Diet Type: ${currentDietType}`);
         await this.$smAPI.updateUserProfile(
           user.uid,
           this.userInfo.fullname,
@@ -210,10 +214,20 @@ export default {
           this.userInfo.goal,
           this.userInfo.dailyActivity,
           this.userInfo.exclusionList,
-          this.userInfo.dietType
+          this.userInfo.dietType,
+          newDailyCalories // Update Daily Calories
         );
         
-        // Show a success message using SweetAlert
+        // Update Diet Type
+        const newDietType = this.userInfo.dietType
+        console.log(`New Diet Type: ${newDietType}`);
+        if (currentDietType != newDietType){
+          // refresh meal plan if new dietType different from initial
+          await this.$smAPI.setBreakfastRecipeInFB()
+          await this.$smAPI.setLunchRecipeInFB()
+          await this.$smAPI.setDinnerRecipeInFB()
+          console.log("Meal Plan refreshed to accomodate new Diet Type");
+        }
         Swal.fire({
           title: 'Profile Updated',
           text: 'Profile successfully updated!',
@@ -234,9 +248,9 @@ export default {
   },
  
     async getUserProfile(){
-      console.log(this.$smAPI.getLoginUserProfile());
       let userDetails=await this.$smAPI.getLoginUserProfile();
       this.userInfo.fullname=userDetails.fullName;
+      this.userInfo.age=userDetails.age;
       this.userInfo.DOB=userDetails.dob;
       this.userInfo.gender=userDetails.gender;
       this.userInfo.weight=userDetails.weight;
