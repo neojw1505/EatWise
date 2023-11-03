@@ -38,6 +38,7 @@ export default {
     },
     async selectRecipe() {
       this.$store.dispatch('setSharedData', this.recipe);
+      // localStorage.setItem('sharedData', JSON.stringify(data)); // Save to local storage
       this.$router.push({ path: '/find-recipes/SelectedRecipeCard' }); // Navigate to the receiver component
     },
   },
