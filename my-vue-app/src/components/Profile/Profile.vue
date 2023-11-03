@@ -30,6 +30,8 @@ export default {
       // Added a placeholder here
     };
   },
+  methods:{
+  },
  async created() {
     try {
       await this.$smAPI.auth.onAuthStateChanged(user => {

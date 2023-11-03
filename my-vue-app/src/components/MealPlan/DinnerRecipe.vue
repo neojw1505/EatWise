@@ -71,7 +71,7 @@
       <div class="badge badge-circular">
         <div class="badge-content">
           <font-awesome-icon :icon="['fas', 'fire-flame-curved']" />
-          {{ nutritionData.calories }}kcal<br />
+          {{ computedCal }}kcal<br />
           <font-awesome-icon :icon="['fas', 'clock']" />
           {{ recipeData.readyInMinutes }}min
         </div>
@@ -172,6 +172,9 @@ export default {
       let formattedTime = `${hours}:${minutes}:${seconds}`;
       return formattedTime;
     },
+    computedCal(){
+      return this.nutritionData.calories ?? this.recipeData['nutrition']['nutrients'][0].amount.toFixed(0)
+    }
   },
   methods: {
     async refreshRecipe(mealType) {
