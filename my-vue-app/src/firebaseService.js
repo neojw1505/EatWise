@@ -1086,16 +1086,20 @@ export const setDinnerFromSavedRecipes = async (dinnerRecipeObj, dinnerNutrition
   }
 }
 
-export const isSavedRecipeSetAsMealPlan = async (recipeId) => {
+export const getMealPlanCategory = async (recipeId) => {
   try {
     if (auth.currentUser) {
       const userUid = auth.currentUser.uid;
-      const mealRecipeIds = [];
 
       // Define meal plan paths
-      const mealPlanPaths = ['/mealplan/breakfast', '/mealplan/lunch', '/mealplan/dinner'];
+      const mealPlanPaths = {
+        breakfast: '/mealplan/breakfast',
+        lunch: '/mealplan/lunch',
+        dinner: '/mealplan/dinner'
+      };
 
-      for (const mealPath of mealPlanPaths) {
+      for (const category in mealPlanPaths) {
+        const mealPath = mealPlanPaths[category];
         const mealRef = ref(database, '/users/' + userUid + mealPath + '/recipe');
         const mealSnapshot = await get(mealRef);
 
@@ -1104,23 +1108,19 @@ export const isSavedRecipeSetAsMealPlan = async (recipeId) => {
           const recipes = mealSnapshot.val();
           const recipeIds = recipes.map(recipe => recipe.id);
 
-          mealRecipeIds.push(...recipeIds);
+          if (recipeIds.includes(recipeId)) {
+            return category; // Found in this meal plan category
+          }
         }
       }
 
-      // Use Array.includes() to check if recipeId is in mealRecipeIds
-      if (mealRecipeIds.includes(recipeId)) {
-        return true;
-      } else {
-        return false;
-      }
+      return false; // Not found in any meal plan category
     }
   } catch (error) {
     console.log(error);
     throw error;
   }
 }
-
 
 
 // ######################################################################################## //
