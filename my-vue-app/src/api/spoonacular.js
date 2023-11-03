@@ -61,13 +61,13 @@ class SpoonacularAPI {
   }
 
   // Function to get a single random breakfast recipe
-  async getBreakfastRecipe() {
+  async getBreakfastRecipe(dietType='') {
     try {
       // Make a request to the Spoonacular API for random recipes
       const response = await this.axios.get("/recipes/random", {
         params: {
           number: 1, // Number of recipes to retrieve
-          tags: 'breakfast'
+          tags: dietType != '' ? `${dietType},breakfast` : 'breakfast'
         },
       });
         // Get the random recipe data
@@ -82,13 +82,13 @@ class SpoonacularAPI {
   }
 
     // Function to get a single random breakfast recipe
-    async getLunchRecipe() {
+    async getLunchRecipe(dietType='') {
       try {
         // Make a request to the Spoonacular API for random recipes
         const response = await this.axios.get("/recipes/random", {
           params: {
             number: 1, // Number of recipes to retrieve
-            tags: 'lunch'
+            tags: dietType != '' ? `${dietType},lunch` : 'lunch'
           },
         });
           // Get the random recipe data
@@ -103,13 +103,13 @@ class SpoonacularAPI {
     }
 
       // Function to get a single random breakfast recipe
-  async getDinnerRecipe() {
+  async getDinnerRecipe(dietType='') {
     try {
       // Make a request to the Spoonacular API for random recipes
       const response = await this.axios.get("/recipes/random", {
         params: {
           number: 1, // Number of recipes to retrieve
-          tags: 'dinner'
+          tags: dietType != '' ? `${dietType},dinner` : 'dinner'
         },
       });
         // Get the random recipe data

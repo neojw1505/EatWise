@@ -47,25 +47,26 @@
         return [...leadingBlanks, ...dates, ...trailingBlanks];
       },
       formattedDate(){
-        
-        // let tempDate= this.selectedDateOnCalendar.split(" ");
+        let date=this.selectedDateOnCalendar.getDate();
+        let month=this.selectedDateOnCalendar.getMonth()+1;
+        let year=this.selectedDateOnCalendar.getFullYear();
 
-        // // console.log(tempDate)
-        // let month={
-        //   'Jan':"January",
-        //   'Feb':"February",
-        //   'Mar':"March",
-        //   'Apr':"April",
-        //   'May':"May",
-        //   'Jun':"June",
-        //   'Jul':"July",
-        //   'Aug':"August",
-        //   'Sep':"September",
-        //   'Oct':"October",
-        //   'Nov':"November",
-        //   'Dec':"December",
-        // };
-        // return tempDate[2]+" "+month[tempDate[1]]+" "+tempDate[3];
+        // console.log(tempDate)
+        let monthObj={
+          '1':"January",
+          '2':"February",
+          '3':"March",
+          '4':"April",
+          '5':"May",
+          '6':"June",
+          '7':"July",
+          '8':"August",
+          '9':"September",
+          '10':"October",
+          '11':"November",
+          '12':"December",
+        };
+        return date+" "+monthObj[month]+" "+year;
       }
     },
     methods: {
@@ -82,13 +83,8 @@
         this.currentMonth.getMonth(),
         date
       );
+      // console.log(this.selectedDateOnCalendar)
       this.$emit('getCalendarDate',this.selectedDateOnCalendar)
-      console.log(this.selectedDateOnCalendar);
-      console.log(this.selectedDateOnCalendar.getDay());
-      console.log(this.selectedDateOnCalendar.getFullYear());
-      console.log(this.selectedDateOnCalendar.getMonth());
-      
-
     },
     isDateSelected(date) {
       // Check if the date matches the selected date.
