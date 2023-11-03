@@ -1,33 +1,42 @@
 <!-- Home.vue -->
 <template>
-  <div class="container-fluid">
-    <Navbar/>
+  <div>
+    <div>
+      <Navbar/>
+    </div>
+    <div class="row">
         <div class="section1"> 
-          <div class="row-left col-6">
-            <video loop autoplay preload="auto"  src="./homepageAsset/gif.mp4" alt="gif"></video>
+          <div class="col-sm-6" id="video">
+            <video loop autoplay preload="auto"  src="./homepageAsset/gif.mp4" alt="gif" style="width: 100%; height: 100%; object-fit:fill;"></video>
           </div>
-          <div class="row-right col-6">
-            <!-- <img id="background-s1" src="./homepageAsset/background-s1.png">
-            <img class="img-overlay" src="./homepageAsset/slogan.png"> -->
+          <div class="col-sm-6" id="rightCol">
+     
             <div class="img-overlay">
             </div>
           </div>
         </div>
-
-        <div class="section2">
+        
+        <div class="section2">  
           <p style="text-indent: -999px;">.</p> <!--hidden text so that image extends-->
-          <RecipeOfDay />
+          <RecipeOfDay /> 
         </div>
-
         <div class="section3">
-          <MealPlan class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "  />
+          <p style="text-indent: -999px;">.</p> <!--hidden text so that image extends-->
+          
+          <!-- <span style="font-size: large; color:white"> Place the Meal Planner of the day here</span> -->
+          <!-- <MealPlan class="py-5"  /> -->
         </div>
+        
+
+       
 
         <div class="section4">
-          <span style="font-size: large; color:white"> Place the Current promotions here</span>
-          <!-- <NewPromoCarousel  class=" p-4 pt-2 shadow border rounded-4 my-3 mx-3 "/>  -->
-        </div>
+          <p style="text-indent: -999px;">.</p> <!--hidden text so that image extends-->
+          <NewPromoCarousel  class=" p-4 pt-2 shadow rounded-4 my-3 mx-3 "/> 
+        
+      </div>
 
+    </div>
     </div>
 
 
@@ -36,18 +45,11 @@
 
 
 <style scoped>
-  .home-container {
-  display: flex;
-  flex-direction: column; /* Change to column for responsive design */
-  width: 100vw; /* Set the container's width to the viewport width */
-  height: 100vh; /* Set the container's height to the viewport height */
-
-}
 
 
 .section1 {
-  display: flex;
-  flex-direction: row; /* Display elements side by side */
+  display: flex; 
+  flex-direction: row; 
   width: 100%;
   height: 100vh;
   transition: all 1s ease;
@@ -59,13 +61,11 @@
   height: 100%;
 }
 
-.row-left video {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+#video {
+  object-fit: fill;
 }
 
-.row-right {
+#rightCol {
   background-image: url(./homepageAsset/background-s1.png);
   background-size: cover;
 }
@@ -79,7 +79,7 @@
   background-position: center center; /* Center the image */
 }
 .section2{
-  width: 100%;
+  /* width: 100%; */
   height: 100vh;
   background-image: url(./homepageAsset/background-s2.png);
   background-size:cover; /* Scale image to fit container */
@@ -87,15 +87,15 @@
   background-position: center center; /* Center the image */
 }
 .section3{
-  width: 100%;
+  /* width: 100%; */
   height: 100vh;
   background-image: url(./homepageAsset/background-s3.png);
-  background-size:cover; /* Scale image to fit container */
+  background-size:cover;
   background-repeat: no-repeat; /* Prevent repeating the image */
   background-position: center center; /* Center the image */
 }
 .section4{
-  width: 100%;
+  /* width: 100%; */
   height: 100vh;
   background-image: url(./homepageAsset/background-s4.png);
   background-size:cover; /* Scale image to fit container */

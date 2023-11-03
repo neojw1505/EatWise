@@ -1,6 +1,6 @@
 <template>
-  <div class="card shadow border-light" style="width: 500px;" v-if="recipeData && nutritionData">
-    <div class="card-header"><h3>Lunch</h3></div>
+  <div class="card shadow border-light mx-auto" style="overflow: auto; min-width: 150px; max-width: 500px;" v-if="recipeData && nutritionData">
+    <div class="card-header"><h3 style="font-size: 2.5vw;">Lunch</h3></div>
 
     <!-- Display the image or a spinner -->
   <div class="card align-items-center" v-if="loading">
@@ -44,8 +44,8 @@
       </div>
       </div>
       <!-- Top Right Label for Kcal and PrepTime -->
-      <div class="badge badge-circular">
-        <div class="badge-content">
+      <div class="badge badge-circular" style="width: 5vw;">
+        <div class="badge-content" style="font-size: 0.9vw;">
           <font-awesome-icon :icon="['fas', 'fire-flame-curved']" />
           {{ nutritionData.calories }}kcal<br />
           <font-awesome-icon :icon="['fas', 'clock']" />
@@ -55,11 +55,11 @@
     </div>
 
     <div class="card-footer border-0">
-      <button class="btn me-2" @click="refreshRecipe(mealType)">
+      <button class="btn btn-lg me-2 rounded-4" @click="refreshRecipe(mealType)">
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
-      <button class="btn btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
+      <button class="btn btn-lg btn-fail rounded-4" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
         {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
         <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />

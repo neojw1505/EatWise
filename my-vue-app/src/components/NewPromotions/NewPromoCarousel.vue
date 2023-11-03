@@ -1,6 +1,6 @@
 <template>
   <div class="carousel-container">
-    <h1 class="fw-bold text-center pb-4 pt-5" style="color:#fff">Current <span style="color:#7A8CEA">Promotions</span></h1>
+    <h1 class="fw-bold text-center pb-4 pt-5" style="color:#fff; font-size:5vw;">Current <span style="color:#7A8CEA">Promotions</span></h1>
     <!-- creating slide container for RecommendedRecipes -->
     <swiper class="carousel rounded-4 shadow-5 px-5 py-4 pt-5 mySwiper"
     :slidesPerView="1"
@@ -40,7 +40,7 @@
     </swiper>
 
     <div class="text-center pt-3" >
-        <button type="button" class="btn shadow" style="width: 300px;">View More</button>
+        <button type="button" class="btn shadow" style="width: 30vw;">View More</button>
     </div>
 
   </div>
