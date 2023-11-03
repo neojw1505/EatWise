@@ -124,7 +124,7 @@
         </div>
       </div>
     </div>
-    <!-- <div v-else class="mx-auto">Error 404: no recipe found</div> -->
+    <div v-else class="mx-auto text-center">Error 404: no recipe found</div>
   </div>
 </template>
 
@@ -176,7 +176,7 @@ export default {
       }
       // this.recipeDetails = this.$store.getters.getSharedData;
       // console.log(this.recipeDetails);
-      const storedData = localStorage.getItem('sharedData');
+      const storedData = localStorage.getItem('selectedRecipe');
       this.recipeDetails=storedData ? JSON.parse(storedData) : null;
 
 
