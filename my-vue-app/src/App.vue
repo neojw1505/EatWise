@@ -16,20 +16,10 @@
       </div>
     </div>
     <br /> -->
-<<<<<<< HEAD
-    <router-view>  
-    </router-view>
-
-</template>
-
-<script>
-
-=======
   <router-view> </router-view>
 </template>
 
 <script>
->>>>>>> 3ebdf80e5c2cb78550b7a71a46e98915337e92ba
 export default {
   data() {
     return {
@@ -49,8 +39,6 @@ export default {
         });
       });
     },
-<<<<<<< HEAD
-=======
     async fetchProductsByPromoAndSupermarket() {
       this.supermarketData =
         await this.$smAPI.fetchProductsByPromoAndSupermarket(
@@ -59,7 +47,6 @@ export default {
         );
     },
   },
->>>>>>> 3ebdf80e5c2cb78550b7a71a46e98915337e92ba
 };
 </script>
 

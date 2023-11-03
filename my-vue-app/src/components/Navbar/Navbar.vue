@@ -39,11 +39,8 @@ export default {
 border-radius: 40px;
 width:100%;
 margin-top:10px;
-<<<<<<< HEAD
-=======
 z-index: 1;
 
->>>>>>> 3ebdf80e5c2cb78550b7a71a46e98915337e92ba
 position: fixed;
 z-index:2;
 }
