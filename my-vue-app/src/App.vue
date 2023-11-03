@@ -17,7 +17,6 @@
     </div>
     <br /> -->
   <router-view> 
-    <Market/>
   </router-view>
 </template>
 
