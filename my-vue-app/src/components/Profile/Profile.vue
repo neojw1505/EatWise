@@ -19,6 +19,8 @@ export default {
       ProfileName: '',
     };
   },
+  methods:{
+  },
  async created() {
     try {
       await this.$smAPI.auth.onAuthStateChanged(user => {
