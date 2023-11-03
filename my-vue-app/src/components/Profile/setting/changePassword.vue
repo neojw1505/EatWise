@@ -17,7 +17,7 @@
     </div>
     <!-- save button -->
     <div class="my-3 justify-content-end d-flex">
-      <button class="btn fw-bold" style="background-color: #F4976C;" @click="saveSetting">Save</button>
+      <button class="btn fw-bold my-4" style="background-color: #fff;" @click="saveSetting">Save</button>
     </div>
     
     <!-- <savedNotification ref="notification"/> -->

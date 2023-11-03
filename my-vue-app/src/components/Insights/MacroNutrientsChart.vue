@@ -7,10 +7,10 @@
       <div class="col-md-4 col-sm-12 my-auto">
         <div class="legend-container bg-white">
           <ul class="list-group">
-            <li v-for="(item, index) in sortedData" :key="index" class="list-group-item d-flex justify-content-between align-items-center">
+            <li v-for="(item, index) in sortedData" :key="index" class="list-group-item d-flex justify-content-around align-items-center" >
               <div class="d-flex align-items-center">
                 <span class="me-2" style="width: 16px; height: 16px; border-radius: 50%;" :style="{ backgroundColor: item.color }"></span>
-                <span>{{ item.label }}</span>
+                <span >{{ item.label }}</span>
               </div>
               <span><strong>{{ item.percentage }}%</strong></span>
             </li>

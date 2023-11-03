@@ -44,7 +44,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .section1{
   background-image: url(../homepageAsset/profilepagebg.png);
   width: 100%;

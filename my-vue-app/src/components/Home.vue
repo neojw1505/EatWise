@@ -1,38 +1,18 @@
 <!-- Home.vue -->
 <template>
   <div>
-    <div>
       <Navbar />
-    </div>
     <div>
       <div class="section1">
-        <video
-          loop
-          autoplay
-          muted
-          preload="auto"
-          src="./homepageAsset/home_bg_video.mp4"
-          alt="bgvideo"
-          style="width: 100%; height: 100%; object-fit: fill"
+        <video loop autoplay muted preload="auto" src="./homepageAsset/home_bg_video.mp4" alt="bgvideo"
+          style="width: 100%; height: 100%; object-fit: cover"
         ></video>
-        <div class="overlay">
-          <h1 class="main-text"
-            style="
-              color: whitesmoke;
-              font-family: Georgia, 'Times New Roman', Times;
-            "
-          >
+        <div class="overlay mt-30">
+          <h1 class="main-text" style="color: whitesmoke; font-family: Georgia, 'Times New Roman', Times;">
             EatWise
           </h1>
-          <br />
-          <h1 class="sub-text"
-            style="
-              font-family: Georgia, 'Times New Roman', Times;
-            "
-          >
-            Nourishing Your
-            <span style="color: #7a8cea; font-weight: bold">Journey</span>, One
-            Bite at a Time
+          <h1 class="sub-text" style=" font-family: Georgia, 'Times New Roman', Times;">
+            Nourishing Your <span style="color: #7a8cea; font-weight: bold">Journey</span>, One Bite at a Time
           </h1>
         </div>
       </div>
@@ -152,7 +132,7 @@ export default {
 .section3 {
   /* width: 100%; */
   background-image: url(./homepageAsset/background-s3.png);
-  background-size: cover;
+  background-size: cover; /* Scale image to fit container */
   background-repeat: no-repeat; /* Prevent repeating the image */
   background-position: center center; /* Center the image */
 }
