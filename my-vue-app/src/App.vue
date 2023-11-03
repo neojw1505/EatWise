@@ -16,7 +16,9 @@
       </div>
     </div>
     <br /> -->
-  <router-view> </router-view>
+  <router-view> 
+    <Market/>
+  </router-view>
 </template>
 
 <script>
