@@ -5,7 +5,7 @@
       <div class="header">
         <!-- Add background Image -->
         <div class="img">
-          <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:100px; padding-left:30px; font-size:60px">Market Place</h2>
+          <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
         </div>
       </div>
 

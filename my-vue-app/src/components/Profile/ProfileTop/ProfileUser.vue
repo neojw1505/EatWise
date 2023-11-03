@@ -1,7 +1,7 @@
 <template>
 <div class="col-lg-4 col-md-12 mx-2 rounded-4 px-0 border border-2 border-dark mb-2" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 100%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%);">
     <!-- username -->
-    <div class="mx-0 rounded-4 p-2 py-1 border border-2 border-dark" style="background-color:transparent;"><h3 style="color:white" >{{userName}}</h3></div>
+    <div class="mx-0 rounded-4 p-2 py-1 border border-2 border-dark" style="background-color:transparent;"><h3 style="color:white" >Welcome Back, {{userName}}</h3></div>
         <!-- Daily Calorie Counter -->
         <div class="m-2 rounded-4 "  style="background-color: transparent;">
         <div class=" d-flex align-items-center justify-content-center rounded-4"  style="background-color: transparent;">
@@ -27,18 +27,18 @@
           <span class="fw-semibold">Settings</span>
         </div>
       </router-link>
-      <!-- logout button -->
-      <div
+      <!-- Old logout button -->
+      <!-- <div
         class="m-2 border border-2 border-dark rounded-4 bg-light p-2"
         style="width: 100px; cursor: pointer"
         @click="logout"
       >
         <font-awesome-icon :icon="['fas', 'right-from-bracket']" />
         <span class="fw-semibold">Logout</span>
-      </div>
+      </div> -->
     </div>
 
-    <div
+    <!-- <div
       class="m-2 border border-dark border-2 rounded-4"
       style="background-color: #303c6c"
     >
@@ -53,7 +53,7 @@
         Daily Calories:
         <div class="fw-semibold">{{ dailyCalories.toFixed(0) }} / {{ maxCalories.toFixed(0) }}</div>
       </div>
-    </div>
+    </div> -->
   </div>
 </template>
 

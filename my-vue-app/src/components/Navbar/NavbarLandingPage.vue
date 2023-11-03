@@ -25,13 +25,13 @@
 export default {};
 </script>
 
-<style>
+<style scoped>
 .logo {
   width: 25px;
   height: 25px;
 }
 .navbar{
-  border-radius: 40px;
+border-radius: 40px;
 width:95%;
 margin-top:10px;
 }

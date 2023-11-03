@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light mx-auto border shadow rounded-6 px-3"
+    class="navbar navbar-expand-lg navbar-light mx-auto text-center border shadow rounded-6 px-3"
     style="background-color: #ffff">
     <div class="container-fluid">
       <div class="d-flex">
@@ -33,8 +33,12 @@ export default {
 </script>
 
 <style scoped>
-/* .navbar {
-  position: fixed;
+.navbar {
   z-index: 1;
-} */
+  border-radius: 40px;
+  position: fixed;
+  border-radius: 40px;
+  width:100%;
+  margin-top:10px;
+}
 </style>
