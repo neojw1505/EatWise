@@ -1,19 +1,26 @@
 <template>
-    <div>
+    <div class="body">
     <Navbar />
     <div class="mx-auto">
-      <h2 class="m-3">Saved Recipes</h2>
-      <button @click="deletela">hello</button>
-  <div class="mx-auto " style="max-width: 1200px">
-    <div class="p-4 pt-2 shadow border rounded-4 my-3 d-flex mx-3 d-flex row" style="background-color: #FBE8A6;">
+      <!-- <h2 class="main-text mt-4" style="color: white ; font-family: Roboto;">Saved Recipes:</h2> -->
+      <!-- <button @click="deletela">Delete All Recipes</button> -->
+      <div class="border border-2 border-dark rounded-4 p-2 mt-5" style="width: 100px; margin-left: 50px; background-color: tomato ; color: white;" @click="deletela">
+        <span class="fw-semibold" @click="DeleteConfirm()"> Delete All</span>
+    </div>
+    
+  <div class="mx-auto" style="max-width: 1200px">
+    
+    <div class="p-4 pt-2 border rounded-4 my-3 d-flex mx-3 d-flex row" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 0%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%);">
       
-      <div v-if="visibleItems.length > 0" class="d-flex flex-wrap">
+      <div v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">
         <SavedRecipeCard
           v-for="item in visibleItems"
           :key="item.id"
           :recipe="item"
           :routerTO="item.id"
           style="text-decoration: none"
+  
+  
         />
       </div>
       
@@ -50,14 +57,15 @@
         {{ page + 1 }}
       </button>
     </div>
-
-    </div>
   </div>
+    </div>
   </div>
   </div>
 </template>
 
 <script>
+import { get } from 'firebase/database';
+import Swal from 'sweetalert2';
 export default {  
   data() {
     return {
@@ -90,9 +98,36 @@ export default {
     },
   },
   methods: {
-    async deletela(){
-      await this.$smAPI.deleteSavedRecipes();
-    },
+
+    DeleteConfirm() {
+    Swal.fire({
+        title: 'Are you sure?',
+        text: 'This action will delete all items. This cannot be undone.',
+        icon: 'warning',
+        showCancelButton: true,
+        confirmButtonText: 'Yes, delete all items',
+        cancelButtonText: 'No, cancel',
+        confirmButtonColor: '#d33',
+        cancelButtonColor: '#3085d6',
+    }).then((result) => {
+        if (result.isConfirmed) {
+            this.$smAPI.deleteSavedRecipes()
+            this.getUserSavedRecipes()
+                .then(() => {
+                    console.log("Items deleted successfully");
+                })
+                .catch((error) => {
+                    console.error("Error deleting items:", error);
+                });
+        } else {
+            console.log("Deletion Cancelled"); 
+        }
+    });
+},
+
+    // async deletela(){
+    //   await this.$smAPI.deleteSavedRecipes();
+    // },
     
     nextPage() {
       if (this.currentPage < this.maxPage) {
@@ -124,12 +159,34 @@ export default {
   },
   async created(){
     await this.getUserSavedRecipes();
-  }
+  },
+
+  
 
 }
+
 </script>
 
 <style scoped>
+
+@media screen and (min-width: 601px) {
+  h2.main-text {
+    font-size: 80px;
+    text-align: center;     
+    
+  }
+  
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  h2.main-text {
+    font-size: 40px;
+    text-align: center;
+  }
+
+
+}
 .active {
   color: white;
   padding: 5px 10px;
@@ -138,5 +195,13 @@ export default {
   border: 1px solid #d8d7d7;
   cursor: pointer;
 }
+
+.body {
+  background-image: url(../homepageAsset/saved_recipe_bg.png);
+  
+}
+
+
+
 </style>
 

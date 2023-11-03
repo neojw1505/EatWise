@@ -3,10 +3,10 @@
       <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2">
         <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" />
         <div class="card-body img-fluid">
-          <h4 class="card-title" style="font-size: large; height: 50px" >
+          <h4 class="card-title" style="font-size: large; height: 50px; text-align: center;" >
             {{ formattedRecipeName }}
           </h4>
-          <p class="card-text">{{formattedCal}} kcals</p>
+          <p class="card-text" style="color: red; font-weight: bold;">{{formattedCal}} <span style="color: black;"> kcals</span></p>
         </div>
       </div>
     <!-- </router-link> -->
@@ -55,13 +55,15 @@
   
   <style scoped>
   .cardStyle {
-    border: #FFB18D solid 1px;
-    border-bottom-left-radius: 30px;
+    border: black solid 1px;
+    /* border-bottom-left-radius: 30px; */
     width: 200px;
     height: 250px;
-    background-image: linear-gradient(to bottom right, #ff5100, #fac400);
+    /* background-image: linear-gradient(to bottom right, #ff5100, #fac400); */
+    background: white;
     color: black;
     transition: transform 0.3s;
+    padding: 0;
   }
   .cardStyle:hover {
     transform: scale(1.05); /* Scale up by 10% on hover */
