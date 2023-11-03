@@ -67,7 +67,7 @@ class SpoonacularAPI {
       const response = await this.axios.get("/recipes/random", {
         params: {
           number: 1, // Number of recipes to retrieve
-          tags: dietType != '' ? `breakfast,${dietType}` : 'breakfast'
+          tags: dietType != '' ? `${dietType},breakfast` : 'breakfast'
         },
       });
         // Get the random recipe data
@@ -88,7 +88,7 @@ class SpoonacularAPI {
         const response = await this.axios.get("/recipes/random", {
           params: {
             number: 1, // Number of recipes to retrieve
-            tags: dietType != '' ? `lunch,${dietType}` : 'lunch'
+            tags: dietType != '' ? `${dietType},lunch` : 'lunch'
           },
         });
           // Get the random recipe data
@@ -109,7 +109,7 @@ class SpoonacularAPI {
       const response = await this.axios.get("/recipes/random", {
         params: {
           number: 1, // Number of recipes to retrieve
-          tags: dietType != '' ? `dinner,${dietType}` : 'dinner'
+          tags: dietType != '' ? `${dietType},dinner` : 'dinner'
         },
       });
         // Get the random recipe data

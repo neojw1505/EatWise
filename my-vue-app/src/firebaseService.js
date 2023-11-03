@@ -292,7 +292,6 @@ export const setBreakfastRecipeInFB = async () => {
       const userRef = ref(database, '/users/' + userUid + '/mealplan/breakfast');
       const snapshot = await get(userRef);
       const dietType = await getUserDietType()
-      console.log(dietType);
       const breakfastRecipeObj = await spoonacularObj.getBreakfastRecipe(dietType);
       const breakfastRecipeNutrition = await spoonacularObj.getSelectedRecipeNutritions(
         breakfastRecipeObj[0].id
@@ -384,7 +383,8 @@ export const setLunchRecipeInFB = async () => {
       // Form a reference to the user's data in the database
       const userRef = ref(database, '/users/' + userUid + '/mealplan/lunch');
       const snapshot = await get(userRef);
-      const lunchRecipeObj = await spoonacularObj.getLunchRecipe();
+      const dietType = await getUserDietType()
+      const lunchRecipeObj = await spoonacularObj.getLunchRecipe(dietType);
       const lunchRecipeNutrition = await spoonacularObj.getSelectedRecipeNutritions(
         lunchRecipeObj[0].id
       );
@@ -453,7 +453,8 @@ export const setDinnerRecipeInFB = async () => {
       // Form a reference to the user's data in the database
       const userRef = ref(database, '/users/' + userUid + '/mealplan/dinner');
       const snapshot = await get(userRef);
-      const dinnerRecipeObj = await spoonacularObj.getDinnerRecipe();
+      const dietType = await getUserDietType()
+      const dinnerRecipeObj = await spoonacularObj.getDinnerRecipe(dietType);
       const dinnerRecipeNutrition = await spoonacularObj.getSelectedRecipeNutritions(
         dinnerRecipeObj[0].id
       );
