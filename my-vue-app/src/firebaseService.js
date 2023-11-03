@@ -291,7 +291,9 @@ export const setBreakfastRecipeInFB = async () => {
       // Form a reference to the user's data in the database
       const userRef = ref(database, '/users/' + userUid + '/mealplan/breakfast');
       const snapshot = await get(userRef);
-      const breakfastRecipeObj = await spoonacularObj.getBreakfastRecipe();
+      const dietType = await getUserDietType()
+      console.log(dietType);
+      const breakfastRecipeObj = await spoonacularObj.getBreakfastRecipe(dietType);
       const breakfastRecipeNutrition = await spoonacularObj.getSelectedRecipeNutritions(
         breakfastRecipeObj[0].id
       );
@@ -324,6 +326,26 @@ export const setBreakfastRecipeInFB = async () => {
     console.error(error);
   }
 };
+
+export const getUserDietType = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/dietType');
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        // If the data doesn't exist, you may want to handle this case, e.g., set the breakfast recipe
+        console.log('dietType data not found.');
+        return null; // Return null if data doesn't exist
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
 
 export const getBreakfastRecipeFromFB = async () => {
   try {
