@@ -191,7 +191,7 @@ export default {
       if (this.isBookmarked) {
         // if already saved in firebase, remove it because user uncheck bookmark
         this.isBookmarked = !this.isBookmarked;
-        this.$smAPI.removeSavedRecipeInFB(recipeId);
+        this.$smAPI.removeSavedRecipeInFB(this.recipeDetails.id);
       } else {
         // if not in firebase, add it into firebase because user click button to bookmark
         this.isBookmarked = !this.isBookmarked;
