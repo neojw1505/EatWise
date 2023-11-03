@@ -34,7 +34,6 @@ export default {
 };
 </script>
 
-<<<<<<< Updated upstream
 <style scoped>
 .navbar{
 border-radius: 40px;
@@ -46,12 +45,3 @@ position: fixed;
 z-index:2;
 }
 </style>
-=======
-<<<<<<< Updated upstream
-<style></style>
-=======
-<style scoped>
-
-</style>
->>>>>>> Stashed changes
->>>>>>> Stashed changes

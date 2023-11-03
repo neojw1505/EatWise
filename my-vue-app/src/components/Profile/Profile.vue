@@ -44,14 +44,7 @@ export default {
 };
 </script>
 
-<<<<<<< Updated upstream
 <style>
-=======
-<<<<<<< Updated upstream
-<style></style>
-=======
-<style scoped>
->>>>>>> Stashed changes
 .section1{
   background-image: url(../homepageAsset/profilepagebg.png);
   width: 100%;
@@ -72,7 +65,3 @@ export default {
 
 }
 </style>
-<<<<<<< Updated upstream
-=======
->>>>>>> Stashed changes
->>>>>>> Stashed changes
