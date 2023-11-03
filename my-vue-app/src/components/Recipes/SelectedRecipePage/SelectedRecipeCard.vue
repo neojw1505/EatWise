@@ -1,31 +1,12 @@
 <template>
   <div>
     <Navbar />
-    <div class="p-5 pt-2 rounded-4 my-3 mx-auto" style="max-width: 1200px">
+    <div v-if="recipeDetails" class="p-5 pt-2 rounded-4 my-3 mx-auto" style="max-width: 1200px">
       <!-- name and picture -->
       <div class="m-2 d-flex justify-content-between align-items-center">
         <div>
           <h1>{{ recipeDetails.title }}</h1>
         </div>
-<<<<<<< Updated upstream
-        <button
-          class="bookmark-button"
-          @click="toggleBookmarkState(recipeDetails.id, recipeDetails)"
-        >
-          <font-awesome-icon
-            v-if="isBookmarked"
-            :icon="['fas', 'bookmark']"
-            size="2xl"
-            style="color: #ffff00"
-          />
-          <font-awesome-icon
-            v-else
-            :icon="['fas', 'bookmark']"
-            size="2xl"
-            style="color: #ffffff"
-          />
-        </button>
-=======
         <!-- <button @click="setBreakfastFromSavedRecipes">Set as Breakfast</button>
         <button @click="setLunchFromSavedRecipes">Set as Lunch</button>
         <button @click="setDinnerFromSavedRecipes">Set as Dinner</button> -->
@@ -56,7 +37,6 @@
             />
           </button>
         </div>
->>>>>>> Stashed changes
       </div>
       <div class="row">
         <!-- left side -->
@@ -144,6 +124,7 @@
         </div>
       </div>
     </div>
+    <!-- <div v-else class="mx-auto">Error 404: no recipe found</div> -->
   </div>
 </template>
 
@@ -155,6 +136,7 @@ export default {
       recipeDetails: null,
       isBookmarked: false,
       meal:"Add to meal",
+      initialMealType:null
     };
   },
   computed: {
@@ -186,9 +168,23 @@ export default {
     save() {
       this.isSaved = !this.isSaved;
     },
-    getRecipeDetails() {
-      this.recipeDetails = this.$store.getters.getSharedData;
-      console.log(this.recipeDetails);
+    async getRecipeDetails() {
+      const mealTypeRef={
+        'breakfast':"Breakfast",
+        'lunch':"Lunch",
+        'dinner':"Dinner",
+      }
+      // this.recipeDetails = this.$store.getters.getSharedData;
+      // console.log(this.recipeDetails);
+      const storedData = localStorage.getItem('sharedData');
+      this.recipeDetails=storedData ? JSON.parse(storedData) : null;
+
+
+      let getMealType= await this.$smAPI.getMealPlanCategory(this.recipeDetails.id)
+      if(getMealType ){
+        this.meal=mealTypeRef[getMealType];
+        this.initialMealType=mealTypeRef[getMealType];
+      }
     },
     async toggleBookmarkState() {
       console.log(this.isBookmarked);
@@ -229,7 +225,8 @@ export default {
         this.recipeDetails.nutrition
       );
     },
-    setMealType(){
+    async setMealType(){
+      console.log(this.meal)
       if(this.meal=="Breakfast"){
         this.setBreakfastFromSavedRecipes();
       }
@@ -240,8 +237,17 @@ export default {
         this.setDinnerFromSavedRecipes();
       }
       else{
-        
+        if(this.initialMealType=="Breakfast"){
+        await this.$smAPI.setBreakfastRecipeInFB();
       }
+      else if(this.initialMealType=="Lunch"){
+        await this.$smAPI.setLunchRecipeInFB();
+      }
+      else if(this.initialMealType=="Dinner"){
+        await this.$smAPI.setDinnerRecipeInFB();
+      }
+      }
+      this.initialMealType=this.meal
     }
   },
   async created() {
