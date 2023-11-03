@@ -1,6 +1,7 @@
 <!-- Home.vue -->
 <template>
   <div>
+<<<<<<< Updated upstream
     <div>
       <Navbar />
     </div>
@@ -47,7 +48,68 @@
         <NewPromoCarousel class="p-4 pt-2 rounded-4 my-3 mx-3" />
       </div>
     </div>
+=======
+<<<<<<< Updated upstream
+    <Navbar />
+    <RecipeOfDay
+      data-aos="fade-up"
+      data-aos-duration="800"
+      data-aos-delay="200"
+      data-aos-offset="100"
+      class="pt-2 my-3 mx-3"
+    />
+    <MealPlan class="p-4 pt-2 shadow border rounded-4 my-3 mx-3" />
+    <NewPromoCarousel class="p-4 pt-2 shadow border rounded-4 my-3 mx-3" />
+>>>>>>> Stashed changes
   </div>
+=======
+      <Navbar />
+    </div>
+    <div>
+      <div class="section1">
+        <video
+          loop
+          autoplay
+          muted
+          preload="auto"
+          src="./homepageAsset/home_bg_video.mp4"
+          alt="bgvideo"
+          style="width: 100%; height: 100%; object-fit: fill"
+        ></video>
+        <div class="overlay">
+          <h1 class="main-text"
+            style="
+              color: whitesmoke;
+              font-family: Georgia, 'Times New Roman', Times;
+            "
+          >
+            EatWise
+          </h1>
+          <br />
+          <h1 class="sub-text"
+            style="
+              font-family: Georgia, 'Times New Roman', Times;
+            "
+          >
+            Nourishing Your
+            <span style="color: #7a8cea; font-weight: bold">Journey</span>, One
+            Bite at a Time
+          </h1>
+        </div>
+      </div>
+      <div class="section2" style="padding-top: 80px; padding-bottom: 80px">
+        <!--hidden text so that image extends-->
+        <RecipeOfDay />
+      </div>
+      <div class="section3" style="padding-top: 60px; padding-bottom: 60px">
+        <MealPlan/>
+      </div>
+      <div class="section4" style="padding-top: 40px; padding-bottom: 40px">
+        <NewPromoCarousel class="p-4 pt-2 rounded-4 my-3 mx-3" />
+      </div>
+    </div>
+  
+>>>>>>> Stashed changes
 </template>
 
 <script>
