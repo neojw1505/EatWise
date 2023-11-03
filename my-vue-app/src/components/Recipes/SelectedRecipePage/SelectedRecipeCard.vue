@@ -129,6 +129,7 @@
 </template>
 
 <script>
+import Swal from "sweetalert2";
 export default {
   name: "SelectedRecipeCard",
   data() {
@@ -191,7 +192,7 @@ export default {
       if (this.isBookmarked) {
         // if already saved in firebase, remove it because user uncheck bookmark
         this.isBookmarked = !this.isBookmarked;
-        this.$smAPI.removeSavedRecipeInFB(recipeId);
+        this.$smAPI.removeSavedRecipeInFB(this.recipeDetails.id);
       } else {
         // if not in firebase, add it into firebase because user click button to bookmark
         this.isBookmarked = !this.isBookmarked;
@@ -226,26 +227,106 @@ export default {
       );
     },
     async setMealType(){
+      const date = new Date();
+      let day = date.getDate();
+      let month = date.getMonth() + 1;
+      let year = date.getFullYear();
+
+      // This arrangement can be altered based on how we want the date's format to appear.
+      let currentDate = `${year}-${month}-${day}`;
+      let checkConsumption = await this.$smAPI.GetConsumptionHistoryForDate(currentDate);
+      let error = '';
+      console.log(checkConsumption);
+      
       console.log(this.meal)
       if(this.meal=="Breakfast"){
-        this.setBreakfastFromSavedRecipes();
+        if (!("breakfast" in checkConsumption)){
+          this.setBreakfastFromSavedRecipes();
+          Swal.fire({
+                  icon: 'success',
+                  title: 'Breakfast succesfully set',
+                  text: 'Recipe has been set for breakfast!',
+                });
+        }
+        else{
+          error += 'Please uncheck Breakfast in Meal Planner and Try Again'
+        }
       }
       else if(this.meal=="Lunch"){
-        this.setLunchFromSavedRecipes();
+        if (!("lunch" in checkConsumption)){
+          this.setLunchFromSavedRecipes();
+          Swal.fire({
+                  icon: 'success',
+                  title: 'Lunch succesfully set',
+                  text: 'Recipe has been set for dinner!',
+                });
+        }
+        else {
+          error += 'Please uncheck Lunch in Meal Planner and Try Again'
+        }
       }
       else if(this.meal=="Dinner"){
-        this.setDinnerFromSavedRecipes();
+        if (!("dinner" in checkConsumption)){
+          this.setDinnerFromSavedRecipes();
+          Swal.fire({
+                  icon: 'success',
+                  title: 'Dinner succesfully set',
+                  text: 'Recipe has been set for dinner!',
+                });
+        }
+        else {
+          error += 'Please uncheck Dinner in Meal Planner and Try Again'
+        }
       }
       else{
         if(this.initialMealType=="Breakfast"){
-        await this.$smAPI.setBreakfastRecipeInFB();
+          if (!("breakfast" in checkConsumption)){
+            await this.$smAPI.setBreakfastRecipeInFB();
+            Swal.fire({
+                  icon: 'success',
+                  title: 'Meal Regenerated',
+                  text: 'Recipe removed from breakfast and has been regenerated',
+                });
+          }
+        else {
+          error += 'Please uncheck Breakfast in Meal Planner and Try Again'
+        }
       }
       else if(this.initialMealType=="Lunch"){
-        await this.$smAPI.setLunchRecipeInFB();
+        if (!("lunch" in checkConsumption)){
+          await this.$smAPI.setLunchRecipeInFB();
+          Swal.fire({
+                  icon: 'success',
+                  title: 'Meal Regenerated',
+                  text: 'Recipe removed from lunch and has been regenerated',
+                });
+        }
+        else {
+          error += 'Please uncheck Lunch in Meal Planner and Try Again';
+        }
       }
       else if(this.initialMealType=="Dinner"){
-        await this.$smAPI.setDinnerRecipeInFB();
+        if (!("dinner" in checkConsumption)){
+          await this.$smAPI.setDinnerRecipeInFB();
+          Swal.fire({
+                  icon: 'success',
+                  title: 'Meal Regenerated',
+                  text: 'Recipe removed from dinner and has been regenerated',
+                });
+        }
+        else {
+          error += 'Please uncheck Dinner in Meal Planner and Try Again'
+        }
       }
+      }
+
+      if (error != ''){
+        Swal.fire({
+                  icon: 'error',
+                  title: 'Error',
+                  text: error,
+                });
+
       }
       this.initialMealType=this.meal
     }
