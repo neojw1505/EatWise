@@ -1,32 +1,42 @@
 <template>
   <div>
     <Navbar />
-    <div class="p-5 pt-2 rounded-4 my-3 mx-auto" style="max-width: 1200px">
+    <div v-if="recipeDetails" class="p-5 pt-2 rounded-4 my-3 mx-auto" style="max-width: 1200px">
       <!-- name and picture -->
       <div class="m-2 d-flex justify-content-between align-items-center">
         <div>
           <h1>{{ recipeDetails.title }}</h1>
         </div>
-        <button @click="setBreakfastFromSavedRecipes">Set as Breakfast</button>
+        <!-- <button @click="setBreakfastFromSavedRecipes">Set as Breakfast</button>
         <button @click="setLunchFromSavedRecipes">Set as Lunch</button>
-        <button @click="setDinnerFromSavedRecipes">Set as Dinner</button>
-        <button
-          class="bookmark-button"
-          @click="toggleBookmarkState(recipeDetails.id, recipeDetails)"
-        >
-          <font-awesome-icon
-            v-if="isBookmarked"
-            :icon="['fas', 'bookmark']"
-            size="2xl"
-            style="color: #ffff00"
-          />
-          <font-awesome-icon
-            v-else
-            :icon="['fas', 'bookmark']"
-            size="2xl"
-            style="color: #ffffff"
-          />
-        </button>
+        <button @click="setDinnerFromSavedRecipes">Set as Dinner</button> -->
+        <div class="d-flex">
+          <!-- drop down to show meal -->
+          <select class="form-select mx-2" v-model="meal" @change="setMealType">
+            <option value="Add to meal" selected>Add to meal</option>
+            <option value="Breakfast">Breakfast</option>
+            <option value="Lunch">Lunch</option>
+            <option value="Dinner">Dinner</option>
+          </select>
+
+          <button
+            class="bookmark-button mx-2"
+            @click="toggleBookmarkState(recipeDetails.id, recipeDetails)"
+          >
+            <font-awesome-icon
+              v-if="isBookmarked"
+              :icon="['fas', 'bookmark']"
+              size="2xl"
+              style="color: #ffff00"
+            />
+            <font-awesome-icon
+              v-else
+              :icon="['fas', 'bookmark']"
+              size="2xl"
+              style="color: #ffffff"
+            />
+          </button>
+        </div>
       </div>
       <div class="row">
         <!-- left side -->
@@ -64,16 +74,18 @@
 
           <!-- give ingredients -->
           <div class="cardStyle p-2 rounded-4 my-1">
-            <div class=" d-flex justify-content-between">
+            <div class="d-flex justify-content-between">
               <span class="fw-semibold">Ingredients:</span>
-              <span class="fw-semibold">*Click ingredient to view in market</span>
+              <span class="fw-semibold"
+                >*Click ingredient to view in market</span
+              >
             </div>
             <div
               class="mx-4"
               v-for="i in recipeDetails.extendedIngredients"
               :key="i"
               @click="searchInMarket(i.name)"
-              style="cursor: pointer;"
+              style="cursor: pointer"
             >
               <li>{{ i.name }}</li>
             </div>
@@ -112,6 +124,7 @@
         </div>
       </div>
     </div>
+    <div v-else class="mx-auto text-center">Error 404: no recipe found</div>
   </div>
 </template>
 
@@ -122,6 +135,8 @@ export default {
     return {
       recipeDetails: null,
       isBookmarked: false,
+      meal:"Add to meal",
+      initialMealType:null
     };
   },
   computed: {
@@ -153,9 +168,23 @@ export default {
     save() {
       this.isSaved = !this.isSaved;
     },
-    getRecipeDetails() {
-      this.recipeDetails = this.$store.getters.getSharedData;
-      console.log(this.recipeDetails);
+    async getRecipeDetails() {
+      const mealTypeRef={
+        'breakfast':"Breakfast",
+        'lunch':"Lunch",
+        'dinner':"Dinner",
+      }
+      // this.recipeDetails = this.$store.getters.getSharedData;
+      // console.log(this.recipeDetails);
+      const storedData = localStorage.getItem('selectedRecipe');
+      this.recipeDetails=storedData ? JSON.parse(storedData) : null;
+
+
+      let getMealType= await this.$smAPI.getMealPlanCategory(this.recipeDetails.id)
+      if(getMealType ){
+        this.meal=mealTypeRef[getMealType];
+        this.initialMealType=mealTypeRef[getMealType];
+      }
     },
     async toggleBookmarkState() {
       console.log(this.isBookmarked);
@@ -174,18 +203,51 @@ export default {
         );
       }
     },
-    searchInMarket(item){
-      this.$store.dispatch('setIngredientquery', item);
-      this.$router.push({ path: '/market' }); // Navigate to the receiver component
+    searchInMarket(item) {
+      this.$store.dispatch("setIngredientquery", item);
+      this.$router.push({ path: "/market" }); // Navigate to the receiver component
     },
     async setBreakfastFromSavedRecipes() {
-        await this.$smAPI.setBreakfastFromSavedRecipes(this.recipeDetails, this.recipeDetails.nutrition)
+      await this.$smAPI.setBreakfastFromSavedRecipes(
+        this.recipeDetails,
+        this.recipeDetails.nutrition
+      );
     },
     async setLunchFromSavedRecipes() {
-      await this.$smAPI.setLunchFromSavedRecipes(this.recipeDetails, this.recipeDetails.nutrition)
+      await this.$smAPI.setLunchFromSavedRecipes(
+        this.recipeDetails,
+        this.recipeDetails.nutrition
+      );
     },
     async setDinnerFromSavedRecipes() {
-      await this.$smAPI.setDinnerFromSavedRecipes(this.recipeDetails, this.recipeDetails.nutrition)
+      await this.$smAPI.setDinnerFromSavedRecipes(
+        this.recipeDetails,
+        this.recipeDetails.nutrition
+      );
+    },
+    async setMealType(){
+      console.log(this.meal)
+      if(this.meal=="Breakfast"){
+        this.setBreakfastFromSavedRecipes();
+      }
+      else if(this.meal=="Lunch"){
+        this.setLunchFromSavedRecipes();
+      }
+      else if(this.meal=="Dinner"){
+        this.setDinnerFromSavedRecipes();
+      }
+      else{
+        if(this.initialMealType=="Breakfast"){
+        await this.$smAPI.setBreakfastRecipeInFB();
+      }
+      else if(this.initialMealType=="Lunch"){
+        await this.$smAPI.setLunchRecipeInFB();
+      }
+      else if(this.initialMealType=="Dinner"){
+        await this.$smAPI.setDinnerRecipeInFB();
+      }
+      }
+      this.initialMealType=this.meal
     }
   },
   async created() {

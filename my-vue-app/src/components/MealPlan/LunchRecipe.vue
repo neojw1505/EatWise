@@ -21,12 +21,12 @@
     </div>
   </div>
     <div class="card shadow" v-else>
-      <div class="image-wrapper">
+      <div class="image-wrapper" @click="seeRecipeDetailsInMealPlan">
         <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
         <div class="bookmark">
           <button
             class="bookmark-button"
-            @click="
+            @click.stop="
               toggleBookmarkState(recipeData.id, recipeData, nutritionData)
             "
           >
@@ -78,7 +78,8 @@
     </div>
 
     <div class="card-footer border-0">
-      <button class="btn btn-lg me-2 rounded-4" @click="refreshRecipe(mealType)">
+      <!-- Only display the "Get New" button when the food is not consumed -->
+      <button class="btn me-2" @click="refreshRecipe(mealType)" v-if="!isConsumed">
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
@@ -149,6 +150,9 @@ export default {
       return this.recipeData.title.length > 42
         ? this.recipeData.title.slice(0, 41) + "..."
         : this.recipeData.title;
+    },
+    formattedRecipeSummary() {
+      return this.recipeData.summary.replace(/<a[^>]*>(.*?)<\/a>/g, '<a style="color:blue; font-weight:bold;">$1</a>');
     },
     currentDate() {
       let date = new Date();
@@ -278,6 +282,17 @@ export default {
         this.currentDate,
         this.currentTime
       );
+    },
+
+    seeRecipeDetailsInMealPlan() {
+      console.log(this.recipeData);
+      Swal.fire({
+        title: this.recipeData.title,
+        html: this.formattedRecipeSummary,
+        imageUrl: this.recipeData.image,
+        imageWidth: 400,
+        imageHeight: 300,
+      });
     },
   },
 

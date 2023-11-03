@@ -1085,6 +1085,44 @@ export const setDinnerFromSavedRecipes = async (dinnerRecipeObj, dinnerNutrition
     throw error;
   }
 }
+
+export const getMealPlanCategory = async (recipeId) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid;
+
+      // Define meal plan paths
+      const mealPlanPaths = {
+        breakfast: '/mealplan/breakfast',
+        lunch: '/mealplan/lunch',
+        dinner: '/mealplan/dinner'
+      };
+
+      for (const category in mealPlanPaths) {
+        const mealPath = mealPlanPaths[category];
+        const mealRef = ref(database, '/users/' + userUid + mealPath + '/recipe');
+        const mealSnapshot = await get(mealRef);
+
+        if (mealSnapshot.exists()) {
+          // Assuming the data structure is an array with recipe objects
+          const recipes = mealSnapshot.val();
+          const recipeIds = recipes.map(recipe => recipe.id);
+
+          if (recipeIds.includes(recipeId)) {
+            return category; // Found in this meal plan category
+          }
+        }
+      }
+
+      return false; // Not found in any meal plan category
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 

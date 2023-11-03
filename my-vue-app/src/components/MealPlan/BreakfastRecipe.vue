@@ -26,7 +26,7 @@
         <div class="bookmark">
           <button
             class="bookmark-button"
-            @click="
+            @click.stop="
               toggleBookmarkState(recipeData.id, recipeData, nutritionData)
             "
           >
@@ -78,7 +78,8 @@
     </div>
 
     <div class="card-footer border-0">
-      <button class="btn btn-lg rounded-4 me-2"  @click="refreshRecipe(mealType)">
+      <!-- Only display the "Get New" button when the food is not consumed -->
+      <button class="btn me-2" @click="refreshRecipe(mealType)" v-if="!isConsumed">
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
