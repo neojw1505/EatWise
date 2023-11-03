@@ -1085,6 +1085,44 @@ export const setDinnerFromSavedRecipes = async (dinnerRecipeObj, dinnerNutrition
     throw error;
   }
 }
+
+export const isSavedRecipeSetAsMealPlan = async (recipeId) => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid;
+      const mealRecipeIds = [];
+
+      // Define meal plan paths
+      const mealPlanPaths = ['/mealplan/breakfast', '/mealplan/lunch', '/mealplan/dinner'];
+
+      for (const mealPath of mealPlanPaths) {
+        const mealRef = ref(database, '/users/' + userUid + mealPath + '/recipe');
+        const mealSnapshot = await get(mealRef);
+
+        if (mealSnapshot.exists()) {
+          // Assuming the data structure is an array with recipe objects
+          const recipes = mealSnapshot.val();
+          const recipeIds = recipes.map(recipe => recipe.id);
+
+          mealRecipeIds.push(...recipeIds);
+        }
+      }
+
+      // Use Array.includes() to check if recipeId is in mealRecipeIds
+      if (mealRecipeIds.includes(recipeId)) {
+        return true;
+      } else {
+        return false;
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
+
+
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 
