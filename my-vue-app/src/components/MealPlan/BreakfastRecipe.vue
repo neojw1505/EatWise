@@ -19,7 +19,7 @@
         <div class="bookmark">
           <button
             class="bookmark-button"
-            @click="
+            @click.stop="
               toggleBookmarkState(recipeData.id, recipeData, nutritionData)
             "
           >

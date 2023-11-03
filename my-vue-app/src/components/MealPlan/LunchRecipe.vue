@@ -14,12 +14,12 @@
     </div>
 
     <div class="card shadow" v-else>
-      <div class="image-wrapper">
+      <div class="image-wrapper" @click="seeRecipeDetailsInMealPlan">
         <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
         <div class="bookmark">
           <button
             class="bookmark-button"
-            @click="
+            @click.stop="
               toggleBookmarkState(recipeData.id, recipeData, nutritionData)
             "
           >
@@ -159,6 +159,9 @@ export default {
         ? this.recipeData.title.slice(0, 41) + "..."
         : this.recipeData.title;
     },
+    formattedRecipeSummary() {
+      return this.recipeData.summary.replace(/<a[^>]*>(.*?)<\/a>/g, '<a style="color:blue; font-weight:bold;">$1</a>');
+    },
     currentDate() {
       let date = new Date();
       // Extracting date components
@@ -287,6 +290,17 @@ export default {
         this.currentDate,
         this.currentTime
       );
+    },
+
+    seeRecipeDetailsInMealPlan() {
+      console.log(this.recipeData);
+      Swal.fire({
+        title: this.recipeData.title,
+        html: this.formattedRecipeSummary,
+        imageUrl: this.recipeData.image,
+        imageWidth: 400,
+        imageHeight: 300,
+      });
     },
   },
 
