@@ -8,7 +8,7 @@
 <script>
 export default {
     data(){return{
-        selectedDate: new Date().toLocaleString().split(",")[0],
+        selectedDate: new Date(),
     }},
     methods:{
         handleCalendarDate(data){
