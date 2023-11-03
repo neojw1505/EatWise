@@ -39,7 +39,7 @@ export default {
 border-radius: 40px;
 width:100%;
 margin-top:10px;
-
 position: fixed;
+z-index:2;
 }
 </style>

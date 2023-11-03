@@ -4,13 +4,13 @@
   <div class="card col-4 cardStyle mx-3 py-3 px-0 my-3 " >
     <h5 class="card-text border bg-primary-subtle mx-auto rounded-4 p-1 fw-bold">{{ ProductData.supermarket_name }}</h5>
     <div class="text-center">
-      <img class="card-img-top mx-0" :src="ProductData.product_img" alt="Product Image" />
-      <div class="card-title fw-bold" style="height: 25px">
+      <img class="card-img-top mx-0 rounded-4" :src="ProductData.product_img" alt="Product Image" />
+      <div class="card-title fw-bold text-white" style="height: 25px">
         {{ formattedProductName }}
       </div>
     </div>
-    <div class="card-text fw-bold mx-auto">{{ ProductData.product_price }}</div>
-    <div class="card-text fw-bold mx-auto">{{ ProductData.product_promo }}</div>
+    <div class="card-text fw-bold mx-auto text-white">{{ ProductData.product_price }}</div>
+    <div class="card-text fw-bold mx-auto text-white">{{ ProductData.product_promo }}</div>
   </div>
 </a>
   
@@ -39,7 +39,8 @@ export default {
 <style scoped>
 .cardStyle {
   border: #000000 solid 1px;
-  background-image: linear-gradient(to bottom right, #ff5100, #fac400);
+  /* background-image: linear-gradient(to bottom right, #ff5100, #fac400); */
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 100%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%);
   border-radius: 30px;
   width: 200px;
   height: 350px;

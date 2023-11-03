@@ -1,7 +1,7 @@
 <template>
     <div>
         <div class="fw-bold mt-4">Supermarket:</div>
-        <div class=" my-2 d-flex  flex-wrap">
+        <div class=" my-2 d-flex flex-wrap">
             <input @click="checked" :class="filterOption" value="FairPrice"  type="button">
             <input @click="checked" :class="filterOption" value="Cold Storage"  type="button">
             <input @click="checked" :class="filterOption" value="Sheng Shiong"  type="button">
