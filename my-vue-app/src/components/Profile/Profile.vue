@@ -1,5 +1,5 @@
 <template>
-  <div class="page">
+  <div class="pageStyle">
     <Navbar/>
     <div class="section1" style="padding-top:100px">
 
@@ -61,5 +61,9 @@ async created() {
   background-size: cover;
   background-repeat: no-repeat;
 }
-
+.pageStyle{
+  background-image: url('../../components/homepageAsset/profile.jpg');
+  background-size: cover;
+  padding-bottom: 200px;
+}
 </style>
