@@ -171,7 +171,7 @@ export default {
       let formattedTime = `${hours}:${minutes}:${seconds}`;
       return formattedTime;
     },
-    computedCal(){
+   computedCal(){
       return this.nutritionData.calories ?? this.recipeData['nutrition']['nutrients'][0].amount.toFixed(0)
     }
   },
