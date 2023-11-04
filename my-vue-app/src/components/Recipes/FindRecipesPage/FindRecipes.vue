@@ -5,10 +5,9 @@
         <!-- Add background Image -->
       <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">All Recipes</h2>
     </div>
-    <!-- need to check if there is any Recommended recipe. if yes, show the RecommendedRecipes below -->
     <div class="mx-auto" style="max-width: 1200px;">
     <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
-      Find you <span style="color: #7a8cea; font-weight: bold"> favourite </span>recipe
+      Find you <span style="color: #7a8cea; font-weight: bold"> favourite </span>recipe!
     </h1>
     <div class="mx-3 mb-5 d-flex mx-auto col-6 align-items-center ">
       <input v-model="tempSearch" class="form-control border-3 rounded-5" placeholder="What are you looking for?"/>
@@ -16,7 +15,6 @@
         <font-awesome-icon :icon="['fas', 'magnifying-glass']" size="lg" />
       </div>
     </div>
-    <!-- <RecommendedRecipes/> -->
     <!-- show all result for recipe -->
     <AllRecipe :searchInput="search" />
   

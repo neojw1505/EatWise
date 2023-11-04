@@ -1,11 +1,11 @@
 <template>
-  <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2" :style="{'background-image':'url(' + recipe.image + ')','background-size': 'cover','background-position': 'left'}">
+  <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2" :style="{'background-image':'url(' + recipe.image + ')','background-size': 'cover','background-position': 'center'}">
     <!-- <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" /> -->
     <div class="recipeInfo p-1 px-2">
       <div class="card-title fw-semibold" style="font-size: large; height: 50px" >
         {{ formattedRecipeName }}
       </div>
-      <p class="card-text">{{recipe.nutrition.nutrients[0].amount.toFixed(0)}} kcals</p>
+      <p class="card-text text-warning ">{{recipe.nutrition.nutrients[0].amount.toFixed(0)}} kcals</p>
     </div>
   </div>
 </template>

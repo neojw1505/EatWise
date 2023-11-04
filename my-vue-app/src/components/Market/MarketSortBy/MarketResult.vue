@@ -1,5 +1,5 @@
 <template>
-  <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4 d-flex row" style="background:#b7b3b3">
+  <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4 d-flex row" style="background:#e6ecf7">
     <div v-if="visibleItems.length > 0" class="d-flex flex-wrap mx-auto justify-content-center">
       <MarketPreviewCard
         v-for="product in visibleItems"
@@ -26,8 +26,8 @@
 
 
     <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
-      <button class="btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
-      <button class="btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
+      <button class="btnStyle btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
+      <button class="btnStyle btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
     </div>
 
     <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center" style="color:white">
@@ -36,7 +36,7 @@
         :key="page"
         @click="goToPage(page)"
         :class="{ 'active': page === currentPage }"
-        class="btn"
+        class="btn text-black btnStyle"
       >
         {{ page + 1 }}
       </button>
@@ -102,11 +102,18 @@ export default {
 
 <style scoped>
 .active {
-  color: white;
+  color: black;
   padding: 5px 10px;
   margin: 0 3px;
   border-radius: 5px;
-  border: 1px solid #d8d7d7;
+  border: 1px solid #000;
+  cursor: pointer;
+}
+.btnStyle{
+  transition: transform 0.3s;
+}
+.btnStyle:hover {
+  transform: scale(1.05); /* Scale up by 10% on hover */
   cursor: pointer;
 }
 </style>

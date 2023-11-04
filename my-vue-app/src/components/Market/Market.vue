@@ -8,7 +8,18 @@
           <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
         </div>
       </div>
-
+      <!-- catchy headline -->
+      <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
+      Find the  <span style="color: #7a8cea; font-weight: bold"> cheapest </span> ingredients available!
+      </h1>
+      <!-- input to search for ingredient -->
+      <div class="mx-3 mb-5 d-flex mx-auto col-6 align-items-center ">
+        <input v-model="marketSearchQuery" class="form-control border-3 rounded-5" placeholder="What are you looking for?"/>
+        <div @click="fetchProducts" class="btnStyle btn my-1 ms-2 rounded-4" style="background-color: #7A8CEA;" >
+          <font-awesome-icon :icon="['fas', 'magnifying-glass']" size="lg" />
+        </div>
+      </div>
+      <!-- main body -->
       <div class="mx-3 container row mx-auto" style="max-width: 1200px">
         <!-- left side -->
 
@@ -28,9 +39,9 @@
                 :bool="bool"
                 @isCheck="handdleCheckoption"
               />
-              <button class="btn btn-dark rounded-4" @click="toggleFilter">
+              <button class=" btnStyle btn btn-dark rounded-4" @click="toggleFilter">
                 Apply Filter <font-awesome-icon :icon="['fas', 'filter']" /> 
-        </button>
+            </button>
             </div>
           </div>
 
@@ -75,11 +86,11 @@ export default {
     handleInput(data){
       this.dataResult=null
       console.log(data)
-      this.marketSearchQuery=data[0];
-      this.minPrice=data[1];
-      this.maxPrice=data[2];
-      if(data[3]!=''){
-        this.supermarket=data[3].map(market=>(market.split(' ').join('')));
+      // this.marketSearchQuery=data[0];
+      this.minPrice=data[0];
+      this.maxPrice=data[1];
+      if(data[2]!=''){
+        this.supermarket=data[2].map(market=>(market.split(' ').join('')));
         console.log(this.supermarket)
       }
       this.fetchProducts();
@@ -141,5 +152,13 @@ export default {
   object-fit: fill;
   background-size: 100%;
   background-repeat: no-repeat;
+}
+
+.btnStyle{
+  transition: transform 0.3s;
+}
+.btnStyle:hover {
+  transform: scale(1.05); /* Scale up by 10% on hover */
+  cursor: pointer;
 }
 </style>
