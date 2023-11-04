@@ -18,7 +18,7 @@
 
 <script>
 import Navbar from "../Navbar/Navbar.vue";
-
+import Logout from "./ProfileTop/Logout.vue";
 export default {
   components: { Navbar, Logout },
   data() {
