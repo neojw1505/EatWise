@@ -2,8 +2,8 @@
   <!-- <router-link :to="routerTO"> -->
 <a :href="ProductData.product_link" target="_blank" class="text-decoration-none">
   <div class="card cardStyle mx-2 py-3 px-0 my-2 " :style="{'background-image':'url(' + ProductData.product_img + ')','background-size': 'cover','background-position': 'center'}">
-    <div class="recipeInfo">
-      <div class=" border bg-light mx-auto btn py-0 fw-bold">{{ ProductData.supermarket_name }}</div>
+    <div class="recipeInfo px-1">
+      <div class=" border bg-light mx-auto btn py-0 mt-1 fw-bold">{{ ProductData.supermarket_name }}</div>
       <div class="card-title text-white fw-semibold" style="height: 30px">
         {{ formattedProductName }}
       </div>
@@ -40,7 +40,6 @@ export default {
 .cardStyle {
   border: #7A8CEA solid 1px;
   /* background-image: linear-gradient(to bottom right, #ff5100, #fac400); */
-  background: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 100%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%);
   border-radius: 20px;
   width: 200px;
   height: 250px;
