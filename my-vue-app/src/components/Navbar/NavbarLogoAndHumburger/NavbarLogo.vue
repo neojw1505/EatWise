@@ -1,10 +1,10 @@
 <template>
-  <div class="text-center mx-2">
+  <div class="text-center">
     <router-link class="navbar-brand p-0 m-0" to="/">
     <li :class="this.$route.path==='/' ? 'highlightBackground' : ''" @click="highlighLink" style="list-style: none">
-        <font-awesome-icon :icon="['fas', 'egg']" size="2xl"/>
+        <font-awesome-icon :icon="['fas', 'egg']" size="xl"/>
         <!-- money-bill-wheat -->
-        <div class="fw-semibold fs-4 text-black">EatWise</div>
+        <div class="fw-semibold fs-5 text-black">EatWise</div>
     </li>
   </router-link>
   </div>

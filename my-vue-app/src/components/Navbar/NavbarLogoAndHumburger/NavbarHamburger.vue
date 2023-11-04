@@ -1,6 +1,6 @@
 <template>
   <button
-    class="navbar-toggler btn border-0 btn-sm "
+    class="navbar-toggler btn border-0 btn-sm mx-1 "
     data-bs-toggle="collapse"
     data-bs-target="#navbarSupportedContent">
     <font-awesome-icon :icon="['fas', 'bars']" size="2xl" />
