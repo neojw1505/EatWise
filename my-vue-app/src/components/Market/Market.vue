@@ -4,7 +4,7 @@
     <div class="mx-auto" >
       <div class="header">
         <!-- Add background Image -->
-        <div class="img">
+        <div class="backGroundimg">
           <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
         </div>
       </div>
@@ -145,7 +145,7 @@ export default {
 </script>
 
 <style scoped>
-.img{
+.backGroundimg{
   background-image: url(../homepageAsset/marketplacebackground.jpeg);
   width: 100%;
   height: 25vh;
