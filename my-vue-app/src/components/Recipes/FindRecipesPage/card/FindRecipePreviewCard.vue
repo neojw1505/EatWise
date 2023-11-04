@@ -1,5 +1,5 @@
 <template>
-  <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2" :style="{'background-image':'url(' + recipe.image + ')','background-size': 'cover'}">
+  <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2" :style="{'background-image':'url(' + recipe.image + ')','background-size': 'cover','background-position': 'left'}">
     <!-- <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" /> -->
     <div class="recipeInfo p-1 px-2">
       <div class="card-title fw-semibold" style="font-size: large; height: 50px" >
@@ -50,8 +50,8 @@ export default {
 .cardStyle {
   border: white solid 1px;
   border-radius: 20px;
-  width: 200px;
-  height: 250px;
+  width: 250px;
+  height: 200px;
   color: white;
   transition: transform 0.3s;
   position: relative;
@@ -71,6 +71,6 @@ export default {
   bottom: 0;
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
-  width: 198px;
+  width: 100%;
 }
 </style>
