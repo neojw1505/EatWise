@@ -1,5 +1,5 @@
 <template>
-<div class="col-lg-4 col-md-12 mx-2 rounded-4 px-0 border border-2 border-dark mb-2" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 100%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%);">
+<div class="col col-lg-4 col-md-12 mx-2 rounded-4 px-0 border border-2 border-dark mb-2" style="background: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 100%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%);">
     <!-- username -->
     <div class="mx-0 rounded-4 p-2 py-1 border border-2 border-dark" style="background-color:transparent;"><h3 style="color:white" >Welcome Back, {{userName}}</h3></div>
         <!-- Daily Calorie Counter -->

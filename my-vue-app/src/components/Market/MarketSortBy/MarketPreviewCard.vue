@@ -5,7 +5,7 @@
     <div class="text-center">
       <img class="card-img-top mx-0 rounded-4" :src="ProductData.product_img" alt="Product Image" />
       
-      <h5 class="card-text border bg-primary-subtle mx-auto rounded-4 mt-2 py-2 fw-bold">{{ ProductData.supermarket_name }}</h5>
+      <h5 class="card-text border bg-secondary-subtle mx-auto rounded-4 mt-2 py-2 fw-bold">{{ ProductData.supermarket_name }}</h5>
       <div class="card-title fw-bold text-white" style="height: 25px">
         {{ formattedProductName }}
       </div>

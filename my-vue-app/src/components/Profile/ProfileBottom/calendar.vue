@@ -9,7 +9,7 @@
         <div v-for="day in days" class="calendar-day text-light" :key="day">{{ day }}</div>
       </div>
       <div class="calendar-grid">
-        <div  v-for="date in calendarDates" :key="date" class="calendar-cell" @click="selectDate(date)"
+        <div  v-for="date in calendarDates" :key="date" class="calendar-cell text-light" @click="selectDate(date)"
         :class="{ 'selected-date': isDateSelected(date) }">
           {{ date }}
         </div>
@@ -105,9 +105,8 @@
   
   <style scoped>
 .selected-date {
-  background-color: grey;
-  color: black;
-  border-radius: 50%;
+  background-color: rgb(114, 105, 105);
+  color: white;
   border: 2px solid black;
 }
   
@@ -125,10 +124,14 @@
     padding: 10px;
     min-height: 50px;
     text-align: center;
+    border-radius: 50px;
+
   }
 
   .calendar-cell:hover {
     cursor: pointer;
+    transform: scale(1.05); 
+    transition: transform 0.3s; 
   }
   </style>
   

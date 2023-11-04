@@ -1,11 +1,10 @@
 <template>
   <div class="page">
     <Navbar/>
-    <div class="section1" style="padding-top:80px">
-      <div class="row pt-4"> 
-        <span class="d-flex text-center" style="justify-content: right;"> <Logout/> </span>
-      </div>
+    <div class="section1" style="padding-top:100px">
+
     <ProfileTop :userName="ProfileName"/>
+    
     <!-- <hr
       class="border border-dark border-1 opacity-100 mx-3 mx-auto"
       style="max-width: 1200px"
