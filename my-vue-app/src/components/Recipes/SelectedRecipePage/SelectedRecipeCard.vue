@@ -1,11 +1,12 @@
 <template>
-  <div>
+  <div class="pageStyle">
     <Navbar />
-    <div v-if="recipeDetails" class="p-5 pt-2 rounded-4 my-3 mx-auto" style="max-width: 1200px">
+    <div class="mx-2">
+      <div v-if="recipeDetails" class="contentStyle mx-auto" style="max-width: 1200px">
       <!-- name and picture -->
       <div class="m-2 d-flex justify-content-between align-items-center">
         <div>
-          <h1>{{ recipeDetails.title }}</h1>
+          <h1 class="text-white">{{ recipeDetails.title }}</h1>
         </div>
         <!-- <button @click="setBreakfastFromSavedRecipes">Set as Breakfast</button>
         <button @click="setLunchFromSavedRecipes">Set as Lunch</button>
@@ -65,7 +66,7 @@
           </div>
 
           <!-- give description -->
-          <div class="cardStyle p-2 rounded-4 my-1">
+          <div class="cardStyle p-2 rounded-4">
             <div>
               <span class="fw-semibold">Description:</span>
             </div>
@@ -73,7 +74,7 @@
           </div>
 
           <!-- give ingredients -->
-          <div class="cardStyle p-2 rounded-4 my-1">
+          <div class="cardStyle p-2 rounded-4">
             <div class="d-flex justify-content-between">
               <span class="fw-semibold">Ingredients:</span>
               <span class="fw-semibold"
@@ -94,7 +95,7 @@
 
         <!-- right side -->
         <div class="col-lg-6">
-          <div class="cardStyle p-4 py-2 rounded-4">
+          <div class="cardStyle p-4  rounded-4">
             <div>
               <span class="fw-semibold">Nutritional Info:</span>
             </div>
@@ -125,6 +126,8 @@
       </div>
     </div>
     <div v-else class="mx-auto text-center">Error 404: no recipe found</div>
+    </div>
+    
   </div>
 </template>
 
@@ -143,11 +146,12 @@ export default {
   computed: {
     computedDescription() {
       let temp = this.recipeDetails.summary.split(".");
+      let tempres = [];
       let res = [];
       let addInChar = true;
       for (let eachLine of temp) {
         if (!eachLine.includes("$") && !eachLine.includes("{")) {
-          res.push(eachLine);
+          tempres.push(eachLine);
         } else if (eachLine.includes("{")) {
           let tempsentence = "";
           for (let char of eachLine) {
@@ -156,6 +160,24 @@ export default {
             } else if (char == "{") {
               addInChar = false;
             } else if (char == "}") {
+              addInChar = true;
+            }
+          }
+          tempres.push(tempsentence);
+        }
+      }
+      //remove <>
+      for (let eachLine of tempres) {
+        if (!eachLine.includes("<") ) {
+          res.push(eachLine);
+        } else if (eachLine.includes("<")) {
+          let tempsentence = "";
+          for (let char of eachLine) {
+            if (addInChar && char != "<") {
+              tempsentence += char;
+            } else if (char == "<") {
+              addInChar = false;
+            } else if (char == ">") {
               addInChar = true;
             }
           }
@@ -186,6 +208,7 @@ export default {
         this.meal=mealTypeRef[getMealType];
         this.initialMealType=mealTypeRef[getMealType];
       }
+      console.log(this.recipeDetails)
     },
     async toggleBookmarkState() {
       console.log(this.isBookmarked);
@@ -335,10 +358,12 @@ export default {
 .cardStyle {
   background-image: linear-gradient(
     to bottom,
-    rgba(0, 0, 0, 0.6),
-    rgba(0, 0, 0, 0.3)
+    rgba(0, 0, 0, 0.8),
+    rgba(0, 0, 0, 0.5)
   );
   color: white;
+  margin-top: 10px;
+  margin-bottom: 10px;
 }
 
 .bookmark-button {
@@ -347,10 +372,17 @@ export default {
   padding: 0;
   cursor: pointer;
 }
-.removeA a {
-  text-decoration: none;
-  color: white;
-  cursor: text;
-  pointer-events: none;
+
+.contentStyle{
+  padding-top: 100px;
+  margin-left: 50px ;
+  margin-right: 50px ;
+
+}
+
+.pageStyle{
+  background-image: url('../../homepageAsset/selectedRecipe.jpg');
+  background-size: cover;
+  padding-bottom: 100px;
 }
 </style>
