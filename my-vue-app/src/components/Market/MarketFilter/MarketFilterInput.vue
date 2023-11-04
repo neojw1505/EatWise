@@ -1,5 +1,5 @@
 <template>
-  <div class="p-4 pt-2 shadow border rounded-4 mt-5">
+  <div class="p-4 pt-2 shadow border rounded-4">
     <!-- show search-->
     <MarketFilterSearch @getSearch="handleSearchInput"/>
     <MarketFilterPrice @getPrice="handlePrice"/>

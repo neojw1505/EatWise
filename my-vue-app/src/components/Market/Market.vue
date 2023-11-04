@@ -9,7 +9,7 @@
         </div>
       </div>
 
-      <div class="mx-3 container row mx-auto" style="max-width: 1400px">
+      <div class="mx-3 container row mx-auto" style="max-width: 1200px">
         <!-- left side -->
 
         <div class="col-md-12 col-sm-12 col-lg-4 mb-5" v-if="showFilter">
@@ -18,7 +18,7 @@
         <!-- right side -->
         <div class="col">
           <!-- sort by -->
-          <h5 class="fw-bold text-white fs-1">Sort By:</h5>
+          <h5 class="fw-bold text-black fs-3 mt-2">Sort By:</h5>
           <div>
             <div class="d-flex flex-wrap mx-auto">
               <MarketSortBy

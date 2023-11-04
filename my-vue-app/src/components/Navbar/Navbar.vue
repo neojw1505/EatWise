@@ -1,6 +1,6 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light mx-auto text-center border shadow rounded-6 px-3"
+    class="navbar navbar-expand-lg navbar-light mx-auto text-center border shadow px-3"
     style="background-color: #ffff">
     <div class="container-fluid">
       <div class="d-flex">

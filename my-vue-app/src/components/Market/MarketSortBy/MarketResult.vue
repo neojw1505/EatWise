@@ -49,7 +49,7 @@ export default {
   props: ["result"],
   data() {
     return {
-      itemsPerPage: 12,
+      itemsPerPage: 60,
       currentPage: 0,
     };
   },

@@ -1,10 +1,10 @@
 <template>
-  <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2">
-    <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" />
-    <div class="card-body img-fluid">
-      <h4 class="card-title" style="font-size: large; height: 50px" >
+  <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2" :style="{'background-image':'url(' + recipe.image + ')','background-size': 'cover'}">
+    <!-- <img class="card-img-top mx-0" :src="recipe.image" alt="Recipe Image" /> -->
+    <div class="recipeInfo p-1 px-2">
+      <div class="card-title fw-semibold" style="font-size: large; height: 50px" >
         {{ formattedRecipeName }}
-      </h4>
+      </div>
       <p class="card-text">{{recipe.nutrition.nutrients[0].amount.toFixed(0)}} kcals</p>
     </div>
   </div>
@@ -48,16 +48,29 @@ export default {
 
 <style scoped>
 .cardStyle {
-  border: #FFB18D solid 1px;
-  border-bottom-left-radius: 30px;
+  border: white solid 1px;
+  border-radius: 20px;
   width: 200px;
   height: 250px;
-  background-image: linear-gradient(to bottom right, #ff5100, #fac400);
-  color: black;
+  color: white;
   transition: transform 0.3s;
+  position: relative;
 }
 .cardStyle:hover {
   transform: scale(1.05); /* Scale up by 10% on hover */
   cursor: pointer;
+}
+
+.recipeInfo{
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.5)
+  );
+  position: absolute;
+  bottom: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 198px;
 }
 </style>

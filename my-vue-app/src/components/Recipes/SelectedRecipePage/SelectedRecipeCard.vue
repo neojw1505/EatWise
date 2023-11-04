@@ -331,7 +331,7 @@ export default {
 
 </script>
 
-<style scope>
+<style scoped>
 .cardStyle {
   background-image: linear-gradient(
     to bottom,

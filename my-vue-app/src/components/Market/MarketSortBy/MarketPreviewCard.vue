@@ -1,17 +1,17 @@
 <template>
   <!-- <router-link :to="routerTO"> -->
 <a :href="ProductData.product_link" target="_blank" class="text-decoration-none">
-  <div class="card col-4 cardStyle mx-3 py-3 px-0 my-3 " >
+  <div class="card cardStyle mx-2 py-3 px-0 my-2 " >
     <div class="text-center">
-      <img class="card-img-top mx-0 rounded-4" :src="ProductData.product_img" alt="Product Image" />
+      <img class="card-img-top rounded-4" :src="ProductData.product_img" alt="Product Image" />
       
-      <h5 class="card-text border bg-secondary-subtle mx-auto rounded-4 mt-2 py-2 fw-bold">{{ ProductData.supermarket_name }}</h5>
-      <div class="card-title fw-bold text-white" style="height: 25px">
+      <h5 class="card-text border bg-light mx-auto rounded-2 mt-2 py-0 fw-bold">{{ ProductData.supermarket_name }}</h5>
+      <div class="card-title text-white" style="height: 40px">
         {{ formattedProductName }}
       </div>
     </div>
     <div class="card-text fw-bold mx-auto text-white">{{ ProductData.product_price }}</div>
-    <div class="card-text bg-warning rounded-4 p-2 mt-2 fw-bold mx-auto text-white">{{ ProductData.product_promo }}</div>
+    <div class="card-text bg-warning rounded-5 px-1 mt-2 fw-bold mx-auto text-white">{{ ProductData.product_promo }}</div>
   </div>
 </a>
   
@@ -29,8 +29,8 @@ export default {
   computed: {
     //in the event that the name of the recipe is too long, we shorten the name
     formattedProductName() {
-      return this.ProductData.product_title.length > 20
-        ? this.ProductData.product_title.slice(0, 17) + "..."
+      return this.ProductData.product_title.length > 40
+        ? this.ProductData.product_title.slice(0,37 ) + "..."
         : this.ProductData.product_title;
     },
   },
@@ -42,8 +42,8 @@ export default {
   border: #000000 solid 1px;
   /* background-image: linear-gradient(to bottom right, #ff5100, #fac400); */
   background: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 100%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%);
-  border-radius: 30px;
-  width: 200px;
+  border-radius: 20px;
+  width: 198px;
   height: 350px;
   color: black;
   transition: transform 0.3s;
@@ -52,6 +52,6 @@ export default {
   transform: scale(1.05); /* Scale up by 10% on hover */
 }
 img{
-  width:80%;
+  width:90%;
 }
 </style>
