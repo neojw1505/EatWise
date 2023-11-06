@@ -1,7 +1,10 @@
 <template>
   <!-- <router-link :to="routerTO"> -->
     <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2" :style="{'background-image':'url(' + recipeImage + ')','background-size': 'cover','background-position': 'center'}">
-    <div class="text-center m-1 fw-semibold fs-5 text-warning ">{{ mealType.charAt(0).toUpperCase() + mealType.slice(1) }}</div>
+      <div class="mx-auto my-1">
+        <div class="text-center fw-semibold fs-5 text-black btn bg-secondary-subtle mx-auto p-0 m-0 border">{{ mealType.charAt(0).toUpperCase() + mealType.slice(1) }}</div>
+      </div>
+    
     <div class="recipeInfo p-1 px-2">
       <div class="card-title fw-semibold" style="font-size: large; height: 50px">
         {{ formattedRecipeName }}
