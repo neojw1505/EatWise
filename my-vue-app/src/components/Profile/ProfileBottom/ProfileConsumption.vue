@@ -104,7 +104,7 @@ export default {
   computed: {
     formattedDate() {
       let date=this.consumptionDate.getDate();
-      let month=this.consumptionDate.getMonth();
+      let month=this.consumptionDate.getMonth()+1;
       let year=this.consumptionDate.getFullYear();
 
       let monthObj={

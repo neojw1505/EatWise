@@ -1,7 +1,7 @@
 <template>
   <!-- <router-link :to="routerTO"> -->
     <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2" :style="{'background-image':'url(' + recipeImage + ')','background-size': 'cover','background-position': 'center'}">
-    <div class="text-center m-1 fw-bold fs-5 text-white">{{ mealType.charAt(0).toUpperCase() + mealType.slice(1) }}</div>
+    <div class="text-center m-1 fw-semibold fs-5 text-warning ">{{ mealType.charAt(0).toUpperCase() + mealType.slice(1) }}</div>
     <div class="recipeInfo p-1 px-2">
       <div class="card-title fw-semibold" style="font-size: large; height: 50px">
         {{ formattedRecipeName }}
@@ -38,8 +38,8 @@ export default {
   },
   methods: {
     async selectRecipe() {
-      this.$store.dispatch('setSharedData', this.recipe);
-      localStorage.setItem('selectedRecipe', JSON.stringify(this.recipe)); // Save to local storage
+      this.$store.dispatch('setSharedData', this.mealDetails.recipe);
+      localStorage.setItem('selectedRecipe', JSON.stringify(this.mealDetails.recipe)); // Save to local storage
       this.$router.push({ path: '/find-recipes/SelectedRecipeCard' }); // Navigate to the receiver component
     },
   },
@@ -75,4 +75,5 @@ export default {
   border-bottom-right-radius: 20px;
   width: 100%;
 }
+
 </style>
