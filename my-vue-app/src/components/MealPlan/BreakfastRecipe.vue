@@ -1,70 +1,72 @@
 <template>
-  <div class="card shadowborder-dark mx-auto" style="overflow: auto; width: 335px "  v-if="recipeData && nutritionData">
+  <div class="card shadowborder-dark mx-auto" style=" width: 335px; height: 540px;"  v-if="recipeData && nutritionData">
     <div class="card-header"><h3>Breakfast</h3></div> 
 
     <!-- Display the image or a spinner -->
-  <div class="card align-items-center" v-if="loading">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
+  <div class="card align-items-center " v-if="loading" style="height: 540px;">
+    <div class="d-flex align-items-center" style="height: 100%;">
+      <div class="spinner-border " role="status">
+        <span class="visually-hidden">Loading...</span>
+      </div>
+  </div>
+  </div>
+
+  <div class="card shadow border-0" v-else style="height: 540px;">
+    <div class="image-wrapper" @click="seeRecipeDetailsInMealPlan">
+      <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
+      <div class="bookmark">
+        <button
+          class="bookmark-button"
+          @click.stop="
+            toggleBookmarkState(recipeData.id, recipeData, nutritionData)
+          "
+        >
+          <font-awesome-icon
+            v-if="isBookmarked"
+            :icon="['fas', 'bookmark']"
+            size="2xl"
+            style="color: #ffff00"
+          />
+          <font-awesome-icon
+            v-else
+            :icon="['fas', 'bookmark']"
+            size="2xl"
+            style="color: #ffffff"
+          />
+        </button>
+      </div>
     </div>
   </div>
 
-    <div class="card shadow border-0" v-else>
-      <div class="image-wrapper" @click="seeRecipeDetailsInMealPlan">
-        <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
-        <div class="bookmark">
-          <button
-            class="bookmark-button"
-            @click.stop="
-              toggleBookmarkState(recipeData.id, recipeData, nutritionData)
-            "
-          >
-            <font-awesome-icon
-              v-if="isBookmarked"
-              :icon="['fas', 'bookmark']"
-              size="2xl"
-              style="color: #ffff00"
-            />
-            <font-awesome-icon
-              v-else
-              :icon="['fas', 'bookmark']"
-              size="2xl"
-              style="color: #ffffff"
-            />
-          </button>
-        </div>
+  <div class="card-body border-0" v-if="!loading && imageLoaded" style="height: 540px;">
+    <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
+    <p class="card-text d-flex flex-wrap">
+      <div class="mx-2"> Servings: {{ recipeData.servings  }} </div>
+      <div class="mx-2"> Carbs: {{ nutritionData.carbs ?? recipeData['nutrition']['nutrients'][3].amount}} </div>
+      <div class="mx-2"> Fat: {{ nutritionData.fat ?? recipeData['nutrition']['nutrients'][1].amount}} </div>
+      <div class="mx-2"> Protein: {{ nutritionData.protein ?? recipeData['nutrition']['nutrients'][8].amount }} </div>
+    </p>
+    <!-- Labels based on conditions -->
+    <div style="height: 60px">
+      <div class="d-flex justify-content-end flex-wrap">
+        <span
+          v-for="label in labels"
+          :key="label"
+          class="badge d-sm-inline-block m-1"
+          >{{ label }}</span
+        >
       </div>
     </div>
-
-    <div class="card-body border-0" v-if="!loading && imageLoaded">
-      <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
-      <p class="card-text">
-        <span> Servings: {{ recipeData.servings }} </span>
-        <span> Carbs: {{ nutritionData.carbs }} </span>
-        <span> Fat: {{ nutritionData.fat }} </span>
-        <span> Protein: {{ nutritionData.protein }} </span>
-      </p>
-      <!-- Labels based on conditions -->
-      <div style="height: 60px">
-        <div class="d-flex justify-content-end flex-wrap">
-          <span
-            v-for="label in labels"
-            :key="label"
-            class="badge d-sm-inline-block m-1"
-            >{{ label }}</span
-          >
-        </div>
-      </div>
-      <!-- Top Right Label for Kcal and PrepTime -->
-      <div class="badge badge-circular">
-        <div class="badge-content">
-          <font-awesome-icon :icon="['fas', 'fire-flame-curved']" />
-          {{ computedCal }}kcal<br />
-          <font-awesome-icon :icon="['fas', 'clock']" />
-          {{ recipeData.readyInMinutes }}min
-        </div>
+    <!-- Top Right Label for Kcal and PrepTime -->
+    <div class="badge badge-circular">
+      <div class="badge-content">
+        <font-awesome-icon :icon="['fas', 'fire-flame-curved']" />
+        {{ computedCal }}kcal<br />
+        <font-awesome-icon :icon="['fas', 'clock']" />
+        {{ recipeData.readyInMinutes }}min
       </div>
     </div>
+  </div>
 
     <div class="card-footer border-0">
       <!-- Only display the "Get New" button when the food is not consumed -->
