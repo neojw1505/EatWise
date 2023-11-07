@@ -38,7 +38,7 @@
       >
         <div class="fw-semibold fs-1">
           <span style="color: black">{{ dailyCalories.toFixed(0) }} / </span>
-          <span style="color: #7a8cea">{{ maxCalories }}</span>
+          <span style="color: #7a8cea">{{ maxCalories.toFixed(0) }}</span>
         </div>
       </div>
     </div>
