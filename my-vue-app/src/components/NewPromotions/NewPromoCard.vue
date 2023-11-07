@@ -1,23 +1,21 @@
 <template>
-  <div class="card equal-card shadow mb-4">
-    <!-- Remove the circle-overlay div -->
-    <img class="card-img-top" :src="product.product_img" alt="Product Image" />
-    <!-- Add a rectangle-overlay div -->
+  <div class="card equal-card shadow mb-4" @click="openExternalWebsite" :style="{'background-image':'url(' + product.product_img + ')','background-size': 'cover','background-position': 'center'}">
+  
+  <!-- Add a rectangle-overlay div -->
     <div class="rectangle-overlay shadow">
       <div class="promo-text">{{ product.product_promo }}</div>
     </div>
     
-    <div class="card-content">
-      <h5 class="card-title text-truncate-2 mt-1">{{ product.product_title }}</h5>
+    <div class="promoInfo">
+      <div class="mt-2"><span class="bg-light text-dark rounded-4 p-1 mt-2 fw-bold">{{ product.supermarket_name }}</span></div>
+      <div class="card-title text-truncate-2 mt-1">{{ formattedPromoName }}</div>
       <div>
         <p class="card-text">
           <strong>{{ product.product_price }}</strong> <br />
-          {{ product.supermarket_name }}
         </p>
       </div>
-    </div>
-    <div class="d-flex mx-auto mb-2">
-      <a :href="product.product_link" target="_blank" class="btn shadow">Check it Out!</a>
+        <div class="d-flex mx-auto mb-2">
+      </div>
     </div>
   </div>
 </template>
@@ -30,6 +28,18 @@ export default {
       required: true,
     },
   },
+  methods:{
+    openExternalWebsite() {
+      window.open(this.product.product_link, '_blank');
+    },
+  },
+  computed:{
+    formattedPromoName() {
+      return this.product.product_title.length > 25
+        ? this.product.product_title.slice(0, 23) + "..."
+        : this.product.product_title;
+    },
+  }
 };
 </script>
 
@@ -54,8 +64,8 @@ export default {
 }
 .equal-card {
   width: 100%;
-  width: 300px;
-  height: 350px;
+  width: 250px;
+  height: 300px;
   border: 2px solid #000;
   border-radius: 20px;
   transition: transform 0.2s;
@@ -63,6 +73,7 @@ export default {
   text-align: center;
   background: linear-gradient(180deg, rgba(255, 255, 255, 0.50) 99.99%, rgba(84, 84, 84, 0.00) 100%);
   box-shadow: 0px 4px 4px 0px rgba(0, 0, 0, 0.25);
+  position: relative;
   
 }
 /* Style the rectangle-overlay */
@@ -105,5 +116,18 @@ export default {
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 2;
   overflow: hidden;
+}
+.promoInfo{
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.5)
+  );
+  position: absolute;
+  bottom: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 100%;
+  color: white;
 }
 </style>

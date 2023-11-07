@@ -40,11 +40,15 @@
 
   <div class="card-body border-0" v-if="!loading && imageLoaded" style="height: 540px;">
     <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
-    <p class="card-text d-flex flex-wrap">
-      <div class="mx-2"> Servings: {{ recipeData.servings  }} </div>
-      <div class="mx-2"> Carbs: {{ nutritionData.carbs ?? recipeData['nutrition']['nutrients'][3].amount}} </div>
-      <div class="mx-2"> Fat: {{ nutritionData.fat ?? recipeData['nutrition']['nutrients'][1].amount}} </div>
-      <div class="mx-2"> Protein: {{ nutritionData.protein ?? recipeData['nutrition']['nutrients'][8].amount }} </div>
+    <p class="card-text ">
+      <div class="row">
+        <div class="mx-2 col"> Servings: {{ recipeData.servings  }} </div>
+        <div class="mx-2 col"> Carbs: {{ nutritionData.carbs ?? recipeData['nutrition']['nutrients'][3].amount}} </div>
+      </div>
+      <div class="row">
+        <div class="mx-2 col"> Fat: {{ nutritionData.fat ?? recipeData['nutrition']['nutrients'][1].amount}} </div>
+        <div class="mx-2 col"> Protein: {{ nutritionData.protein ?? recipeData['nutrition']['nutrients'][8].amount }} </div>
+      </div>
     </p>
     <!-- Labels based on conditions -->
     <div style="height: 60px">

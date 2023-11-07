@@ -4,11 +4,11 @@
   <div class="card cardStyle mx-2 py-3 px-0 my-2 " :style="{'background-image':'url(' + ProductData.product_img + ')','background-size': 'cover','background-position': 'center'}">
     <div class="recipeInfo px-1">
       <div class=" border bg-light mx-auto btn py-0 mt-1 fw-bold">{{ ProductData.supermarket_name }}</div>
-      <div class="card-title text-white fw-semibold" style="height: 30px">
+      <div class="card-title text-white fw-semibold" style="height: 20px">
         {{ formattedProductName }}
       </div>
       <div class="card-text fw-bold mx-auto text-white">{{ ProductData.product_price }}</div>
-    <div class="card-text bg-warning rounded-5 px-1 mt-2 fw-bold mx-auto text-white">{{ ProductData.product_promo }}</div>
+    <div class="card-text bg-warning rounded-5 px-1 mt-2 fw-bold mx-auto text-white">{{ formattedPromo }}</div>
     </div>
     
   </div>
@@ -28,10 +28,16 @@ export default {
   computed: {
     //in the event that the name of the recipe is too long, we shorten the name
     formattedProductName() {
-      return this.ProductData.product_title.length > 25
-        ? this.ProductData.product_title.slice(0,20 ) + "..."
+      return this.ProductData.product_title.length > 20
+        ? this.ProductData.product_title.slice(0,17 ) + "..."
         : this.ProductData.product_title;
     },
+    formattedPromo(){
+      if(this.ProductData.product_promo=="No promotion available"){
+        return "No Promotion";
+      }
+      return this.ProductData.product_promo
+    }
   },
 };
 </script>
@@ -41,7 +47,7 @@ export default {
   border: #7A8CEA solid 1px;
   /* background-image: linear-gradient(to bottom right, #ff5100, #fac400); */
   border-radius: 20px;
-  width: 200px;
+  width: 198px;
   height: 250px;
   color: black;
   transition: transform 0.3s;
