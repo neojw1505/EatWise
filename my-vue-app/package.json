@@ -27,6 +27,7 @@
     "gsap": "^3.12.2",
     "jquery": "^3.7.1",
     "luxon": "^3.4.3",
+    "moment": "^2.29.4",
     "owl-carousel": "^1.0.0",
     "sweetalert2": "^11.7.32",
     "swiper": "^10.3.1",

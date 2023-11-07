@@ -6,7 +6,7 @@
           <ActionableInsights class="col border shadow rounded-4"/>
       </div>
   
-      <div  class="col mx-2 my-2 border shadow rounded-4">
+      <div  class="col mx-2 my-2 border shadow rounded-4 bg-white">
         <CalorieIntakeChart />
       </div>
     </div>
