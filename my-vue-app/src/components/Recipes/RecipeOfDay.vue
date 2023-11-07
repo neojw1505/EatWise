@@ -2,18 +2,18 @@
 <template>
   <div class="row"> 
     <div class="col-md-6 rounded-4 d-flex my-auto mx-2 align-items-center justify-content-center">
-      <img class="img-fluid rounded-4 col" :src="imgUrl" alt="Recipe Image" style="object-fit: contain;"/>
+      <img @click="selectRecipe" class="img-fluid rounded-4 col" :src="imgUrl" alt="Recipe Image" style="object-fit: contain;" />
     </div>
     <div class="col text-start my-auto mx-4">
       <h1 class="fw-bold mb-2">Recipe of the Day</h1>
       <br/>
-      <h4>{{ formattedRecipeName }}</h4>
+      <h4 class="fw-semibold">{{ formattedRecipeName }}</h4>
       <br/>
-      <p>Preparation Time: <strong>{{ PrepTime }} minutes</strong> </p>
+      <p><span class="fw-semibold">Preparation Time:</span> <span>{{ PrepTime }} minutes</span> </p>
       <br/>
-      <p style="overflow: hidden;">Description: {{ formattedDescriptionName }}</p>
-      <div class="d-inline-block pt-2">
-        <span v-for="(diet, index) in Diets" :key="index" class="p-2 me-2 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</span>
+      <p style="overflow: hidden; " ><span class="fw-semibold">Description:</span> {{ formattedDescriptionName }}</p>
+      <div class="d-inline-block pt-2 d-flex flex-wrap">
+        <div v-for="(diet, index) in Diets" :key="index" class="p-2 me-2 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
       </div>
 
     </div>
@@ -91,7 +91,13 @@ export default {
     async getUserDailyCaloriesFromFB() {
       let user = await this.$smAPI.getLoginUserProfile();
       this.DailyCalories = user.DailyCalories;
-    }
+    },
+    async selectRecipe() {
+      console.log(this.RandomRecipe)
+      this.$store.dispatch('setSharedData', this.RandomRecipe);
+      localStorage.setItem('selectedRecipe', JSON.stringify(this.RandomRecipe)); // Save to local storage
+      this.$router.push({ path: '/find-recipes/SelectedRecipeCard' }); // Navigate to the receiver component
+    },
   },
   computed: {
     //in the event that the name of the recipe is too long, we shorten the name
