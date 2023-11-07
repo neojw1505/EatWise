@@ -5,7 +5,7 @@
   >
     <div class="container-fluid">
         <!-- eatwise logo and dropdown button -->
-      <div class="d-flex">
+      <div class="d-flex" @click="goAbout">
         <div class="text-center mx-2">
         <img
             class="logo"
@@ -22,7 +22,13 @@
 </template>
 
 <script>
-export default {};
+export default {
+  methods:{
+    goAbout(){
+      this.$router.push({path:'/about'});
+    }
+  }
+};
 </script>
 
 <style scoped>
