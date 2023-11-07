@@ -37,7 +37,10 @@ export default {
   z-index: 1;
   border-radius: 40px;
   position: fixed;
-  width:100%;
-  margin-top:10px;
+  width:95%;
+  margin:10px auto;
+  left: 0;
+  right: 0;
+  top: 0;
 }
 </style>

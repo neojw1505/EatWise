@@ -1,7 +1,7 @@
 <template>
-  <div>
+  <div class="backgroundImage">
     <NavbarLandingPage/>
-    <div>
+    <div style="padding-top: 120px;">
       <OnboardingGender v-if="pageNumber==0" @buttonAction="buttonAction" @addGender="addGender"/>
       <OnboardingUserDetails @addAge="addAge" @addHeight="addHeight" @addWeight="addWeight" @addGoal="addGoal" v-if="pageNumber==1" @buttonAction="buttonAction"/>
       <OnboardingActivityLevel @addActivityLevel="addActivityLevel" v-if="pageNumber==2" @buttonAction="buttonAction"/>
@@ -10,14 +10,13 @@
       <OnboardFinalPage v-if="pageNumber==5" @buttonAction="buttonAction" :registerUser="UserData" @passDailyCalorie="handleDailyCalories"/>
       <Registration @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword" v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
     </div>
+    <Footer/>
   </div>
 </template>
 
 
 <script>
-import Navbar from '../Navbar/Navbar.vue';
 export default {
-  components: { Navbar },
   data(){return{
     pageNumber:0,
     UserData:{
@@ -93,17 +92,12 @@ export default {
 </script>
 
 
-<style>
-#container {
-  width: 100vh;
-  height: 100vh;
-}
-body {
-  /* background-image: url(img/background.png); */
+<style scoped>
+
+.backgroundImage{
   width: 100%;
-  height: 100%;
-  /* object-fit: cover;
+  background-image: url(../LandingPage/Assets/background.png);
   background-size: cover;
-  background-repeat: no-repeat; */
 }
+
 </style>

@@ -1,7 +1,7 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light mx-auto"
-    style="background-color: #7A8CEA"
+  class="navbarStyle navbar navbar-expand-md navbar-light mx-auto text-center border shadow px-3 py-1 align-items-center d-flex"
+    style="background-color: #ffff"
   >
     <div class="container-fluid">
         <!-- eatwise logo and dropdown button -->
@@ -30,9 +30,16 @@ export default {};
   width: 25px;
   height: 25px;
 }
-.navbar{
-border-radius: 40px;
-width:95%;
-margin-top:10px;
+
+.navbarStyle {
+  z-index: 1;
+  border-radius: 40px;
+  position: fixed;
+  width:95%;
+  margin:10px auto;
+  left: 0;
+  right: 0;
+  top: 0;
 }
+
 </style>

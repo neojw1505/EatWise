@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="container my-5">
+    <div class="container ">
       <div class="rounded-4 p-3 text-center" style="background-color: #7A8CEA;">
         <h1 class="fw-bold fs-4">TELL US MORE ABOUT YOURSELF</h1>
       </div>
