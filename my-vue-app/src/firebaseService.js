@@ -526,8 +526,10 @@ export const setRecipeOfDayInFB = async () => {
       // Form a reference to the user's data in the database
       const userRef = ref(database, '/users/' + userUid + '/recipeOfDay');
       const snapshot = await get(userRef);
-      const RecipeOfDayObj = await spoonacularObj.getRandomRecipe()
-     
+      let RecipeOfDayObj = await spoonacularObj.getRandomRecipe()
+      let RecipeOfDayNutrition = spoonacularObj.getSelectedRecipeNutritions(RecipeOfDayObj.id)
+      RecipeOfDayObj['nutrition'] = RecipeOfDayNutrition
+      
       if (!snapshot.exists()){
         await set(userRef, {
           recipes: RecipeOfDayObj,
