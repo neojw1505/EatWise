@@ -90,8 +90,8 @@ export default {
     },
     refreshRecipeOfDay() {
       const targetTime = new Date();
-      targetTime.setHours(21); // 11 PM
-      targetTime.setMinutes(49); // 59 minutes
+      targetTime.setHours(23); // 11 PM
+      targetTime.setMinutes(59); // 59 minutes
       targetTime.setSeconds(59); // 59 seconds
        // Calculate the time interval until the target time
       const now = new Date();
