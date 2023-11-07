@@ -49,11 +49,24 @@
           <div class="col-lg-6 justify-content-center">
             <div class="cardStyle p-2 rounded-4">
               <div class="col-lg-10 col-sm-8 col-md-6 mx-auto p-1 rounded-5">
-                <img 
+                <img
                   class="img-fluid rounded-5 border"
                   :src="recipeDetails.image"
                   @click="seeRecipeDetails"
                 />
+              </div>
+              <div
+                class="text-center py-2 fw-bold d-flex flex-wrap justify-content-center"
+              >
+                <div class="mx-2">
+                  <font-awesome-icon :icon="['fas', 'clock']" />
+                  Preparation and Cooking Time:
+                  {{ recipeDetails.readyInMinutes }} Mins
+                </div>
+                <div class="mx-2">
+                  <font-awesome-icon :icon="['fas', 'user-group']" />
+                  Serving Size: {{ recipeDetails.servings }}
+                </div>
               </div>
             </div>
 
@@ -91,7 +104,7 @@
             <div class="cardStyle p-4 rounded-4">
               <h1 class="text-white">{{ recipeDetails.title }}</h1>
               <!-- prep and serving size -->
-              <div
+              <!-- <div
                 class="text-center py-2 fw-bold d-flex flex-wrap justify-content-center"
               >
                 <div class="mx-2">
@@ -103,9 +116,7 @@
                   <font-awesome-icon :icon="['fas', 'user-group']" />
                   Serving Size: {{ recipeDetails.servings }}
                 </div>
-              </div>
-            </div>
-            <div class="cardStyle p-4 rounded-4">
+              </div> -->
               <div class="fw-semibold mb-3">Diet Type:</div>
               <div>
                 <span
@@ -116,6 +127,17 @@
                 >
               </div>
             </div>
+            <!-- <div class="cardStyle p-4 rounded-4"> -->
+              <!-- <div class="fw-semibold mb-3">Diet Type:</div> -->
+              <!-- <div>
+                <span
+                  class="bg-light text-black p-2 mx-2 rounded-2 border border-warning"
+                  v-for="diet in recipeDetails.diets"
+                  :key="diet"
+                  >{{ diet }}</span
+                >
+              </div> -->
+            <!-- </div> -->
             <!-- give step -->
             <div
               class="cardStyle p-2 rounded-4"
