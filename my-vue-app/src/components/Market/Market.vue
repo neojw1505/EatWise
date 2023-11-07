@@ -1,19 +1,37 @@
 <template>
-  <div>
+  <div class="overall">
     <Navbar />
-    <div class="mx-auto">
-      <h2 class="m-3">Market Place</h2>
+    <div class="mx-auto" >
+      <div class="header">
+        <!-- Add background Image -->
+        <div class="backGroundimg">
+          <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
+        </div>
+      </div>
+      <!-- catchy headline -->
+      <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
+      Find the  <span style="color: #7a8cea; font-weight: bold"> cheapest </span> ingredients available!
+      </h1>
+      <!-- input to search for ingredient -->
+      <div class="mx-3 mb-5 d-flex mx-auto col-6 align-items-center ">
+        <input v-model="marketSearchQuery" class="form-control border-3 rounded-5" placeholder="What are you looking for?"/>
+        <div @click="fetchProducts" class="btnStyle btn my-1 ms-2 rounded-4" style="background-color: #7A8CEA;" >
+          <font-awesome-icon :icon="['fas', 'magnifying-glass']" size="lg" />
+        </div>
+      </div>
+      <!-- main body -->
       <div class="mx-3 container row mx-auto" style="max-width: 1200px">
         <!-- left side -->
-        <div class="col-md-12 col-lg-4 mb-5">
+
+        <div class="col-md-12 col-sm-12 col-lg-4 mb-5" v-if="showFilter">
             <MarketFilter @getInput="handleInput"/>
         </div>
         <!-- right side -->
-        <div class=" col-lg-8 col-md-12">
+        <div class="col">
           <!-- sort by -->
-          <h5 class="fw-bold ">Sort By:</h5>
+          <h5 class="fw-bold text-black fs-3 mt-2">Sort By:</h5>
           <div>
-            <div class="d-flex  flex-wrap">
+            <div class="d-flex flex-wrap mx-auto">
               <MarketSortBy
                 v-for="(bool,option) in sortOptions"
                 :key="option"
@@ -21,13 +39,18 @@
                 :bool="bool"
                 @isCheck="handdleCheckoption"
               />
+              <button class=" btnStyle btn btn-dark rounded-4" @click="toggleFilter">
+                Apply Filter <font-awesome-icon :icon="['fas', 'filter']" /> 
+            </button>
             </div>
           </div>
 
           <MarketResult :result="dataResult"/>
         </div>
       </div>
+      
     </div>
+    <Footer />
   </div>
 </template>
 
@@ -44,7 +67,8 @@ export default {
       sortOptions: {"On Promotion":false,"Order By Price(Ascending)":false},
       supermarket:['FairPrice','ColdStorage','ShengShiong'],
       sortBy:[],
-      dataResult: null
+      dataResult: null,
+      showFilter:false
     }
   },
   methods:{
@@ -63,11 +87,11 @@ export default {
     handleInput(data){
       this.dataResult=null
       console.log(data)
-      this.marketSearchQuery=data[0];
-      this.minPrice=data[1];
-      this.maxPrice=data[2];
-      if(data[3]!=''){
-        this.supermarket=data[3].map(market=>(market.split(' ').join('')));
+      // this.marketSearchQuery=data[0];
+      this.minPrice=data[0];
+      this.maxPrice=data[1];
+      if(data[2]!=''){
+        this.supermarket=data[2].map(market=>(market.split(' ').join('')));
         console.log(this.supermarket)
       }
       this.fetchProducts();
@@ -101,6 +125,9 @@ export default {
       this.isAscending= this.sortBy.includes("Order By Price(Ascending)") ? true : false
       this.dataResult= await this.$smAPI.fetchProducts(this.marketSearchQuery, this.minPrice, this.maxPrice, this.onPromotion, this.isAscending, this.supermarket);
       this.$store.dispatch('setIngredientquery', "");
+    },
+    toggleFilter(){
+      this.showFilter =! this.showFilter;
     }
   },
   created() {
@@ -118,4 +145,21 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.backGroundimg{
+  background-image: url(../homepageAsset/marketplacebackground.jpeg);
+  width: 100%;
+  height: 25vh;
+  object-fit: fill;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
+.btnStyle{
+  transition: transform 0.3s;
+}
+.btnStyle:hover {
+  transform: scale(1.05); /* Scale up by 10% on hover */
+  cursor: pointer;
+}
+</style>

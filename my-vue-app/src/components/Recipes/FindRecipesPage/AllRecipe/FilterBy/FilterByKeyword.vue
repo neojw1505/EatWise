@@ -1,18 +1,6 @@
 <template>
   <div class="my-1">
-    <div
-      class="d-block p-2 text-black fw-semibold rounded-4 d-flex justify-content-between align-items-center"
-      data-bs-toggle="collapse"
-      data-bs-target="#FilterByKeywordOptions"
-      aria-expanded="false"
-      aria-controls="FilterByKeywordOptions"
-      style="background-color: #FFB18D"
-    >
-      <div>By Keyword</div>
-      <div class="arrow-down"></div>
-    </div>
-
-    <div class="collapse" id="FilterByKeywordOptions">
+    <div class="" id="FilterByKeywordOptions">
       <div class="my-2">
         <FilterByIngredients
           @addIngredient="handleAddIngredient"

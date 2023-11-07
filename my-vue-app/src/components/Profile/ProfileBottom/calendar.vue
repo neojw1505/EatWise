@@ -1,15 +1,15 @@
 <template>
     <div class="m-0 text-align-center ">
-      <div class="d-flex justify-content-between align-items-center p-3 rounded-4 rounded-bottom-0 border border-2 border-dark" style="background-color: #F4976C;">
-        <button class="btn bg-warning-subtle border border-warning" @click="previousMonth">&lt;</button>
+      <div class="d-flex justify-content-between align-items-center p-3 rounded-4 rounded-bottom-0 " style="background-color: transparent; color:white">
+        <button class="btn btn-secondary bg-transparent-subtle border-transparent" @click="previousMonth">&lt;</button>
         <h4>{{ formattedDate }}</h4>
-        <button class="btn bg-warning-subtle border border-warning" @click="nextMonth">&gt;</button>
+        <button class="btn btn-secondary bg-transparent-subtle border-transparent" @click="nextMonth">&gt;</button>
       </div>
-      <div class="d-flex border border-2 border-dark" style="background-color: #F4976C;">
-        <div v-for="day in days" class="calendar-day text-dark" :key="day">{{ day }}</div>
+      <div class="d-flex" style="background-color: transparent;">
+        <div v-for="day in days" class="calendar-day text-light" :key="day">{{ day }}</div>
       </div>
       <div class="calendar-grid">
-        <div  v-for="date in calendarDates" :key="date" class="calendar-cell" @click="selectDate(date)"
+        <div  v-for="date in calendarDates" :key="date" class="calendar-cell text-light" @click="selectDate(date)"
         :class="{ 'selected-date': isDateSelected(date) }">
           {{ date }}
         </div>
@@ -105,9 +105,8 @@
   
   <style scoped>
 .selected-date {
-  background-color: #F4976C;
-  color: black;
-  border-radius: 100%;
+  background-color: rgb(114, 105, 105);
+  color: white;
   border: 2px solid black;
 }
   
@@ -125,10 +124,14 @@
     padding: 10px;
     min-height: 50px;
     text-align: center;
+    border-radius: 50px;
+
   }
 
   .calendar-cell:hover {
     cursor: pointer;
+    transform: scale(1.05); 
+    transition: transform 0.3s; 
   }
   </style>
   

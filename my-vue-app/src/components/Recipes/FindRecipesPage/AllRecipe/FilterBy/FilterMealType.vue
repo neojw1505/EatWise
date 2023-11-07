@@ -1,19 +1,8 @@
 <template>
   <div class="my-1">
-    <div
-      class="d-block p-2  text-black fw-semibold  rounded-4 d-flex justify-content-between align-items-center"
-      data-bs-toggle="collapse"
-      data-bs-target="#FilterMealTypeOptions"
-      aria-expanded="false"
-      aria-controls="FilterMealTypeOptions"
-      style="background-color: #FFB18D;"
-    >
-    <div> Meal Type</div>
-    <div class="arrow-down"></div>
-    </div>
-
-    <div class="collapse" id="FilterMealTypeOptions">
-      <div class="d-flex justify-content-between mx-5 my-2">
+    <div class="" id="FilterMealTypeOptions">
+      <span class="fw-bold">Meal Type:</span>
+      <div class="d-flex my-2">
         <input @click="checked" :class="filterOption" value="breakfast" type="button" >
         <input @click="checked" :class="filterOption" value="lunch" type="button" >
         <input @click="checked" :class="filterOption" value="dinner" type="button" >
@@ -26,8 +15,8 @@
 export default {
   data(){
     return{
-      filterOption:" col-3 rounded-3 mx-auto bg-light border  text-center justify-content-center d-flex align-items-center ",
-      filterOptionCheck:" col-3 rounded-3 mx-auto  bg-warning border  text-center justify-content-center d-flex align-items-center",
+      filterOption:"  rounded-3 col-3 bg-light border  text-center justify-content-center  align-items-center ",
+      filterOptionCheck:"  rounded-3 col-3  bg-warning border  text-center justify-content-center  align-items-center",
       filterBy: []
     }
   },

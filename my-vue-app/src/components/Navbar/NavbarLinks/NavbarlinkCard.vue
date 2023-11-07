@@ -1,13 +1,11 @@
 <template>
-    <router-link class="nav-link active py-0 d-flex mx-auto p-2 " aria-current="page" :to="eachLink.routeTo">
+    <router-link class="nav-link active py-0 d-flex mx-auto " aria-current="page" :to="eachLink.routeTo">
     <li :class="highlighLink(eachLink)" >
-        <div>
-          <font-awesome-icon :icon="icon" size="lg" /> <!-- Use icon prop to set the Font Awesome icon -->
-        </div>
-        <div class="fw-semibold" v-html="`&nbsp;&nbsp;${eachLink.linkName}&nbsp;&nbsp;`"></div> 
+        <font-awesome-icon :icon="icon" size="lg" /> <!-- Use icon prop to set the Font Awesome icon -->
+        <div class="fw-semibold text-black" v-html="`&nbsp;&nbsp;${eachLink.linkName}&nbsp;&nbsp;`"></div> 
     </li>
     </router-link>
-  </template>
+</template>
 <script>
 export default {
     name: "NavbarLink",
@@ -16,7 +14,7 @@ export default {
         highlighLink(eachLink){
             // console.log(this.$route.path);
             // console.log(eachLink.routeTo);
-            return this.$route.path.startsWith(eachLink.routeTo)   ? 'nav-item mx-2 highlightBackground' : 'nav-item mx-2';
+            return this.$route.path.startsWith(eachLink.routeTo)   ? 'nav-item highlightBackground' : 'nav-item';
         }
     }
 }

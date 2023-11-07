@@ -1,19 +1,15 @@
 <template>
-  <div
-    class="card shadowborder-dark"
-    style="width: 300px"
-    v-if="recipeData && nutritionData"
-  >
-    <div class="card-header"><h3>Breakfast</h3></div>
+  <div class="card shadowborder-dark mx-auto" style="overflow: auto; width: 335px "  v-if="recipeData && nutritionData">
+    <div class="card-header"><h3>Breakfast</h3></div> 
 
     <!-- Display the image or a spinner -->
-    <div class="card align-items-center" v-if="loading">
-      <div class="spinner-border" role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+  <div class="card align-items-center" v-if="loading">
+    <div class="spinner-border" role="status">
+      <span class="visually-hidden">Loading...</span>
     </div>
+  </div>
 
-    <div class="card shadow" v-else>
+    <div class="card shadow border-0" v-else>
       <div class="image-wrapper" @click="seeRecipeDetailsInMealPlan">
         <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
         <div class="bookmark">
@@ -41,15 +37,13 @@
     </div>
 
     <div class="card-body border-0" v-if="!loading && imageLoaded">
-      <h5 class="card-title overflow-hidden" style="height: 60px">
-        {{ formattedRecipeName }}
-      </h5>
-      <!-- <p class="card-text">
+      <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
+      <p class="card-text">
         <span> Servings: {{ recipeData.servings }} </span>
         <span> Carbs: {{ nutritionData.carbs }} </span>
         <span> Fat: {{ nutritionData.fat }} </span>
         <span> Protein: {{ nutritionData.protein }} </span>
-      </p> -->
+      </p>
       <!-- Labels based on conditions -->
       <div style="height: 60px">
         <div class="d-flex justify-content-end flex-wrap">
@@ -74,28 +68,14 @@
 
     <div class="card-footer border-0">
       <!-- Only display the "Get New" button when the food is not consumed -->
-      <button class="btn me-2" @click="refreshRecipe(mealType)" v-if="!isConsumed">
+      <button class="btn rounded-4 me-2" @click="refreshRecipe(mealType)" v-if="!isConsumed">
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
-      <button
-        class="btn btn-fail"
-        @click="toggleConsumedState(currentDate)"
-        :class="{ 'consumed-btn-green': isConsumed }"
-      >
-        {{ isConsumed ? "Eaten" : "Not Eaten" }}
-        <font-awesome-icon
-          v-if="isConsumed"
-          :icon="['fas', 'check']"
-          style="color: #ffffff"
-          size="lg"
-        />
-        <font-awesome-icon
-          v-else
-          :icon="['fas', 'xmark']"
-          style="color: #ffffff"
-          size="lg"
-        />
+      <button class="btn rounded-4 btn-fail " @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
+        {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
+        <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
+        <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
       </button>
     </div>
   </div>
@@ -180,7 +160,7 @@ export default {
       let formattedTime = `${hours}:${minutes}:${seconds}`;
       return formattedTime;
     },
-    computedCal(){
+   computedCal(){
       return this.nutritionData.calories ?? this.recipeData['nutrition']['nutrients'][0].amount.toFixed(0)
     }
   },
@@ -325,8 +305,10 @@ svg.fa-bookmark {
   stroke-width: 30;
 }
 .card {
-  background-color: #ffb18d;
-  border: 0;
+  border-radius: 20px;
+  border: 1px solid #FFF;
+  background: linear-gradient(180deg, rgba(0, 0, 0, 0.62) 71.87%, rgba(0, 0, 0, 0.00) 100%);
+  color:white;
 }
 .image-container {
   display: flex;
@@ -334,7 +316,8 @@ svg.fa-bookmark {
   align-items: center;
 }
 .card-img {
-  max-width: 300px;
+  max-width: 500px;
+  max-height: 200px;
   object-fit: fit; /* Ensures the image fully covers the container */
 }
 .card .badge {
@@ -342,7 +325,7 @@ svg.fa-bookmark {
   padding: 4px 8px;
   border-radius: 10px;
   color: #000000;
-  background-color: #fbe8a6;
+  background-color: #7A8CEA;
   margin-left: 5px;
 }
 .card-footer {
@@ -351,7 +334,6 @@ svg.fa-bookmark {
 .btn {
   background-color: #303c6c;
   color: #fff;
-  box-shadow: 5px 5px 10px #888888;
 }
 .btn:hover {
   background-color: #fff;

@@ -1,14 +1,15 @@
 <template>
   <!-- <router-link :to="routerTO"> -->
-  <div class="card cardStyle mx-2 px-0 mb-2">
-    <div class="text-center m-1 fw-semibold">{{ mealType }}</div>
-    <img class="card-img-top mx-0" :src="recipeImage" alt="Recipe Image" />
-    <div class="card-body img-fluid">
-      <h4 class="card-title" style="font-size: large; height: 50px">
+    <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2" :style="{'background-image':'url(' + recipeImage + ')','background-size': 'cover','background-position': 'center'}">
+      <div class="mx-auto my-1">
+        <div class="text-center fw-semibold fs-5 text-black btn bg-secondary-subtle mx-auto p-0 m-0 border">{{ mealType.charAt(0).toUpperCase() + mealType.slice(1) }}</div>
+      </div>
+    
+    <div class="recipeInfo p-1 px-2">
+      <div class="card-title fw-semibold" style="font-size: large; height: 50px">
         {{ formattedRecipeName }}
-      </h4>
-      <!-- <p class="card-text">{{recipe.cal}}cal</p> -->
-      <span>{{cal.toFixed(1)}} kcal</span>
+      </div>
+      <p class="card-text text-warning ">{{cal.toFixed(1)}} kcal</p>
     </div>
   </div>
   <!-- </router-link> -->
@@ -36,12 +37,14 @@ export default {
         ? this.recipeTitle.slice(0, 27) + "..."
         : this.recipeTitle;
     },
+    
   },
   methods: {
-    // async getSelectedRecipeNutritions() {
-    //   let recipeObj= await this.$spoonAPI.getSelectedRecipeNutritions(this.recipe.id);
-    //   this.cal=recipeObj.calories;
-    // },
+    async selectRecipe() {
+      this.$store.dispatch('setSharedData', this.mealDetails.recipe);
+      localStorage.setItem('selectedRecipe', JSON.stringify(this.mealDetails.recipe)); // Save to local storage
+      this.$router.push({ path: '/find-recipes/SelectedRecipeCard' }); // Navigate to the receiver component
+    },
   },
   created() {
     // console.log(this.recipe);
@@ -52,14 +55,28 @@ export default {
 
 <style scoped>
 .cardStyle {
-  border: #ffb18d solid 1px;
-  border-bottom-left-radius: 30px;
+  border: white solid 1px;
+  border-radius: 20px;
   width: 200px;
-  height: 280px;
-  background-image: linear-gradient(to bottom right, #ff5100, #fac400);
-  color: black;
+  height: 200px;
+  color: white;
+  transition: transform 0.3s;
+  position: relative;
 }
 .cardStyle:hover {
   cursor: pointer;
 }
+.recipeInfo{
+  background-image: linear-gradient(
+    to bottom,
+    rgba(0, 0, 0, 0.7),
+    rgba(0, 0, 0, 0.5)
+  );
+  position: absolute;
+  bottom: 0;
+  border-bottom-left-radius: 20px;
+  border-bottom-right-radius: 20px;
+  width: 100%;
+}
+
 </style>

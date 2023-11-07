@@ -1,7 +1,7 @@
 <template>
   <div>
     <div class="container my-5">
-      <div class="rounded-4 p-3 text-center" style="background-color: #FFB18D;">
+      <div class="rounded-4 p-3 text-center" style="background-color: #7A8CEA;">
         <h1 class="fw-bold fs-4">TELL US MORE ABOUT YOURSELF</h1>
       </div>
       <div class="border rounded-4 p-3 shadow bg-white mt-3">
@@ -25,7 +25,7 @@
         </div>
       </div>
     </div>
-    <div class="mx-auto text-center my-5 rounded-4 col-6 py-2" style="background-color: #FFB18D;">
+    <div class="mx-auto text-center my-5 rounded-4 col-6 py-2" style="background-color: #7A8CEA;">
       <h1 class="fw-bold fs-5">WHAT IS YOUR GOAL?</h1>
       <h3 class="fw-semibold fs-6">(Select one only)</h3>
     </div>
@@ -56,7 +56,7 @@
       <button
         id="previous"
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color: #FFB18D;"
+        style="background-color: #7A8CEA;"
         type="submit"
         v-on:click="goPrevious"
       >
@@ -65,7 +65,7 @@
       <button
         id="next"
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color: #FFB18D;"
+        style="background-color: #7A8CEA;"
         type="submit"
         v-on:click="goNext"
       >

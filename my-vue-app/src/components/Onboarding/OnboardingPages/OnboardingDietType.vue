@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mx-auto text-center my-5 py-1 shadow rounded-4 col-3" style="background-color:#FFB18D ;">
+    <div class="mx-auto text-center my-5 py-1 shadow rounded-4 col-3" style="background-color:#7A8CEA ;">
       <h1 class="fw-bold fs-5">WHAT'S YOUR DIET TYPE</h1>
     </div>
     <div class="container mx-auto border rounded-4 d-flex shadow bg-white col-6">
@@ -15,8 +15,8 @@
       </div>
     </div>
     <div class="mx-auto text-center">
-      <button id="previous" class="btn my-5 mx-2 px-5 fw-semibold" type="submit" @click="goPrevious" style="background-color:#FFB18D ;">Previous</button>
-      <button id="next" class="btn my-5 mx-2 px-5 fw-semibold" type="submit" @click="goNext" style="background-color:#FFB18D ;">Next</button>
+      <button id="previous" class="btn my-5 mx-2 px-5 fw-semibold" type="submit" @click="goPrevious" style="background-color:#7A8CEA ;">Previous</button>
+      <button id="next" class="btn my-5 mx-2 px-5 fw-semibold" type="submit" @click="goNext" style="background-color:#7A8CEA ;">Next</button>
     </div>
   </div>
 </template>

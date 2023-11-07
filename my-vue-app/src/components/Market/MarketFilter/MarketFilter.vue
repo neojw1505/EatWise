@@ -1,19 +1,10 @@
 <template>
   <div>
     <div class="d-flex align-items-center">
-      <h5 class="d-inline px-2 m-0 fw-bold">Filter</h5>
-      <button
-        class="btn align-items-center rounded-4 dropdown-toggle"
-        type="button"
-        data-bs-toggle="collapse"
-        data-bs-target="#marketFilter"
-        style="background-color: #FFB18D"
-      >
-        <img src="./filter.png" style="width: 50px" />
-      </button>
+      <span class="d-inline px-2 m-0 fw-bold fs-3 mt-2 mb-3" style="color:black">Filter</span>
     </div>
     <!-- filter -->
-    <div class="collapse show" id="marketFilter">
+    <div class="bg-white rounded-4 mt-5" id="marketFilter">
       <MarketFilterInput @getInput="handleInput"/>
     </div>
   </div>

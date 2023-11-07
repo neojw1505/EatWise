@@ -2,7 +2,7 @@
   <div class="container">
   <!-- Main card -->
   <div class="MainBody">
-    <div class="header text-center mx-auto my-5 py-1 col-6 rounded " style="background-color:#FFB18D ;">
+    <div class="header text-center mx-auto my-5 py-1 col-6 rounded " style="background-color:#7A8CEA ;">
       <h2>Ingredients to Exclude</h2>
     </div>
     <div class="card text-center mx-auto col-10 rounded shadow">
@@ -24,7 +24,7 @@
       <button
         id="previous"
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color:#FFB18D ;"
+        style="background-color:#7A8CEA ;"
         type="submit"
         v-on:click="goPrevious()"
       >
@@ -33,7 +33,7 @@
       <button
         id="next"
         class="btn my-5 mx-2 px-5 fw-semibold"
-        style="background-color:#FFB18D ;"
+        style="background-color:#7A8CEA ;"
         type="submit"
         v-on:click="goNext()"
       >

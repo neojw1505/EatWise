@@ -1,65 +1,70 @@
 <template>
-    <div class="body">
+    <div>
     <Navbar />
-    <div class="mx-auto">
-      <!-- <h2 class="main-text mt-4" style="color: white ; font-family: Roboto;">Saved Recipes:</h2> -->
-      <!-- <button @click="deletela">Delete All Recipes</button> -->
-      <div class="border border-2 border-dark rounded-4 p-2 mt-5" style="width: 100px; margin-left: 50px; background-color: tomato ; color: white;" @click="deletela">
-        <span class="fw-semibold" @click="DeleteConfirm()"> Delete All</span>
+    <div class="background-img">
+      <!-- Add background Image -->
+      <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Saved Recipes</h2>
     </div>
-    
-  <div class="mx-auto" style="max-width: 1200px">
-    
-    <div class="p-4 pt-2 border rounded-4 my-3 d-flex mx-3 d-flex row" style="background-image: linear-gradient(180deg, rgba(0, 0, 0, 0.71) 0%, rgba(0, 0, 0, 0.21) 99.99%, rgba(0, 0, 0, 0.17) 100%);">
-      
-      <div v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">
-        <SavedRecipeCard
-          v-for="item in visibleItems"
-          :key="item.id"
-          :recipe="item"
-          :routerTO="item.id"
-          style="text-decoration: none"
+    <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
+      Culinary Adventures <span style="color: #7a8cea; font-weight: bold"> Adventures </span> Await!
+    </h1>
   
-  
-        />
-      </div>
+    <!-- <h2 class="main-text mt-4" style="color: white ; font-family: Roboto;">Saved Recipes:</h2> -->
+    <!-- <button @click="deletela">Delete All Recipes</button> -->
       
-      <div v-else-if="visibleItems.length == 0 && data!=null" class="mt-3 d-flex mx-auto justify-content-center">
-      <div class="mx-auto text-center">
-        No Result Found
-        <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
-      </div>
-      </div>
+  
+    <div class="mx-3 container row mx-auto" style="max-width: 1200px;">
+      <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4" style="background:#e6ecf7">
+        <div class="justify-content-end d-flex">
+          <button class="btn bg-light border border-dark fw-semibold btnStyle" @click="DeleteConfirm()" >
+            Delete All
+          </button>
+        </div>
+        
+        <div v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">
+          <SavedRecipeCard
+            v-for="item in visibleItems"
+            :key="item.id"
+            :recipe="item"
+            :routerTO="item.id"
+            style="text-decoration: none"
+          />
+        </div>
+        
+        <div v-else-if="visibleItems.length == 0 && data!=null" class="mt-3 d-flex mx-auto justify-content-center">
+        <div class="mx-auto text-center">
+          No Result Found
+          <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
+        </div>
+        </div>
 
-      <div v-else class="mt-3 d-flex mx-auto justify-content-center">
-      <div class="mx-auto">
-        <div class="d-inline mx-auto">
-          <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
+        <div v-else class="mt-3 d-flex mx-auto justify-content-center">
+          <div class="mx-auto">
+            <div class="d-inline mx-auto">
+              <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
+            </div>
+          </div>
+        </div>
+        <!-- buttons for pagination -->
+        <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
+          <button class="btnStyle btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
+          <button class="btnStyle btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
+        </div>
+        <!-- pages -->
+        <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
+          <button
+            v-for="page in limitedPages"
+            :key="page"
+            @click="goToPage(page)"
+            :class="{ 'active': page === currentPage }"
+            class="btn btnStyle"
+          >
+            {{ page + 1 }}
+          </button>
         </div>
       </div>
     </div>
-
-
-      <!-- buttons for pagination -->
-      <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
-        <button class="btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
-        <button class="btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
-      </div>
-      <!-- pages -->
-      <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
-      <button
-        v-for="page in limitedPages"
-        :key="page"
-        @click="goToPage(page)"
-        :class="{ 'active': page === currentPage }"
-        class="btn"
-      >
-        {{ page + 1 }}
-      </button>
-    </div>
-  </div>
-    </div>
-  </div>
+  
   </div>
 </template>
 
@@ -100,6 +105,7 @@ export default {
   methods: {
 
     DeleteConfirm() {
+    if(this.visibleItems.length > 0){
     Swal.fire({
         title: 'Are you sure?',
         text: 'This action will delete all items. This cannot be undone.',
@@ -122,12 +128,8 @@ export default {
         } else {
             console.log("Deletion Cancelled"); 
         }
-    });
+    });}
 },
-
-    // async deletela(){
-    //   await this.$smAPI.deleteSavedRecipes();
-    // },
     
     nextPage() {
       if (this.currentPage < this.maxPage) {
@@ -168,24 +170,13 @@ export default {
 </script>
 
 <style scoped>
-
-@media screen and (min-width: 601px) {
-  h2.main-text {
-    font-size: 80px;
-    text-align: center;     
-    
-  }
-  
-}
-
-/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
-@media screen and (max-width: 600px) {
-  h2.main-text {
-    font-size: 40px;
-    text-align: center;
-  }
-
-
+.background-img{
+  background-image: url(../../components/homepageAsset/savedrecipe.jpg);
+  width: 100%;
+  height: 25vh;
+  object-fit: fill;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 .active {
   color: white;
@@ -196,12 +187,12 @@ export default {
   cursor: pointer;
 }
 
-.body {
-  background-image: url(../homepageAsset/saved_recipe_bg.png);
-  
+.btnStyle{
+  transition: transform 0.3s;
 }
-
-
-
+.btnStyle:hover {
+  transform: scale(1.05); /* Scale up by 10% on hover */
+  cursor: pointer;
+}
 </style>
 

@@ -1,6 +1,6 @@
 <template>
   <div class="mx-auto " style="max-width: 1200px">
-    <div class="p-4 pt-2 shadow border rounded-4 my-3 d-flex mx-3 d-flex row" style="background-color: #FBE8A6;">
+    <div class="p-4 pt-2 shadow border rounded-4 my-3 d-flex mx-3 d-flex row" style="background-color: #e6ecf7;">
       
       <div v-if="visibleItems.length > 0" class="d-flex flex-wrap">
         <FindRecipePreviewCard
@@ -30,8 +30,8 @@
 
       <!-- buttons for pagination -->
       <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
-        <button class="btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
-        <button class="btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
+        <button class="btnStyle btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
+        <button class="btnStyle btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
       </div>
       <!-- pages -->
       <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
@@ -40,7 +40,7 @@
         :key="page"
         @click="goToPage(page)"
         :class="{ 'active': page === currentPage }"
-        class="btn"
+        class="btn btnStyle"
       >
         {{ page + 1 }}
       </button>
@@ -162,6 +162,14 @@ export default {
   margin: 0 3px;
   border-radius: 5px;
   border: 1px solid #d8d7d7;
+  cursor: pointer;
+}
+
+.btnStyle{
+  transition: transform 0.3s;
+}
+.btnStyle:hover {
+  transform: scale(1.05); /* Scale up by 10% on hover */
   cursor: pointer;
 }
 </style>

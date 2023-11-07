@@ -122,8 +122,8 @@
 
  
     <!-- saved button -->
-    <div class="my-3 justify-content-end d-flex">
-      <button class="btn fw-bold" style="background-color: #f4976c" @click="changeSetting()">Save</button>
+    <div class=" justify-content-end d-flex">
+      <button class="btn fw-bold mb-3" style="background-color: #f4976c" @click="changeSetting()">Save</button>
     </div>
   </div>
 </template>

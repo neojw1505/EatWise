@@ -1,18 +1,6 @@
 <template>
   <div class="my-1">
-    <div
-      class="d-block p-2  text-black fw-semibold  rounded-4 d-flex justify-content-between align-items-center"
-      data-bs-toggle="collapse"
-      data-bs-target="#FilterByCaloriesOptions"
-      aria-expanded="false"
-      aria-controls="FilterByCaloriesOptions"
-      style="background-color: #FFB18D"
-    >
-      <div>By Calories</div>
-      <div class="arrow-down"></div>
-    </div>
-
-    <div class="collapse" id="FilterByCaloriesOptions">
+    <div class="" id="FilterByCaloriesOptions">
       <div class="my-2">
         <b> Calories: </b>
         <input

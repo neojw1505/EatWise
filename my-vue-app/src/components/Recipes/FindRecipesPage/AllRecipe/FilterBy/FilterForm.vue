@@ -11,7 +11,7 @@
       @getMaxCalInput="handleMaxCalInput"
     />
     <div class="d-flex justify-content-end">
-      <button @click="this.$emit('performSearchRecipe')" class="btn my-1 fw-bold" style="background-color: #FFB18D">
+      <button @click="this.$emit('performSearchRecipe')" class="btnStyle btn my-1 fw-bold rounded-4" style="background-color: #7A8CEA">
         Filter
       </button>
     </div>
@@ -53,4 +53,12 @@ export default {
 };
 </script>
 
-<style></style>
+<style scoped>
+.btnStyle{
+  transition: transform 0.3s;
+}
+.btnStyle:hover {
+  transform: scale(1.05); /* Scale up by 10% on hover */
+  cursor: pointer;
+}
+</style>

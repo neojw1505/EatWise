@@ -1,12 +1,13 @@
 <template>
   <button
-    class="navbar-toggler"
-    type="button"
+    class="navbar-toggler btn border-0 btn-sm mx-1 "
     data-bs-toggle="collapse"
-    data-bs-target="#navbarSupportedContent"
-  >
-    <span class="navbar-toggler-icon"></span>
+    data-bs-target="#navbarSupportedContent">
+    <font-awesome-icon :icon="['fas', 'bars']" size="2xl" />
+    <!-- <span class="navbar-toggler-icon"></span> --> 
   </button>
+
+
 </template>
 
 <script>

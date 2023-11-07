@@ -353,7 +353,7 @@ export default {
 
 <style scoped>
 .btn {
-  background-color: #f4976c;
+  background-color: #7A8CEA;
   color: white;
 }
 

@@ -23,7 +23,7 @@ export default {
       linksToPages1: [
         {
           linkName: "Find Recipes",
-          linkIcon: ["fas", "bowl-rice"],
+          linkIcon: ["fas", "bowl-food"],
           routeTo: "/find-recipes",
         },
         {
