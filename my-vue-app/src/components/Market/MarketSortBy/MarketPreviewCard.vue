@@ -41,7 +41,7 @@ export default {
   border: #7A8CEA solid 1px;
   /* background-image: linear-gradient(to bottom right, #ff5100, #fac400); */
   border-radius: 20px;
-  width: 200px;
+  width: 198px;
   height: 250px;
   color: black;
   transition: transform 0.3s;

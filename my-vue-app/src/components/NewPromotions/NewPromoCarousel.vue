@@ -5,23 +5,28 @@
     <swiper class="carousel rounded-4 shadow-5 py-4 mySwiper"
       :navigation="isWideScreen"
       :pagination="isWideScreen"
+      
       :autoplay="{
         delay: 3000,
         disableOnInteraction: true,
       }"
       :modules="modules"
       :breakpoints="{
-        '760': {
-          slidesPerView: 1,
-          slidesPerGroup: 1,
-        },
-        '800': {
+        '580': {
           slidesPerView: 2,
           slidesPerGroup: 2,
         },
-        '1200': {
+        '760': {
+          slidesPerView: 2,
+          slidesPerGroup: 2,
+        },
+        '850': {
           slidesPerView: 3,
           slidesPerGroup: 3,
+        },
+        '1200': {
+          slidesPerView: 4,
+          slidesPerGroup: 4,
         },
       }"
     >

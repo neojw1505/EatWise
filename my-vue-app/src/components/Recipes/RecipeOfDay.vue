@@ -7,7 +7,7 @@
     <div class="col text-start my-auto mx-4">
       <h1 class="fw-bold mb-2">Recipe of the Day</h1>
       <br/>
-      <h4 class="fw-semibold">{{ formattedRecipeName }}</h4>
+      <h4 class="fw-semibold" @click="selectRecipe" >{{ formattedRecipeName }}</h4>
       <br/>
       <p><span class="fw-semibold">Preparation Time:</span> <span>{{ PrepTime }} minutes</span> </p>
       <br/>
@@ -80,7 +80,6 @@ export default {
       this.DailyCalories = user.DailyCalories;
     },
     async selectRecipe() {
-      console.log(this.RandomRecipe)
       this.$store.dispatch('setSharedData', this.RandomRecipe);
       localStorage.setItem('selectedRecipe', JSON.stringify(this.RandomRecipe)); // Save to local storage
       this.$router.push({ path: '/find-recipes/SelectedRecipeCard' }); // Navigate to the receiver component
