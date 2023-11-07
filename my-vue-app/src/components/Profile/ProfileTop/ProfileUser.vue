@@ -51,10 +51,10 @@
       >
         <div
           class="m-2 border border-2 border-dark rounded-4 bg-light p-2"
-          style="width: 100px"
+          style="width: 120px"
         >
           <font-awesome-icon :icon="['fas', 'gear']" />
-          <span class="fw-semibold">Settings</span>
+          <span class="fw-semibold"> Settings</span>
         </div>
       </router-link>
       <!-- Old logout button -->
