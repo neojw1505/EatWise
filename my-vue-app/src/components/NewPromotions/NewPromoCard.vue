@@ -7,7 +7,7 @@
     </div>
     
     <div class="promoInfo">
-      <div class="mt-2"><span class="bg-light text-dark rounded-4 p-1 mt-2">{{ product.supermarket_name }}</span></div>
+      <div class="mt-2"><span class="bg-light text-dark rounded-4 p-1 mt-2 fw-bold">{{ product.supermarket_name }}</span></div>
       <div class="card-title text-truncate-2 mt-1">{{ formattedPromoName }}</div>
       <div>
         <p class="card-text">
