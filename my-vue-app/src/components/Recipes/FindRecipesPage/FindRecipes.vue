@@ -34,6 +34,9 @@ export default {
     getRelatedData(){
       this.search=this.tempSearch
     },
+  },
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
 }

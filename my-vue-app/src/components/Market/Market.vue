@@ -132,6 +132,7 @@ export default {
   },
   created() {
     this.fetchProducts();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
   watch:{
     sortBy: {

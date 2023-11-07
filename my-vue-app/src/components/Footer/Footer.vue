@@ -28,7 +28,7 @@
         </div>
     </div>
     <div class="text-center">
-        © 2023 EatWise.com. All rights reserved
+        © 2023 EatWise.Pte.Ltd All rights reserved
     </div>
     
   </div>
