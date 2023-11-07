@@ -4,7 +4,7 @@
     <div class="mx-auto" >
       <div class="header">
         <!-- Add background Image -->
-        <div class="backGroundimg">
+        <div class="background-img">
           <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
         </div>
       </div>
@@ -156,4 +156,13 @@ export default {
   transform: scale(1.05); /* Scale up by 10% on hover */
   cursor: pointer;
 }
+.background-img{
+  background-image: url(.././homepageAsset/marketplacebackground.jpeg);
+  width: 100%;
+  height: 280px;
+  object-fit: fill;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
 </style>

@@ -23,10 +23,13 @@
       <div class="section3" style="padding-top: 60px; padding-bottom: 60px">
         <MealPlan/>
       </div>
-      <div class="section4" style="padding-top: 40px; padding-bottom: 40px">
+      <div class="section4" style="padding-top: 40px; ">
         <NewPromoCarousel class="p-4 pt-2 rounded-4 my-3 mx-3" />
+        <Footer/>
       </div>
+      
     </div>
+    
   </div>
 </template>
 
