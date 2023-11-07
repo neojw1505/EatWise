@@ -45,20 +45,7 @@ export default {
     this.getRandomFoodJokeFromFB();
     this.getRandomFoodFactFromFB();
 
-    // Calculate the time until midnight
-    const now = new Date();
-    const midnight = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate() + 1, // Next day at midnight
-      0, 0, 0
-    );
-    const timeUntilMidnight = midnight - now;
-
-    // Schedule getRandomRecipe to run at midnight
-    setTimeout(() => {
-      this.getRandomRecipe();
-    }, timeUntilMidnight);
+    
   },
 
   methods: {
@@ -98,6 +85,31 @@ export default {
       localStorage.setItem('selectedRecipe', JSON.stringify(this.RandomRecipe)); // Save to local storage
       this.$router.push({ path: '/find-recipes/SelectedRecipeCard' }); // Navigate to the receiver component
     },
+    async setRecipeOfDay(){
+      await this.$smAPI.setRecipeOfDayInFB();
+    },
+    refreshRecipeOfDay() {
+      const targetTime = new Date();
+      targetTime.setHours(21); // 11 PM
+      targetTime.setMinutes(49); // 59 minutes
+      targetTime.setSeconds(59); // 59 seconds
+       // Calculate the time interval until the target time
+      const now = new Date();
+      let timeUntilTarget = targetTime - now;
+      if (timeUntilTarget < 0) {
+        // If the target time has already passed today, schedule it for the same time tomorrow
+        timeUntilTarget += 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+      }
+
+      // Schedule the refresh methods to run at 11:59:59 PM every day
+      setTimeout(() => {
+        this.setRecipeOfDay();
+        // Schedule the methods to run every 24 hours
+        setInterval(() => {
+          this.setRecipeOfDay();
+        }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+      }, timeUntilTarget);
+    }
   },
   computed: {
     //in the event that the name of the recipe is too long, we shorten the name
@@ -127,6 +139,7 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
     })
+    this.refreshRecipeOfDay()
   },
 
   beforeDestroy() { 
