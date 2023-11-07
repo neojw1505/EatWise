@@ -15,7 +15,7 @@
         <font-awesome-icon :icon="['fas', 'chart-simple']" /> Calories consumed
       </h4>
     </div>
-    <!-- insert chartjs -->
+    <CalorieIntakeChart />
   </div>
 </template>
 
