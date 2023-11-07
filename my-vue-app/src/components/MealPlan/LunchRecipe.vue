@@ -74,7 +74,7 @@
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
-      <button class="btn rounded-4 btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
+      <button class="btn rounded-4 btn-fail" @click="toggleConsumedState(currentDate)" :class="{ 'consumed-btn-green': isConsumed }">
         {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
         <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
