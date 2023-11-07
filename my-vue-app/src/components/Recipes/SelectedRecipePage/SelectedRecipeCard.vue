@@ -448,6 +448,7 @@ export default {
       this.recipeDetails.id
     );
     window.addEventListener('resize', this.checkScreenSize);
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
   destroyed() {
     window.removeEventListener('resize', this.checkScreenSize);

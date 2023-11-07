@@ -64,12 +64,11 @@
         </div>
       </div>
     </div>
-  
+  <Footer/>
   </div>
 </template>
 
 <script>
-import { get } from 'firebase/database';
 import Swal from 'sweetalert2';
 export default {  
   data() {
@@ -161,6 +160,7 @@ export default {
   },
   async created(){
     await this.getUserSavedRecipes();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
 
   

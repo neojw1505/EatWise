@@ -41,6 +41,7 @@ export default {
       // Update the notification flag in the store
       this.$store.dispatch("setShowLoginNotification", true);
     }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
   methods: {
     loginSuccessNotif() {
