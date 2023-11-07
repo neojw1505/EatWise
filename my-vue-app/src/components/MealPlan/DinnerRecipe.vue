@@ -1,25 +1,15 @@
 <template>
-  <div class="card shadow border-light mx-auto" style=" overflow: auto; width: 335px" v-if="recipeData && nutritionData">
+  <div class="card shadow border-light mx-auto" style="width: 335px;height: 540px;" v-if="recipeData && nutritionData">
     <div class="card-header"><h3>Dinner</h3></div>
 
     <!-- Display the image or a spinner -->
-  <div class="card align-items-center" v-if="loading">
-    <div class="spinner-border" role="status">
-      <span class="visually-hidden">Loading...</span>
-    </div>
-  </div>
-
-  <div class="card shadow text-center" v-else>
-    <div class="image-wrapper">
-      <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
-      <div class="bookmark" >
-        <button class="bookmark-button" @click="toggleBookmarkState()">
-          <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #007459;" />
-          <font-awesome-icon  v-else :icon="['fas', 'bookmark']" size="2xl" style="color: #ffffff;" />
-        </button>
+    <div class="card align-items-center " v-if="loading" style="height: 540px;">
+    <div class="d-flex align-items-center" style="height: 100%;">
+      <div class="spinner-border " role="status">
+        <span class="visually-hidden">Loading...</span>
       </div>
-    </div>
-    </div>
+  </div>
+  </div>
 
     <div class="card shadow border-0" v-else>
       <div class="image-wrapper" @click="seeRecipeDetailsInMealPlan">
@@ -50,11 +40,11 @@
 
     <div class="card-body border-0" v-if="!loading && imageLoaded">
       <h5 class="card-title overflow-hidden" style="height: 60px;">{{ formattedRecipeName }}</h5>
-      <p class="card-text">
-        <span> Servings: {{ recipeData.servings }} </span>
-        <span> Carbs: {{ nutritionData.carbs }} </span>
-        <span> Fat: {{ nutritionData.fat }} </span>
-        <span> Protein: {{ nutritionData.protein }} </span>
+      <p class="card-text d-flex flex-wrap">
+        <div class="mx-2"> Servings: {{ recipeData.servings  }} </div>
+        <div class="mx-2"> Carbs: {{ nutritionData.carbs ?? recipeData['nutrition']['nutrients'][3].amount}} </div>
+        <div class="mx-2"> Fat: {{ nutritionData.fat ?? recipeData['nutrition']['nutrients'][1].amount}} </div>
+        <div class="mx-2"> Protein: {{ nutritionData.protein ?? recipeData['nutrition']['nutrients'][8].amount }} </div>
       </p>
       <!-- Labels based on conditions -->
       <div style="height: 60px">
