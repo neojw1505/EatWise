@@ -22,6 +22,7 @@ export default {
   name: 'LineChart',
   data() {
     return {
+      recommendedCalories: 0,
       consumptionDay: [],
       totalCaloriesByDate: [], // Store your total calories by date here
       // totalCaloriesByWeek: [],
@@ -33,7 +34,8 @@ export default {
     };
   },
   async mounted() {
-    await this.getDefaultDateRange()
+    await this.getDefaultDateRange();
+    await this.getRecommendedCalories();
     await this.getConsumption(this.startDate, this.endDate); // Call getConsumption on page load
     await this.renderLineChart(this.totalCaloriesByDate);
   },
@@ -97,88 +99,81 @@ renderLineChart() {
       const labels = this.totalCaloriesByDate.map(item => item.day);
       const calories = this.totalCaloriesByDate.map(item => item.totalCalories);
 
-
+      // Create a horizontal line at the recommendedCalories value
+      const recommendedLine = Array(calories.length).fill(this.recommendedCalories);
+      
       if (this.myChart) {
         this.myChart.data.labels = labels;
         this.myChart.data.datasets[0].data = calories;
-        this.myChart.update(); // Update the chart data
+        this.myChart.data.datasets[1].data = recommendedLine; // Set the recommendedCalories line
+        this.myChart.update();
       } else {
-    this.myChart = new Chart(ctx, {
-    type: 'line',
-    data: {
-      labels: labels,
-      datasets: [
-        {
-          label: 'Calorie Intake',
-          data: calories,
-          borderWidth: 3,
-          fill: true,
-          borderColor: 'rgb(255, 99, 132)',
-          tension: 0.35,
-          pointBackgroundColor: 'rgb(255, 99, 132)',
-        }
-      ]
-    },
-    options: {
-      scales: {
-        x: {
-          type: 'timeseries',
-          time: {
-            unit: 'day',
+        this.myChart = new Chart(ctx, {
+          type: 'line',
+          data: {
+            labels: labels,
+            datasets: [
+              {
+                label: 'Calorie Intake',
+                data: calories,
+                borderWidth: 3,
+                fill: true,
+                borderColor: 'rgb(255, 99, 132)',
+                tension: 0.35,
+                pointBackgroundColor: 'rgb(255, 99, 132)',
+              },
+              {
+                label: 'Recommended Calories',
+                data: recommendedLine,
+                borderWidth: 2,
+                fill: false,
+                borderColor: 'green', // You can choose the color you want
+                borderDash: [5, 5], // Dotted line
+                pointBackgroundColor: 'green',
+              },
+            ],
           },
-        },
-        y: {
-          beginAtZero: true
-        }
-      },
-      responsive: false,
-      maintainAspectRatio: true,
-      showTooltips: true,
-    }
-  });
-}
-},
+          options: {
+            scales: {
+              x: {
+                type: 'timeseries',
+                time: {
+                  unit: 'day',
+                },
+              },
+              y: {
+                beginAtZero: true,
+              },
+            },
+            responsive: false,
+            maintainAspectRatio: true,
+            showTooltips: true,
+          },
+        });
+      }
+    },
 
-async getDefaultDateRange() {
-  const endDate = moment(); // Current date
-  const startDate = moment().subtract(7, 'days'); // 7 days before the current date
-    this.startDate =  startDate.format('YYYY-MM-DD'),
-    this.endDate = endDate.format('YYYY-MM-DD')
-},
+    async getDefaultDateRange() {
+      const endDate = moment();
+      const startDate = moment().subtract(7, 'days');
+      this.startDate = startDate.format('YYYY-MM-DD');
+      this.endDate = endDate.format('YYYY-MM-DD');
+      this.minDate = startDate.format('YYYY-MM-DD');
+    },
 
-async updateChart() {
+    async updateChart() {
       await this.getConsumption(this.startDate, this.endDate);
       this.renderLineChart();
     },
-// changeTimeFrame(period) {
-//     if (period === 'day') {
-//       this.myChart.config.options.scales.x.time.unit = 'day';
-//       this.myChart.config.data.datasets[0].data = this.totalCaloriesByDate;
-//       this.selectedTimeFrame = 'Day';
-//     } else if (period === 'week') {
-//       this.myChart.config.options.scales.x.time.unit = 'week';
-//       this.myChart.config.data.datasets[0].data = this.totalCaloriesByWeek;
-//       this.selectedTimeFrame = 'Week';
-//     } else if (period === 'month') {
-//       this.myChart.config.options.scales.x.time.unit = 'month';
-//       this.myChart.config.data.datasets[0].data = this.totalCaloriesByMonth;
-//       this.selectedTimeFrame = 'Month';
-//     }
-//     this.myChart.update(); // Update the chart without refreshing the page
-//   },
 
-
-}
+    async getRecommendedCalories() {
+      // Get the recommended calories value and assign it to this.recommendedCalories
+      const user = await this.$smAPI.getLoginUserProfile();
+      this.recommendedCalories = user.DailyCalories; // Update with the actual property name
+    },
+  },
 };
 </script>
 
 <style scoped>
-.btn {
-  background-color: #303C6C;
-  color: #fff;
-}
-.btn:hover {
-  background-color: #fff;
-  color: #303C6C;
-}
 </style>
