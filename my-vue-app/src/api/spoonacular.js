@@ -130,7 +130,7 @@ class SpoonacularAPI {
     query = "",
     number = 10,
     includeIngredients = [],
-    excludeIngredients = [],
+    excludeIngredientsArr = [],
     minCal = 0,
     maxCal = 10000
   ) {
@@ -141,7 +141,6 @@ class SpoonacularAPI {
       if (dietTypes.length > 0) fullSearchQuery.push(`diet=${dietTypes.join(",")}`);
       if (query) fullSearchQuery.push(`query=${query}`);
       if (includeIngredients.length > 0) fullSearchQuery.push(`includeIngredients=${includeIngredients.join(",")}`);
-      if (excludeIngredients.length > 0) fullSearchQuery.push(`excludeIngredients=${excludeIngredients.join(",")}`);
       
       fullSearchQuery.push(`number=${number}`);
       fullSearchQuery.push(`minCalories=${minCal}`);
@@ -150,7 +149,6 @@ class SpoonacularAPI {
       const queryString = fullSearchQuery.join('&');
       console.log(queryString);
       const response = await this.axios.get(`/recipes/complexSearch?${queryString}`);
-      
       // extract the ids
       const recipeIDsArr = [];
       // console.log(response.data);
@@ -162,6 +160,31 @@ class SpoonacularAPI {
       const response2 = await this.axios.get(
         `/recipes/informationBulk?ids=${recipeIDsQuery}&includeNutrition=true`
       );
+      console.log("Exclude Ingredients:" + excludeIngredientsArr);
+
+      for (let i = 0; i < response2.data.length; i++) {
+        let recipe = response2.data[i];
+        let recipeIngredients = recipe.nutrition.ingredients;
+        let recipeIngredientArr = []
+        for (let recipeIngredient of recipeIngredients) {
+          recipeIngredientArr.push(recipeIngredient.name)
+        }
+        console.log(recipeIngredientArr.map(item => item.toLowerCase()));
+        console.log("recipeIngredientArr" + typeof(recipeIngredientArr));
+        let recipeTitle = recipe.title
+        for (let excludeIngredient of excludeIngredientsArr) {
+          console.log("this is the current excl. ignredient:" + excludeIngredient);
+          console.log(recipeTitle);
+          if (recipeTitle.toLowerCase().includes(excludeIngredient.toLowerCase()) || recipeIngredientArr.map(item => item.toLowerCase()).includes(excludeIngredient.toLowerCase())) {
+            console.log("Removed" + recipeTitle);
+            // Remove the recipe at this current index
+            response2.data.splice(i, 1);
+            // Decrement the index to stay at the same position in the next iteration
+            i--;
+          }
+        }
+      }
+      console.log(response2.data);
       return response2.data;
     } catch (error) {
       // Handle errors here
