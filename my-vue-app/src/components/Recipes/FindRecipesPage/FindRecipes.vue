@@ -46,7 +46,7 @@ export default {
 .background-img{
   background-image: url(../../homepageAsset/find-recipe-background.jpg);
   width: 100%;
-  height: 35vh;
+  height: 280px;
   object-fit: fill;
   background-size: 100%;
   background-repeat: no-repeat;
