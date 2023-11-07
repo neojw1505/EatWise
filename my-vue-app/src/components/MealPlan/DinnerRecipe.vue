@@ -21,7 +21,7 @@
     </div>
     </div>
 
-    <div class="card shadow" v-else>
+    <div class="card shadow border-0" v-else>
       <div class="image-wrapper" @click="seeRecipeDetailsInMealPlan">
         <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
         <div class="bookmark">
@@ -80,11 +80,11 @@
 
     <div class="card-footer border-0">
       <!-- Only display the "Get New" button when the food is not consumed -->
-      <button class="btn me-2" @click="refreshRecipe(mealType)" v-if="!isConsumed">
+      <button class="btn rounded-4 me-2" @click="refreshRecipe(mealType)" v-if="!isConsumed">
         Get New <font-awesome-icon :icon="['fas', 'arrows-rotate']" />
       </button>
 
-      <button class="btn btn-lg rounded-4 btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
+      <button class="btn rounded-4 btn-fail" @click="toggleConsumedState()" :class="{ 'consumed-btn-green': isConsumed }">
         {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
         <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
