@@ -16,15 +16,14 @@
 
     <!-- route to different page -->
         <div class="col my-3 ">
-            <div class="text-center text-underline"> <u>Pages</u> </div>
-            <div class="d-flex justify-content-center">
-                <div class="mx-5">
-                    <div v-for="(route,name) in pages1" :key="name" @click="this.$router.push({ path: route });" class="btnStyle my-2">{{ name }}</div>
-                </div>
-                <div class="mx-5">
-                    <div v-for="(route,name) in pages2" :key="name" @click="this.$router.push({ path: route });" class="btnStyle my-2">{{ name }}</div>
-                </div>
+        <div class="d-flex justify-content-center">
+            <div class="mx-5">
+                <div v-for="(route,name) in pages1" :key="name" @click="this.$router.push({ path: route });" class="btnStyle my-2">{{ name }}</div>
             </div>
+            <div class="mx-5">
+                <div v-for="(route,name) in pages2" :key="name" @click="this.$router.push({ path: route });" class="btnStyle my-2">{{ name }}</div>
+            </div>
+        </div>
         </div>
     </div>
     <div class="text-center">
@@ -59,5 +58,6 @@ export default {
 .btnStyle:hover {
   transform: scale(1.05); /* Scale up by 10% on hover */
   cursor: pointer;
+  text-decoration: underline;
 }
 </style>
