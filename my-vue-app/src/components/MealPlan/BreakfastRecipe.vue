@@ -9,17 +9,6 @@
     </div>
   </div>
 
-  <div class="card shadow text-center" v-else>
-    <div class="image-wrapper d-flex align-items-center justify-content-center">
-      <img class="card-img" :src="recipeData.image" @load="onImageLoad"/>
-      <div class="bookmark" >
-        <button class="bookmark-button" @click="toggleBookmarkState()">
-          <font-awesome-icon  v-if="isBookmarked" :icon="['fas', 'bookmark']" size="2xl" style="color: #007459;" />
-          <font-awesome-icon  v-else :icon="['fas', 'bookmark']" size="2xl" style="color: #ffffff;" />
-        </button>
-      </div>
-    </div>
-  </div>
     <div class="card shadow" v-else>
       <div class="image-wrapper" @click="seeRecipeDetailsInMealPlan">
         <img class="card-img" :src="recipeData.image" @load="onImageLoad" />
