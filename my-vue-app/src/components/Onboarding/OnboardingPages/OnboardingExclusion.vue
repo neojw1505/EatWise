@@ -2,7 +2,7 @@
   <div class="container">
   <!-- Main card -->
   <div class="MainBody">
-    <div class="header text-center mx-auto my-5 py-1 col-6 rounded " style="background-color:#7A8CEA ;">
+    <div class="header text-center mx-auto py-1 col-6 rounded " style="background-color:#7A8CEA ;">
       <h2>Ingredients to Exclude</h2>
     </div>
     <div class="card text-center mx-auto col-10 rounded shadow">

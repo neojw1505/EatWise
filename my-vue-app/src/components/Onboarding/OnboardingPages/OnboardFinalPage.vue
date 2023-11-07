@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="col-8 mx-auto mt-5">
+    <div class="col-8 mx-auto">
       <div class="card-body text-center py-4">
         <div class="card-title">
           <h2>Congratulations!</h2>

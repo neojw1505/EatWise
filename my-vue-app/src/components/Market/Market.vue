@@ -146,14 +146,7 @@ export default {
 </script>
 
 <style scoped>
-.backGroundimg{
-  background-image: url(../homepageAsset/marketplacebackground.jpeg);
-  width: 100%;
-  height: 25vh;
-  object-fit: fill;
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
+ 
 
 .btnStyle{
   transition: transform 0.3s;

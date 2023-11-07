@@ -1,21 +1,21 @@
 <template>
-  <div class="bg-dark text-white mt-5 p-3">
-    <div class="row">
+  <div class="bg-dark text-white mt-5">
+    <div class="row p-4">
         <!-- icon plus description -->
-        <div class="m-5 col-md-12 col-lg-6">
-        <div class="fs-3">
-            <font-awesome-icon :icon="['fas', 'egg']" size="2xl" />
-            EatWise
-        </div>
-        Our solution is a user-friendly web app that offers personalized meal
-        recommendations, compares ingredient prices in 3 supermarkets, and
-        automates progress tracking for health goals. Our one-stop solution
-        simplifies healthy eating, budgeting, and tracking, making it easier for
-        individuals to improve their food choices and overall well-being.
+        <div class=" px-5 col-md-12 col-lg-6">
+            <div class="fs-3">
+                <font-awesome-icon :icon="['fas', 'egg']" size="2xl" />
+                EatWise
+            </div>
+            Our solution is a user-friendly web app that offers personalized meal
+            recommendations, compares ingredient prices in 3 supermarkets, and
+            automates progress tracking for health goals. Our one-stop solution
+            simplifies healthy eating, budgeting, and tracking, making it easier for
+            individuals to improve their food choices and overall well-being.
         </div>
 
     <!-- route to different page -->
-        <div class="col m-5 ">
+        <div class="col my-3 ">
             <div class="text-center text-underline"> <u>Pages</u> </div>
             <div class="d-flex justify-content-center">
                 <div class="mx-5">

@@ -1,34 +1,34 @@
 <template>
+  
   <div>
-    <div class="background-image">
-      <div class="container mx-auto text-center my-5 rounded-4 col-8">
-        <h1>Select Your Gender</h1>
+    <div class="container mx-auto text-center rounded-4 col-8">
+      <h1>Select Your Gender</h1>
+    </div>
+    <div class="mx-auto border rounded-4 d-flex flex-wrap shadow bg-white col-8">
+      <!-- male -->
+      <div @click="checked('male')" id="male" class="col d-flex card border-0 mx-auto text-center p-4 me-1" :class="{ 'selected': selectedGender === 'male' }">
+        <font-awesome-icon :icon="['fas', 'mars']" style="color: #000000;" class="fa-10x" />
+        <h4>Male</h4>
       </div>
-      <div class="mx-auto border rounded-4 d-flex flex-wrap shadow bg-white col-8">
-        <!-- male -->
-        <div @click="checked('male')" id="male" class="col d-flex card border-0 mx-auto text-center p-4 me-1" :class="{ 'selected': selectedGender === 'male' }">
-          <font-awesome-icon :icon="['fas', 'mars']" style="color: #000000;" class="fa-10x" />
-          <h4>Male</h4>
-        </div>
-        <!-- female -->
-        <div @click="checked('female')" id="female" class="col d-flex card border-0 mx-auto text-center p-4" :class="{ 'selected': selectedGender === 'female' }">
-          <font-awesome-icon :icon="['fas', 'venus']" style="color: #000000;" class="fa-10x" />
-          <h4>Female</h4>
-        </div>
-      </div>
-      <div class="mx-auto text-center">
-        <button
-          id="submit"
-          class="btn my-5 px-5 fs-5 fw-semibold"
-          type="submit"
-          @click="nextPage()"
-        >
-          Next
-        </button>
-        <router-view></router-view>
+      <!-- female -->
+      <div @click="checked('female')" id="female" class="col d-flex card border-0 mx-auto text-center p-4" :class="{ 'selected': selectedGender === 'female' }">
+        <font-awesome-icon :icon="['fas', 'venus']" style="color: #000000;" class="fa-10x" />
+        <h4>Female</h4>
       </div>
     </div>
+    <div class="mx-auto text-center">
+      <button
+        id="submit"
+        class="btn my-5 px-5 fs-5 fw-semibold"
+        type="submit"
+        @click="nextPage()"
+      >
+        Next
+      </button>
+      <router-view></router-view>
+    </div>
   </div>
+  
 </template>
 
 <script>

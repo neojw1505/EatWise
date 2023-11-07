@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div class="mx-auto text-center my-5 py-1 shadow rounded-4 col-3" style="background-color:#7A8CEA ;">
+    <div class="mx-auto text-center py-1 shadow rounded-4 col-3" style="background-color:#7A8CEA ;">
       <h1 class="fw-bold fs-5">WHAT'S YOUR DIET TYPE</h1>
     </div>
     <div class="container mx-auto border rounded-4 d-flex shadow bg-white col-6">
