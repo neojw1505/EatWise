@@ -105,31 +105,39 @@
   },
   methods: {
     async getMostConsumedIngredient() {
-        try {
-            let countMax = 0;
-            let ingredientMax = 'No Information Available :(';
-            let fetchedDictionary = await this.$smAPI.getMostConsumedIngredient();
+    try {
+        const excludedIngredients = ["salt", "water", "sugar", "pepper", "olive oil", "garlic", "onion", "flour", "butter","oil"];
 
-            if (typeof fetchedDictionary === 'object' && fetchedDictionary !== null) {
+        let countMax = 0;
+        let ingredientMax = 'No Information Available :(';
+        let fetchedDictionary = await this.$smAPI.getMostConsumedIngredient();
+
+        if (typeof fetchedDictionary === 'object' && fetchedDictionary !== null) {
             for (let ingredient in fetchedDictionary) {
                 if (fetchedDictionary.hasOwnProperty(ingredient)) {
-                let count = fetchedDictionary[ingredient];
-                if (count > countMax) {
-                    countMax = count;
-                    ingredientMax = ingredient;
-                }
+                    if (excludedIngredients.includes(ingredient.toLowerCase())) {
+                        continue; // Skip the excluded ingredients
+                    }
+
+                    let count = fetchedDictionary[ingredient];
+                    if (count > countMax) {
+                        countMax = count;
+                        ingredientMax = ingredient;
+                    }
                 }
             }
 
             this.mostConsumedIngredient = { ingredient: ingredientMax, count: countMax };
-            } else {
+        } else {
             this.mostConsumedIngredient = { ingredient: 'No Information Available :(', count: 0 };
-            }
-        } catch (error) {
-            console.error('An error occurred while fetching data:', error);
-            this.mostConsumedIngredient = { ingredient: 'Error occurred', count: 0 };
         }
-    },
+    } catch (error) {
+        console.error('An error occurred while fetching data:', error);
+        this.mostConsumedIngredient = { ingredient: 'Error occurred', count: 0 };
+    }
+},
+
+
 
 
     async getFavoriteCuisine() {
