@@ -1,16 +1,20 @@
 <template>
   <div class="Chart-Container container bg-white">
-    <div class="date-range-selector">
-      <label for="startDate">Start Date:</label>
-      <input type="date" id="startDate" v-model="startDate" @change="updateChart" />
-
-      <label for="endDate">End Date:</label>
-      <input type="date" id="endDate" v-model="endDate" @change="updateChart" />
+    <div class="date-range-selector row">
+      <div class="col">
+        <label for="startDate">Start Date:</label>
+        <input class="form-control" type="date" id="startDate" v-model="startDate" @change="updateChart" />
+      </div>
+      <div class="col">
+        <label for="endDate">End Date:</label>
+        <input class="form-control" type="date" id="endDate" v-model="endDate" @change="updateChart" />
+      </div>
     </div>
 
     <canvas id="lineChart" class="mx-auto" style="width: 100%;"></canvas>
   </div>
 </template>
+
 
 
 <script>
