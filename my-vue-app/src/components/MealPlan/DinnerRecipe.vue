@@ -4,12 +4,10 @@
 
     <!-- Display the image or a spinner -->
     <div class="card align-items-center " v-if="loading" style="height: 540px;">
-    <div class="d-flex align-items-center" style="height: 100%;">
-      <div class="spinner-border " role="status">
-        <span class="visually-hidden">Loading...</span>
+      <div class="d-flex align-items-center" style="height: 100%;">
+      <spinnerMealPlanner />
       </div>
-  </div>
-  </div>
+    </div>
 
     <div class="card shadow border-0" v-else>
       <div class="image-wrapper" @click="seeRecipeDetailsInMealPlan">
