@@ -4,7 +4,7 @@
   <div class="card cardStyle mx-2 py-3 px-0 my-2 " :style="{'background-image':'url(' + ProductData.product_img + ')','background-size': 'cover','background-position': 'center'}">
     <div class="recipeInfo px-1">
       <div class=" border bg-light mx-auto btn py-0 mt-1 fw-bold">{{ ProductData.supermarket_name }}</div>
-      <div class="card-title text-white fw-semibold" style="height: 20px">
+      <div class="card-title text-white fw-semibold" style="height: 35px;">
         {{ formattedProductName }}
       </div>
       <div class="card-text fw-bold mx-auto text-white">{{ ProductData.product_price }}</div>

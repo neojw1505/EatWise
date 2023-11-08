@@ -1,13 +1,14 @@
 <template>
   <div class="overall">
     <Navbar />
-    <div class="mx-auto" >
-      <div class="header">
+    <div class="header">
         <!-- Add background Image -->
         <div class="background-img">
           <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
         </div>
       </div>
+    <div style="display: flex; flex-direction: column; min-height: 75vh; justify-content: space-between ;">
+      <div class="mx-auto mb-5" >
       <!-- catchy headline -->
       <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
       Find the  <span style="color: #7a8cea; font-weight: bold"> cheapest </span> ingredients available!
@@ -20,9 +21,8 @@
         </div>
       </div>
       <!-- main body -->
-      <div class="mx-3 container row mx-auto" style="max-width: 1200px">
+      <div class="mx-3 container row mx-auto" style="max-width: 1200px;">
         <!-- left side -->
-
         <div class="col-md-12 col-sm-12 col-lg-4 mb-5" v-if="showFilter">
             <MarketFilter @getInput="handleInput"/>
         </div>
@@ -50,7 +50,10 @@
       </div>
       
     </div>
-    <Footer />
+        <Footer />
+    </div>
+    
+
   </div>
 </template>
 

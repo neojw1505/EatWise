@@ -13,7 +13,7 @@
       <br/>
       <p style="overflow: hidden; " ><span class="fw-semibold">Description:</span> {{ formattedDescriptionName }}</p>
       <div class="d-inline-block pt-2 d-flex flex-wrap">
-        <div v-for="(diet, index) in Diets" :key="index" class="p-2 me-2 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
+        <div v-for="(diet, index) in Diets" :key="index" class="p-2 mb-1 me-2 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
       </div>
 
     </div>
