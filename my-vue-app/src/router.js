@@ -13,6 +13,7 @@ import Login from "./components/LandingPage/LoginPage/Login.vue";
 import Profile from "./components/Profile/Profile.vue";
 import Setting from "./components/Profile/setting/Setting.vue";
 import About from "./components/LandingPage/AboutPage/About.vue";
+import AboutLogout from "./components/LandingPage/AboutPage/AboutLogOut.vue";
 //onboarding imports
 
 const routes = [
@@ -27,7 +28,8 @@ const routes = [
   { path: '/insights', component: Insights, meta: { requiresAuth: true },},
   { path: '/register', name: 'Register', component: Onboarding , meta: { requiresAuth: false },},
   { path: '/profile', component: Profile, meta: { requiresAuth: true },},
-  { path: '/about', name: 'About', component: About, meta: { requiresAuth: false },},
+  { path: '/About', name: 'About', component: About, meta: { requiresAuth: true },},
+  { path: '/AboutLogout', name: 'AboutLogout', component: AboutLogout, meta: { requiresAuth: false },},
 
 ];
 
@@ -39,7 +41,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const unsubscribe = auth.onAuthStateChanged((user) => {
     if (!user && to.meta.requiresAuth) {
-      next({ name: 'About' });
+      next({ name: 'AboutLogout' });
     } else {
       next();
     }

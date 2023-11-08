@@ -1,7 +1,6 @@
 <template>
   <div>
-    <Navbar v-if="this.$smAPI.auth"/>
-    <NavbarLandingPage v-else />
+    <Navbar/>
     <div>
       <!-- video and EatWise -->
       <div class="section1">
@@ -41,7 +40,7 @@
       </div>
       <div class="background" style="padding-top: 50px">
         <div class="fw-bold text-center mb-5" style="color: #7a8cea">
-          <h1 class="sub-text bg-dark text-light rounded-4 mx-auto">
+          <h1 class="sub-text subTitle bg-dark text-light rounded-4 mx-auto">
             What we Offer
           </h1>
         </div>
@@ -81,6 +80,17 @@
           data-aos-offset="300"
         >
           <div class="row">
+            <!-- if the screen is smaller than 992px -->
+            <div class="col-md-6 p-5" style="align-self: center" v-if="!isLargeScreen">
+              <div class="fw-semibold" style="color: #7a8cea">
+                <h1 class="sub-text ">
+                  <p class="feature">
+                    <span style="color: #000">Personalised</span> <br/>Meal
+                    Plan!
+                  </p>
+                </h1>
+              </div>
+            </div>
             <div class="col-md-6 p-5">
               <img
                 src="../../homepageAsset/MealPlan_EatWise.png"
@@ -88,11 +98,12 @@
                 style="border: 1px solid grey; border-radius: 10px"
               />
             </div>
-            <div class="col-md-6 p-5" style="align-self: center">
+            <!-- if the screen is bigger than 992px -->
+            <div class="col-md-6 p-5" style="align-self: center" v-if="isLargeScreen">
               <div class="fw-semibold" style="color: #7a8cea">
                 <h1 class="sub-text ">
                   <p class="feature">
-                    <span style="color: #000">Personalised</span> <br />Meal
+                    <span style="color: #000">Personalised</span> <br/>Meal
                     Plan!
                   </p>
                 </h1>
@@ -136,7 +147,7 @@
           data-aos-offset="300"
         >
           <div class="fw-bold text-center mt-5" style="color: #7a8cea">
-            <h1 class="sub-text bg-dark text-light rounded-4 mx-auto">
+            <h1 class="sub-text subTitle bg-dark text-light rounded-4 mx-auto">
               Meet The Team
             </h1>
           </div>
@@ -194,10 +205,23 @@ export default {
           picture: lumeul,
         },
       },
+      isLargeScreen: window.innerWidth > 992,
+      test:null
     };
   },
-  created() {
+  methods:{
+    checkScreenSize() {
+      this.isLargeScreen = window.innerWidth > 992;
+    },
+  },
+  async created() {
     window.scrollTo({ top: 0, behavior: "smooth" });
+    window.addEventListener("resize", this.checkScreenSize);
+    this.test=await this.$smAPI.auth
+    console.log(this.test)
+  },
+  destroyed() {
+    window.removeEventListener("resize", this.checkScreenSize);
   },
 };
 </script>
@@ -232,7 +256,7 @@ h1.maintext {
   -webkit-background-clip: text;
   background-clip: text;
   color: transparent;
-  font-size: 80px;
+  font-size: 60px;
   font-weight: bold;
 }
 
@@ -271,6 +295,12 @@ h1.maintext {
 
   h1.sub-text {
     font-size: 35px;
+  }
+  .feature{
+    font-size: 40px;
+  }
+  .subTitle{
+    font-size: 30px !important; 
   }
 }
 </style>

@@ -26,8 +26,8 @@ export default {
     return {
       linksToPages2: [
         {
-          linkName: "About",
-          linkIcon: ["fas", "address-card"],
+          linkName: "About Us",
+          linkIcon: ["fas", "circle-info"],
           routeTo: "/About",
         },
         {
