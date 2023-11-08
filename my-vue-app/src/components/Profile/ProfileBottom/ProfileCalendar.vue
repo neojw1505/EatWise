@@ -15,20 +15,15 @@
         class="m-2 p-2 fw-semibold d-flex"
         style="width: 100px; color: white"
       >
-        <font-awesome-icon :icon="['fas', 'clock-rotate-left']" size="xl" />
-        <span class="mx-2">History</span>
       </div>
       <!-- calendar below -->
-      <calendar @getCalendarDate="handleCalendarDate" />
+      <calendar class="fw-bold" @getCalendarDate="handleCalendarDate" />
     </div>
   </div>
 </template>
 
 <script>
 export default {
-  // data(){return{
-  //     date: ""
-  // }}
   methods: {
     handleCalendarDate(data) {
       this.$emit("getCalendarDate", data);

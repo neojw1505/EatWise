@@ -1,6 +1,6 @@
 <template>
   <div class="Chart-Container container bg-white">
-    <div><h2>Nutrients: Last 7 Days</h2></div>
+    <div class="text-center fw-bold pt-3"><h2>Nutrients: Last 7 Days</h2></div>
     <div class="row">
       <div class="col-md-8 col-sm-12 align-items-center mx-auto">
         <canvas id="pieChart" class="mx-auto my-2" style="max-height: 300px;"></canvas>
