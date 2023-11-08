@@ -184,14 +184,6 @@
   
 <style scoped>
 /* Add your CSS styles for vibrant design here */
-.swiper-content {
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  height: 100%;
-}
-
 .insight-data {
   color: #333; /* Your text color */
 }
