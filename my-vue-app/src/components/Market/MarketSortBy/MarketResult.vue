@@ -1,6 +1,6 @@
 <template>
   <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4 d-flex row" style="background:#e6ecf7">
-    <div v-if="visibleItems.length > 0" class="d-flex flex-wrap mx-auto justify-content-center">
+    <div data-aos="fade-up" data-aos-duration="1000" v-if="visibleItems.length > 0" class="d-flex flex-wrap mx-auto justify-content-center">
       <MarketPreviewCard
         v-for="product in visibleItems"
         :ProductData="product"

@@ -348,6 +348,26 @@ export const getUserDietType = async () => {
   }
 }
 
+export const getUserExcludedIngredients = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/ingredientRemove');
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        // If the data doesn't exist, you may want to handle this case, e.g., set the breakfast recipe
+        console.log('ingredientRemove data not found.');
+        return null; // Return null if data doesn't exist
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export const getBreakfastRecipeFromFB = async () => {
   try {
     if (auth.currentUser) {
@@ -526,8 +546,11 @@ export const setRecipeOfDayInFB = async () => {
       // Form a reference to the user's data in the database
       const userRef = ref(database, '/users/' + userUid + '/recipeOfDay');
       const snapshot = await get(userRef);
-      const RecipeOfDayObj = await spoonacularObj.getRandomRecipe()
-     
+      let RecipeOfDayObj = await spoonacularObj.getRandomRecipe()
+      let RecipeOfDayNutrition = await spoonacularObj.getSelectedRecipeNutritions(RecipeOfDayObj.recipes[0].id)
+      RecipeOfDayObj['recipes'][0]['nutrition'] = RecipeOfDayNutrition
+      console.log(RecipeOfDayObj)
+      
       if (!snapshot.exists()){
         await set(userRef, {
           recipes: RecipeOfDayObj,
@@ -1147,6 +1170,104 @@ export const getMealPlanCategory = async (recipeId) => {
   }
 }
 
+export const getMostConsumedIngredient = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid;
+      const consumptionHistoryRef = ref(database, '/users/' + userUid + '/consumptionHistory');
+      const consumptionHistorySnapShot = await get(consumptionHistoryRef);
+      let ingredientsConsumed = {};
+      let consumptionHistory = consumptionHistorySnapShot.val()
+      console.log(consumptionHistory);
+      for (var date in consumptionHistory){
+        console.log("date:" + date);
+        // console.log(consumptionHistory[date]['breakfast']['recipe']['nutrition']['ingredients']);
+        for (var meal in consumptionHistory[date]){
+            // console.log(consumptionHistory[date][meal]['recipe']['nutrition']['ingredients']);
+            for (let ingredient of consumptionHistory[date][meal]['recipe']['nutrition']['ingredients']){
+              console.log("ingredient:" + ingredient.name);
+              if (ingredientsConsumed.hasOwnProperty(ingredient.name)){
+                ingredientsConsumed[ingredient.name] += 1
+              } else {
+                ingredientsConsumed[ingredient.name] = 1
+              }
+            }
+        }
+      }
+      console.log("ingredient Dict:");
+      console.log(ingredientsConsumed);
+      return ingredientsConsumed
+    }
+  } catch (error) {
+    console.log(error);
+    throw (error)
+  }
+}
+
+export const getFavoriteCuisine = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid;
+      const consumptionHistoryRef = ref(database, '/users/' + userUid + '/consumptionHistory');
+      const consumptionHistorySnapShot = await get(consumptionHistoryRef);
+      let favorite_cuisine = {};
+      let consumptionHistory = consumptionHistorySnapShot.val()
+      console.log(consumptionHistory);
+      for (var date in consumptionHistory){
+        console.log("date:" + date);
+        for (var meal in consumptionHistory[date]){
+            console.log(consumptionHistory[date][meal]['recipe']['cuisines']);
+            for (var cuisineIdx in consumptionHistory[date][meal]['recipe']['cuisines']){
+              console.log("cuisine:" + consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]);
+              if (favorite_cuisine.hasOwnProperty(consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx])){
+                favorite_cuisine[consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]] += 1
+              } else {
+                favorite_cuisine[consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]] = 1
+              }
+            }
+        }
+      }
+
+      console.log("favorite_cuisine Dict:");
+      console.log(favorite_cuisine);
+      return favorite_cuisine
+    }
+  } catch (error) {
+    console.log(error);
+    throw (error)
+  }
+}
+
+export const getAverageRecipePrepTime = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid;
+      const consumptionHistoryRef = ref(database, '/users/' + userUid + '/consumptionHistory');
+      const consumptionHistorySnapShot = await get(consumptionHistoryRef);
+      let PrepTimeArr = [];
+      let consumptionHistory = consumptionHistorySnapShot.val()
+      console.log(consumptionHistory);
+      for (var date in consumptionHistory){
+        console.log("date:" + date);
+        for (var meal in consumptionHistory[date]){
+            let recipePrepTime = consumptionHistory[date][meal]['recipe']['readyInMinutes'];
+            PrepTimeArr.push(recipePrepTime)
+        }
+      }
+      console.log(PrepTimeArr);
+      function getSum(total, num) {
+        return total + num
+      }
+      let totalPrepTime = PrepTimeArr.reduce(getSum, 0);
+      let avgPrepTime = totalPrepTime / PrepTimeArr.length
+      console.log(avgPrepTime.toFixed(0));
+      return avgPrepTime // round to whole number
+    }
+  } catch (error) {
+    console.log(error);
+    throw (error)
+  }
+}
 
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";

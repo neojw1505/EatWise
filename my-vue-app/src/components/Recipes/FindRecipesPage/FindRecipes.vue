@@ -5,8 +5,9 @@
         <!-- Add background Image -->
       <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:15vh; padding-left:40px; font-size:60px">All Recipes</h2>
     </div>
-    <div class="mx-auto" style="max-width: 1200px;">
-    <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
+    <div style="display: flex; flex-direction: column; min-height: 80vh; justify-content: space-between ;">
+      <div class="mx-auto mb-5" style="max-width: 1200px;">
+    <h1 data-aos="fade-up" data-aos-duration="1000" class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
       Find you <span style="color: #7a8cea; font-weight: bold"> favourite </span>recipe!
     </h1>
     <div class="mx-3 mb-5 d-flex mx-auto col-6 align-items-center ">
@@ -17,11 +18,13 @@
     </div>
     <!-- show all result for recipe -->
     <AllRecipe :searchInput="search" />
-  
     </div>
-    <div class="mt-5">
-      <Footer></Footer>
+
+    <Footer/>
+    
     </div>
+    
+    
   </div>
 </template>
 <script>
@@ -36,6 +39,9 @@ export default {
     getRelatedData(){
       this.search=this.tempSearch
     },
+  },
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 
 }
@@ -45,7 +51,7 @@ export default {
 .background-img{
   background-image: url(../../homepageAsset/find-recipe-background.jpg);
   width: 100%;
-  height: 25vh;
+  height: 280px;
   object-fit: fill;
   background-size: 100%;
   background-repeat: no-repeat;

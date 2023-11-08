@@ -1,61 +1,28 @@
-<template> 
-  <div id="container" class="mx-auto d-block">
-
-      <div>
-        <NavbarLandingPage />
-      </div>
-
-      <div class="col-8">  
-        <userFill /> 
-      </div>
+<template>
+  <div class="backgroundImage" style="display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between ;">
+    <div>
+      <NavbarLandingPage />
+      <userFill data-aos="fade-up" data-aos-duration="1000"/>  
+    </div>
+    <Footer/>
   </div>
-
   
-    <div class="background-container">
-      <!-- <div class="col-4">
-        <video loop autoplay src="./homepageAsset/gif.mp4"></video>
-      </div> -->
 
-
-
-  </div>
 </template>
 
-
 <script>
-
 export default {
-    name: 'login',
-    data() {
-    },
-}
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+};
 </script>
 
 <style scoped>
-#container{
-  display: flex;
-  justify-content: center;
-  width:100vw;
-  height:100vh;
-
-  background-image: url(../Assets/background.png);
+.backgroundImage {
+  width: 100%;
+  height: 100vh;
   object-fit: cover; /* Scales the image while maintaining aspect ratio */
-  background-size: cover; /* Scale image to fit container */
-  background-repeat: no-repeat; /* Prevent repeating the image */
-}
-
-/* .body {
-  background-image: url(./Assets/background.png);
-  height:100%;
-  width:100%;
-  object-fit: contain; 
-  background-size: contain; 
-  background-repeat: no-repeat;
-  background-position: center center; 
-} */
-
-#login-body{
-  margin-top:200px;
-
+  background-image: url(../Assets/background.png);
 }
 </style>

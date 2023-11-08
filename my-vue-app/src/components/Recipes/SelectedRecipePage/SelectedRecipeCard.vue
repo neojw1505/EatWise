@@ -3,6 +3,7 @@
     <Navbar />
     <div class="mx-2">
       <div
+      data-aos="fade-up" data-aos-duration="1000"
         v-if="recipeDetails"
         class="contentStyle mx-auto"
         style="max-width: 1200px"
@@ -48,7 +49,8 @@
           <!-- left side -->
           <div class="col-lg-6 justify-content-center">
             <div class="cardStyle p-2 rounded-4">
-              <div class="col-lg-10 col-sm-8 col-md-6 mx-auto p-1 rounded-5">
+              <div class="col-lg-10 col-sm-8 col-md-6 mx-auto p-1 rounded-5 text-center">
+                *click image to show description
                 <img
                   class="img-fluid rounded-5 border"
                   :src="recipeDetails.image"
@@ -71,14 +73,13 @@
               </div>
             </div>
 
-            <!-- give description -->
-            <!-- <div class="cardStyle p-2 rounded-4">
-            <div>
-              <span class="fw-semibold">Description:</span>
+            <!-- give title and diet type -->
+            <div class="cardStyle p-4 rounded-4" v-if="!isLargeScreen">
+              <h1 class="text-white fw-bold">{{ recipeDetails.title }}</h1>
+              <div class="d-inline-block pt-2 d-flex flex-wrap">
+                <div v-for="(diet, index) in recipeDetails.diets" :key="index" class="p-2 me-2 rounded-4 text-wrap my-1" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
+              </div>
             </div>
-            <div class="removeA mx-4" v-html="formattedRecipeSummary"></div>
-          </div> -->
-
             <!-- give ingredients -->
             <div class="cardStyle p-2 rounded-4">
               <div class="d-flex justify-content-between mb-2">
@@ -108,16 +109,10 @@
           <!-- right side -->
           <div class="col-lg-6">
             <!-- name of recipe and small description -->
-            <div class="cardStyle p-4 rounded-4">
-              <h1 class="text-white">{{ recipeDetails.title }}</h1>
-              <div class="d-flex flex-wrap">
-                <div
-                  class="bg-dark text-white p-2 m-1 rounded-2 border border-light"
-                  v-for="diet in recipeDetails.diets"
-                  :key="diet"
-                >
-                  {{ diet }}
-                </div>
+            <div class="cardStyle p-4 rounded-4" v-if="isLargeScreen">
+              <h1 class="text-white fw-bold">{{ recipeDetails.title }}</h1>
+              <div class="d-inline-block pt-2 d-flex flex-wrap">
+                <div v-for="(diet, index) in recipeDetails.diets" :key="index" class="p-2 me-2 rounded-4 text-wrap my-1" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
               </div>
             </div>
             <!-- give brief nutrients -->
@@ -202,6 +197,7 @@ export default {
       isBookmarked: false,
       meal: "Add to meal",
       initialMealType: null,
+      isLargeScreen : window.innerWidth > 992
     };
   },
   computed: {
@@ -443,12 +439,20 @@ export default {
         padding: '50px'
       })
     },
+    checkScreenSize() {
+      this.isLargeScreen = window.innerWidth > 992;
+    },
   },
   async created() {
     await this.getRecipeDetails();
     this.isBookmarked = await this.$smAPI.isRecipeAlreadyBookmarked(
       this.recipeDetails.id
     );
+    window.addEventListener('resize', this.checkScreenSize);
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  },
+  destroyed() {
+    window.removeEventListener('resize', this.checkScreenSize);
   },
 };
 </script>

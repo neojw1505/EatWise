@@ -1,27 +1,33 @@
 <template>
   <div class="carousel-container">
-    <h1 class="fw-bold text-center pb-4 pt-5" style="color:#fff;">Current <span style="color:#7A8CEA">Promotions</span></h1>
+    <h1 class="fw-bold text-center  pt-5" style="color:#fff;">Current <span style="color:#7A8CEA">Promotions</span></h1>
     <!-- creating slide container for RecommendedRecipes -->
-    <swiper class="carousel rounded-4 shadow-5 py-4 mySwiper"
+    <swiper class="carousel rounded-4 shadow-5 pb-4 mySwiper"
+    data-aos="fade-left" data-aos-duration="2000"
       :navigation="isWideScreen"
       :pagination="isWideScreen"
+      :speed="2000"
       :autoplay="{
         delay: 3000,
         disableOnInteraction: true,
       }"
       :modules="modules"
       :breakpoints="{
-        '760': {
-          slidesPerView: 1,
-          slidesPerGroup: 1,
-        },
-        '800': {
+        '580': {
           slidesPerView: 2,
           slidesPerGroup: 2,
         },
-        '1200': {
+        '760': {
+          slidesPerView: 2,
+          slidesPerGroup: 2,
+        },
+        '850': {
           slidesPerView: 3,
           slidesPerGroup: 3,
+        },
+        '1100': {
+          slidesPerView: 4,
+          slidesPerGroup: 4,
         },
       }"
     >
@@ -128,7 +134,7 @@ h1 {
   text-shadow: 0px 4px 4px rgba(0, 0, 0, 0.25);
 }
 
-@media screen and (min-width: 601px) {
+@media screen and (min-width: 900px) {
   h1 {
     font-size: 80px;
   }

@@ -1,23 +1,27 @@
 
 <template>
-  <div class="row"> 
-    <div class="col col-md-6 rounded-4 d-flex my-auto mx-2 align-items-center justify-content-center ">
-      <img class="img-fluid rounded-4 col-10" :src="imgUrl" alt="Recipe Image" style="object-fit: contain;"/>
-    </div>
-    <div class="col-5 text-start my-auto  bg-white rounded-4 p-4">
-      <h1 class="fw-bold mb-2" style="overflow:hidden;">Recipe of the Day</h1>
-      <br/>
-      <h4 style="overflow:hidden;">{{ formattedRecipeName }}</h4>
-      <br/>
-      <p>Preparation Time: <strong>{{ PrepTime }} minutes</strong> </p>
-      <br/>
-      <p style="overflow: hidden;">Description: {{ formattedDescriptionName }}</p>
-      <div class="d-inline-block col py-2 my-2">
-        <div v-for="(diet, index) in Diets" :key="index" class=" p-2 mx-2 rounded-4 d-inline-block" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
-      </div>
+  <div>
+    <h1 class="fw-bold text-center " style="color:#000;"><span style="color:#7A8CEA">Recipe</span> Of The Day</h1>
 
+    <div class="row"> 
+      <div class="col-md-6 col-sm-8 mx-auto rounded-4 d-flex my-auto mx-2 align-items-center justify-content-center">
+        <img @click="selectRecipe" class="img-fluid rounded-4 col" :src="imgUrl" alt="Recipe Image" style="object-fit: contain;" />
+      </div>
+      <div class="col-md col-sm-8  mx-auto text-start my-auto mx-4">
+        <br/>
+        <h2 class="fw-bold" @click="selectRecipe" >{{ formattedRecipeName }}</h2>
+        <br/>
+        <p><span class="fw-semibold">Preparation Time:</span> <span>{{ PrepTime }} minutes</span> </p>
+        <br/>
+        <p style="overflow: hidden; " ><span class="fw-semibold">Description:</span> {{ formattedDescriptionName }}</p>
+        <div class="d-inline-block pt-2 d-flex flex-wrap">
+          <div v-for="(diet, index) in Diets" :key="index" class="p-2 mb-1 me-2 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
+        </div>
+
+      </div>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -45,20 +49,7 @@ export default {
     this.getRandomFoodJokeFromFB();
     this.getRandomFoodFactFromFB();
 
-    // Calculate the time until midnight
-    const now = new Date();
-    const midnight = new Date(
-      now.getFullYear(),
-      now.getMonth(),
-      now.getDate() + 1, // Next day at midnight
-      0, 0, 0
-    );
-    const timeUntilMidnight = midnight - now;
-
-    // Schedule getRandomRecipe to run at midnight
-    setTimeout(() => {
-      this.getRandomRecipe();
-    }, timeUntilMidnight);
+    
   },
 
   methods: {
@@ -91,6 +82,36 @@ export default {
     async getUserDailyCaloriesFromFB() {
       let user = await this.$smAPI.getLoginUserProfile();
       this.DailyCalories = user.DailyCalories;
+    },
+    async selectRecipe() {
+      this.$store.dispatch('setSharedData', this.RandomRecipe);
+      localStorage.setItem('selectedRecipe', JSON.stringify(this.RandomRecipe)); // Save to local storage
+      this.$router.push({ path: '/find-recipes/SelectedRecipeCard' }); // Navigate to the receiver component
+    },
+    async setRecipeOfDay(){
+      await this.$smAPI.setRecipeOfDayInFB();
+    },
+    refreshRecipeOfDay() {
+      const targetTime = new Date();
+      targetTime.setHours(23); // 11 PM
+      targetTime.setMinutes(59); // 59 minutes
+      targetTime.setSeconds(59); // 59 seconds
+       // Calculate the time interval until the target time
+      const now = new Date();
+      let timeUntilTarget = targetTime - now;
+      if (timeUntilTarget < 0) {
+        // If the target time has already passed today, schedule it for the same time tomorrow
+        timeUntilTarget += 24 * 60 * 60 * 1000; // 24 hours in milliseconds
+      }
+
+      // Schedule the refresh methods to run at 11:59:59 PM every day
+      setTimeout(() => {
+        this.setRecipeOfDay();
+        // Schedule the methods to run every 24 hours
+        setInterval(() => {
+          this.setRecipeOfDay();
+        }, 24 * 60 * 60 * 1000); // 24 hours in milliseconds
+      }, timeUntilTarget);
     }
   },
   computed: {
@@ -121,6 +142,7 @@ export default {
     this.$nextTick(() => {
       window.addEventListener('resize', this.onResize);
     })
+    this.refreshRecipeOfDay()
   },
 
   beforeDestroy() { 
@@ -131,4 +153,15 @@ export default {
 
 <style scoped>
   
+@media screen and (min-width: 735px) {
+  h1 {
+    font-size: 80px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 40px;
+  }
+}
 </style>

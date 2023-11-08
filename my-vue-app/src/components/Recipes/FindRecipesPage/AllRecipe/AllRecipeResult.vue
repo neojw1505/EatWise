@@ -2,7 +2,7 @@
   <div class="mx-auto " style="max-width: 1200px">
     <div class="p-4 pt-2 shadow border rounded-4 my-3 d-flex mx-3 d-flex row" style="background-color: #e6ecf7;">
       
-      <div v-if="visibleItems.length > 0" class="d-flex flex-wrap">
+      <div v-if="visibleItems.length > 0" class="d-flex flex-wrap" data-aos="fade-up" data-aos-duration="1000">
         <FindRecipePreviewCard
           v-for="item in visibleItems"
           :key="item.id"

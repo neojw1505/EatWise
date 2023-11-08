@@ -9,27 +9,28 @@
 "
         ></video>
         <div class="overlay mt-30">
-          <h1 class="main-text" style="color: whitesmoke; font-family: Georgia, 'Times New Roman', Times;">
+          <h1 data-aos="fade-up" data-aos-duration="1000" class="main-text" style="color: whitesmoke; font-family: Georgia, 'Times New Roman', Times;">
             EatWise
           </h1>
-          <h1 class="sub-text" style=" font-family: Georgia, 'Times New Roman', Times;">
+          <h1 data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500" class="sub-text" style=" font-family: Georgia, 'Times New Roman', Times;">
             Nourishing Your <span style="color: #7a8cea; font-weight: bold">Journey</span>, One Bite at a Time
           </h1>
         </div>
       </div>
-      <div class="section2" style="padding-top: 80px; padding-bottom: 80px">
+      <div class="section2"  style="padding-top: 80px; padding-bottom: 80px">
         <!--hidden text so that image extends-->
-        <RecipeOfDay />
+        <RecipeOfDay data-aos="fade-right" data-aos-duration="1000" />
       </div>
-      <div class="section3" style="padding-top: 60px; padding-bottom: 60px">
-        <MealPlan/>
+      <div  class="section3"  style="padding-top: 60px; padding-bottom: 60px">
+        <MealPlan />
       </div>
-      <div class="section4" style="padding-top: 40px; padding-bottom: 40px">
-        <NewPromoCarousel class="p-4 pt-2 rounded-4 my-3 mx-3" />
+      <div  class="section4" style="padding-top: 40px; ">
+        <NewPromoCarousel  class="p-4 pt-2 rounded-4 mt-3 mx-3" />
       </div>
       <Footer></Footer>
 
     </div>
+    <Footer/>
   </div>
 </template>
 
@@ -44,6 +45,7 @@ export default {
       // Update the notification flag in the store
       this.$store.dispatch("setShowLoginNotification", true);
     }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
   methods: {
     loginSuccessNotif() {

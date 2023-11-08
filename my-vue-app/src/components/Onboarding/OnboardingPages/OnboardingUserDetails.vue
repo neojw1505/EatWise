@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div class="container my-5">
-      <div class="rounded-4 p-3 text-center" style="background-color: #7A8CEA;">
+    <div class="container ">
+      <div class="mx-auto text-center py-1 shadow rounded-4 col-6" style="background-color:#7A8CEA ;">
         <h1 class="fw-bold fs-4">TELL US MORE ABOUT YOURSELF</h1>
       </div>
       <div class="border rounded-4 p-3 shadow bg-white mt-3">
@@ -25,8 +25,8 @@
         </div>
       </div>
     </div>
-    <div class="mx-auto text-center my-5 rounded-4 col-6 py-2" style="background-color: #7A8CEA;">
-      <h1 class="fw-bold fs-5">WHAT IS YOUR GOAL?</h1>
+    <div class="mx-auto text-center py-1 shadow rounded-4 col-5 mt-4" style="background-color:#7A8CEA ;">
+      <h1 class="fw-bold fs-4">WHAT IS YOUR GOAL?</h1>
       <h3 class="fw-semibold fs-6">(Select one only)</h3>
     </div>
     <div class="border rounded-4 p-4 mx-auto shadow bg-white text-center col-10">

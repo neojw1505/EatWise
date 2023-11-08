@@ -1,15 +1,16 @@
 <template>
   <div class="overall">
     <Navbar />
-    <div class="mx-auto mb-5" >
-      <div class="header">
+    <div class="header">
         <!-- Add background Image -->
-        <div class="backGroundimg">
-          <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:15vh; padding-left:40px; font-size:60px">Market Place</h2>
+        <div class="background-img">
+          <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
         </div>
       </div>
+    <div style="display: flex; flex-direction: column; min-height: 80vh; justify-content: space-between ;">
+      <div class="mx-auto mb-5" >
       <!-- catchy headline -->
-      <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
+      <h1 data-aos="fade-up" data-aos-duration="1000" class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
       Find the  <span style="color: #7a8cea; font-weight: bold"> cheapest </span> ingredients available!
       </h1>
       <!-- input to search for ingredient -->
@@ -20,9 +21,8 @@
         </div>
       </div>
       <!-- main body -->
-      <div class="mx-3 container row mx-auto" style="max-width: 1200px">
+      <div class="mx-3 container row mx-auto" style="max-width: 1200px;">
         <!-- left side -->
-
         <div class="col-md-12 col-sm-12 col-lg-4 mb-5" v-if="showFilter">
             <MarketFilter @getInput="handleInput"/>
         </div>
@@ -50,7 +50,10 @@
       </div>
       
     </div>
-    <Footer />
+    <Footer></Footer>
+    </div>
+    
+
   </div>
 </template>
 
@@ -132,6 +135,7 @@ export default {
   },
   created() {
     this.fetchProducts();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
   watch:{
     sortBy: {
@@ -146,14 +150,7 @@ export default {
 </script>
 
 <style scoped>
-.backGroundimg{
-  background-image: url(../homepageAsset/marketplacebackground.jpeg);
-  width: 100%;
-  height: 25vh;
-  object-fit: fill;
-  background-size: 100%;
-  background-repeat: no-repeat;
-}
+ 
 
 .btnStyle{
   transition: transform 0.3s;
@@ -162,4 +159,13 @@ export default {
   transform: scale(1.05); /* Scale up by 10% on hover */
   cursor: pointer;
 }
+.background-img{
+  background-image: url(.././homepageAsset/marketplacebackground.jpeg);
+  width: 100%;
+  height: 280px;
+  object-fit: fill;
+  background-size: 100%;
+  background-repeat: no-repeat;
+}
+
 </style>

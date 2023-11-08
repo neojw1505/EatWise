@@ -12,6 +12,7 @@
     </div>
   <div class="section2">
     <ProfileBottom />
+    <Footer/>
   </div>
   <div class="mt-3">
           <Footer></Footer>
@@ -42,6 +43,7 @@ async created() {
     } catch (error) {
       console.error("Error getting currentUser", error);
     }
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
 };
 </script>
@@ -67,8 +69,5 @@ async created() {
 .pageStyle{
   background-image: url('../../components/homepageAsset/profile.jpg');
   background-size: cover;
-  background-repeat: no-repeat;
-  object-fit: cover;
-
 }
 </style>

@@ -2,7 +2,7 @@
   <div id="RegisterCard" class="card shadow">
     <div class="card-body">
       <div class="row col-sm-12 mx-auto my-10">
-        <h5 class="card-title mb-4 text-center">User Registration</h5>
+        <h5 class="card-title mb-4 text-center fw-bold">User Registration</h5>
         <input
           class="col-sm-12 form-control"
           type="text"
@@ -141,7 +141,7 @@ export default {
 
 <style scoped>
 .btn {
-  background-color: #f4976c;
+  background-color: #7A8CEA;
   color: white;
 }
 p {
@@ -164,12 +164,9 @@ p {
 }
 
 #RegisterCard {
-  position: fixed;
-  top: 50%;
-  left: 50%;
-  transform: translate(-50%, -50%);
   max-width: 500px;
   border-radius: 40px;
+  margin: auto;
 }
 
 input {

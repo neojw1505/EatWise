@@ -44,7 +44,7 @@
     <!-- recipe consumed -->
     <div class="row justify-content-center my-3">
       <mealCard
-        v-for="(mealDetails, mealtype) in mealplan"
+        v-for="(mealDetails, mealtype) in sortedmeal"
         :key="mealtype"
         :mealType="mealtype"
         :mealDetails="mealDetails"
@@ -64,6 +64,7 @@ export default {
       totalCarbs: 0,
       totalFats: 0,
       totalProtein: 0,
+      sortedmeal:null
     };
   },
   methods: {
@@ -71,6 +72,7 @@ export default {
       this.mealplan = await this.$smAPI.GetConsumptionHistoryForDate(
         dateToPassinFB
       );
+      this.sortedMeal();
       console.log(this.mealplan)
       //  reset values
        this.totalCalories = 0;
@@ -100,6 +102,22 @@ export default {
         this.totalProtein += Number(protein);
       }    
     },
+    sortedMeal(){
+      let sortedmeal={};
+      console.log(this.mealplan)
+      if(this.mealplan){
+        if(this.mealplan.hasOwnProperty('breakfast')){
+        sortedmeal['breakfast']=this.mealplan['breakfast'];
+      }
+      if(this.mealplan.hasOwnProperty('lunch')){
+        sortedmeal['lunch']=this.mealplan['lunch'];
+      }
+      if(this.mealplan.hasOwnProperty('dinner')){
+        sortedmeal['dinner']=this.mealplan['dinner'];
+      }
+      this.sortedmeal=sortedmeal;
+      }
+    }
   },
   computed: {
     formattedDate() {

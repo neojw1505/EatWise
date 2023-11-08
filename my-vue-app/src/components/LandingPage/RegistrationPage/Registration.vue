@@ -1,8 +1,7 @@
 <template> 
   <div id="container" class="mx-auto d-block">
-    <div id="background-container">
-      <img id="Registration-background" src="../Assets/background.png" alt="background">
-      <RegistrationFill  :registerUser="registerUser"/>
+    <div class="">
+      <RegistrationFill data-aos="fade-left" data-aos-duration="1000" :registerUser="registerUser"/>
     </div>
 
   </div>
@@ -32,32 +31,19 @@ export default {
 </script>
 
 <style scoped>
-#container{
-  position: fixed;
-  display: flex;
-  justify-content: center;
-  width:100%;
-  height:100%;
-}
-
-#background-container {
-  width: 100%;
-  height: 100%;
-  position: absolute;
-  top: 0;
-  left: 0;
-  z-index: -1;
-  overflow: hidden;
-
-}
-
-#Registration-background {
+.backgroundImage{
   width: 100%;
   height: 100%;
   object-fit: cover; /* Scales the image while maintaining aspect ratio */
+  background-image: url(../Assets/background.png);
 }
-#Registration-body{
-  margin-top:200px;
 
+
+.backGroundimg{
+  background-image: url(../homepageAsset/marketplacebackground.jpeg);
+  width: 100%;
+  object-fit: cover;
+  background-size: 100%;
+  background-repeat: no-repeat;
 }
 </style>

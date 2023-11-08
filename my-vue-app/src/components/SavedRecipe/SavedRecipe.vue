@@ -5,74 +5,73 @@
       <!-- Add background Image -->
       <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:15vh; padding-left:40px; font-size:60px">Saved Recipes</h2>
     </div>
-    <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
+    <h1 data-aos="fade-up" data-aos-duration="1000" class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
       Culinary Adventures <span style="color: #7a8cea; font-weight: bold"> Adventures </span> Await!
     </h1>
   
     <!-- <h2 class="main-text mt-4" style="color: white ; font-family: Roboto;">Saved Recipes:</h2> -->
     <!-- <button @click="deletela">Delete All Recipes</button> -->
       
-  
-    <div class="mx-3 container row mx-auto" style="max-width: 1200px;">
-      <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4" style="background:#e6ecf7">
-        <div class="justify-content-end d-flex">
-          <button class="btn bg-light border border-dark fw-semibold btnStyle" @click="DeleteConfirm()" >
-            Delete All
-          </button>
-        </div>
-        
-        <div v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">
-          <SavedRecipeCard
-            v-for="item in visibleItems"
-            :key="item.id"
-            :recipe="item"
-            :routerTO="item.id"
-            style="text-decoration: none"
-          />
-        </div>
-        
-        <div v-else-if="visibleItems.length == 0 && data!=null" class="mt-3 d-flex mx-auto justify-content-center">
-        <div class="mx-auto text-center">
-          No Result Found
-          <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
-        </div>
-        </div>
+    <div style="display: flex; flex-direction: column; min-height: 75vh; justify-content: space-between ;">
+      <div class="mx-3 container row mx-auto mb-5" style="max-width: 1200px;">
+        <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4" style="background:#e6ecf7">
+          <div class="justify-content-end d-flex">
+            <button class="btn bg-light border border-dark fw-semibold btnStyle" @click="DeleteConfirm()" >
+              Delete All
+            </button>
+          </div>
+          
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">
+            <SavedRecipeCard
+              v-for="item in visibleItems"
+              :key="item.id"
+              :recipe="item"
+              :routerTO="item.id"
+              style="text-decoration: none"
+            />
+          </div>
+          
+          <div v-else-if="visibleItems.length == 0 && data!=null" class="mt-3 d-flex mx-auto justify-content-center">
+          <div class="mx-auto text-center">
+            No Result Found
+            <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
+          </div>
+          </div>
 
-        <div v-else class="mt-3 d-flex mx-auto justify-content-center">
-          <div class="mx-auto">
-            <div class="d-inline mx-auto">
-              <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
+          <div v-else class="mt-3 d-flex mx-auto justify-content-center">
+            <div class="mx-auto">
+              <div class="d-inline mx-auto">
+                <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- buttons for pagination -->
-        <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
-          <button class="btnStyle btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
-          <button class="btnStyle btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
-        </div>
-        <!-- pages -->
-        <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
-          <button
-            v-for="page in limitedPages"
-            :key="page"
-            @click="goToPage(page)"
-            :class="{ 'active': page === currentPage }"
-            class="btn btnStyle"
-          >
-            {{ page + 1 }}
-          </button>
+          <!-- buttons for pagination -->
+          <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
+            <button class="btnStyle btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
+            <button class="btnStyle btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
+          </div>
+          <!-- pages -->
+          <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
+            <button
+              v-for="page in limitedPages"
+              :key="page"
+              @click="goToPage(page)"
+              :class="{ 'active': page === currentPage }"
+              class="btn btnStyle"
+            >
+              {{ page + 1 }}
+            </button>
+          </div>
         </div>
       </div>
-      
+      <Footer/>
     </div>
-    <div class="mt-5">
-      <Footer></Footer>
-    </div>
+    
+  
   </div>
 </template>
 
 <script>
-import { get } from 'firebase/database';
 import Swal from 'sweetalert2';
 export default {  
   data() {
@@ -164,6 +163,7 @@ export default {
   },
   async created(){
     await this.getUserSavedRecipes();
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
 
   
@@ -176,7 +176,7 @@ export default {
 .background-img{
   background-image: url(../../components/homepageAsset/savedrecipe.jpg);
   width: 100%;
-  height: 25vh;
+  height: 280px;
   object-fit: fill;
   background-size: 100%;
   background-repeat: no-repeat;
