@@ -1,8 +1,5 @@
 <template>
     <div class="bg-white">
-      <div>
-        <h3 class="my-2 mx-2">Actionable Insights</h3>
-      </div>
       <div class="my-auto">
         <swiper
           :effect="'cube'"
@@ -20,45 +17,45 @@
 
         >
           <!-- section 1 (Fav Ingredient) -->
-          <swiper-slide class="bg-light">
-            <div class="swiper-content">
-              <h1>Favorite Ingredient</h1>
-                <div class="insight-data mx-auto text-center">
-                    <h2>{{ mostConsumedIngredient.ingredient }}</h2>
-                    <h2>{{ mostConsumedIngredient.count }} times</h2>
-                </div>
+        <swiper-slide class="bg-light">
+          <div class="swiper-content d-flex flex-column justify-content-center">
+            <h1>Favorite Ingredient</h1>
+            <div class="insight-data mx-auto text-center">
+              <h2>{{ mostConsumedIngredient.ingredient }}</h2>
+              <h2>{{ mostConsumedIngredient.count }} times</h2>
             </div>
-          </swiper-slide>
-          <!-- section 2 (Fav Cuisine) -->
-          <swiper-slide class="bg-light">
-            <div class="swiper-content">
-              <h1>Favorite Cuisine</h1>
-                <div class="insight-data mx-auto text-center">
-                    <h2>{{ favoriteCuisine.cuisine }}</h2>
-                    <h2>{{ favoriteCuisine.count }} times</h2>
-                </div>
+          </div>
+        </swiper-slide>
+        <!-- section 2 (Fav Cuisine) -->
+        <swiper-slide class="bg-light">
+          <div class="swiper-content d-flex flex-column justify-content-center">
+            <h1>Favorite Cuisine</h1>
+            <div class="insight-data mx-auto text-center">
+              <h2>{{ favoriteCuisine.cuisine }}</h2>
+              <h2>{{ favoriteCuisine.count }} times</h2>
             </div>
-          </swiper-slide>
-          <!-- section 3 (Fav Preptime) -->
-          <swiper-slide class="bg-light">
-            <div class="swiper-content mx-auto text-center">
-              <h1>Average Recipe Preperation Time</h1>
-              <div class="insight-data"><h2>{{ averageRecipePrepTime }}</h2></div>
-            </div>
-          </swiper-slide>
-          <!-- section 4 (Meal Insights) -->
-          <swiper-slide class="bg-light">
-            <div class="swiper-content">
-              <h1>Recommended Recipes</h1>
-              <div class="insight-data">
-                <div class="row p-2">
-                  <FindRecipePreviewCard
-                    v-for="recipe in recipeDataArray"
-                    :key="recipe.id"
-                    :recipe="recipe"
-                    :routerTO="'/find-recipes/SelectedRecipeCard'"
-                    class="col-md-4"
-                  />
+          </div>
+        </swiper-slide>
+        <!-- section 3 (Fav Preptime) -->
+        <swiper-slide class="bg-light">
+          <div class="swiper-content d-flex flex-column justify-content-center mx-auto text-center">
+            <h1>Average Recipe Preparation Time</h1>
+            <div class="insight-data"><h2>{{ averageRecipePrepTime }}</h2></div>
+          </div>
+        </swiper-slide>
+        <!-- section 4 (Meal Insights) -->
+        <swiper-slide class="bg-light">
+          <div class="swiper-content d-flex flex-column justify-content-center">
+            <h1>Recommended Recipes</h1>
+            <div class="insight-data">
+              <div class="row p-2">
+                <FindRecipePreviewCard
+                  v-for="recipe in recipeDataArray"
+                  :key="recipe.id"
+                  :recipe="recipe"
+                  :routerTO="'/find-recipes/SelectedRecipeCard'"
+                  class="col-md-4"
+                />
                 </div>
               </div>
             </div>
