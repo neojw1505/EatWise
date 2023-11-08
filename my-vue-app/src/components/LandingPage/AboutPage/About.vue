@@ -1,7 +1,7 @@
 <template>
   <div>
     <NavbarLandingPage />
-    <div class="mb-5">
+    <div>
       <!-- video and EatWise -->
       <div class="section1">
         <video
@@ -15,8 +15,9 @@
         ></video>
         <div class="overlay mt-30">
           <h1
-          class="main-text"
-          data-aos="fade-up" data-aos-duration="1000"
+            class="main-text"
+            data-aos="fade-up"
+            data-aos-duration="1000"
             style="
               color: whitesmoke;
               font-family: Georgia, 'Times New Roman', Times;
@@ -27,7 +28,9 @@
           <h4
             class="sub-text"
             style="font-family: Georgia, 'Times New Roman', Times"
-            data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"
+            data-aos="fade-up"
+            data-aos-duration="1000"
+            data-aos-delay="500"
           >
             Nourishing Your
             <span style="color: #7a8cea; font-weight: bold">Journey</span>, One
@@ -35,79 +38,175 @@
           </h4>
         </div>
       </div>
-      <!-- about -->
-      <div class="row m-2 mx-3" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
-        <!-- problem -->
-        <div class="col-sm-12 col-md-6">
-          <div class="fw-semibold" style="color: #7a8cea"><h1 class="sub-text">Problem</h1></div>
-          Individuals in our community face significant challenges due to a
-          <strong>lack of food and health literacy</strong> , compounded by
-          <strong> budget constraints</strong>, which in turn leads to a
-          <strong>reluctance to track their caloric and nutrient intake</strong>
-          , highlighting the need for a comprehensive solution to improve access
-          to nutritious food, enhance health education, and address financial
-          constraints.
+      <div class="background" style="padding-top: 50px">
+        <div class="fw-bold text-center mb-5" style="color: #7a8cea">
+          <h1 class="sub-text bg-dark text-light rounded-4 mx-auto">
+            What we Offer
+          </h1>
         </div>
-        <!-- solution -->
-        <div class="col-sm-12 col-md-6">
-          <div class="fw-semibold" style="color: #7a8cea"><h1 class="sub-text">Solution</h1></div>
-          Our solution is a user-friendly web app that offers
-          <strong>personalized meal recommendations</strong>,
-          <strong>compares ingredient prices in 3 supermarkets</strong> , and
-          <strong>automates progress tracking for health goals</strong>. Our one-stop solution
-          simplifies healthy eating, budgeting, and tracking, making it easier
-          for individuals to improve their food choices and overall well-being.
+        <!-- Compare Groceries Prices! -->
+        <div
+          class="container-fluid"
+          data-aos="fade-right"
+          data-aos-duration="2500"
+          data-aos-offset="300"
+        >
+          <div class="row">
+            <div class="col-md-6 p-5" style="align-self: center">
+              <div class="fw-semibold" style="color: #7a8cea">
+                <h1 class="sub-text ">
+                  <p class="feature">
+                    <span style="color: #000">Compare</span> <br />Groceries
+                    Prices!
+                  </p>
+                </h1>
+              </div>
+            </div>
+            <div class="col-md-6 p-5">
+              <img
+                src="../../homepageAsset/Market_EatWise.png"
+                class="w-100"
+                style="border: 1px solid grey; border-radius: 10px"
+              />
+            </div>
+          </div>
         </div>
-      </div>
-      <!-- review by fellow groupmate -->
-      <div class="fw-bold text-center mt-5" style="color: #7a8cea"><h1 class="sub-text">Meet The Team</h1></div>
-      <div class="justify-content-center align-items-centerm-2 mx-3 d-flex flex-wrap" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
-        <AboutCard v-for="(input,name) in team" :key="name" :name="name" :memberInput="input"/>
+
+        <!-- Personalised Meal Plans -->
+        <div
+          class="container-fluid"
+          data-aos="fade-left"
+          data-aos-duration="2500"
+          data-aos-offset="300"
+        >
+          <div class="row">
+            <div class="col-md-6 p-5">
+              <img
+                src="../../homepageAsset/MealPlan_EatWise.png"
+                class="w-100"
+                style="border: 1px solid grey; border-radius: 10px"
+              />
+            </div>
+            <div class="col-md-6 p-5" style="align-self: center">
+              <div class="fw-semibold" style="color: #7a8cea">
+                <h1 class="sub-text ">
+                  <p class="feature">
+                    <span style="color: #000">Personalised</span> <br />Meal
+                    Plan!
+                  </p>
+                </h1>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Insights -->
+        <div
+          class="container-fluid"
+          data-aos="fade-right"
+          data-aos-duration="2500"
+          data-aos-offset="300"
+        >
+          <div class="row">
+            <div class="col-md-6 p-5" style="align-self: center">
+              <div class="fw-semibold" style="color: #7a8cea">
+                <h1 class="sub-text">
+                  <p class="feature">
+                    <span style="color: #000">Gain</span> the <br />
+                    latest insights!
+                  </p>
+                </h1>
+              </div>
+            </div>
+            <div class="col-md-6 p-5">
+              <img
+                src="../../homepageAsset/Insights.png"
+                class="w-100"
+                style="border: 1px solid grey; border-radius: 10px"
+              />
+            </div>
+          </div>
+        </div>
+        <!-- Meet The Team -->
+        <div
+          class="container-fluid pb-5"
+          data-aos="zoom-in"
+          data-aos-duration="1000"
+          data-aos-offset="300"
+        >
+          <div class="fw-bold text-center mt-5" style="color: #7a8cea">
+            <h1 class="sub-text bg-dark text-light rounded-4 mx-auto">
+              Meet The Team
+            </h1>
+          </div>
+          <div
+            class="justify-content-center align-items-centerm-2 mx-3 d-flex flex-wrap"
+          >
+            <AboutCard
+              data-aos="fade-zoom-in"
+              data-aos-duration="1500"
+              data-aos-easing="ease-in-back"
+              v-for="(input, name) in team"
+              :key="name"
+              :name="name"
+              :memberInput="input"
+            />
+          </div>
+        </div>
       </div>
     </div>
+
     <Footer />
   </div>
 </template>
 
 <script>
-import zhenyue from './teamImage/zhenyue.jpg'
-import kaijie from './teamImage/kaijie.jpg'
-import zavier from './teamImage/zavier.jpg'
-import junwei from './teamImage/junwei.jpg'
-import lumeul from './teamImage/lumeul.jpg'
+import zhenyue from "./teamImage/zhenyue.jpg";
+import kaijie from "./teamImage/kaijie.jpg";
+import zavier from "./teamImage/zavier.jpg";
+import junwei from "./teamImage/junwei.jpg";
+import lumeul from "./teamImage/lumeul.jpg";
 export default {
-  data(){return{
-    team:{
-      'Neo Jun Wei':{
-        'comment':'I did backend. Every night i dream about doing backend on lemuel',
-        "picture":junwei,
+  data() {
+    return {
+      duration: 1000,
+      team: {
+        "Neo Jun Wei": {
+          comment:
+            "I did backend. Every night i dream about doing backend on lemuel",
+          picture: junwei,
+        },
+        "Wang Kai Jie": {
+          comment: "Where is the nearest Mcdonald's?",
+          picture: kaijie,
+        },
+        "Zavier Yan": {
+          comment: "I did Wang Kai Li <3",
+          picture: zavier,
+        },
+        "Zhen Yue": {
+          comment: "I did ligma...figma**.. ligmaballs.",
+          picture: zhenyue,
+        },
+        "Lemuel Fan": {
+          comment: "My Ass is ready Jun Wei",
+          picture: lumeul,
+        },
       },
-      'Wang Kai Jie':{
-        'comment':"Where is the nearest Mcdonald's?",
-        "picture":kaijie,
-      },
-      'Zavier Yan':{
-        'comment':'I did Wang Kai Li <3',
-        "picture":zavier,
-      },
-      'Zhen Yue':{
-        'comment':'I did ligma...figma**.. ligmaballs.',
-        "picture":zhenyue,
-      },
-      'Lemuel Fan':{
-        'comment':'My Ass is ready Jun Wei',
-        "picture":lumeul,
-      },
-    }
-  }
+    };
   },
-  created(){
+  created() {
     window.scrollTo({ top: 0, behavior: "smooth" });
-  }
+  },
 };
 </script>
 
 <style scoped>
+.background {
+  background-image: url("../../homepageAsset/olga-thelavart-vS3idIiYxX0-unsplash.jpg");
+  background-size: cover;
+}
+
 h1.maintext {
   font-style: normal;
   font-weight: 600;
@@ -121,12 +220,18 @@ h1.maintext {
   width: 100%;
   height: 600px;
   transition: all 1s ease;
-
-
 }
 
 .section1 video {
   position: relative;
+}
+
+.feature {
+  background-image: linear-gradient(to right, #ff9c38, #fcc315);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+  font-size: 80px;
 }
 
 .overlay {
@@ -142,6 +247,10 @@ h1.maintext {
   text-align: center; /* Center the text within the container */
 }
 
+.sub-text {
+  width: fit-content;
+  padding: 0px 20px;
+}
 @media screen and (min-width: 601px) {
   h1.main-text {
     font-size: 80px;
