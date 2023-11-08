@@ -95,63 +95,79 @@ export default {
 },
 
 renderLineChart() {
-      const ctx = document.getElementById('lineChart');
-      const labels = this.totalCaloriesByDate.map(item => item.day);
-      const calories = this.totalCaloriesByDate.map(item => item.totalCalories);
+    const ctx = document.getElementById('lineChart');
+    const labels = this.totalCaloriesByDate.map(item => item.day);
+    const calories = this.totalCaloriesByDate.map(item => item.totalCalories);
 
-      // Create a horizontal line at the recommendedCalories value
-      const recommendedLine = Array(calories.length).fill(this.recommendedCalories);
-      
-      if (this.myChart) {
-        this.myChart.data.labels = labels;
-        this.myChart.data.datasets[0].data = calories;
-        this.myChart.data.datasets[1].data = recommendedLine; // Set the recommendedCalories line
-        this.myChart.update();
+    // Create a horizontal line at the recommendedCalories value
+    const recommendedLine = Array(calories.length).fill(this.recommendedCalories);
+    const pointColors = [];
+    const lineColors = []; 
+
+    for (let i = 0; i < calories.length; i++) {
+      if (calories[i] > this.recommendedCalories) {
+
+        pointColors.push('red');
+        lineColors.push('red');
       } else {
-        this.myChart = new Chart(ctx, {
-          type: 'line',
-          data: {
-            labels: labels,
-            datasets: [
-              {
-                label: 'Calorie Intake',
-                data: calories,
-                borderWidth: 3,
-                fill: true,
-                borderColor: 'rgb(255, 99, 132)',
-                tension: 0.35,
-                pointBackgroundColor: 'rgb(255, 99, 132)',
-              },
-              {
-                label: 'Recommended Calories',
-                data: recommendedLine,
-                borderWidth: 2,
-                fill: false,
-                borderColor: 'green', // You can choose the color you want
-                borderDash: [5, 5], // Dotted line
-                pointBackgroundColor: 'green',
-              },
-            ],
-          },
-          options: {
-            scales: {
-              x: {
-                type: 'timeseries',
-                time: {
-                  unit: 'day',
-                },
-              },
-              y: {
-                beginAtZero: true,
+        pointColors.push('rgb(54, 162, 235)');
+        lineColors.push('rgb(54, 162, 235)');
+      }
+    }
+
+    if (this.myChart) {
+      this.myChart.data.labels = labels;
+      this.myChart.data.datasets[0].data = calories;
+      this.myChart.data.datasets[0].pointBackgroundColor = pointColors;
+      this.myChart.data.datasets[0].borderColor = lineColors;
+      this.myChart.data.datasets[1].data = recommendedLine;
+      this.myChart.update();
+    } else {
+      this.myChart = new Chart(ctx, {
+        type: 'line',
+        data: {
+          labels: labels,
+          datasets: [
+            {
+              label: 'Calorie Intake',
+              data: calories,
+              borderWidth: 3,
+              fill: true,
+              borderColor: 'rgb(255, 99, 132)',
+              tension: 0.35,
+              pointBackgroundColor: pointColors,
+              borderColor: lineColors,
+            },
+            {
+              label: 'Recommended Calories',
+              data: recommendedLine,
+              borderWidth: 2,
+              fill: false,
+              borderColor: 'green',
+              borderDash: [5, 5],
+              pointBackgroundColor: 'green',
+            },
+          ],
+        },
+        options: {
+          scales: {
+            x: {
+              type: 'timeseries',
+              time: {
+                unit: 'day',
               },
             },
-            responsive: false,
-            maintainAspectRatio: true,
-            showTooltips: true,
+            y: {
+              beginAtZero: true,
+            },
           },
-        });
-      }
-    },
+          responsive: false,
+          maintainAspectRatio: true,
+          showTooltips: true,
+        },
+      });
+    }
+  },
 
     async getDefaultDateRange() {
       const endDate = moment();
