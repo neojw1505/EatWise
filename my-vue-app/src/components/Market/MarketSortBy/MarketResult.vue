@@ -1,5 +1,5 @@
 <template>
-  <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4 d-flex row" style="background:#e6ecf7">
+  <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4 d-flex row" style="background:#e6ecf7; width: 100%;" >
     <div data-aos="fade-up" data-aos-duration="1000" v-if="visibleItems.length > 0" class="d-flex flex-wrap mx-auto justify-content-center">
       <MarketPreviewCard
         v-for="product in visibleItems"
@@ -8,14 +8,14 @@
       />
     </div>
 
-    <div v-else-if="visibleItems.length == 0 && result!=null" class="mt-3 d-flex mx-auto justify-content-center">
+    <div v-else-if="visibleItems.length == 0 && result!=null" class="mt-3 d-flex mx-auto justify-content-center " >
       <div class="mx-auto text-center">
         No Result Found
         <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
       </div>
     </div>
 
-    <div v-else class="mt-3 d-flex mx-auto justify-content-center">
+    <div v-else class="mt-3 d-flex mx-auto justify-content-center" style="width: 100%;">
       <div class="mx-auto">
         <div class="d-inline mx-auto">
           <div class="spinner-border text-success mx-auto fs-1" role="status"></div>

@@ -12,13 +12,13 @@
     <!-- <h2 class="main-text mt-4" style="color: white ; font-family: Roboto;">Saved Recipes:</h2> -->
     <!-- <button @click="deletela">Delete All Recipes</button> -->
       
-    <div style="display: flex; flex-direction: column; min-height: 75vh; justify-content: space-between ;">
+    
       <div class="mx-3 container row mx-auto mb-5" style="max-width: 1200px;">
         <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4" style="background:#e6ecf7">
           <div class="justify-content-end d-flex">
             <button class="btn bg-light border border-dark fw-semibold btnStyle" @click="DeleteConfirm()" >
+              <font-awesome-icon :icon="['fas', 'trash-can']" />
               Delete All
-              <font-awesome-icon icon="trash-can" size="sm" class="ps-2" />
             </button>
             
           </div>
@@ -66,9 +66,17 @@
           </div>
         </div>
       </div>
-      <Footer/>
-    </div>
-    
+      <div
+          style="
+            display: flex;
+            flex-direction: column;
+            min-height: 75vh;
+            justify-content: space-between;
+          "
+        >
+          <div></div>
+          <Footer />
+        </div>
   
   </div>
 </template>

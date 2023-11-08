@@ -3,7 +3,8 @@
     <Navbar />
     <div class="mx-2">
       <div
-      data-aos="fade-up" data-aos-duration="1000"
+        data-aos="fade-up"
+        data-aos-duration="1000"
         v-if="recipeDetails"
         class="contentStyle mx-auto"
         style="max-width: 1200px"
@@ -49,7 +50,9 @@
           <!-- left side -->
           <div class="col-lg-6 justify-content-center">
             <div class="cardStyle p-2 rounded-4">
-              <div class="col-lg-10 col-sm-8 col-md-6 mx-auto p-1 rounded-5 text-center">
+              <div
+                class="col-lg-10 col-sm-8 col-md-6 mx-auto p-1 rounded-5 text-center"
+              >
                 *click image to show description
                 <img
                   class="img-fluid rounded-5 border"
@@ -77,7 +80,18 @@
             <div class="cardStyle p-4 rounded-4" v-if="!isLargeScreen">
               <h1 class="text-white fw-bold">{{ recipeDetails.title }}</h1>
               <div class="d-inline-block pt-2 d-flex flex-wrap">
-                <div v-for="(diet, index) in recipeDetails.diets" :key="index" class="p-2 me-2 rounded-4 text-wrap my-1" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
+                <div
+                  v-for="(diet, index) in recipeDetails.diets"
+                  :key="index"
+                  class="p-2 me-2 rounded-4 text-wrap my-1"
+                  style="
+                    background-color: #7a8cea;
+                    color: white;
+                    white-space: nowrap;
+                  "
+                >
+                  {{ diet }}
+                </div>
               </div>
             </div>
             <!-- give ingredients -->
@@ -88,20 +102,22 @@
                   >*Click ingredient to view in market</span
                 >
               </div>
-              <div
-                class="mx-4"
-                v-for="i in recipeDetails.extendedIngredients"
-                :key="i"
-                @click="searchInMarket(i.name)"
-                style="cursor: pointer"
-              >
-                <div class="d-flex justify-content-between my-3">
-                  <div>{{ i.name }}</div>
-                  <div>
-                    {{ i.measures.metric.amount }}
-                    {{ i.measures.metric.unitShort }}
-                  </div>
-                </div>
+              <div class="mx-4">
+                <table class="my-2 table table-hover table-bordered table-striped" > 
+                  <tr
+                    v-for="i in recipeDetails.extendedIngredients"
+                    :key="i"
+                    @click="searchInMarket(i.name)"
+                    style="cursor: pointer"
+                    class="btnStyle"
+                  >
+                    <td class="btnStyle">{{ i.name }}</td>
+                    <td class="text-end">
+                      {{ i.measures.metric.amount }}
+                      {{ i.measures.metric.unitShort }}
+                    </td>
+                  </tr>
+                </table>
               </div>
             </div>
           </div>
@@ -112,7 +128,18 @@
             <div class="cardStyle p-4 rounded-4" v-if="isLargeScreen">
               <h1 class="text-white fw-bold">{{ recipeDetails.title }}</h1>
               <div class="d-inline-block pt-2 d-flex flex-wrap">
-                <div v-for="(diet, index) in recipeDetails.diets" :key="index" class="p-2 me-2 rounded-4 text-wrap my-1" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
+                <div
+                  v-for="(diet, index) in recipeDetails.diets"
+                  :key="index"
+                  class="p-2 me-2 rounded-4 text-wrap my-1"
+                  style="
+                    background-color: #7a8cea;
+                    color: white;
+                    white-space: nowrap;
+                  "
+                >
+                  {{ diet }}
+                </div>
               </div>
             </div>
             <!-- give brief nutrients -->
@@ -165,20 +192,6 @@
                 <div class="">{{ step.step }}</div>
               </div>
             </div>
-            <!-- <div class="cardStyle p-4  rounded-4">
-            <div>
-              <span class="fw-semibold">Nutritional Info:</span>
-            </div>
-            <table class="mx-2 my-2 table table-bordered table-striped">
-              <tr
-                v-for="(fact, num) in recipeDetails.nutrition.nutrients"
-                :key="num"
-              >
-                <td>{{ fact.name }}</td>
-                <td class="text-end">{{ fact.amount }} {{ fact.unit }}</td>
-              </tr>
-            </table>
-          </div> -->
           </div>
         </div>
       </div>
@@ -197,7 +210,7 @@ export default {
       isBookmarked: false,
       meal: "Add to meal",
       initialMealType: null,
-      isLargeScreen : window.innerWidth > 992
+      isLargeScreen: window.innerWidth > 992,
     };
   },
   computed: {
@@ -432,12 +445,12 @@ export default {
     seeDetailedNutrition() {
       Swal.fire({
         icon: "info",
-        title: 'Nutrition Table',
+        title: "Nutrition Table",
         html: this.displayNutritionTable(),
-        grow: 'column',
+        grow: "column",
         scrollbarPadding: false,
-        padding: '50px'
-      })
+        padding: "50px",
+      });
     },
     checkScreenSize() {
       this.isLargeScreen = window.innerWidth > 992;
@@ -448,11 +461,11 @@ export default {
     this.isBookmarked = await this.$smAPI.isRecipeAlreadyBookmarked(
       this.recipeDetails.id
     );
-    window.addEventListener('resize', this.checkScreenSize);
+    window.addEventListener("resize", this.checkScreenSize);
     window.scrollTo({ top: 0, behavior: "smooth" });
   },
   destroyed() {
-    window.removeEventListener('resize', this.checkScreenSize);
+    window.removeEventListener("resize", this.checkScreenSize);
   },
 };
 </script>
@@ -486,5 +499,13 @@ export default {
   background-image: url("../../homepageAsset/selectedRecipe.jpg");
   background-size: cover;
   padding-bottom: 100px;
+}
+
+.btnStyle{
+  transition: transform 0.3s;
+}
+.btnStyle:hover {
+  transform: scale(1.05); /* Scale up by 10% on hover */
+  cursor: pointer;
 }
 </style>
