@@ -19,42 +19,42 @@
           <!-- section 1 (Fav Ingredient) -->
         <swiper-slide class="bg-light">
           <div class="swiper-content d-flex flex-column justify-content-center">
-            <h1>Favorite Ingredient</h1>
+            <h2>Favorite Ingredient</h2>
             <div class="insight-data mx-auto text-center">
-              <h2>{{ mostConsumedIngredient.ingredient }}</h2>
-              <h2>{{ mostConsumedIngredient.count }} times</h2>
+              <h3>{{ mostConsumedIngredient.ingredient }}</h3>
+              <h3>{{ mostConsumedIngredient.count }} times</h3>
             </div>
           </div>
         </swiper-slide>
         <!-- section 2 (Fav Cuisine) -->
         <swiper-slide class="bg-light">
           <div class="swiper-content d-flex flex-column justify-content-center">
-            <h1>Favorite Cuisine</h1>
+            <h2>Favorite Cuisine</h2>
             <div class="insight-data mx-auto text-center">
-              <h2>{{ favoriteCuisine.cuisine }}</h2>
-              <h2>{{ favoriteCuisine.count }} times</h2>
+              <h3>{{ favoriteCuisine.cuisine }}</h3>
+              <h3>{{ favoriteCuisine.count }} times</h3>
             </div>
           </div>
         </swiper-slide>
         <!-- section 3 (Fav Preptime) -->
         <swiper-slide class="bg-light">
           <div class="swiper-content d-flex flex-column justify-content-center mx-auto text-center">
-            <h1>Average Recipe Preparation Time</h1>
-            <div class="insight-data"><h2>{{ averageRecipePrepTime }}</h2></div>
+            <h2>Average Recipe Preparation Time</h2>
+            <div class="insight-data"><h3>{{ averageRecipePrepTime }}</h3></div>
           </div>
         </swiper-slide>
         <!-- section 4 (Meal Insights) -->
-        <swiper-slide class="bg-light">
+        <swiper-slide class="bg-light" >
           <div class="swiper-content d-flex flex-column justify-content-center">
-            <h1>Recommended Recipes</h1>
-            <div class="insight-data">
-              <div class="row p-2">
+            <h2>Recommended Recipes</h2>
+            <div class="insight-data" :style="{'display': isRecommendedRecipesSlideVisible ? 'block' : 'none'}">
+              <div class="row p-2 d-flex flex-wrap">
                 <FindRecipePreviewCard
                   v-for="recipe in recipeDataArray"
                   :key="recipe.id"
                   :recipe="recipe"
                   :routerTO="'/find-recipes/SelectedRecipeCard'"
-                  class="col-md-4"
+                  class=""
                 />
                 </div>
               </div>
@@ -95,6 +95,7 @@
       recommendedRecipes: null,
       averageTimeInMinutes: 0,
       recipeDataArray: null,
+      isRecommendedRecipesSlideVisible: true,
     };
   },
   mounted() {
@@ -102,42 +103,36 @@
     this.getFavoriteCuisine();
     this.getAverageRecipePrepTime();
     this.recommendRecipeBasedOnInsights();
+    this.checkScreenSize(); // Call the method to check screen size on mount
+    window.addEventListener('resize', this.checkScreenSize); // Add event listener for window resize
   },
   methods: {
     async getMostConsumedIngredient() {
-    try {
-        const excludedIngredients = ["salt", "water", "sugar", "pepper", "olive oil", "garlic", "onion", "flour", "butter","oil"];
+        try {
+            let countMax = 0;
+            let ingredientMax = 'No Information Available :(';
+            let fetchedDictionary = await this.$smAPI.getMostConsumedIngredient();
 
-        let countMax = 0;
-        let ingredientMax = 'No Information Available :(';
-        let fetchedDictionary = await this.$smAPI.getMostConsumedIngredient();
-
-        if (typeof fetchedDictionary === 'object' && fetchedDictionary !== null) {
+            if (typeof fetchedDictionary === 'object' && fetchedDictionary !== null) {
             for (let ingredient in fetchedDictionary) {
                 if (fetchedDictionary.hasOwnProperty(ingredient)) {
-                    if (excludedIngredients.includes(ingredient.toLowerCase())) {
-                        continue; // Skip the excluded ingredients
-                    }
-
-                    let count = fetchedDictionary[ingredient];
-                    if (count > countMax) {
-                        countMax = count;
-                        ingredientMax = ingredient;
-                    }
+                let count = fetchedDictionary[ingredient];
+                if (count > countMax) {
+                    countMax = count;
+                    ingredientMax = ingredient;
+                }
                 }
             }
 
             this.mostConsumedIngredient = { ingredient: ingredientMax, count: countMax };
-        } else {
+            } else {
             this.mostConsumedIngredient = { ingredient: 'No Information Available :(', count: 0 };
+            }
+        } catch (error) {
+            console.error('An error occurred while fetching data:', error);
+            this.mostConsumedIngredient = { ingredient: 'Error occurred', count: 0 };
         }
-    } catch (error) {
-        console.error('An error occurred while fetching data:', error);
-        this.mostConsumedIngredient = { ingredient: 'Error occurred', count: 0 };
-    }
-},
-
-
+    },
 
 
     async getFavoriteCuisine() {
@@ -181,12 +176,16 @@
             let favCuisine = [this.favoriteCuisine.cuisine];
             let time = Math.round(this.averageTimeInMinutes);
             
-            this.recommendedRecipes = await this.$spoonAPI.recommendRecipeBasedOnInsights(3, time, includeIngredients, excludedIngredients, favCuisine, dietType);
+            this.recommendedRecipes = await this.$spoonAPI.recommendRecipeBasedOnInsights(1, time, includeIngredients, excludedIngredients, favCuisine, dietType);
             this.recipeDataArray = this.recommendedRecipes.results
             console.log('Recommended Recipes', this.recipeDataArray); // Use 'this.recommendedRecipes' here
         } catch (error) {
             console.error('An error occurred while fetching recommendedRecipes:', error);
         }
+    },
+
+    checkScreenSize() {
+      this.isRecommendedRecipesSlideVisible = window.innerWidth >= 600;
     },
 
 
