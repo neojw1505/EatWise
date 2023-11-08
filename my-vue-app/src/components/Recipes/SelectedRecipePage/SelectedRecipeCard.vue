@@ -3,6 +3,7 @@
     <Navbar />
     <div class="mx-2">
       <div
+      data-aos="fade-up" data-aos-duration="1000"
         v-if="recipeDetails"
         class="contentStyle mx-auto"
         style="max-width: 1200px"

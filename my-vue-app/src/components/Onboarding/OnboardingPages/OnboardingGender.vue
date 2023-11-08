@@ -1,8 +1,8 @@
 <template>
   
   <div>
-    <div class="container mx-auto text-center rounded-4 col-8">
-      <h1>Select Your Gender</h1>
+    <div class="mx-auto text-center py-1 shadow rounded-4 col-5" style="background-color:#7A8CEA ;">
+      <h1 class="fw-bold fs-4">Select Your Gender</h1>
     </div>
     <div class="mx-auto border rounded-4 d-flex flex-wrap shadow bg-white col-8">
       <!-- male -->

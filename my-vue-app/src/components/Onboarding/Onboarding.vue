@@ -2,17 +2,21 @@
   <div>
     <div class="backgroundImage">
       <NavbarLandingPage/>
-      <div style="padding-top: 120px;">
-        <OnboardingGender v-if="pageNumber==0" @buttonAction="buttonAction" @addGender="addGender"/>
-        <OnboardingUserDetails @addAge="addAge" @addHeight="addHeight" @addWeight="addWeight" @addGoal="addGoal" v-if="pageNumber==1" @buttonAction="buttonAction"/>
-        <OnboardingActivityLevel @addActivityLevel="addActivityLevel" v-if="pageNumber==2" @buttonAction="buttonAction"/>
-        <OnboardingDietType @addDietType="addDietType" v-if="pageNumber==3" @buttonAction="buttonAction"/>
-        <OnboardingExclusion @addExclusion="addExclusion" v-if="pageNumber==4" @buttonAction="buttonAction"/>
-        <OnboardFinalPage v-if="pageNumber==5" @buttonAction="buttonAction" :registerUser="UserData" @passDailyCalorie="handleDailyCalories"/>
-        <Registration @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword" v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
+      <div style="display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between ;">
+        <div style="padding-top: 120px;">
+          <OnboardingGender data-aos="fade-left" data-aos-duration="1000" v-if="pageNumber==0" @buttonAction="buttonAction" @addGender="addGender"/>
+          <OnboardingUserDetails data-aos="fade-left" data-aos-duration="1000" @addAge="addAge" @addHeight="addHeight" @addWeight="addWeight" @addGoal="addGoal" v-if="pageNumber==1" @buttonAction="buttonAction"/>
+          <OnboardingActivityLevel data-aos="fade-left" data-aos-duration="1000" @addActivityLevel="addActivityLevel" v-if="pageNumber==2" @buttonAction="buttonAction"/>
+          <OnboardingDietType data-aos="fade-left" data-aos-duration="1000" @addDietType="addDietType" v-if="pageNumber==3" @buttonAction="buttonAction"/>
+          <OnboardingExclusion data-aos="fade-left" data-aos-duration="1000" @addExclusion="addExclusion" v-if="pageNumber==4" @buttonAction="buttonAction"/>
+          <OnboardFinalPage data-aos="fade-left" data-aos-duration="1000" v-if="pageNumber==5" @buttonAction="buttonAction" :registerUser="UserData" @passDailyCalorie="handleDailyCalories"/>
+          <Registration @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword" v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
+        </div>
+        <Footer/>
       </div>
+      
     </div>
-    <Footer/>
+    
   </div>
   
 </template>
@@ -90,6 +94,9 @@ export default {
     addPassword(data){
       this.UserData.password = data;
     }
+  },
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 }
 </script>

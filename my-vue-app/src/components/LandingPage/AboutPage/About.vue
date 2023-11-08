@@ -15,6 +15,7 @@
         ></video>
         <div class="overlay mt-30">
           <h1
+          data-aos="fade-up" data-aos-duration="1000"
             style="
               color: whitesmoke;
               font-family: Georgia, 'Times New Roman', Times;
@@ -25,6 +26,7 @@
           <h4
             class="sub-text"
             style="font-family: Georgia, 'Times New Roman', Times"
+            data-aos="fade-up" data-aos-duration="1000" data-aos-delay="500"
           >
             Nourishing Your
             <span style="color: #7a8cea; font-weight: bold">Journey</span>, One
@@ -33,7 +35,7 @@
         </div>
       </div>
       <!-- about -->
-      <div class="row m-2 mx-3">
+      <div class="row m-2 mx-3" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
         <!-- problem -->
         <div class="col-sm-12 col-md-6">
           <div class="fs-5 fw-semibold" style="color: #7a8cea">Problem</div>
@@ -58,7 +60,7 @@
       </div>
       <!-- review by fellow groupmate -->
       <div class="fw-bold fs-5 text-center mt-5" style="color: #7a8cea">Team Mate</div>
-      <div class="m-2 mx-3 d-flex">
+      <div class="m-2 mx-3 d-flex" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <AboutCard v-for="(input,name) in team" :key="name" :name="name" :memberInput="input"/>
       </div>
     </div>
@@ -97,6 +99,9 @@ export default {
       },
     }
   }
+  },
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
   }
 };
 </script>

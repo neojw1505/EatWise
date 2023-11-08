@@ -5,7 +5,7 @@
       <!-- Add background Image -->
       <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Saved Recipes</h2>
     </div>
-    <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
+    <h1 data-aos="fade-up" data-aos-duration="1000" class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
       Culinary Adventures <span style="color: #7a8cea; font-weight: bold"> Adventures </span> Await!
     </h1>
   
@@ -21,7 +21,7 @@
             </button>
           </div>
           
-          <div v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">
+          <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">
             <SavedRecipeCard
               v-for="item in visibleItems"
               :key="item.id"

@@ -5,6 +5,7 @@
     </h1>
     <div
       class="d-flex flex-wrap justify-content-between justify-content-center pt-5"
+      data-aos="fade-left" data-aos-duration="1000"
     >
       <div class="mx-auto mb-2">
         <BreakfastRecipe

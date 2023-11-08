@@ -1,7 +1,7 @@
 <template> 
   <div id="container" class="mx-auto d-block">
     <div class="">
-      <RegistrationFill  :registerUser="registerUser"/>
+      <RegistrationFill data-aos="fade-left" data-aos-duration="1000" :registerUser="registerUser"/>
     </div>
 
   </div>

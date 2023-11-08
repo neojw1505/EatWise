@@ -1,16 +1,21 @@
 <template>
-  <div>
-    <div class="backgroundImage">
+  <div class="backgroundImage" style="display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between ;">
+    <div>
       <NavbarLandingPage />
-      <userFill />  
+      <userFill data-aos="fade-up" data-aos-duration="1000"/>  
     </div>
     <Footer/>
   </div>
+  
 
 </template>
 
 <script>
-export default {};
+export default {
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
+};
 </script>
 
 <style scoped>
