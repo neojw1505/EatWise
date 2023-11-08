@@ -36,5 +36,6 @@ export default {};
 border-radius: 40px;
 width:95%;
 margin-top:10px;
+z-index: 2;
 }
 </style>

@@ -1,9 +1,9 @@
 <template>
   <div class="container">
     
-    <div id="logincard" class="card shadow">
+    <div id="logincard" class="card shadow p-4 m-3">
       
-      <div class="card-body">
+      <div class="card-body d-block">
                     <svg
               viewBox="0 0 242 109"
               xmlns="http://www.w3.org/2000/svg"
@@ -362,8 +362,9 @@ export default {
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
-  width: 500px;
+  width: 40%;
   border-radius: 40px;
+  min-width: 300px;
 }
 
 input {
