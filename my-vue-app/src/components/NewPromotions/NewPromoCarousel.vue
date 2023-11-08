@@ -3,7 +3,7 @@
     <h1 class="fw-bold text-center  pt-5" style="color:#fff;">Current <span style="color:#7A8CEA">Promotions</span></h1>
     <!-- creating slide container for RecommendedRecipes -->
     <swiper class="carousel rounded-4 shadow-5 pb-4 mySwiper"
-    data-aos="fade-left" data-aos-duration="2500"
+    data-aos="fade-left" data-aos-duration="2000"
       :navigation="isWideScreen"
       :pagination="isWideScreen"
       :speed="2000"

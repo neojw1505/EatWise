@@ -59,8 +59,8 @@
         </div>
       </div>
       <!-- review by fellow groupmate -->
-      <div class="fw-bold fs-5 text-center mt-5" style="color: #7a8cea">Team Mate</div>
-      <div class="m-2 mx-3 d-flex" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+      <div class="fw-bold fs-5 text-center mt-5" style="color: #7a8cea">Meet The Team</div>
+      <div class="justify-content-center align-items-centerm-2 mx-3 d-flex flex-wrap" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <AboutCard v-for="(input,name) in team" :key="name" :name="name" :memberInput="input"/>
       </div>
     </div>
@@ -85,15 +85,15 @@ export default {
         'comment':'Jun wei give me backend yesterday night',
         "picture":kaijie,
       },
-      'Zavier Yan Ku KU':{
-        'comment':'KU KU KU KU KU KU KU KU KU KU KU KU KU KU BIRD',
+      'Zavier Yan':{
+        'comment':'Wang Kai Li <3',
         "picture":zavier,
       },
       'Zhen Yue':{
         'comment':'STFU Zavier',
         "picture":zhenyue,
       },
-      'Lumeul':{
+      'Lemuel Fan':{
         'comment':'My Ass is ready Jun Wei',
         "picture":lumeul,
       },
