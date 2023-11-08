@@ -5,9 +5,7 @@
     <!-- Display the image or a spinner -->
   <div class="card align-items-center " v-if="loading" style="height: 540px;">
     <div class="d-flex align-items-center" style="height: 100%;">
-      <div class="spinner-border " role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+      <spinnerMealPlanner />
   </div>
   </div>
 
