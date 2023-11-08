@@ -13,6 +13,9 @@
   <div class="section2">
     <ProfileBottom />
   </div>
+  <div class="mt-3">
+          <Footer></Footer>
+    </div>
   </div>
 </template>
 
@@ -64,6 +67,8 @@ async created() {
 .pageStyle{
   background-image: url('../../components/homepageAsset/profile.jpg');
   background-size: cover;
-  padding-bottom: 200px;
+  background-repeat: no-repeat;
+  object-fit: cover;
+
 }
 </style>

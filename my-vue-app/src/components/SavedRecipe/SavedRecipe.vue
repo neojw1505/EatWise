@@ -63,8 +63,11 @@
           </button>
         </div>
       </div>
+      
     </div>
-  
+    <div class="mt-5">
+      <Footer></Footer>
+    </div>
   </div>
 </template>
 

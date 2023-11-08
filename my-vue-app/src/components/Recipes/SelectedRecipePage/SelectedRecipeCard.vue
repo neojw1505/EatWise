@@ -112,7 +112,7 @@
               <h1 class="text-white">{{ recipeDetails.title }}</h1>
               <div class="d-flex flex-wrap">
                 <div
-                  class="bg-light text-black p-2 m-1 rounded-2 border border-warning"
+                  class="bg-dark text-white p-2 m-1 rounded-2 border border-light"
                   v-for="diet in recipeDetails.diets"
                   :key="diet"
                 >
@@ -129,13 +129,13 @@
                 <div
                   v-for="nutrient of showEssentialNutrients"
                   :key="nutrient"
-                  class="rounded-4 p-1 m-1"
-                  style="background-color: #fbe8a6; width: 100px"
+                  class="rounded-2 p-1 m-1"
+                  style="background-color: #292a2a; width: 100px"
                 >
-                  <div class="text-dark bg-light rounded-5 p-2">
+                  <div class="text-white bg-dark border rounded-1 p-2">
                     {{ nutrient.amount.toFixed(0) }}{{ nutrient.unit }}
                   </div>
-                  <div class="text-dark">{{ nutrient.name }}</div>
+                  <div class="text-white">{{ nutrient.name }}</div>
                 </div>
               </div>
             </div>

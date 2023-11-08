@@ -1,11 +1,11 @@
 <template>
   <div class="card equal-card shadow mb-4">
     <!-- Remove the circle-overlay div -->
-    <img class="card-img-top" :src="product.product_img" alt="Product Image" />
-    <!-- Add a rectangle-overlay div -->
     <div class="rectangle-overlay shadow">
       <div class="promo-text">{{ product.product_promo }}</div>
     </div>
+    <img class="card-img-top  rounded-4 text-center mx-auto" style="width:100%" :src="product.product_img" alt="Product Image" />
+    <!-- Add a rectangle-overlay div -->
     
     <div class="card-content">
       <h5 class="card-title text-truncate-2 mt-1">{{ product.product_title }}</h5>

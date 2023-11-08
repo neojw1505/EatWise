@@ -19,9 +19,11 @@
     <AllRecipe :searchInput="search" />
   
     </div>
+    <div class="mt-5">
+      <Footer></Footer>
+    </div>
   </div>
 </template>
-
 <script>
 
 export default {

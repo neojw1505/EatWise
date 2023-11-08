@@ -1,7 +1,7 @@
 <template>
   <div class="overall">
     <Navbar />
-    <div class="mx-auto" >
+    <div class="mx-auto mb-5" >
       <div class="header">
         <!-- Add background Image -->
         <div class="backGroundimg">

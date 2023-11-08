@@ -26,6 +26,8 @@
       <div class="section4" style="padding-top: 40px; padding-bottom: 40px">
         <NewPromoCarousel class="p-4 pt-2 rounded-4 my-3 mx-3" />
       </div>
+      <Footer></Footer>
+
     </div>
   </div>
 </template>
@@ -138,9 +140,10 @@ export default {
 }
 .section4 {
   /* width: 100%; */
-  background-image: url(./homepageAsset/background-s4.png);
+  background-image: url(./homepageAsset/promotion-bg.png);
   background-size: cover; /* Scale image to fit container */
   background-repeat: no-repeat; /* Prevent repeating the image */
   background-position: center center; /* Center the image */
+  height:110%;
 }
 </style>
