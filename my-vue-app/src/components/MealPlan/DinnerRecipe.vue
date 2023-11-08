@@ -21,13 +21,13 @@
           >
             <font-awesome-icon
               v-if="isBookmarked"
-              :icon="['fas', 'bookmark']"
+              :icon="['fas', 'heart']"
               size="2xl"
-              style="color: #ffff00"
+              style="color: #ff0000"
             />
             <font-awesome-icon
               v-else
-              :icon="['fas', 'bookmark']"
+              :icon="['fas', 'heart']"
               size="2xl"
               style="color: #ffffff"
             />
@@ -301,7 +301,7 @@ export default {
 </script>
 
 <style scoped>
-svg.fa-bookmark {
+svg.fa-heart {
   stroke: black;
   stroke-width: 30;
 }
