@@ -83,7 +83,7 @@ export default {
         "picture":junwei,
       },
       'Wang Kai Jie':{
-        'comment':'I love bootstrap so much. Cannot wait to strap some xmm tonight',
+        'comment':"Where is the nearest Mcdonald's?",
         "picture":kaijie,
       },
       'Zavier Yan':{
