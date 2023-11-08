@@ -18,7 +18,9 @@
           <div class="justify-content-end d-flex">
             <button class="btn bg-light border border-dark fw-semibold btnStyle" @click="DeleteConfirm()" >
               Delete All
+              <font-awesome-icon icon="trash-can" size="sm" class="ps-2" />
             </button>
+            
           </div>
           
           <div data-aos="fade-up" data-aos-duration="1000" data-aos-delay="250" v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">

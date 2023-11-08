@@ -25,8 +25,8 @@
         >
           <p class="fw-semibold" >Back</p>
         </div> -->
-        <div class="my-4 justify-content-start d-flex">
-      <button class="btn fw-bold" style="background-color: #7a8cea " >Back</button>
+        <div class="my-4 ms-4 d-flex">
+      <button class="btn fw-bold mt-4" style="background-color: #7a8cea " >Back</button>
     </div>
       </router-link>
       <div class="mx-3">
