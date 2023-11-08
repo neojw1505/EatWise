@@ -150,7 +150,7 @@
               />
             </g>
           </svg>
-      <h5 class="card-title text-center mb-4">Member Login</h5>
+      <h5 class="card-title text-center mb-4 fw-bold">Member Login</h5>
       <input
         type="email"
         class="form-control mb-3"

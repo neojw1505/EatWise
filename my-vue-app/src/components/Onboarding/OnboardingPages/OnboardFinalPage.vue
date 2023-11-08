@@ -3,7 +3,7 @@
     <div class="col-8 mx-auto">
       <div class="card-body text-center py-4">
         <div class="card-title">
-          <h2>Congratulations!</h2>
+          <h2 class="fw-bold">Congratulations!</h2>
         </div>
         <div class="card-text">
           <p>

@@ -7,10 +7,10 @@
           <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
         </div>
       </div>
-    <div style="display: flex; flex-direction: column; min-height: 75vh; justify-content: space-between ;">
+    <div style="display: flex; flex-direction: column; min-height: 80vh; justify-content: space-between ;">
       <div class="mx-auto mb-5" >
       <!-- catchy headline -->
-      <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
+      <h1 data-aos="fade-up" data-aos-duration="1000" class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
       Find the  <span style="color: #7a8cea; font-weight: bold"> cheapest </span> ingredients available!
       </h1>
       <!-- input to search for ingredient -->

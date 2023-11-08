@@ -7,12 +7,8 @@
         <!-- eatwise logo and dropdown button -->
       <div class="d-flex" @click="goAbout">
         <div class="text-center mx-2">
-        <img
-            class="logo"
-            src="./images/companyLogo.png"
-            alt=""
-        />
-        <div class="fw-semibold">EatWise</div>
+          <font-awesome-icon :icon="['fas', 'egg']" size="xl"/>
+          <div class="fw-semibold">EatWise</div>
         </div>
       </div>
       <!-- show the register and login -->
