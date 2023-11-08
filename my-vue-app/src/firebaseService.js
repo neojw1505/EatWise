@@ -1150,6 +1150,71 @@ export const getMealPlanCategory = async (recipeId) => {
   }
 }
 
+export const getMostConsumedIngredient = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid;
+      const consumptionHistoryRef = ref(database, '/users/' + userUid + '/consumptionHistory');
+      const consumptionHistorySnapShot = await get(consumptionHistoryRef);
+      let ingredientsConsumed = {};
+      let consumptionHistory = consumptionHistorySnapShot.val()
+      console.log(consumptionHistory);
+      for (var date in consumptionHistory){
+        console.log("date:" + date);
+        // console.log(consumptionHistory[date]['breakfast']['recipe']['nutrition']['ingredients']);
+        for (var meal in consumptionHistory[date]){
+            // console.log(consumptionHistory[date][meal]['recipe']['nutrition']['ingredients']);
+            for (let ingredient of consumptionHistory[date][meal]['recipe']['nutrition']['ingredients']){
+              console.log("ingredient:" + ingredient.name);
+              if (ingredientsConsumed.hasOwnProperty(ingredient.name)){
+                ingredientsConsumed[ingredient.name] += 1
+              } else {
+                ingredientsConsumed[ingredient.name] = 1
+              }
+            }
+        }
+      }
+      console.log("ingredient Dict:");
+      console.log(ingredientsConsumed);
+    }
+  } catch (error) {
+    console.log(error);
+    throw (error)
+  }
+}
+
+export const getFavoriteCuisine = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid;
+      const consumptionHistoryRef = ref(database, '/users/' + userUid + '/consumptionHistory');
+      const consumptionHistorySnapShot = await get(consumptionHistoryRef);
+      let favorite_cuisine = {};
+      let consumptionHistory = consumptionHistorySnapShot.val()
+      console.log(consumptionHistory);
+      for (var date in consumptionHistory){
+        console.log("date:" + date);
+        // console.log(consumptionHistory[date]['breakfast']['recipe']['nutrition']['ingredients']);
+        for (var meal in consumptionHistory[date]){
+            // console.log(consumptionHistory[date][meal]['recipe']['nutrition']['ingredients']);
+            for (let cuisine of consumptionHistory[date][meal]['recipe']['cuisines']){
+              console.log("cuisine:" + cuisine);
+              if (favorite_cuisine.hasOwnProperty(cuisine)){
+                favorite_cuisine[cuisine.name] += 1
+              } else {
+                favorite_cuisine[cuisine.name] = 1
+              }
+            }
+        }
+      }
+      console.log("ingredient Dict:");
+      console.log(ingredientsConsumed);
+    }
+  } catch (error) {
+    console.log(error);
+    throw (error)
+  }
+}
 
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
