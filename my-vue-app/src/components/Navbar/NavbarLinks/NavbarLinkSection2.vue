@@ -26,6 +26,11 @@ export default {
     return {
       linksToPages2: [
         {
+          linkName: "About",
+          linkIcon: ["fas", "address-card"],
+          routeTo: "/About",
+        },
+        {
           linkName: "Saved Recipes",
           linkIcon: ["fas", "bookmark"],
           routeTo: "/saved-recipes",
