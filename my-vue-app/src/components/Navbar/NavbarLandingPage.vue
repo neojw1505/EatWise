@@ -21,7 +21,7 @@
 export default {
   methods:{
     goAbout(){
-      this.$router.push({path:'/about'});
+      this.$router.push({path:'/AboutLogout'});
     }
   }
 };

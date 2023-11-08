@@ -1,5 +1,5 @@
 <template>
-  <div class="pageStyle">
+  <div class="pageStyle" style="position: relative; min-height: 100vh;padding-bottom: 300px;">
     <Navbar />
     <div class="mx-2">
       <div
@@ -197,16 +197,7 @@
       </div>
       <div v-else class="mx-auto text-center">Error 404: no recipe found</div>
     </div>
-    <div
-      style="
-        display: flex;
-        flex-direction: column;
-        justify-content: space-between;
-      "
-    >
-      <div></div>
-      <Footer />
-      </div>
+    <Footer style="position: absolute; bottom: 0;" />
   </div>
 </template>
 

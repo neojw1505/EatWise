@@ -1,11 +1,13 @@
 
 <template>
-  <div>
+  <div class="mx-3 p-4">
     <h1 class="fw-bold text-center " style="color:#000;"><span style="color:#7A8CEA">Recipe</span> Of The Day</h1>
 
     <div class="row"> 
-      <div class="col-md-6 col-sm-8 mx-auto rounded-4 d-flex my-auto mx-2 align-items-center justify-content-center">
-        <img @click="selectRecipe" class="img-fluid rounded-4 col" :src="imgUrl" alt="Recipe Image" style="object-fit: contain;" />
+      <div class="col-md-6  mx-auto rounded-4 d-flex my-auto mx-2 align-items-center justify-content-center">
+        <div style="max-width: 450px;">
+          <img @click="selectRecipe" class="img-fluid rounded-4"  :src="imgUrl" alt="Recipe Image" style="object-fit: contain; " />
+        </div>
       </div>
       <div class="col-md col-sm-8  mx-auto text-start my-auto mx-4">
         <br/>
