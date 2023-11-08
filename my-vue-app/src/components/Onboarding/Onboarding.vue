@@ -106,7 +106,6 @@ export default {
 
 .backgroundImage{
   width: 100%;
-  height: 100vh;
   background-image: url(../LandingPage/Assets/background.png);
   background-size: cover;
 }

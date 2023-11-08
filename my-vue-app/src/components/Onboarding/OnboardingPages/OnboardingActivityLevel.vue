@@ -5,9 +5,9 @@
       <h1 class="fw-bold fs-4">WHAT IS YOUR DAILY ACTIVITY LEVEL?</h1>
       <h3 class="fw-semibold fs-6">(Select one only)</h3>
     </div>
-    <div class="container mx-auto border rounded-4 justify-content-center py-2 px-5 d-flex shadow bg-white col-8">
+    <div class=" mx-auto border rounded-4 justify-content-center py-2 px-5 d-flex shadow bg-white col-7">
       <div class="row">
-        <div class="col-lg-4 col-sm-6" v-for="(level, index) in activityLevels" :key="index">
+        <div class="col-lg-4 col-sm-6 " v-for="(level, index) in activityLevels" :key="index" style="width: 200px;">
           <label>
             <input
               type="radio"
@@ -135,18 +135,16 @@ export default {
 
     },
   },
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 };
 </script>
 
 <style scoped>
 
 
-.container {
-  margin: 0 auto;
-  max-width:1000px;
-  min-width: 600px;
-  width:80%;
-}
+
 p{
   max-width:inherit;
   overflow-wrap: break-word;

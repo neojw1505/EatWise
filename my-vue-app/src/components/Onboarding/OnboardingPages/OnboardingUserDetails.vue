@@ -6,7 +6,7 @@
       </div>
       <div class="border rounded-4 p-3 shadow bg-white mt-3">
         <h3 class="fw-bold fs-4 py-3">Basic Information</h3>
-        <div class="row">
+        <div class="row d-flex align-items-end">
           <div class="col col-sm-4 mb-3">
             <label for="customRange3" class="form-label">Age</label>
             <input type="range" name="age" class="form-range" min="0" max="80" step="1" v-model="inputAge" @input="updateAge" required>
@@ -150,6 +150,9 @@ export default {
       }
     },
   },
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 };
 </script>
 

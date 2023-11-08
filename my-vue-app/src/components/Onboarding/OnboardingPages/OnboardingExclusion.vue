@@ -103,6 +103,9 @@ export default {
     },
 
   }, // methods
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 };
 </script>
 
