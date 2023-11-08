@@ -23,6 +23,9 @@
             <div class="mx-5">
                 <div v-for="(route,name) in pages2" :key="name" @click="this.$router.push({ path: route });" class="btnStyle my-2">{{ name }}</div>
             </div>
+            <div class="mx-5 d-flex flex-wrap">
+                <div v-for="(route,name) in pages3" :key="name" @click="this.$router.push({ path: route });" class="btnStyle my-2">{{ name }}</div>
+            </div>
         </div>
         </div>
     </div>
@@ -45,6 +48,9 @@ export default {
             'Insights':'/insights',
             'Saved Recipes':'/saved-recipes',
             'Profile':'/profile'
+        },
+        pages3:{
+            'About':'/About',
         }
     }
     }
