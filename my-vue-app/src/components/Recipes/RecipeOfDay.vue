@@ -1,23 +1,27 @@
 
 <template>
-  <div class="row"> 
-    <div class="col-md-6 rounded-4 d-flex my-auto mx-2 align-items-center justify-content-center">
-      <img @click="selectRecipe" class="img-fluid rounded-4 col" :src="imgUrl" alt="Recipe Image" style="object-fit: contain;" />
-    </div>
-    <div class="col text-start my-auto mx-4">
-      <h1 class="fw-bold mb-2">Recipe of the Day</h1>
-      <br/>
-      <h4 class="fw-semibold" @click="selectRecipe" >{{ formattedRecipeName }}</h4>
-      <br/>
-      <p><span class="fw-semibold">Preparation Time:</span> <span>{{ PrepTime }} minutes</span> </p>
-      <br/>
-      <p style="overflow: hidden; " ><span class="fw-semibold">Description:</span> {{ formattedDescriptionName }}</p>
-      <div class="d-inline-block pt-2 d-flex flex-wrap">
-        <div v-for="(diet, index) in Diets" :key="index" class="p-2 mb-1 me-2 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
-      </div>
+  <div>
+    <h1 class="fw-bold text-center " style="color:#000;"><span style="color:#7A8CEA">Recipe</span> Of The Day</h1>
 
+    <div class="row"> 
+      <div class="col-md-6 col-sm-8 mx-auto rounded-4 d-flex my-auto mx-2 align-items-center justify-content-center">
+        <img @click="selectRecipe" class="img-fluid rounded-4 col" :src="imgUrl" alt="Recipe Image" style="object-fit: contain;" />
+      </div>
+      <div class="col-md col-sm-8  mx-auto text-start my-auto mx-4">
+        <br/>
+        <h2 class="fw-bold" @click="selectRecipe" >{{ formattedRecipeName }}</h2>
+        <br/>
+        <p><span class="fw-semibold">Preparation Time:</span> <span>{{ PrepTime }} minutes</span> </p>
+        <br/>
+        <p style="overflow: hidden; " ><span class="fw-semibold">Description:</span> {{ formattedDescriptionName }}</p>
+        <div class="d-inline-block pt-2 d-flex flex-wrap">
+          <div v-for="(diet, index) in Diets" :key="index" class="p-2 mb-1 me-2 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
+        </div>
+
+      </div>
     </div>
   </div>
+  
 </template>
 
 <script>
@@ -149,4 +153,15 @@ export default {
 
 <style scoped>
   
+@media screen and (min-width: 735px) {
+  h1 {
+    font-size: 80px;
+  }
+}
+
+@media screen and (max-width: 600px) {
+  h1 {
+    font-size: 40px;
+  }
+}
 </style>

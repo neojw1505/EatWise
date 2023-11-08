@@ -1,10 +1,10 @@
 <template>
-  <div class="shadow rounded-4">
+  <div>
     <h1 class="text-center" style="color: white">
       Meal <span style="color: #7a8cea">Planner</span>
     </h1>
     <div
-      class="d-flex flex-wrap justify-content-between justify-content-center pt-5"
+      class="d-flex flex-wrap justify-content-between justify-content-center"
       data-aos="fade-left" data-aos-duration="1000"
     >
       <div class="mx-auto mb-2">

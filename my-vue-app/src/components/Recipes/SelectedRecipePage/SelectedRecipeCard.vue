@@ -75,7 +75,7 @@
 
             <!-- give title and diet type -->
             <div class="cardStyle p-4 rounded-4" v-if="!isLargeScreen">
-              <h1 class="text-white">{{ recipeDetails.title }}</h1>
+              <h1 class="text-white fw-bold">{{ recipeDetails.title }}</h1>
               <div class="d-inline-block pt-2 d-flex flex-wrap">
                 <div v-for="(diet, index) in recipeDetails.diets" :key="index" class="p-2 me-2 rounded-4 text-wrap my-1" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
               </div>
@@ -110,7 +110,7 @@
           <div class="col-lg-6">
             <!-- name of recipe and small description -->
             <div class="cardStyle p-4 rounded-4" v-if="isLargeScreen">
-              <h1 class="text-white">{{ recipeDetails.title }}</h1>
+              <h1 class="text-white fw-bold">{{ recipeDetails.title }}</h1>
               <div class="d-inline-block pt-2 d-flex flex-wrap">
                 <div v-for="(diet, index) in recipeDetails.diets" :key="index" class="p-2 me-2 rounded-4 text-wrap my-1" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
               </div>
