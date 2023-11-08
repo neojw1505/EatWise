@@ -1,22 +1,15 @@
 <template>
-    <div class="bg-white">
-      <div class="my-auto">
-        <swiper
-          :effect="'cube'"
-          :grabCursor="true"
-          :cubeEffect="{
-            shadow: false,
-            slideShadows: false,
-          }"
-          :modules="modules"
-          :autoplay="{
-            delay: 3000,
-            disableOnInteraction: true,
-      }"
-          class="mySwiper"
-
-        >
-          <!-- section 1 (Fav Ingredient) -->
+  <div class="bg-white">
+    <div class="my-auto">
+      <swiper
+        :modules="modules"
+        :autoplay="{
+          delay: 3000,
+          disableOnInteraction: true,
+        }"
+        class="mySwiper"
+      >
+        <!-- section 1 (Fav Ingredient) -->
         <swiper-slide class="bg-light">
           <div class="swiper-content d-flex flex-column justify-content-center mx-auto text-center pb-4">   
             <div class="insight-data mx-auto text-center">
@@ -41,9 +34,9 @@
           </div>
         </swiper-slide>
         <!-- section 4 (Meal Insights) -->
-        <swiper-slide class="bg-light" >
+        <swiper-slide class="bg-light">
           <div class="swiper-content d-flex flex-column justify-content-center text-center mx-auto">
-            <h2><strong>Recommended Recipes</strong></h2>
+            <h3><strong>Recommended Recipe</strong></h3>
             <div class="insight-data" :style="{'display': isRecommendedRecipesSlideVisible ? 'block' : 'none'}">
               <div class="row p-2 d-flex flex-wrap">
                 <FindRecipePreviewCard
@@ -51,32 +44,31 @@
                   :key="recipe.id"
                   :recipe="recipe"
                   :routerTO="'/find-recipes/SelectedRecipeCard'"
-                  class=""
+                  class="mx-auto items-align-center"
                 />
-                </div>
               </div>
             </div>
-          </swiper-slide>
-        </swiper>
-      </div>
+          </div>
+        </swiper-slide>
+      </swiper>
     </div>
-  </template>
+  </div>
+</template>
+
   
   <script>
   import { Swiper, SwiperSlide } from 'swiper/vue'; // Import named exports
-  import moment from 'moment';
   import 'swiper/css';
-  import 'swiper/css/effect-cube';
   import 'swiper/css/pagination';
   
   // Import required modules
-  import { Autoplay, EffectCube, Navigation } from 'swiper/modules';
+  import { Autoplay, Navigation } from 'swiper/modules';
 
   
   export default {
     setup() {
     return {
-      modules: [Autoplay, Navigation, EffectCube],
+      modules: [Autoplay, Navigation],
     };
     },
   components: {
