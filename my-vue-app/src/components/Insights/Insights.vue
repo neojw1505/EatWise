@@ -6,8 +6,8 @@
       <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Insights</h2>
     </div>
       <div class="row my-2 mx-2" style="padding-top:100px">
-        <ActionableInsights class="col-md-6 col-12 border shadow rounded-4" style="z-index: -1;"/>
-        <MacroNutrientsChart class="col me-2  border shadow rounded-4" />
+        <ActionableInsights class="col-md-6 me-2 col-12 border shadow rounded-4 p-2" style="z-index: -1;"/>
+        <MacroNutrientsChart class="col border shadow rounded-4" />
           
       </div>
   

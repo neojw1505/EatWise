@@ -51,7 +51,7 @@
             <div class="swiper-content">
               <h1>Recommended Recipes</h1>
               <div class="insight-data">
-                <div class="row">
+                <div class="row p-2">
                   <FindRecipePreviewCard
                     v-for="recipe in recipeDataArray"
                     :key="recipe.id"
@@ -190,7 +190,9 @@
 </script>
   
 <style scoped>
-/* Add your CSS styles for vibrant design here */
+.swiper-content {
+   height: 280px;
+}
 .insight-data {
   color: #333; /* Your text color */
 }
