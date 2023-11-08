@@ -1218,6 +1218,44 @@ export const getFavoriteCuisine = async () => {
   }
 }
 
+export const getAverageRecipePrepTime = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid;
+      const consumptionHistoryRef = ref(database, '/users/' + userUid + '/consumptionHistory');
+      const consumptionHistorySnapShot = await get(consumptionHistoryRef);
+      let PrepTimeArr = [];
+      let consumptionHistory = consumptionHistorySnapShot.val()
+      console.log(consumptionHistory);
+      for (var date in consumptionHistory){
+        console.log("date:" + date);
+        for (var meal in consumptionHistory[date]){
+            let recipePrepTime = consumptionHistory[date][meal]['recipe']['readyInMinutes'];
+            PrepTimeArr.push(recipePrepTime)
+            // for (var cuisineIdx in consumptionHistory[date][meal]['recipe']['cuisines']){
+            //   console.log("cuisine:" + consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]);
+            //   if (favorite_cuisine.hasOwnProperty(consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx])){
+            //     favorite_cuisine[consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]] += 1
+            //   } else {
+            //     favorite_cuisine[consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]] = 1
+            //   }
+            // }
+        }
+      }
+      console.log(PrepTimeArr);
+      function getSum(total, num) {
+        return total + num
+      }
+      let totalPrepTime = PrepTimeArr.reduce(getSum, 0);
+      let avgPrepTime = totalPrepTime / PrepTimeArr.length
+      console.log(avgPrepTime.toFixed(0));
+      return avgPrepTime // round to whole number
+    }
+  } catch (error) {
+    console.log(error);
+    throw (error)
+  }
+}
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 
