@@ -18,35 +18,32 @@
         >
           <!-- section 1 (Fav Ingredient) -->
         <swiper-slide class="bg-light">
-          <div class="swiper-content d-flex flex-column justify-content-center">
-            <h2>Favorite Ingredient</h2>
+          <div class="swiper-content d-flex flex-column justify-content-center mx-auto text-center pb-4">   
             <div class="insight-data mx-auto text-center">
-              <h3>{{ mostConsumedIngredient.ingredient }}</h3>
-              <h3>{{ mostConsumedIngredient.count }} times</h3>
+              <h3>Your favourite ingredient is <strong>{{ mostConsumedIngredient.ingredient }}</strong>!</h3>
+              <h3>You have consumed it <strong>{{ mostConsumedIngredient.count }}</strong> times!</h3>
             </div>
           </div>
         </swiper-slide>
         <!-- section 2 (Fav Cuisine) -->
         <swiper-slide class="bg-light">
-          <div class="swiper-content d-flex flex-column justify-content-center">
-            <h2>Favorite Cuisine</h2>
+          <div class="swiper-content d-flex flex-column justify-content-center mx-auto text-center pb-4">
             <div class="insight-data mx-auto text-center">
-              <h3>{{ favoriteCuisine.cuisine }}</h3>
-              <h3>{{ favoriteCuisine.count }} times</h3>
+              <h3>You have been absolutely obsessed with <strong>{{ favoriteCuisine.cuisine }}</strong> cuisine!</h3>
+              <h3>You have consumed it <strong>{{ favoriteCuisine.count }}</strong> times!</h3>
             </div>
           </div>
         </swiper-slide>
         <!-- section 3 (Fav Preptime) -->
         <swiper-slide class="bg-light">
-          <div class="swiper-content d-flex flex-column justify-content-center mx-auto text-center">
-            <h2>Average Recipe Preparation Time</h2>
-            <div class="insight-data"><h3>{{ averageRecipePrepTime }}</h3></div>
+          <div class="swiper-content d-flex flex-column justify-content-center text-center pb-4">
+            <div class="insight-data"><h3>You have spent on average <strong>{{ averageRecipePrepTime }}</strong> preparing your meals!</h3></div>
           </div>
         </swiper-slide>
         <!-- section 4 (Meal Insights) -->
         <swiper-slide class="bg-light" >
-          <div class="swiper-content d-flex flex-column justify-content-center">
-            <h2>Recommended Recipes</h2>
+          <div class="swiper-content d-flex flex-column justify-content-center text-center mx-auto">
+            <h2><strong>Recommended Recipes</strong></h2>
             <div class="insight-data" :style="{'display': isRecommendedRecipesSlideVisible ? 'block' : 'none'}">
               <div class="row p-2 d-flex flex-wrap">
                 <FindRecipePreviewCard
@@ -200,6 +197,9 @@
 <style scoped>
 .swiper-content {
    height: 280px;
+   background: linear-gradient(135deg, #e0c580, #7BBEEA);
+
+
 }
 .insight-data {
   color: #333; /* Your text color */
