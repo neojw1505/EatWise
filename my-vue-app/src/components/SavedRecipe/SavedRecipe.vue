@@ -5,8 +5,8 @@
       <!-- Add background Image -->
       <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Saved Recipes</h2>
     </div>
-    <h1 data-aos="fade-up" data-aos-duration="1000" class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
-      Culinary Adventures <span style="color: #7a8cea; font-weight: bold"> Adventures </span> Await!
+    <h1 data-aos="fade-up" data-aos-duration="1000" class="my-3 text-center">
+      Culinary <span style="color: #7a8cea; font-weight: bold"> Adventures </span> Await!
     </h1>
   
     <!-- <h2 class="main-text mt-4" style="color: white ; font-family: Roboto;">Saved Recipes:</h2> -->
