@@ -5,14 +5,14 @@
       style="background-color: transparent; color: white"
     >
       <button
-        class="btn bg-transparent-subtle border-transparent fw-bold text-dark"
+        class="btn border-transparent fw-bold text-dark"
         @click="previousMonth"
       >
         &lt;
       </button>
       <h4 class="fw-bold">{{ formattedDate }}</h4>
       <button
-        class="btn bg-transparent-subtle border-transparent fw-bold text-dark"
+        class="btn border-transparent fw-bold text-dark"
         @click="nextMonth"
       >
         &gt;
@@ -157,8 +157,14 @@ export default {
   color: #FFF;
 }
 
+.btn:hover {
+  background-color:#FFF;
+  color: #e0c580;
+  border-color: #e0c580;
+}
+
 .selected-date {
-  background-color: #e0c580;
+  background-color: #e7d095;
   border: 2px solid black;
   color: black !important;
 }
@@ -182,6 +188,7 @@ export default {
 
 .calendar-cell:hover {
   cursor: pointer;
+  border: 1px solid #e0c580;
   transform: scale(1.05);
   transition: transform 0.3s;
 }
