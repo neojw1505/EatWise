@@ -1,17 +1,19 @@
 <template>
   <nav
-    class="navbar navbar-expand-lg navbar-light mx-auto"
+    class="navbar navbar-expand-lg navbar-light mx-auto rounded-5"
     style="background-color: #7A8CEA"
   >
     <div class="container-fluid">
         <!-- eatwise logo and dropdown button -->
       <div class="d-flex">
         <div class="text-center mx-2">
-        <img
+        <!-- <img
             class="logo"
             src="./images/companyLogo.png"
             alt=""
-        />
+        /> -->
+        <font-awesome-icon :icon="['fas', 'egg']" size="xl"/>
+
         <div class="fw-semibold">EatWise</div>
         </div>
       </div>

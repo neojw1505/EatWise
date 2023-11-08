@@ -33,8 +33,8 @@ export default {
   height:100%;
 }
 
-.background-container {
-  /* background-image: url('../Assets/background.png'); */
+.container {
+  background-image: url(./Assets/background.png);
   object-fit: cover; /* Scales the image while maintaining aspect ratio */
   background-size: contain; /* Scale image to fit container */
   background-repeat: no-repeat; /* Prevent repeating the image */
