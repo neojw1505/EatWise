@@ -348,6 +348,26 @@ export const getUserDietType = async () => {
   }
 }
 
+export const getUserExcludedIngredients = async () => {
+  try {
+    if (auth.currentUser) {
+      const userUid = auth.currentUser.uid; // Get the user's UID
+      const userRef = ref(database, '/users/' + userUid + '/ingredientRemove');
+      const snapshot = await get(userRef);
+      if (snapshot.exists()) {
+        return snapshot.val();
+      } else {
+        // If the data doesn't exist, you may want to handle this case, e.g., set the breakfast recipe
+        console.log('ingredientRemove data not found.');
+        return null; // Return null if data doesn't exist
+      }
+    }
+  } catch (error) {
+    console.log(error);
+    throw error;
+  }
+}
+
 export const getBreakfastRecipeFromFB = async () => {
   try {
     if (auth.currentUser) {
@@ -1232,14 +1252,6 @@ export const getAverageRecipePrepTime = async () => {
         for (var meal in consumptionHistory[date]){
             let recipePrepTime = consumptionHistory[date][meal]['recipe']['readyInMinutes'];
             PrepTimeArr.push(recipePrepTime)
-            // for (var cuisineIdx in consumptionHistory[date][meal]['recipe']['cuisines']){
-            //   console.log("cuisine:" + consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]);
-            //   if (favorite_cuisine.hasOwnProperty(consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx])){
-            //     favorite_cuisine[consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]] += 1
-            //   } else {
-            //     favorite_cuisine[consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]] = 1
-            //   }
-            // }
         }
       }
       console.log(PrepTimeArr);
@@ -1256,6 +1268,7 @@ export const getAverageRecipePrepTime = async () => {
     throw (error)
   }
 }
+
 // ######################################################################################## //
 const baseURL = "allSuperMarketsGroceries";
 

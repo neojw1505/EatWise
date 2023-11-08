@@ -13,21 +13,21 @@ const dietTypes = [
 
 class SpoonacularAPI {
   constructor() {
-
     this.BASE_URL =
       "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
-    this.BASE_URL = "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
+    this.BASE_URL =
+      "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com";
 
     // Initialize axios with a base URL and default parameters
     this.axios = axios.create({
       baseURL: this.BASE_URL,
       headers: {
-
         "X-RapidAPI-Key": import.meta.env.VITE_SPOONACULAR_API_KEY,
         "X-RapidAPI-Host":
           "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
-      },})}
-
+      },
+    });
+  }
 
   // get a random recipe
   async getRandomRecipe() {
@@ -61,19 +61,18 @@ class SpoonacularAPI {
   }
 
   // Function to get a single random breakfast recipe
-  async getBreakfastRecipe(dietType='') {
+  async getBreakfastRecipe(dietType = "") {
     try {
       // Make a request to the Spoonacular API for random recipes
       const response = await this.axios.get("/recipes/random", {
         params: {
           number: 1, // Number of recipes to retrieve
-          tags: dietType != '' ? `${dietType},breakfast` : 'breakfast'
+          tags: dietType != "" ? `${dietType},breakfast` : "breakfast",
         },
       });
-        // Get the random recipe data
-        const randomBreakfastRecipe = response.data.recipes;
-        return randomBreakfastRecipe
-
+      // Get the random recipe data
+      const randomBreakfastRecipe = response.data.recipes;
+      return randomBreakfastRecipe;
     } catch (error) {
       // Handle errors here
       console.error("Error fetching random breakfast recipe:", error);
@@ -81,41 +80,39 @@ class SpoonacularAPI {
     }
   }
 
-    // Function to get a single random breakfast recipe
-    async getLunchRecipe(dietType='') {
-      try {
-        // Make a request to the Spoonacular API for random recipes
-        const response = await this.axios.get("/recipes/random", {
-          params: {
-            number: 1, // Number of recipes to retrieve
-            tags: dietType != '' ? `${dietType},lunch` : 'lunch'
-          },
-        });
-          // Get the random recipe data
-          const randomLunchRecipe = response.data.recipes;
-          return randomLunchRecipe
-  
-      } catch (error) {
-        // Handle errors here
-        console.error("Error fetching random Lunch recipe:", error);
-        throw error;
-      }
-    }
-
-      // Function to get a single random breakfast recipe
-  async getDinnerRecipe(dietType='') {
+  // Function to get a single random breakfast recipe
+  async getLunchRecipe(dietType = "") {
     try {
       // Make a request to the Spoonacular API for random recipes
       const response = await this.axios.get("/recipes/random", {
         params: {
           number: 1, // Number of recipes to retrieve
-          tags: dietType != '' ? `${dietType},dinner` : 'dinner'
+          tags: dietType != "" ? `${dietType},lunch` : "lunch",
         },
       });
-        // Get the random recipe data
-        const randomDinnerRecipe = response.data.recipes;
-        return randomDinnerRecipe
+      // Get the random recipe data
+      const randomLunchRecipe = response.data.recipes;
+      return randomLunchRecipe;
+    } catch (error) {
+      // Handle errors here
+      console.error("Error fetching random Lunch recipe:", error);
+      throw error;
+    }
+  }
 
+  // Function to get a single random breakfast recipe
+  async getDinnerRecipe(dietType = "") {
+    try {
+      // Make a request to the Spoonacular API for random recipes
+      const response = await this.axios.get("/recipes/random", {
+        params: {
+          number: 1, // Number of recipes to retrieve
+          tags: dietType != "" ? `${dietType},dinner` : "dinner",
+        },
+      });
+      // Get the random recipe data
+      const randomDinnerRecipe = response.data.recipes;
+      return randomDinnerRecipe;
     } catch (error) {
       // Handle errors here
       console.error("Error fetching random Dinner recipe:", error);
@@ -137,18 +134,25 @@ class SpoonacularAPI {
     try {
       const fullSearchQuery = [];
 
-      if (mealTypes.length > 0) fullSearchQuery.push(`type=${mealTypes.join(",")}`);
-      if (dietTypes.length > 0) fullSearchQuery.push(`diet=${dietTypes.join(",")}`);
+      if (mealTypes.length > 0)
+        fullSearchQuery.push(`type=${mealTypes.join(",")}`);
+      if (dietTypes.length > 0)
+        fullSearchQuery.push(`diet=${dietTypes.join(",")}`);
       if (query) fullSearchQuery.push(`query=${query}`);
-      if (includeIngredients.length > 0) fullSearchQuery.push(`includeIngredients=${includeIngredients.join(",")}`);
-      
+      if (includeIngredients.length > 0)
+        fullSearchQuery.push(
+          `includeIngredients=${includeIngredients.join(",")}`
+        );
+
       fullSearchQuery.push(`number=${number}`);
       fullSearchQuery.push(`minCalories=${minCal}`);
       fullSearchQuery.push(`maxCalories=${maxCal}`);
-      
-      const queryString = fullSearchQuery.join('&');
+
+      const queryString = fullSearchQuery.join("&");
       console.log(queryString);
-      const response = await this.axios.get(`/recipes/complexSearch?${queryString}`);
+      const response = await this.axios.get(
+        `/recipes/complexSearch?${queryString}`
+      );
       // extract the ids
       const recipeIDsArr = [];
       // console.log(response.data);
@@ -165,17 +169,26 @@ class SpoonacularAPI {
       for (let i = 0; i < response2.data.length; i++) {
         let recipe = response2.data[i];
         let recipeIngredients = recipe.nutrition.ingredients;
-        let recipeIngredientArr = []
+        let recipeIngredientArr = [];
         for (let recipeIngredient of recipeIngredients) {
-          recipeIngredientArr.push(recipeIngredient.name)
+          recipeIngredientArr.push(recipeIngredient.name);
         }
-        console.log(recipeIngredientArr.map(item => item.toLowerCase()));
-        console.log("recipeIngredientArr" + typeof(recipeIngredientArr));
-        let recipeTitle = recipe.title
+        console.log(recipeIngredientArr.map((item) => item.toLowerCase()));
+        console.log("recipeIngredientArr" + typeof recipeIngredientArr);
+        let recipeTitle = recipe.title;
         for (let excludeIngredient of excludeIngredientsArr) {
-          console.log("this is the current excl. ignredient:" + excludeIngredient);
+          console.log(
+            "this is the current excl. ignredient:" + excludeIngredient
+          );
           console.log(recipeTitle);
-          if (recipeTitle.toLowerCase().includes(excludeIngredient.toLowerCase()) || recipeIngredientArr.map(item => item.toLowerCase()).includes(excludeIngredient.toLowerCase())) {
+          if (
+            recipeTitle
+              .toLowerCase()
+              .includes(excludeIngredient.toLowerCase()) ||
+            recipeIngredientArr
+              .map((item) => item.toLowerCase())
+              .includes(excludeIngredient.toLowerCase())
+          ) {
             console.log("Removed" + recipeTitle);
             // Remove the recipe at this current index
             response2.data.splice(i, 1);
@@ -190,9 +203,8 @@ class SpoonacularAPI {
       // Handle errors here
       // console.error(`Error fetching nutrition for recipe with ID ${recipeID}:`, error);
       // throw error;
-      console.log("no recipe found")
+      console.log("no recipe found");
       return [];
-
     }
   }
 
@@ -226,11 +238,9 @@ class SpoonacularAPI {
 
   // args: recipeID,
   // desc: return the instructions of the recipe
-  async getSelectedRecipeInstructions(id){
+  async getSelectedRecipeInstructions(id) {
     try {
-      const response = await this.axios.get(
-        `recipes/${id}/information`
-      );
+      const response = await this.axios.get(`recipes/${id}/information`);
       console.log(response.data);
       return response.data.analyzedInstructions[0].steps;
     } catch (error) {
@@ -240,21 +250,19 @@ class SpoonacularAPI {
 
   // args: recipeID,
   // desc: return the name, prep time, serving size, description of the recipe
-  async getSelectedRecipeGeneralInfo(id){
+  async getSelectedRecipeGeneralInfo(id) {
     try {
-      const response = await this.axios.get(
-        `recipes/${id}/information`
-      );
+      const response = await this.axios.get(`recipes/${id}/information`);
       const name = response.data.title;
       const prepTime = response.data.readyInMinutes;
       const servingSize = response.data.servings;
       const description = response.data.summary;
 
-      let obj = {}
-      obj.name = name
-      obj.prepTime = prepTime
-      obj.servingSize = servingSize
-      obj.description = description
+      let obj = {};
+      obj.name = name;
+      obj.prepTime = prepTime;
+      obj.servingSize = servingSize;
+      obj.description = description;
       console.log(obj);
       return obj;
     } catch (error) {
@@ -262,26 +270,66 @@ class SpoonacularAPI {
     }
   }
 
-  // get random food joke 
-  async getRandomFoodJoke(){
+  // get random food joke
+  async getRandomFoodJoke() {
     try {
-      const response = await this.axios.get('/food/jokes/random')
+      const response = await this.axios.get("/food/jokes/random");
       return response.data;
     } catch (error) {
       console.log(error);
     }
   }
 
-  // get random food fact 
-  async getRandomFoodFact(){
+  // get random food fact
+  async getRandomFoodFact() {
     try {
-      const response = await this.axios.get('/food/trivia/random')
+      const response = await this.axios.get("/food/trivia/random");
       return response.data;
     } catch (error) {
       console.log(error);
     }
   }
+  async recommendRecipeBasedOnInsights  (
+    number,
+    maxReadyTime,
+    includeIngredients,
+    excludeIngredients,
+    cuisine,
+    dietType
+  ) {
+    let includeIngredientsStr = includeIngredients.join(","); // takes in array and convert into comma separated string
+    let excludeIngredientsStr = excludeIngredients.join(","); // takes in array and convert into comma separated string
+    let cuisineStr = cuisine.join(","); // takes in array and convert into comma separated string
+    const options = {
+      method: "GET",
+      url: "https://spoonacular-recipe-food-nutrition-v1.p.rapidapi.com/recipes/complexSearch",
+      params: {
+        number: number, // number of recipes to return
+        maxReadyTime: maxReadyTime, //number
+        includeIngredients: includeIngredientsStr, //comma separated string of users favourite ingredients
+        excludeIngredients: excludeIngredientsStr, // comma separated string, take array from firebase
+        cuisine: cuisineStr, //comma separated string
+        diet: dietType, // string
+        instructionsRequired: "true", // must have instructions
+        addRecipeNutrition: true,
+        addRecipeInformation: true,
+      },
+      headers: {
+        "X-RapidAPI-Key": "bf3360681bmsh178f6e9f5dc6191p10b60fjsne4b2c090288a",
+        "X-RapidAPI-Host": "spoonacular-recipe-food-nutrition-v1.p.rapidapi.com",
+      },
+    };
+  
+    try {
+      const response = await axios.request(options);
+      console.log(response.data);
+      return response.data
+    } catch (error) {
+      console.error(error);
+    }
+  };
 }
+
 
 
 const spoonacularObj = new SpoonacularAPI();
