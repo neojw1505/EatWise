@@ -16,7 +16,7 @@
       class="mx-0 rounded-4 p-2 py-1  "
       style="background-color: transparent"
     >
-      <h3 style="color: white">Welcome Back, {{ userName }}</h3>
+      <h3 style="color: white">Welcome Back, <br> {{ userName }}</h3>
     </div>
     <hr class="border border-2 border-dark p-0 m-0">
     <!-- Daily Calorie Counter -->
