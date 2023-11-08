@@ -13,7 +13,7 @@
           }"
           :modules="modules"
           :autoplay="{
-            delay: 4000,
+            delay: 3000,
             disableOnInteraction: true,
       }"
           class="mySwiper"
@@ -51,9 +51,15 @@
             <div class="swiper-content">
               <h1>Recommended Recipes</h1>
               <div class="insight-data">
-                <ul>
-                  <li v-for="recipe in recommendedRecipes" :key="recipe.id">{{ recipe.title }}</li>
-                </ul>
+                <div class="row">
+                  <FindRecipePreviewCard
+                    v-for="recipe in recipeDataArray"
+                    :key="recipe.id"
+                    :recipe="recipe"
+                    :routerTO="'/find-recipes/SelectedRecipeCard'"
+                    class="col-md-4"
+                  />
+                </div>
               </div>
             </div>
           </swiper-slide>
@@ -91,6 +97,7 @@
       averageRecipePrepTime: 0,
       recommendedRecipes: null,
       averageTimeInMinutes: 0,
+      recipeDataArray: null,
     };
   },
   mounted() {
@@ -168,11 +175,11 @@
             let includeIngredients = [this.mostConsumedIngredient.ingredient];
             let favCuisine = [this.favoriteCuisine.cuisine];
             let time = Math.round(this.averageTimeInMinutes);
-
+            
             this.recommendedRecipes = await this.$spoonAPI.recommendRecipeBasedOnInsights(3, time, includeIngredients, excludedIngredients, favCuisine, dietType);
-            console.log('Recommended Recipes', this.recommendedRecipes); // Use 'this.recommendedRecipes' here
+            this.recipeDataArray = this.recommendedRecipes.results
+            console.log('Recommended Recipes', this.recipeDataArray); // Use 'this.recommendedRecipes' here
         } catch (error) {
-            this.recommendedRecipes = [];
             console.error('An error occurred while fetching recommendedRecipes:', error);
         }
     },
