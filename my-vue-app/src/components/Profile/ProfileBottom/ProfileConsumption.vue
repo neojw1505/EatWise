@@ -16,8 +16,7 @@
       style="background-color: white"
     >
       <div
-        class="border rounded-4 text-center fs-5 fw-semibold mx-auto m-2 py-1"
-        style="background-color: #d6d4cd; width: 80%"
+        class="border rounded-4 text-center bg-success text-light fs-5 fw-semibold mx-auto m-2 py-1"
       >
         Nutritional Info:
       </div>
