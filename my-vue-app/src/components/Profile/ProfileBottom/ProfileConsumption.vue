@@ -8,7 +8,7 @@
       class="mx-0 rounded-4 p-2 py-1 border border-2 border-dark text-center"
       style="color:white ;background: # linear-gradient(180deg, rgba(0, 0, 0, 0.51) 100%, rgba(157, 156, 183, 0.00) 100%, rgba(142, 120, 170, 0.00) 100%);"
     >
-      <h4>{{ formattedDate }}</h4>
+      <h4 class="fw-bold">{{ formattedDate }}</h4>
     </div>
     <!-- information on consumed recipe -->
     <div

@@ -5,14 +5,14 @@
       style="background-color: transparent; color: white"
     >
       <button
-        class="btn bg-transparent-subtle border-transparent"
+        class="btn bg-transparent-subtle border-transparent fw-bold text-dark"
         @click="previousMonth"
       >
         &lt;
       </button>
-      <h4>{{ formattedDate }}</h4>
+      <h4 class="fw-bold">{{ formattedDate }}</h4>
       <button
-        class="btn bg-transparent-subtle border-transparent"
+        class="btn bg-transparent-subtle border-transparent fw-bold text-dark"
         @click="nextMonth"
       >
         &gt;
@@ -159,8 +159,8 @@ export default {
 
 .selected-date {
   background-color: #e0c580;
-  color: white;
   border: 2px solid black;
+  color: black !important;
 }
 
 .calendar-day {

@@ -1,7 +1,6 @@
 <template>
-  <div class="bg-white">
-    <div class="my-auto">
-      <swiper class="carousel rounded-4 shadow-5 pb-4 mySwiper"
+  <div>
+    <swiper class="carousel rounded-4 shadow-5 mySwiper h-100"
       :pagination="true"
       :speed="2000"
       :autoplay="{
@@ -10,7 +9,7 @@
       }"
       :modules="modules">
         <!-- section 1 (Fav Ingredient) -->
-        <swiper-slide class="bg-light">
+        <swiper-slide class="">
           <div class="swiper-content d-flex flex-column justify-content-center mx-auto text-center pb-4">   
             <div class="insight-data mx-auto text-center">
               <h3>Your favourite ingredient is <strong>{{ mostConsumedIngredient.ingredient }}</strong>!</h3>
@@ -19,7 +18,7 @@
           </div>
         </swiper-slide>
         <!-- section 2 (Fav Cuisine) -->
-        <swiper-slide class="bg-light">
+        <swiper-slide class="">
           <div class="swiper-content d-flex flex-column justify-content-center mx-auto text-center pb-4">
             <div class="insight-data mx-auto text-center">
               <h3>You have been absolutely obsessed with <strong>{{ favoriteCuisine.cuisine }}</strong> cuisine!</h3>
@@ -34,7 +33,7 @@
           </div>
         </swiper-slide>
         <!-- section 4 (Meal Insights) -->
-        <swiper-slide class="bg-light">
+        <swiper-slide class="">
           <div class="swiper-content d-flex flex-column justify-content-center text-center mx-auto">
             <h3><strong>Recommended Recipe</strong></h3>
             <div class="insight-data" >
@@ -50,8 +49,7 @@
             </div>
           </div>
         </swiper-slide>
-      </swiper>
-    </div>
+    </swiper>
   </div>
 </template>
 
@@ -74,7 +72,6 @@ import { Autoplay, Pagination } from 'swiper/modules';
     SwiperSlide,
   },
   data() {
-    
     return {
       mostConsumedIngredient: { ingredient: 'No Information Available :(', count: 0 },
       favoriteCuisine:  { cuisine: 'No Information Available :(', count: 0 },
@@ -121,7 +118,6 @@ import { Autoplay, Pagination } from 'swiper/modules';
     this.mostConsumedIngredient = { ingredient: 'Error occurred', count: 0 };
   }
 },
-
 
     async getFavoriteCuisine() {
       try {
@@ -180,9 +176,8 @@ import { Autoplay, Pagination } from 'swiper/modules';
   
 <style scoped>
 .swiper-content {
-   height: 280px;
+   height: 100%;
    background: linear-gradient(135deg, #e0c580, #7BBEEA);
-
 
 }
 .insight-data {
