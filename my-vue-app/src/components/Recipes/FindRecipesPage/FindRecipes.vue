@@ -5,7 +5,8 @@
         <!-- Add background Image -->
       <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">All Recipes</h2>
     </div>
-    <div class="mx-auto" style="max-width: 1200px;">
+    <div style="display: flex; flex-direction: column; min-height: 75vh; justify-content: space-between ;">
+      <div class="mx-auto mb-5" style="max-width: 1200px;">
     <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
       Find you <span style="color: #7a8cea; font-weight: bold"> favourite </span>recipe!
     </h1>
@@ -17,8 +18,13 @@
     </div>
     <!-- show all result for recipe -->
     <AllRecipe :searchInput="search" />
-  
     </div>
+
+    <Footer/>
+    
+    </div>
+    
+    
   </div>
 </template>
 

@@ -12,59 +12,62 @@
     <!-- <h2 class="main-text mt-4" style="color: white ; font-family: Roboto;">Saved Recipes:</h2> -->
     <!-- <button @click="deletela">Delete All Recipes</button> -->
       
-  
-    <div class="mx-3 container row mx-auto" style="max-width: 1200px;">
-      <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4" style="background:#e6ecf7">
-        <div class="justify-content-end d-flex">
-          <button class="btn bg-light border border-dark fw-semibold btnStyle" @click="DeleteConfirm()" >
-            Delete All
-          </button>
-        </div>
-        
-        <div v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">
-          <SavedRecipeCard
-            v-for="item in visibleItems"
-            :key="item.id"
-            :recipe="item"
-            :routerTO="item.id"
-            style="text-decoration: none"
-          />
-        </div>
-        
-        <div v-else-if="visibleItems.length == 0 && data!=null" class="mt-3 d-flex mx-auto justify-content-center">
-        <div class="mx-auto text-center">
-          No Result Found
-          <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
-        </div>
-        </div>
+    <div style="display: flex; flex-direction: column; min-height: 75vh; justify-content: space-between ;">
+      <div class="mx-3 container row mx-auto mb-5" style="max-width: 1200px;">
+        <div class=" py-4 shadow border rounded-4 px-4 mx-auto mt-4" style="background:#e6ecf7">
+          <div class="justify-content-end d-flex">
+            <button class="btn bg-light border border-dark fw-semibold btnStyle" @click="DeleteConfirm()" >
+              Delete All
+            </button>
+          </div>
+          
+          <div v-if="visibleItems.length > 0" class="d-flex flex-wrap row mx-auto">
+            <SavedRecipeCard
+              v-for="item in visibleItems"
+              :key="item.id"
+              :recipe="item"
+              :routerTO="item.id"
+              style="text-decoration: none"
+            />
+          </div>
+          
+          <div v-else-if="visibleItems.length == 0 && data!=null" class="mt-3 d-flex mx-auto justify-content-center">
+          <div class="mx-auto text-center">
+            No Result Found
+            <font-awesome-icon :icon="['fas', 'face-frown']" size="xl" />
+          </div>
+          </div>
 
-        <div v-else class="mt-3 d-flex mx-auto justify-content-center">
-          <div class="mx-auto">
-            <div class="d-inline mx-auto">
-              <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
+          <div v-else class="mt-3 d-flex mx-auto justify-content-center">
+            <div class="mx-auto">
+              <div class="d-inline mx-auto">
+                <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
+              </div>
             </div>
           </div>
-        </div>
-        <!-- buttons for pagination -->
-        <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
-          <button class="btnStyle btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
-          <button class="btnStyle btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
-        </div>
-        <!-- pages -->
-        <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
-          <button
-            v-for="page in limitedPages"
-            :key="page"
-            @click="goToPage(page)"
-            :class="{ 'active': page === currentPage }"
-            class="btn btnStyle"
-          >
-            {{ page + 1 }}
-          </button>
+          <!-- buttons for pagination -->
+          <div v-if="visibleItems.length > 0" class="d-flex justify-content-center my-3">
+            <button class="btnStyle btn bg-light border border-dark mx-1" @click="previousPage" :disabled="currentPage === 0">Previous</button>
+            <button class="btnStyle btn bg-light border border-dark mx-1" @click="nextPage" :disabled="currentPage === maxPage">Next</button>
+          </div>
+          <!-- pages -->
+          <div  v-if="visibleItems.length > 0"  class="d-flex justify-content-center">
+            <button
+              v-for="page in limitedPages"
+              :key="page"
+              @click="goToPage(page)"
+              :class="{ 'active': page === currentPage }"
+              class="btn btnStyle"
+            >
+              {{ page + 1 }}
+            </button>
+          </div>
         </div>
       </div>
+      <Footer/>
     </div>
-  <Footer/>
+    
+  
   </div>
 </template>
 

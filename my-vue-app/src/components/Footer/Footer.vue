@@ -1,5 +1,5 @@
 <template>
-  <div class="bg-dark text-white mt-5">
+  <div class="bg-dark text-white" style="">
     <div class="row p-4">
         <!-- icon plus description -->
         <div class=" px-5 col-md-12 col-lg-6">

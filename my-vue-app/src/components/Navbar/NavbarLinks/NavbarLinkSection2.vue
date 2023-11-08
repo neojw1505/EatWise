@@ -1,5 +1,5 @@
 <template>
-  <ul class="navbar-nav mb-2 mb-lg-0 text-center">
+  <ul class="navbar-nav mb-lg-0 text-center">
     <!-- <NavbarSearch /> -->
     <NavbarlinkCard
       v-for="eachLink in linksToPages2"

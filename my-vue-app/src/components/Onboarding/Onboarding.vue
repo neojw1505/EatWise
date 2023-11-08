@@ -1,17 +1,20 @@
 <template>
-  <div class="backgroundImage">
-    <NavbarLandingPage/>
-    <div style="padding-top: 120px;">
-      <OnboardingGender v-if="pageNumber==0" @buttonAction="buttonAction" @addGender="addGender"/>
-      <OnboardingUserDetails @addAge="addAge" @addHeight="addHeight" @addWeight="addWeight" @addGoal="addGoal" v-if="pageNumber==1" @buttonAction="buttonAction"/>
-      <OnboardingActivityLevel @addActivityLevel="addActivityLevel" v-if="pageNumber==2" @buttonAction="buttonAction"/>
-      <OnboardingDietType @addDietType="addDietType" v-if="pageNumber==3" @buttonAction="buttonAction"/>
-      <OnboardingExclusion @addExclusion="addExclusion" v-if="pageNumber==4" @buttonAction="buttonAction"/>
-      <OnboardFinalPage v-if="pageNumber==5" @buttonAction="buttonAction" :registerUser="UserData" @passDailyCalorie="handleDailyCalories"/>
-      <Registration @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword" v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
+  <div>
+    <div class="backgroundImage">
+      <NavbarLandingPage/>
+      <div style="padding-top: 120px;">
+        <OnboardingGender v-if="pageNumber==0" @buttonAction="buttonAction" @addGender="addGender"/>
+        <OnboardingUserDetails @addAge="addAge" @addHeight="addHeight" @addWeight="addWeight" @addGoal="addGoal" v-if="pageNumber==1" @buttonAction="buttonAction"/>
+        <OnboardingActivityLevel @addActivityLevel="addActivityLevel" v-if="pageNumber==2" @buttonAction="buttonAction"/>
+        <OnboardingDietType @addDietType="addDietType" v-if="pageNumber==3" @buttonAction="buttonAction"/>
+        <OnboardingExclusion @addExclusion="addExclusion" v-if="pageNumber==4" @buttonAction="buttonAction"/>
+        <OnboardFinalPage v-if="pageNumber==5" @buttonAction="buttonAction" :registerUser="UserData" @passDailyCalorie="handleDailyCalories"/>
+        <Registration @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword" v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
+      </div>
     </div>
     <Footer/>
   </div>
+  
 </template>
 
 
@@ -96,6 +99,7 @@ export default {
 
 .backgroundImage{
   width: 100%;
+  height: 100vh;
   background-image: url(../LandingPage/Assets/background.png);
   background-size: cover;
 }

@@ -104,10 +104,19 @@ export default {
     },
     sortedMeal(){
       let sortedmeal={};
-      sortedmeal['breakfast']=this.mealplan['breakfast'];
-      sortedmeal['lunch']=this.mealplan['lunch'];
-      sortedmeal['dinner']=this.mealplan['dinner'];
+      console.log(this.mealplan)
+      if(this.mealplan){
+        if(this.mealplan.hasOwnProperty('breakfast')){
+        sortedmeal['breakfast']=this.mealplan['breakfast'];
+      }
+      if(this.mealplan.hasOwnProperty('lunch')){
+        sortedmeal['lunch']=this.mealplan['lunch'];
+      }
+      if(this.mealplan.hasOwnProperty('dinner')){
+        sortedmeal['dinner']=this.mealplan['dinner'];
+      }
       this.sortedmeal=sortedmeal;
+      }
     }
   },
   computed: {
