@@ -6,7 +6,7 @@
       </div>
     
     <div class="recipeInfo p-1 px-2">
-      <div class="card-title fw-semibold" style="font-size: large; height: 50px">
+      <div class="card-title fw-semibold overflow-hidden" style="font-size: large; height: 50px; text-overflow: ellipsis;">
         {{ formattedRecipeName }}
       </div>
       <p class="card-text text-warning ">{{cal.toFixed(1)}} kcal</p>

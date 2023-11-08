@@ -1,6 +1,6 @@
 <template>
   <div
-    class="col col-lg col-md-12 px-0 mx-2 rounded-4 border border-2 border-dark"
+    class="col col-lg col-md-12 px-0 mx-2 rounded-4 border border-2 border-dark pb-4"
     style="
       background: linear-gradient(
         180deg,

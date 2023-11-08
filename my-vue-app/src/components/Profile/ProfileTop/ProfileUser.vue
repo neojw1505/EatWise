@@ -1,6 +1,7 @@
 <template>
-  <div
-    class="col col-lg-4 col-md-12 mx-2 rounded-4 px-0 border border-2 border-dark"
+  <div class="col col-lg-4 col-md-12 mx-2 ">
+    <div
+    class="rounded-4 px-0 border border-2 border-dark"
     style="
       background: linear-gradient(
         180deg,
@@ -57,35 +58,11 @@
           <span class="fw-semibold"> Settings</span>
         </div>
       </router-link>
-      <!-- Old logout button -->
-      <!-- <div
-        class="m-2 border border-2 border-dark rounded-4 bg-light p-2"
-        style="width: 100px; cursor: pointer"
-        @click="logout"
-      >
-        <font-awesome-icon :icon="['fas', 'right-from-bracket']" />
-        <span class="fw-semibold">Logout</span>
-      </div> -->
       <Logout />
     </div>
-
-    <!-- <div
-      class="m-2 border border-dark border-2 rounded-4"
-      style="background-color: #303c6c"
-    >
-      <div
-        class="d-flex align-items-center justify-content-center rounded-4"
-        style="background-color: #ffb18d"
-      >
-        <font-awesome-icon :icon="['fas', 'fire']" size="xl" />
-        <span class="mx-3 fs-3 fw-semibold">Calorie Tracker</span>
-      </div>
-      <div class="text-center text-white p-2">
-        Daily Calories:
-        <div class="fw-semibold">{{ dailyCalories.toFixed(0) }} / {{ maxCalories.toFixed(0) }}</div>
-      </div>
-    </div> -->
   </div>
+</div>
+  
 </template>
 
 <script>

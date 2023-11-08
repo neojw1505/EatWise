@@ -26,7 +26,7 @@
         </div>
         </div>
     </div>
-    <div class="text-center">
+    <div class="text-center pb-3">
         © 2023 EatWise.Pte.Ltd All rights reserved
     </div>
     
