@@ -197,6 +197,16 @@
       </div>
       <div v-else class="mx-auto text-center">Error 404: no recipe found</div>
     </div>
+    <div
+      style="
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+      "
+    >
+      <div></div>
+      <Footer />
+      </div>
   </div>
 </template>
 
@@ -498,7 +508,6 @@ export default {
 .pageStyle {
   background-image: url("../../homepageAsset/selectedRecipe.jpg");
   background-size: cover;
-  padding-bottom: 100px;
 }
 
 .btnStyle{

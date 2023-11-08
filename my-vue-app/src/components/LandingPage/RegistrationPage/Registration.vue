@@ -1,5 +1,5 @@
 <template> 
-  <div id="container" class="mx-auto d-block">
+  <div id="container" class="mx-auto d-block mb-5">
     <div class="">
       <RegistrationFill data-aos="fade-left" data-aos-duration="1000" :registerUser="registerUser"/>
     </div>

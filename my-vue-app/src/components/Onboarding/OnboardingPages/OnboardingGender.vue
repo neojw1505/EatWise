@@ -8,12 +8,12 @@
       <!-- male -->
       <div @click="checked('male')" id="male" class="col d-flex card border-0 mx-auto text-center p-4 me-1" :class="{ 'selected': selectedGender === 'male' }">
         <font-awesome-icon :icon="['fas', 'mars']" style="color: #000000;" class="fa-10x" />
-        <h4>Male</h4>
+        <h4 class="text-nowrap">Male</h4>
       </div>
       <!-- female -->
       <div @click="checked('female')" id="female" class="col d-flex card border-0 mx-auto text-center p-4" :class="{ 'selected': selectedGender === 'female' }">
         <font-awesome-icon :icon="['fas', 'venus']" style="color: #000000;" class="fa-10x" />
-        <h4>Female</h4>
+        <h4 class="text-nowrap">Female</h4>
       </div>
     </div>
     <div class="mx-auto text-center">
@@ -61,6 +61,9 @@ export default {
       // Handle next page navigation here
     },
   },
+  created(){
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  }
 };
 </script>
 
