@@ -20,14 +20,14 @@
             data-aos-duration="1000"
             style="
               color: whitesmoke;
-              font-family: Georgia, 'Times New Roman', Times;
+              font-family: Playfair;
             "
           >
             EatWise
           </h1>
           <h4
             class="sub-text"
-            style="font-family: Georgia, 'Times New Roman', Times"
+            style="font-family: Playfair"
             data-aos="fade-up"
             data-aos-duration="1000"
             data-aos-delay="500"
@@ -232,6 +232,7 @@ h1.maintext {
   background-clip: text;
   color: transparent;
   font-size: 80px;
+  font-weight: bold;
 }
 
 .overlay {
@@ -249,6 +250,7 @@ h1.maintext {
 
 .sub-text {
   width: fit-content;
+  font-weight: bold;
   padding: 0px 20px;
 }
 @media screen and (min-width: 601px) {
