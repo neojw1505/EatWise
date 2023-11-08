@@ -15,6 +15,7 @@
         ></video>
         <div class="overlay mt-30">
           <h1
+          class="main-text"
           data-aos="fade-up" data-aos-duration="1000"
             style="
               color: whitesmoke;
@@ -38,7 +39,7 @@
       <div class="row m-2 mx-3" data-aos="fade-right" data-aos-duration="1000" data-aos-delay="200">
         <!-- problem -->
         <div class="col-sm-12 col-md-6">
-          <div class="fs-5 fw-semibold" style="color: #7a8cea">Problem</div>
+          <div class="fw-semibold" style="color: #7a8cea"><h1 class="sub-text">Problem</h1></div>
           Individuals in our community face significant challenges due to a
           <strong>lack of food and health literacy</strong> , compounded by
           <strong> budget constraints</strong>, which in turn leads to a
@@ -49,7 +50,7 @@
         </div>
         <!-- solution -->
         <div class="col-sm-12 col-md-6">
-          <div class="fs-5 fw-semibold" style="color: #7a8cea">Solution</div>
+          <div class="fw-semibold" style="color: #7a8cea"><h1 class="sub-text">Solution</h1></div>
           Our solution is a user-friendly web app that offers
           <strong>personalized meal recommendations</strong>,
           <strong>compares ingredient prices in 3 supermarkets</strong> , and
@@ -59,7 +60,7 @@
         </div>
       </div>
       <!-- review by fellow groupmate -->
-      <div class="fw-bold fs-5 text-center mt-5" style="color: #7a8cea">Meet The Team</div>
+      <div class="fw-bold text-center mt-5" style="color: #7a8cea"><h1 class="sub-text">Meet The Team</h1></div>
       <div class="justify-content-center align-items-centerm-2 mx-3 d-flex flex-wrap" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
         <AboutCard v-for="(input,name) in team" :key="name" :name="name" :memberInput="input"/>
       </div>
@@ -78,19 +79,19 @@ export default {
   data(){return{
     team:{
       'Neo Jun Wei':{
-        'comment':'i am the nigga that keep complaining about backend. but i like to do human backend.',
+        'comment':'I did backend. Every night i dream about doing backend on lemuel',
         "picture":junwei,
       },
       'Wang Kai Jie':{
-        'comment':'Jun wei give me backend yesterday night',
+        'comment':'I love bootstrap so much. Cannot wait to strap some xmm tonight',
         "picture":kaijie,
       },
       'Zavier Yan':{
-        'comment':'Wang Kai Li <3',
+        'comment':'I did Wang Kai Li <3',
         "picture":zavier,
       },
       'Zhen Yue':{
-        'comment':'STFU Zavier',
+        'comment':'I did ligma...figma**.. ligmaballs.',
         "picture":zhenyue,
       },
       'Lemuel Fan':{
@@ -120,6 +121,8 @@ h1.maintext {
   width: 100%;
   height: 600px;
   transition: all 1s ease;
+
+
 }
 
 .section1 video {
@@ -137,5 +140,25 @@ h1.maintext {
   z-index: 0.9;
   color: white; /* Set text color for better visibility */
   text-align: center; /* Center the text within the container */
+}
+
+@media screen and (min-width: 601px) {
+  h1.main-text {
+    font-size: 80px;
+  }
+  h1.sub-text {
+    font-size: 50px;
+  }
+}
+
+/* If the screen size is 600px wide or less, set the font-size of <div> to 30px */
+@media screen and (max-width: 600px) {
+  h1.main-text {
+    font-size: 55px;
+  }
+
+  h1.sub-text {
+    font-size: 35px;
+  }
 }
 </style>
