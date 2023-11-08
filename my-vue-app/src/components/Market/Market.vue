@@ -1,10 +1,10 @@
 <template>
-  <div style="position: relative; min-height: 100vh;padding-bottom: 300px;">
+  <div style="position: relative; min-height: 100vh;padding-bottom: 450px;">
     <Navbar />
-    <div class="header">
+    <div>
         <!-- Add background Image -->
         <div class="background-img">
-          <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
+          <h2 class="m-0 text-white fw-bold d-flex header" >Market Place</h2>
         </div>
     </div>
     
@@ -169,4 +169,15 @@ export default {
   background-repeat: no-repeat;
 }
 
+.header {
+  padding-top: 150px;
+  padding-left: 40px;
+  font-size: 60px;
+}
+
+@media screen and (max-width: 600px) {
+  h2.header {
+    font-size: 30px;
+  }
+}
 </style>
