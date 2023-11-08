@@ -173,23 +173,23 @@ export default {
       team: {
         "Neo Jun Wei": {
           comment:
-            "I did backend. Every night i dream about doing backend on lemuel",
+            "Backend/Frontend",
           picture: junwei,
         },
         "Wang Kai Jie": {
-          comment: "Where is the nearest Mcdonald's?",
+          comment: "Frontend",
           picture: kaijie,
         },
         "Zavier Yan": {
-          comment: "I did Wang Kai Li <3",
+          comment: "Frontend",
           picture: zavier,
         },
         "Zhen Yue": {
-          comment: "I did ligma...figma**.. ligmaballs.",
+          comment: "Frontend/Figma",
           picture: zhenyue,
         },
         "Lemuel Fan": {
-          comment: "My Ass is ready Jun Wei",
+          comment: "Frontend/Figma",
           picture: lumeul,
         },
       },
