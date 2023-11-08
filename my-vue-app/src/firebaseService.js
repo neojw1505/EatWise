@@ -218,7 +218,7 @@ export const updateUserProfile = async (
       goals: newGoal,
       activityLevel: activityLevel,
       profilePhoto: newProfilePhotoURL,
-      ingredientRemove:ingredientRemove,
+      ingredientRemove:ingredientRemove ?? true,
       dietType:dietType,
       DailyCalories: DailyCalories
     });
