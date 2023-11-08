@@ -6,12 +6,9 @@
       <a href="#about-the-project">About The Project</a>
       <ul>
         <li><a href="#built-with">Built With</a></li>
+    	<li><a href="#3rd Party Libraries">#rd Party Libraries</a></li>
       </ul>
     </li>
-    <li>
-      <a href="#getting-started">Getting Started</a>
-    </li>
-    <li><a href="#contact">Contact</a></li>
   </ol>
 </details>
 
@@ -39,3 +36,4 @@ Individuals in our community face significant challenges due to a lack of food a
 * GSAP
 * FontAwesome
 * VueX
+
