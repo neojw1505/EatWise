@@ -3,7 +3,7 @@
     <Navbar/>
     <div class="background-img">
         <!-- Add background Image -->
-      <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">All Recipes</h2>
+      <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:15vh; padding-left:40px; font-size:60px">All Recipes</h2>
     </div>
     <div class="mx-auto" style="max-width: 1200px;">
     <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">

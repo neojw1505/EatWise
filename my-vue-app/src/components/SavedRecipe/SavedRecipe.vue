@@ -3,7 +3,7 @@
     <Navbar />
     <div class="background-img">
       <!-- Add background Image -->
-      <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Saved Recipes</h2>
+      <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:15vh; padding-left:40px; font-size:60px">Saved Recipes</h2>
     </div>
     <h1 class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
       Culinary Adventures <span style="color: #7a8cea; font-weight: bold"> Adventures </span> Await!

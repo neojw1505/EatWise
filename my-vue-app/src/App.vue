@@ -55,5 +55,7 @@ export default {
 * {
   cursor: url(https://cur.cursors-4u.net/nature/nat-10/nat927.ani),
     url(https://cur.cursors-4u.net/nature/nat-10/nat927.png), auto !important;
+    overflow-x: hidden;
+
 }
 </style>
