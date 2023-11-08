@@ -17,8 +17,8 @@
 
     <div v-else class="mt-3 d-flex mx-auto justify-content-center" style="width: 100%;">
       <div class="mx-auto">
-        <div class="d-inline mx-auto">
-          <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
+        <div class="d-inline mx-auto" style="width: 100px; height: 100px;">
+          <spinner/>
         </div>
       </div>
     </div>
