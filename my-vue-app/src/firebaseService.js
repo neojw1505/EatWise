@@ -1176,6 +1176,7 @@ export const getMostConsumedIngredient = async () => {
       }
       console.log("ingredient Dict:");
       console.log(ingredientsConsumed);
+      return ingredientsConsumed
     }
   } catch (error) {
     console.log(error);
@@ -1194,21 +1195,22 @@ export const getFavoriteCuisine = async () => {
       console.log(consumptionHistory);
       for (var date in consumptionHistory){
         console.log("date:" + date);
-        // console.log(consumptionHistory[date]['breakfast']['recipe']['nutrition']['ingredients']);
         for (var meal in consumptionHistory[date]){
-            // console.log(consumptionHistory[date][meal]['recipe']['nutrition']['ingredients']);
-            for (let cuisine of consumptionHistory[date][meal]['recipe']['cuisines']){
-              console.log("cuisine:" + cuisine);
-              if (favorite_cuisine.hasOwnProperty(cuisine)){
-                favorite_cuisine[cuisine.name] += 1
+            console.log(consumptionHistory[date][meal]['recipe']['cuisines']);
+            for (var cuisineIdx in consumptionHistory[date][meal]['recipe']['cuisines']){
+              console.log("cuisine:" + consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]);
+              if (favorite_cuisine.hasOwnProperty(consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx])){
+                favorite_cuisine[consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]] += 1
               } else {
-                favorite_cuisine[cuisine.name] = 1
+                favorite_cuisine[consumptionHistory[date][meal]['recipe']['cuisines'][cuisineIdx]] = 1
               }
             }
         }
       }
-      console.log("ingredient Dict:");
-      console.log(ingredientsConsumed);
+
+      console.log("favorite_cuisine Dict:");
+      console.log(favorite_cuisine);
+      return favorite_cuisine
     }
   } catch (error) {
     console.log(error);
