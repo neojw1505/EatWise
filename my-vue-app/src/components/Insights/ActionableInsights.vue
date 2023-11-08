@@ -1,14 +1,14 @@
 <template>
   <div class="bg-white">
     <div class="my-auto">
-      <swiper
-        :modules="modules"
-        :autoplay="{
-          delay: 3000,
-          disableOnInteraction: true,
-        }"
-        class="mySwiper"
-      >
+      <swiper class="carousel rounded-4 shadow-5 pb-4 mySwiper"
+      :pagination="true"
+      :speed="2000"
+      :autoplay="{
+        delay: 3000,
+        disableOnInteraction: true,
+      }"
+      :modules="modules">
         <!-- section 1 (Fav Ingredient) -->
         <swiper-slide class="bg-light">
           <div class="swiper-content d-flex flex-column justify-content-center mx-auto text-center pb-4">   
@@ -37,7 +37,7 @@
         <swiper-slide class="bg-light">
           <div class="swiper-content d-flex flex-column justify-content-center text-center mx-auto">
             <h3><strong>Recommended Recipe</strong></h3>
-            <div class="insight-data" :style="{'display': isRecommendedRecipesSlideVisible ? 'block' : 'none'}">
+            <div class="insight-data" >
               <div class="row p-2 d-flex flex-wrap">
                 <FindRecipePreviewCard
                   v-for="recipe in recipeDataArray"
@@ -57,18 +57,16 @@
 
   
   <script>
-  import { Swiper, SwiperSlide } from 'swiper/vue'; // Import named exports
-  import 'swiper/css';
-  import 'swiper/css/pagination';
-  
-  // Import required modules
-  import { Autoplay, Navigation } from 'swiper/modules';
+import { Swiper, SwiperSlide } from 'swiper/vue';
+
+import 'swiper/css';
+import { Autoplay, Pagination } from 'swiper/modules';
 
   
   export default {
     setup() {
     return {
-      modules: [Autoplay, Navigation],
+      modules: [Autoplay, Pagination],
     };
     },
   components: {
@@ -84,7 +82,6 @@
       recommendedRecipes: null,
       averageTimeInMinutes: 0,
       recipeDataArray: null,
-      isRecommendedRecipesSlideVisible: true,
     };
   },
   mounted() {
@@ -92,8 +89,6 @@
     this.getFavoriteCuisine();
     this.getAverageRecipePrepTime();
     this.recommendRecipeBasedOnInsights();
-    this.checkScreenSize(); // Call the method to check screen size on mount
-    window.addEventListener('resize', this.checkScreenSize); // Add event listener for window resize
   },
   methods: {
     async getMostConsumedIngredient() {
@@ -177,9 +172,6 @@
         }
     },
 
-    checkScreenSize() {
-      this.isRecommendedRecipesSlideVisible = window.innerWidth >= 600;
-    },
 
 
   },
