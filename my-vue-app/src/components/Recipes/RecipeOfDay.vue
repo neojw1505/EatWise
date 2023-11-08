@@ -1,19 +1,19 @@
 
 <template>
   <div class="row"> 
-    <div class="col-md-6 rounded-4 d-flex my-auto mx-2 align-items-center justify-content-center">
-      <img class="img-fluid rounded-4 col" :src="imgUrl" alt="Recipe Image" style="object-fit: contain;"/>
+    <div class="col col-md-6 rounded-4 d-flex my-auto mx-2 align-items-center justify-content-center ">
+      <img class="img-fluid rounded-4 col-10" :src="imgUrl" alt="Recipe Image" style="object-fit: contain;"/>
     </div>
-    <div class="col text-start my-auto mx-4">
-      <h1 class="fw-bold mb-2">Recipe of the Day</h1>
+    <div class="col-5 text-start my-auto  bg-white rounded-4 p-4">
+      <h1 class="fw-bold mb-2" style="overflow:hidden;">Recipe of the Day</h1>
       <br/>
-      <h4>{{ formattedRecipeName }}</h4>
+      <h4 style="overflow:hidden;">{{ formattedRecipeName }}</h4>
       <br/>
       <p>Preparation Time: <strong>{{ PrepTime }} minutes</strong> </p>
       <br/>
       <p style="overflow: hidden;">Description: {{ formattedDescriptionName }}</p>
-      <div class="d-inline-block pt-2">
-        <span v-for="(diet, index) in Diets" :key="index" class="p-2 me-2 rounded-4 text-wrap" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</span>
+      <div class="d-inline-block col py-2 my-2">
+        <div v-for="(diet, index) in Diets" :key="index" class=" p-2 mx-2 rounded-4 d-inline-block" style="background-color: #7A8CEA; color: white; white-space: nowrap;">{{ diet }}</div>
       </div>
 
     </div>

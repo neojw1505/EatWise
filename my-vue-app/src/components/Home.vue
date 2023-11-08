@@ -5,7 +5,8 @@
     <div>
       <div class="section1">
         <video loop autoplay muted preload="auto" src="./homepageAsset/home_bg_video.mp4" alt="bgvideo"
-          style="width: 100%; height: 100%; object-fit: cover"
+          style="width: 100%; height: 100%; object-fit:cover;
+"
         ></video>
         <div class="overlay mt-30">
           <h1 class="main-text" style="color: whitesmoke; font-family: Georgia, 'Times New Roman', Times;">
@@ -126,7 +127,7 @@ export default {
 
 .section2 {
   /* width: 100%; */
-  background-image: url(./homepageAsset/background-s2.png);
+  background-image: url(./homepageAsset/background-s2.jpeg);
   background-size: cover; /* Scale image to fit container */
   background-repeat: no-repeat; /* Prevent repeating the image */
   background-position: center center; /* Center the image */
