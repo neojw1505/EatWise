@@ -1,5 +1,5 @@
 <template>
-  <div class="col col-lg-4 col-md-12 mx-2 ">
+  <div class=" col-lg-4 col-sm-12 mb-2">
     <div
     class="rounded-4 px-0 border border-2 border-dark"
     style="
@@ -30,14 +30,14 @@
           size="xl"
           style="color: orangered"
         />
-        <span class="mx-3 fs-3 fw-semibold" style="color: white"
+        <span class="mx-3 fs-4 fw-semibold" style="color: white"
           >Your <span style="color: #7a8cea">Calories</span> today:</span
         >
       </div>
       <div
         class="text-center text-white p-1 rounded-4 border border-2 bg-white mt-3"
       >
-        <div class="fw-semibold fs-1">
+        <div class="fw-semibold fs-3">
           <span style="color: black">{{ dailyCalories.toFixed(0) }} / </span>
           <span style="color: #7a8cea">{{ maxCalories.toFixed(0) }}</span>
         </div>

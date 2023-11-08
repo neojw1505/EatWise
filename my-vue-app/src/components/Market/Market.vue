@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div style="position: relative; min-height: 100vh;padding-bottom: 300px;">
     <Navbar />
     <div class="header">
         <!-- Add background Image -->
@@ -49,17 +49,10 @@
         </div>
           </div>
         </div>
-        <div
-          style="
-            display: flex;
-            flex-direction: column;
-            min-height: 80vh;
-            justify-content: space-between;
-          "
-        >
-          <div></div>
-          <Footer />
-        </div>
+       
+          
+        <Footer style="position: absolute; bottom: 0;" />
+
         
 
   </div>

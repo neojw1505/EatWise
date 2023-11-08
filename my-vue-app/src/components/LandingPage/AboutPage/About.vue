@@ -1,6 +1,7 @@
 <template>
   <div>
-    <NavbarLandingPage />
+    <Navbar v-if="this.$smAPI.auth"/>
+    <NavbarLandingPage v-else />
     <div>
       <!-- video and EatWise -->
       <div class="section1">
