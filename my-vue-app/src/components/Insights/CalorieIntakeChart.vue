@@ -1,5 +1,5 @@
 <template>
-  <div class="Chart-Container container bg-white">
+  <div class="Chart-Container container bg-white rounded-4">
     <div class="date-range-selector row">
       <div class="col">
         <label for="startDate">Start Date:</label>
@@ -165,7 +165,7 @@ renderLineChart() {
               beginAtZero: true,
             },
           },
-          responsive: false,
+          responsive: true,
           maintainAspectRatio: true,
           showTooltips: true,
         },

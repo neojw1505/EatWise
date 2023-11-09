@@ -1,10 +1,9 @@
 <template>
-  <div class="backgroundImage" style="display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between ;">
+  <div class="backgroundImage">
     <div class="mb-5">
       <NavbarLandingPage />
       <userFill data-aos="fade-up" data-aos-duration="1000"/>  
     </div>
-    <Footer/>
   </div>
   
 

@@ -6,7 +6,7 @@
         <canvas id="pieChart" class="mx-auto my-2" style="max-height: 300px;"></canvas>
       </div>
       <div class="col my-auto">
-        <div class="legend-container bg-white">
+        <div class="legend-container bg-white mb-2">
           <ul class="list-group">
             <li v-for="(item, index) in sortedData" :key="index" class="list-group-item d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
