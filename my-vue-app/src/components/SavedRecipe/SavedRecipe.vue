@@ -13,11 +13,8 @@
     <!-- <button @click="deletela">Delete All Recipes</button> -->
 
     <div class="mx-3 container row mx-auto mb-5" style="max-width: 1200px">
-      <div
-        class="py-4 shadow border rounded-4 px-4 mx-auto mt-4"
-        style="background: #e6ecf7"
-      >
-        <div class="justify-content-end d-flex">
+<!-- Delete Button -->
+      <div class="justify-content-end d-flex">
           <button
             class="btn bg-light border border-dark fw-semibold btnStyle"
             @click="DeleteConfirm()"
@@ -26,23 +23,32 @@
             Delete All
           </button>
         </div>
-
+<!-- Main Query Result -->
+<!-- row row-cols-1 row-cols-sm-2 row-cols-md-3 row-cols-lg-4  g-3 text-center -->
+      <div
+        class="py-4 shadow border rounded-4 px-4 mx-auto mt-4 "
+        style="background: #e6ecf7"
+      >
+      <!-- Result -->
+      <!-- If results -->
         <div
           data-aos="fade-up"
           data-aos-duration="1000"
           data-aos-delay="250"
           v-if="visibleItems.length > 0"
-          class="d-flex flex-wrap row mx-auto"
-        >
+          class="d-flex flex-wrap row mx-auto justify-content-center ">
+
+        <!-- Result Card -->
           <SavedRecipeCard
             v-for="item in visibleItems"
             :key="item.id"
             :recipe="item"
             :routerTO="item.id"
-            style="text-decoration: none"
+            style="text-decoration: none; "
           />
         </div>
 
+        <!-- If no result -->
         <div
           v-else-if="visibleItems.length == 0 && data != null"
           class="mt-3 d-flex mx-auto justify-content-center"
@@ -53,6 +59,7 @@
           </div>
         </div>
 
+        <!-- If no result -->
         <div v-else class="mt-3 d-flex mx-auto justify-content-center">
           <div class="mx-auto">
             <div class="d-inline mx-auto">
@@ -63,6 +70,8 @@
             </div>
           </div>
         </div>
+
+
         <!-- buttons for pagination -->
         <div
           v-if="visibleItems.length > 0"

@@ -73,4 +73,16 @@ export default {
   border-bottom-right-radius: 20px;
   width: 100%;
 }
+
+@media screen and (max-width: 650px) {
+  .cardStyle {
+    border: white solid 1px;
+  border-radius: 20px;
+  width: 100vw;
+  height: 200px;
+  color: white;
+  transition: transform 0.3s;
+  position: relative;
+  }
+}
 </style>

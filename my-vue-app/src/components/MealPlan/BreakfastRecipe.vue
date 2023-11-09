@@ -77,9 +77,9 @@
       </button>
 
       <button class="btn rounded-4 btn-fail " @click="toggleConsumedState(currentDate)" :class="{ 'consumed-btn-green': isConsumed }">
-        {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
+        {{ isConsumed ? 'Consumed!' : 'Consume Now' }}        
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
-        <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
+        <font-awesome-icon v-else :icon="['fas', 'cookie-bite']" style="color: #ffffff;" size="lg" />
       </button>
     </div>
   </div>
@@ -164,7 +164,7 @@ export default {
       let formattedTime = `${hours}:${minutes}:${seconds}`;
       return formattedTime;
     },
-   computedCal(){
+  computedCal(){
       return this.nutritionData.calories ?? this.recipeData['nutrition']['nutrients'][0].amount.toFixed(0)
     }
   },
@@ -329,7 +329,7 @@ svg.fa-heart {
   padding: 4px 8px;
   border-radius: 10px;
   color: #000000;
-  background-color: #7A8CEA;
+  background-color: #fff;
   margin-left: 5px;
 }
 .card-footer {
@@ -344,13 +344,16 @@ svg.fa-heart {
   color: #303c6c;
 }
 .btn-fail {
-  background-color: #d7191c;
+  background-color: rgb(215, 136, 25);
   color: #fff;
+  animation: pulsate 2s alternate infinite ; /* Add an animation to the overlay */
 }
 .btn-fail:hover {
   background-color: #fff;
   color: #d7191c;
+
 }
+
 .consumed-btn-green {
   background-color: #007459;
   color: #fff;
@@ -389,7 +392,7 @@ svg.fa-heart {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.06);
   }
   100% {
     transform: scale(1);
