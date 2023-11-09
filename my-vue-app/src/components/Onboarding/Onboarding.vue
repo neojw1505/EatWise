@@ -1,7 +1,6 @@
 <template>
   <div>
     <div class="backgroundImage">
-      <NavbarLandingPage/>
       <div style="display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between ;">
         <div style="padding-top: 120px;">
           <OnboardingGender data-aos="fade-left" data-aos-duration="1000" v-if="pageNumber==0" @buttonAction="buttonAction" @addGender="addGender"/>

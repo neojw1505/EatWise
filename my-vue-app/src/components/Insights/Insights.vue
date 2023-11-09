@@ -1,6 +1,5 @@
 <template>
     <div>
-      <navbar />
       <div class="background-img">
       <!-- Add background Image -->
       <h2 class="m-0 text-white fw-bold d-flex mb-3" style="padding-top:200px; padding-left:40px; font-size:60px">Insights</h2>
