@@ -14,7 +14,6 @@
     <ProfileBottom />
   </div>
   <div class="mt-3">
-          <Footer></Footer>
     </div>
   </div>
 </template>

@@ -4,12 +4,12 @@
     <div class="header" style="padding-top: 100px ;">
       <div class="image-overlay"> </div>
 
-      <div class="text-center py-4 fw-bold"><h1 class="main" style="font-family: Georgia, 'Times New Roman', Times;">Edit Profile</h1></div>
+      <div class="text-center py-4 fw-bold"><h1 class="main">Edit Profile</h1></div>
       <!-- Place Header here -->
     </div>
 
 
-    <div class="col-sm-8 rounded-4 shadow mb-5 mx-5" style="background-color: #fff; margin-top:200px;">
+    <div class="col-sm-8 rounded-4 shadow mb-5 mx-auto" style="background-color: #fff;">
       <!-- header -->
       <!-- setting  -->
       <router-link
