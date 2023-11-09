@@ -1,6 +1,5 @@
 <template>
     <div>
-      <NavbarLandingPage />
       <div>
         <!-- video and EatWise -->
         <div class="section1">

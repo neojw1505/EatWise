@@ -1,9 +1,6 @@
 <template>
-  <div class="backgroundImage">
-    <div class="mb-5">
-      <NavbarLandingPage />
-      <userFill data-aos="fade-up" data-aos-duration="1000"/>  
-    </div>
+  <div class="backgroundImage" style="padding-top: 150px; padding-bottom: 150px;">  
+    <userFill data-aos="fade-up" data-aos-duration="1000"/>  
   </div>
   
 
@@ -20,7 +17,6 @@ export default {
 <style scoped>
 .backgroundImage {
   width: 100%;
-  height: 100vh;
   object-fit: cover; /* Scales the image while maintaining aspect ratio */
   background-image: url(../Assets/background.png);
 }
