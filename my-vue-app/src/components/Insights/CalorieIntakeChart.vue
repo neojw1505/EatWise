@@ -165,7 +165,7 @@ renderLineChart() {
               beginAtZero: true,
             },
           },
-          responsive: false,
+          responsive: true,
           maintainAspectRatio: true,
           showTooltips: true,
         },
