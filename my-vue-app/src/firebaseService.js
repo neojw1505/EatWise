@@ -839,7 +839,10 @@ export const addIngredientToExclude = async (ingredient) => {
       if (snapshot.exists()) {
         // If ingredientRemove exists, retrieve its current value
         let currentIngredientRemove = snapshot.val();
-        
+        console.log(currentIngredientRemove);
+        if (currentIngredientRemove == true) {
+          currentIngredientRemove = [];
+        }
         // Check if it's an array and not already containing the ingredient
         if (Array.isArray(currentIngredientRemove) && !currentIngredientRemove.includes(ingredient)) {
           currentIngredientRemove.push(ingredient);
