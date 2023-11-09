@@ -14,17 +14,6 @@
       <div  class="col mx-2 my-2 mb-3 border shadow rounded-4 bg-white">
         <CalorieIntakeChart class="mb-3"/>
       </div>
-      <div
-      style="
-        display: flex;
-        flex-direction: column;
-        margin-top: 50px;
-        justify-content: space-between;
-      "
-    >
-      <div></div>
-      <Footer />
-      </div>
     </div>
   </template>
   

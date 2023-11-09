@@ -12,7 +12,6 @@
     </div>
   <div class="section2">
     <ProfileBottom />
-    <Footer/>
   </div>
   </div>
 </template>
