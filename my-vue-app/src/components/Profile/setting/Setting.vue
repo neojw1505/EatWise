@@ -9,7 +9,7 @@
     </div>
 
 
-    <div class="col-8 mx-2 rounded-4 px-0 shadow mb-2 mx-auto my-3" style="background-color: #fff; margin-top:200px;">
+    <div class="col-sm-8 rounded-4 shadow mb-5 mx-5" style="background-color: #fff; margin-top:200px;">
       <!-- header -->
       <!-- setting  -->
       <router-link

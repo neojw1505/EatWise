@@ -3,7 +3,8 @@
     <div class="mx-auto text-center py-1 shadow rounded-4 col-5" style="background-color:#7A8CEA ;">
       <h2 class="fw-bold fs-4">WHAT'S YOUR DIET TYPE</h2>
     </div>
-    <div class="container mx-auto border rounded-4 d-flex shadow bg-white col-6">
+    <br>
+    <div class="container mx-auto border rounded-4 shadow bg-white col-10">
       <div class="row">
         <div class="d-flex py-2 text-center col-md-6 col-sm-12 " v-for="(diet, index) in dietTypes" :key="index">
           <input name="option" type="radio" :id="diet.id" :value="diet.value" v-model="dietType" style="display: none;" />
