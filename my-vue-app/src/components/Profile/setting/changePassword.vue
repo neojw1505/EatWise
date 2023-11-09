@@ -16,7 +16,7 @@
       <input type="password" id="ProfileSettingConfirmPassword" class="form-control" v-model="userInfo.confirmNewPassword">
     </div>
     <div class=" justify-content-end d-flex">
-      <button class="btn fw-bold mb-3" style="background-color: #f4976c" @click="saveSetting()">Save</button>
+      <button class="btn fw-bold mb-3" style="background-color: #7a8cea" @click="saveSetting()">Save</button>
     </div>
     
     <!-- <savedNotification ref="notification"/> -->
