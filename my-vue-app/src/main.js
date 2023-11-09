@@ -22,6 +22,9 @@ import { library } from '@fortawesome/fontawesome-svg-core';
 import { FontAwesomeIcon } from '@fortawesome/vue-fontawesome';
 import { fas } from '@fortawesome/free-solid-svg-icons'; // Use solid icons
 
+//Import gsap (Ignore - ZY's test)
+// import { gsap } from "gsap";
+// import { ScrollTrigger } from "gsap/ScrollTrigger";
 
 // Add Font Awesome icons to the library
 library.add(fas);

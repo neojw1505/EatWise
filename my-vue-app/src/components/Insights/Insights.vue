@@ -15,7 +15,22 @@
         <CalorieIntakeChart class="mb-3"/>
       </div>
     </div>
+    <div class="mt-5">
+      <Footer></Footer>
+    </div>
   </template>
+
+  <style scoped>
+  .header{
+    background-image: url(../homepageAsset/insightsbg.png);
+    height:30vh;
+    width:100%;
+    object-fit:cover;
+    background-size:100%;
+    align-items: center;
+    background-repeat: no-repeat;
+    }
+</style>
   
 <style scoped>
 

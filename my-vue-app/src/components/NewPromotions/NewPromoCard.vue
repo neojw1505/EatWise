@@ -5,6 +5,8 @@
     <div class="rectangle-overlay shadow">
       <div class="promo-text">{{ product.product_promo }}</div>
     </div>
+    <img class="card-img-top  rounded-4 text-center mx-auto" style="width:100%" :src="product.product_img" alt="Product Image" />
+    <!-- Add a rectangle-overlay div -->
     
     <div class="promoInfo">
       <div class="mt-2"><span class="bg-light text-dark rounded-4 p-1 mt-2 fw-bold">{{ product.supermarket_name }}</span></div>

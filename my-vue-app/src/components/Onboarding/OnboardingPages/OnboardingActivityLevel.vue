@@ -5,9 +5,10 @@
       <h1 class="fw-bold fs-4">WHAT IS YOUR DAILY ACTIVITY LEVEL?</h1>
       <h3 class="fw-semibold fs-6">(Select one only)</h3>
     </div>
-    <div class=" mx-auto border rounded-4 justify-content-center py-2 px-5 d-flex shadow bg-white col-7">
+    <br>
+    <div class="container border rounded-4 p-5 mx-auto shadow bg-white col-10">
       <div class="row">
-        <div class="col-lg-4 col-sm-6 " v-for="(level, index) in activityLevels" :key="index" style="width: 200px;">
+        <div class="col-lg-4 col-sm-6 " v-for="(level, index) in activityLevels" :key="index">
           <label>
             <input
               type="radio"
