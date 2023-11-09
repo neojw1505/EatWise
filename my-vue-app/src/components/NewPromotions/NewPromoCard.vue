@@ -64,7 +64,7 @@ export default {
 }
 .equal-card {
   width: 100%;
-  width: 250px;
+  width: 240px;
   height: 300px;
   border: 2px solid #000;
   border-radius: 20px;
