@@ -189,6 +189,11 @@ export default {
       }
       else{
         // add sweet alert
+          Swal.fire({
+          title: 'Error',
+          text: 'Cannnot add empty ingredient!',
+          icon: 'error',
+        });
       }
     },
     async removeIngredient(ingredient) {
