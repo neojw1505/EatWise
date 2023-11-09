@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar/>
     <div class="background-img">
       <!-- Add background Image -->
       <h2 class="m-0 text-white fw-bold d-flex header">Saved Recipes</h2>

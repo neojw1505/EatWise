@@ -1,6 +1,7 @@
 <!-- Home.vue -->
 <template>
   <div>
+    <Navbar/>
       <div>
       <div class="section1">
         <video loop autoplay muted preload="auto" src="./homepageAsset/home_bg_video.mp4" alt="bgvideo"
