@@ -27,8 +27,6 @@
       <div  class="section4" style="padding-top: 40px; ">
         <NewPromoCarousel  class="p-4 pt-2 rounded-4 mt-3 mx-3" />
       </div>
-      <Footer></Footer>
-
     </div>
   </div>
 </template>

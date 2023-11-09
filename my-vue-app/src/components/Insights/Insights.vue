@@ -16,7 +16,6 @@
       </div>
     </div>
     <div class="mt-5">
-      <Footer></Footer>
     </div>
   </template>
 
