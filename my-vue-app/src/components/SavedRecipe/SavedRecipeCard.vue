@@ -2,7 +2,7 @@
   <!-- <router-link :to="routerTO"> -->
   <div
     @click="selectRecipe"
-    class="card cardStyle mx-2 px-0 my-2"
+    class="card cardStyle mx-2 px-0 my-2 "
     :style="{
       'background-image': 'url(' + recipe.image + ')',
       'background-size': 'cover',
@@ -88,5 +88,16 @@ export default {
   border-bottom-left-radius: 20px;
   border-bottom-right-radius: 20px;
   width: 100%;
+}
+@media screen and (max-width: 604px) {
+  .cardStyle{
+    border: white solid 1px;
+    border-radius: 20px;
+    width: 100%;
+    height: 200px;
+    color: white;
+    transition: transform 0.3s;
+    position: relative;
+  }
 }
 </style>
