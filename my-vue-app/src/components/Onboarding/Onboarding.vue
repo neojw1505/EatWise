@@ -12,7 +12,6 @@
           <OnboardFinalPage data-aos="fade-left" data-aos-duration="1000" v-if="pageNumber==5" @buttonAction="buttonAction" :registerUser="UserData" @passDailyCalorie="handleDailyCalories"/>
           <Registration @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword" v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
         </div>
-        <Footer/>
       </div>
       
     </div>

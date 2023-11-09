@@ -1,5 +1,5 @@
 <template>
-  <div style="position: relative; min-height: 100vh; padding-bottom: 450px">
+  <div >
     <Navbar />
     <div class="background-img">
       <!-- Add background Image -->
@@ -33,7 +33,6 @@
       <!-- show all result for recipe -->
       <AllRecipe :searchInput="search" />
     </div>
-    <Footer style="position: absolute; bottom: 0" />
   </div>
 </template>
 
