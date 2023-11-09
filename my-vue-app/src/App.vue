@@ -16,7 +16,6 @@
       </div>
     </div>
     <br /> -->
-    <navbar/>
   <router-view> 
   </router-view>
   <Footer />

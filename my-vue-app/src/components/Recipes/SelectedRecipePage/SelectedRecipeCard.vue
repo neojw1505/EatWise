@@ -1,5 +1,6 @@
 <template>
   <div class="pageStyle" >
+    <Navbar/>
     <div class="mx-2">
       <div
         data-aos="fade-up"
@@ -197,7 +198,6 @@
       <div v-else class="mx-auto text-center">Error 404: no recipe found</div>
     </div>
   </div>
-    <Footer/>
 </template>
 
 <script>

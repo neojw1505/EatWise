@@ -28,7 +28,8 @@ const routes = [
   { path: '/insights', component: Insights, meta: { requiresAuth: true },},
   { path: '/register', name: 'Register', component: Onboarding , meta: { requiresAuth: false },},
   { path: '/profile', component: Profile, meta: { requiresAuth: true },},
-  { path: '/About', name: 'About', component: About, meta: { requiresAuth: false },},
+  { path: '/About', name: 'About', component: About, meta: { requiresAuth: true },},
+  { path: '/AboutLogout', name: 'AboutLogout', component: AboutLogout, meta: { requiresAuth: false },},
 ];
 
 const router = createRouter({
@@ -39,7 +40,7 @@ const router = createRouter({
 router.beforeEach((to, from, next) => {
   const unsubscribe = auth.onAuthStateChanged((user) => {
     if (!user && to.meta.requiresAuth) {
-      next({ name: '/About' });
+      next({ name: 'AboutLogout' });
     } else {
       next();
     }

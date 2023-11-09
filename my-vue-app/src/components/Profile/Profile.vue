@@ -1,5 +1,6 @@
 <template>
   <div class="pageStyle">
+    <Navbar/>
     <div class="section1" style="padding-top:100px">
 
     <ProfileTop :userName="ProfileName"/>

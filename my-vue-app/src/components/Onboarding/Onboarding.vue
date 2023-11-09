@@ -1,5 +1,6 @@
 <template>
   <div>
+    <NavbarLandingPage/>
     <div class="backgroundImage">
       <div style="display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between ;">
         <div style="padding-top: 120px;">

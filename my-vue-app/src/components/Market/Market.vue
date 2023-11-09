@@ -1,5 +1,6 @@
 <template>
   <div>
+    <Navbar/>
     <div>
         <!-- Add background Image -->
         <div class="background-img">
