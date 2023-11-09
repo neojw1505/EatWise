@@ -15,7 +15,6 @@
   </ol>
 </details>
 
-
 Individuals in our community face significant challenges due to a lack of food and health literacy , compounded by budget constraints, which in turn leads to a reluctance to track their caloric and nutrient intake , highlighting the need for a comprehensive solution to improve access to nutritious food, enhance health education, and address financial constraints.
 
 ### Features
