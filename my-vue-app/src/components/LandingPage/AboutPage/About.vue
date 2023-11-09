@@ -1,6 +1,5 @@
 <template>
   <div>
-    <Navbar/>
     <div>
       <!-- video and EatWise -->
       <div class="section1">
@@ -167,8 +166,6 @@
         </div>
       </div>
     </div>
-
-    <Footer />
   </div>
 </template>
 

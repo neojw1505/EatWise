@@ -1,5 +1,5 @@
 <template>
-  <div style="padding-top: 150px ;">
+  <div >
     <div id="logincard" class="card shadow">
     
     <div class="card-body">
@@ -362,23 +362,6 @@ export default {
   width: 375px;
   border-radius: 40px;
   margin: auto;
-}
-
-input {
-  width: 100%;
-}
-
-html,
-body {
-  height: 100%;
-}
-
-body {
-  margin: 0;
-  background: #1e313f;
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 button {
