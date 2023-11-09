@@ -329,7 +329,7 @@ svg.fa-heart {
   padding: 4px 8px;
   border-radius: 10px;
   color: #000000;
-  background-color: #7A8CEA;
+  background-color: #fff;
   margin-left: 5px;
 }
 .card-footer {
@@ -346,11 +346,14 @@ svg.fa-heart {
 .btn-fail {
   background-color: rgb(215, 136, 25);
   color: #fff;
+  animation: pulsate 2s alternate infinite ; /* Add an animation to the overlay */
 }
 .btn-fail:hover {
   background-color: #fff;
   color: #d7191c;
+
 }
+
 .consumed-btn-green {
   background-color: #007459;
   color: #fff;
@@ -389,7 +392,7 @@ svg.fa-heart {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.06);
   }
   100% {
     transform: scale(1);
