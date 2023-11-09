@@ -1,7 +1,6 @@
 <template>
   <div class="backgroundImage">
     <div class="mb-5">
-      <NavbarLandingPage />
       <userFill data-aos="fade-up" data-aos-duration="1000"/>  
     </div>
   </div>
