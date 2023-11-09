@@ -1,9 +1,7 @@
 <template>
   <div class="main">
-    <!-- <Navbar/> -->
-
-
-    <div class="header">
+    <Navbar/>
+    <div class="header" style="padding-top: 100px ;">
       <div class="image-overlay"> </div>
 
       <div class="text-center py-4 fw-bold"><h1 class="main" style="font-family: Georgia, 'Times New Roman', Times;">Edit Profile</h1></div>

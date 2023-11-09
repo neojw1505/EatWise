@@ -1,9 +1,10 @@
 <template>
   <nav
-    class="navbarStyle navbar navbar-expand-md navbar-light mx-auto text-center border shadow px-3 py-1 align-items-center d-flex"
+    class="navbarStyle navbar navbar-expand-lg navbar-light mx-auto text-center border shadow px-3 py-1 align-items-center d-flex"
     style="background-color: #ffff">
-    <div class="container-fluid">
-      <div class="d-flex">
+
+    <div class="container-fluid"  >
+      <div class="d-flex" >
         <!-- eatwise logo and dropdown button -->
         <NavbarHamburger />
         <NavbarLogo /> 
@@ -11,7 +12,8 @@
 
       <div
         class="collapse navbar-collapse justify-content-between"
-        id="navbarSupportedContent">
+        id="navbarSupportedContent"
+        >
         <!-- show the left logos -->
         <NavbarLinkSection1 />
         <NavbarLinkSection2 />
@@ -28,6 +30,20 @@ export default {
   name: 'Navbar',
   // components:{
   //   NavbarLinkSection1, NavbarLinkSection2
+  // },
+  data(){
+    return{
+      islogin: false
+    }
+  },
+  methods:{
+    goAbout(){
+      this.$router.push({path:'/About'});
+    }
+  },
+  // mounted(){
+  //   this.islogin = this.$store.getters.isLoginNotificationShown;
+  //   console.log(this.islogin)
   // },
 };
 </script>

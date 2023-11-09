@@ -1,7 +1,7 @@
 <template>
   <div>
+    <NavbarLandingPage/>
     <div class="backgroundImage">
-      <NavbarLandingPage/>
       <div style="display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between ;">
         <div style="padding-top: 120px;">
           <OnboardingGender data-aos="fade-left" data-aos-duration="1000" v-if="pageNumber==0" @buttonAction="buttonAction" @addGender="addGender"/>
@@ -12,7 +12,6 @@
           <OnboardFinalPage data-aos="fade-left" data-aos-duration="1000" v-if="pageNumber==5" @buttonAction="buttonAction" :registerUser="UserData" @passDailyCalorie="handleDailyCalories"/>
           <Registration @addName="addName" @addEmail="addEmail" @addDOB="addDOB" @addPassword="addPassword" v-if="pageNumber==6" @buttonAction="buttonAction" :registerUser="UserData"/>
         </div>
-        <Footer/>
       </div>
       
     </div>
@@ -106,7 +105,6 @@ export default {
 
 .backgroundImage{
   width: 100%;
-  height: 100vh;
   background-image: url(../LandingPage/Assets/background.png);
   background-size: cover;
 }

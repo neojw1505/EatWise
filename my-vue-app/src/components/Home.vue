@@ -1,8 +1,8 @@
 <!-- Home.vue -->
 <template>
   <div>
-      <Navbar />
-    <div>
+    <Navbar/>
+      <div>
       <div class="section1">
         <video loop autoplay muted preload="auto" src="./homepageAsset/home_bg_video.mp4" alt="bgvideo"
           style="width: 100%; height: 100%; object-fit:cover;
@@ -30,7 +30,6 @@
       <Footer></Footer>
 
     </div>
-    <Footer/>
   </div>
 </template>
 

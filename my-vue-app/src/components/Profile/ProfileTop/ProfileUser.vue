@@ -1,6 +1,7 @@
 <template>
-  <div
-    class="col col-lg-4 col-md-12 mx-2 rounded-4 px-0 border border-2 border-dark"
+  <div class=" col-lg-4 col-sm-12 mb-2">
+    <div
+    class="rounded-4 px-0 border border-2 border-dark"
     style="
       background: linear-gradient(
         180deg,
@@ -15,7 +16,7 @@
       class="mx-0 rounded-4 p-2 py-1  "
       style="background-color: transparent"
     >
-      <h3 style="color: white">Welcome Back, {{ userName }}</h3>
+      <h3 style="color: white">Welcome Back, <br> {{ userName }}</h3>
     </div>
     <hr class="border border-2 border-dark p-0 m-0">
     <!-- Daily Calorie Counter -->
@@ -29,14 +30,14 @@
           size="xl"
           style="color: orangered"
         />
-        <span class="mx-3 fs-3 fw-semibold" style="color: white"
+        <span class="mx-3 fs-4 fw-semibold" style="color: white"
           >Your <span style="color: #7a8cea">Calories</span> today:</span
         >
       </div>
       <div
         class="text-center text-white p-1 rounded-4 border border-2 bg-white mt-3"
       >
-        <div class="fw-semibold fs-1">
+        <div class="fw-semibold fs-3">
           <span style="color: black">{{ dailyCalories.toFixed(0) }} / </span>
           <span style="color: #7a8cea">{{ maxCalories.toFixed(0) }}</span>
         </div>
@@ -57,35 +58,11 @@
           <span class="fw-semibold"> Settings</span>
         </div>
       </router-link>
-      <!-- Old logout button -->
-      <!-- <div
-        class="m-2 border border-2 border-dark rounded-4 bg-light p-2"
-        style="width: 100px; cursor: pointer"
-        @click="logout"
-      >
-        <font-awesome-icon :icon="['fas', 'right-from-bracket']" />
-        <span class="fw-semibold">Logout</span>
-      </div> -->
       <Logout />
     </div>
-
-    <!-- <div
-      class="m-2 border border-dark border-2 rounded-4"
-      style="background-color: #303c6c"
-    >
-      <div
-        class="d-flex align-items-center justify-content-center rounded-4"
-        style="background-color: #ffb18d"
-      >
-        <font-awesome-icon :icon="['fas', 'fire']" size="xl" />
-        <span class="mx-3 fs-3 fw-semibold">Calorie Tracker</span>
-      </div>
-      <div class="text-center text-white p-2">
-        Daily Calories:
-        <div class="fw-semibold">{{ dailyCalories.toFixed(0) }} / {{ maxCalories.toFixed(0) }}</div>
-      </div>
-    </div> -->
   </div>
+</div>
+  
 </template>
 
 <script>

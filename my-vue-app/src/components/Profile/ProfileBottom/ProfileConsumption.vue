@@ -8,7 +8,7 @@
       class="mx-0 rounded-4 p-2 py-1 border border-2 border-dark text-center"
       style="color:white ;background: # linear-gradient(180deg, rgba(0, 0, 0, 0.51) 100%, rgba(157, 156, 183, 0.00) 100%, rgba(142, 120, 170, 0.00) 100%);"
     >
-      <h4>{{ formattedDate }}</h4>
+      <h4 class="fw-bold">{{ formattedDate }}</h4>
     </div>
     <!-- information on consumed recipe -->
     <div
@@ -16,8 +16,7 @@
       style="background-color: white"
     >
       <div
-        class="border rounded-4 text-center fs-5 fw-semibold mx-auto m-2 py-1"
-        style="background-color: #d6d4cd; width: 80%"
+        class="border rounded-4 text-center bg-success text-light fs-5 fw-semibold mx-auto m-2 py-1"
       >
         Nutritional Info:
       </div>
@@ -73,7 +72,7 @@ export default {
         dateToPassinFB
       );
       this.sortedMeal();
-      console.log(this.mealplan)
+      // console.log(this.mealplan)
       //  reset values
        this.totalCalories = 0;
        this.totalCarbs = 0;
@@ -108,15 +107,15 @@ export default {
       if(this.mealplan){
         if(this.mealplan.hasOwnProperty('breakfast')){
         sortedmeal['breakfast']=this.mealplan['breakfast'];
-      }
-      if(this.mealplan.hasOwnProperty('lunch')){
-        sortedmeal['lunch']=this.mealplan['lunch'];
-      }
-      if(this.mealplan.hasOwnProperty('dinner')){
-        sortedmeal['dinner']=this.mealplan['dinner'];
+        }
+        if(this.mealplan.hasOwnProperty('lunch')){
+          sortedmeal['lunch']=this.mealplan['lunch'];
+        }
+        if(this.mealplan.hasOwnProperty('dinner')){
+          sortedmeal['dinner']=this.mealplan['dinner'];
+        }
       }
       this.sortedmeal=sortedmeal;
-      }
     }
   },
   computed: {

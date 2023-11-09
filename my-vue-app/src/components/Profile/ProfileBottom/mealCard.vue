@@ -2,14 +2,14 @@
   <!-- <router-link :to="routerTO"> -->
     <div @click="selectRecipe" class="card cardStyle mx-2 px-0 my-2" :style="{'background-image':'url(' + recipeImage + ')','background-size': 'cover','background-position': 'center'}">
       <div class="mx-auto my-1">
-        <div class="text-center fw-semibold fs-5 text-black btn bg-secondary-subtle mx-auto p-0 m-0 border">{{ mealType.charAt(0).toUpperCase() + mealType.slice(1) }}</div>
+        <div class="text-center fw-semibold fs-5 text-dark btn mx-auto" style="background-color: #e0c580;"><span class="ribbon">{{ mealType.charAt(0).toUpperCase() + mealType.slice(1) }}</span></div>
       </div>
     
     <div class="recipeInfo p-1 px-2">
-      <div class="card-title fw-semibold" style="font-size: large; height: 50px">
+      <div class="card-title fw-semibold overflow-hidden" style="font-size: large; height: 50px; text-overflow: ellipsis;">
         {{ formattedRecipeName }}
       </div>
-      <p class="card-text text-warning ">{{cal.toFixed(1)}} kcal</p>
+      <p class="card-text text-warning fw-bold">{{cal.toFixed(0)}} kcal</p>
     </div>
   </div>
   <!-- </router-link> -->
@@ -79,4 +79,18 @@ export default {
   width: 100%;
 }
 
+.ribbon {
+  width: fit-content;
+  font-size: 14px;
+  padding: 4px;
+  position: absolute;
+  right: -10px;
+  padding: 5px;
+  top: -10px;
+  text-align: center;
+  border-radius: 25px;
+  background-color: #198754;
+  color: white;
+
+}
 </style>

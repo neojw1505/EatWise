@@ -1,8 +1,8 @@
 <template>
-  <div class="mx-auto " style="max-width: 1200px">
+  <div class="mx-auto " style="max-width: 1200px;">
     <div class="p-4 pt-2 shadow border rounded-4 my-3 d-flex mx-3 d-flex row" style="background-color: #e6ecf7;">
       
-      <div v-if="visibleItems.length > 0" class="d-flex flex-wrap" data-aos="fade-up" data-aos-duration="1000">
+      <div v-if="visibleItems.length > 0" class="d-flex flex-wrap justify-content-center" data-aos="fade-up" data-aos-duration="1000">
         <FindRecipePreviewCard
           v-for="item in visibleItems"
           :key="item.id"
@@ -22,7 +22,7 @@
       <div v-else class="mt-3 d-flex mx-auto justify-content-center">
       <div class="mx-auto">
         <div class="d-inline mx-auto">
-          <div class="spinner-border text-success mx-auto fs-1" role="status"></div>
+          <spinner/>
         </div>
       </div>
     </div>

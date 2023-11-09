@@ -12,7 +12,6 @@
     </div>
   <div class="section2">
     <ProfileBottom />
-    <Footer/>
   </div>
   <div class="mt-3">
           <Footer></Footer>

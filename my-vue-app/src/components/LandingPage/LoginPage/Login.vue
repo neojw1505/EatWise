@@ -1,10 +1,7 @@
 <template>
-  <div class="backgroundImage" style="display: flex; flex-direction: column; min-height: 100vh; justify-content: space-between ;">
-    <div>
-      <NavbarLandingPage />
-      <userFill data-aos="fade-up" data-aos-duration="1000"/>  
-    </div>
-    <Footer/>
+  <div class="backgroundImage" style="padding-top: 150px; padding-bottom: 150px;">  
+    <NavbarLandingPage/>
+    <userFill data-aos="fade-up" data-aos-duration="1000"/>  
   </div>
   
 
@@ -21,7 +18,6 @@ export default {
 <style scoped>
 .backgroundImage {
   width: 100%;
-  height: 100vh;
   object-fit: cover; /* Scales the image while maintaining aspect ratio */
   background-image: url(../Assets/background.png);
 }

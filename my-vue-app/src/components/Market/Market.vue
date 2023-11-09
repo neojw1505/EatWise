@@ -1,27 +1,27 @@
 <template>
-  <div class="overall">
-    <Navbar />
-    <div class="header">
+  <div>
+    <Navbar/>
+    <div>
         <!-- Add background Image -->
         <div class="background-img">
-          <h2 class="m-0 text-white fw-bold d-flex " style="padding-top:200px; padding-left:40px; font-size:60px">Market Place</h2>
+          <h2 class="m-0 text-white fw-bold d-flex header" >Market Place</h2>
         </div>
-      </div>
-    <div style="display: flex; flex-direction: column; min-height: 80vh; justify-content: space-between ;">
+    </div>
+    
       <div class="mx-auto mb-5" >
       <!-- catchy headline -->
       <h1 data-aos="fade-up" data-aos-duration="1000" class="my-3 text-center" style=" font-family: Georgia, 'Times New Roman', Times;">
       Find the  <span style="color: #7a8cea; font-weight: bold"> cheapest </span> ingredients available!
       </h1>
       <!-- input to search for ingredient -->
-      <div class="mx-3 mb-5 d-flex mx-auto col-6 align-items-center ">
+      <div class="mx-3 mb-5 d-flex mx-auto align-items-center" style="max-width: 800px;">
         <input v-model="marketSearchQuery" class="form-control border-3 rounded-5" placeholder="What are you looking for?"/>
         <div @click="fetchProducts" class="btnStyle btn my-1 ms-2 rounded-4" style="background-color: #7A8CEA;" >
           <font-awesome-icon :icon="['fas', 'magnifying-glass']" size="lg" />
         </div>
       </div>
       <!-- main body -->
-      <div class="mx-3 container row mx-auto" style="max-width: 1200px;">
+      <div class="mx-3 mx-auto row" style="max-width: 1200px; ">
         <!-- left side -->
         <div class="col-md-12 col-sm-12 col-lg-4 mb-5" v-if="showFilter">
             <MarketFilter @getInput="handleInput"/>
@@ -31,7 +31,7 @@
           <!-- sort by -->
           <h5 class="fw-bold text-black fs-3 mt-2">Sort By:</h5>
           <div>
-            <div class="d-flex flex-wrap mx-auto">
+            <div class="d-flex flex-wrap mx-auto"  style="max-width: 1200px;">
               <MarketSortBy
                 v-for="(bool,option) in sortOptions"
                 :key="option"
@@ -41,19 +41,14 @@
               />
               <button class=" btnStyle btn btn-dark rounded-4" @click="toggleFilter">
                 Apply Filter <font-awesome-icon :icon="['fas', 'filter']" /> 
-            </button>
+              </button>
             </div>
           </div>
 
           <MarketResult :result="dataResult"/>
         </div>
-      </div>
-      
-    </div>
-    <Footer></Footer>
-    </div>
-    
-
+          </div>
+        </div>
   </div>
 </template>
 
@@ -168,4 +163,15 @@ export default {
   background-repeat: no-repeat;
 }
 
+.header {
+  padding-top: 150px;
+  padding-left: 40px;
+  font-size: 60px;
+}
+
+@media screen and (max-width: 600px) {
+  h2.header {
+    font-size: 30px;
+  }
+}
 </style>

@@ -13,7 +13,7 @@
       }"
       :modules="modules"
       :breakpoints="{
-        '580': {
+        '575': {
           slidesPerView: 2,
           slidesPerGroup: 2,
         },

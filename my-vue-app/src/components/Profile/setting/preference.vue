@@ -123,7 +123,7 @@
  
     <!-- saved button -->
     <div class=" justify-content-end d-flex">
-      <button class="btn fw-bold mb-3" style="background-color: #f4976c" @click="changeSetting()">Save</button>
+      <button class="btn fw-bold mb-3" style="background-color: #7a8cea" @click="changeSetting()">Save</button>
     </div>
   </div>
 </template>
@@ -189,6 +189,11 @@ export default {
       }
       else{
         // add sweet alert
+          Swal.fire({
+          title: 'Error',
+          text: 'Cannnot add empty ingredient!',
+          icon: 'error',
+        });
       }
     },
     async removeIngredient(ingredient) {

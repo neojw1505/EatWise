@@ -1,5 +1,5 @@
 <template>
-  <div>
+  <div class="mb-5">
     <div class="col-8 mx-auto">
       <div class="card-body text-center py-4">
         <div class="card-title">
@@ -14,17 +14,17 @@
         </div>
         <div class="text-group">
           <div class="d-flex justify-content-between align-items-center">
-            <h1 class="col-6">{{ value }} {{ default_state ? "(kcal)" : "(kJ)" }}</h1>
-            <button class="btn btn-primary col-6" @click="toggleConversion()">
+            <h3 class="col-6">{{ value }} {{ default_state ? "(kcal)" : "(kJ)" }}</h3>
+            <button class="btn btn-primary mx-auto p-2 rounded-3" @click="toggleConversion()">
               {{ default_state ? "Calories" : "Kilojoules" }}
             </button>
           </div>
         </div>
       </div>
     </div>
-    <div class="mx-auto text-center">
+    <div v-if="value!='Hmmm...'" class="mx-auto text-center mt-5 d-flex justify-content-center">
       <button
-        class="btn my-5 mx-2 px-5 fw-semibold"
+        class="btn  mx-2  fw-semibold"
         style="background-color: #7A8CEA"
         type="submit"
         @click="goPrevious"
@@ -32,7 +32,7 @@
         Previous
       </button>
       <button
-        class="btn my-5 mx-2 px-5 fw-semibold"
+        class="btn mx-2  fw-semibold"
         style="background-color: #7A8CEA"
         type="submit"
         @click="goNext"
@@ -49,16 +49,16 @@ export default {
   data() {
     return {
       calorie: '',
-      value: "Calculating...",
+      value: "Hmmm...",
       default_state: true,
     };
   },
   methods: {
     toggleConversion() {
       if (this.default_state) {
-        this.value = (this.value * 4.18).toFixed(2);
+        this.value = (this.value * 4.18).toFixed(0);
       } else {
-        this.value = (this.value / 4.18).toFixed(2);
+        this.value = (this.value / 4.18).toFixed(0);
       }
       this.default_state = !this.default_state;
     },
@@ -87,6 +87,7 @@ export default {
   },
   created() {
     this.getDailyCaloriesMacros()
+    window.scrollTo({ top: 0, behavior: "smooth" });
   },
 };
 </script>

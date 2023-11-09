@@ -5,9 +5,7 @@
     <!-- Display the image or a spinner -->
   <div class="card align-items-center " v-if="loading" style="height: 540px;">
     <div class="d-flex align-items-center" style="height: 100%;">
-      <div class="spinner-border " role="status">
-        <span class="visually-hidden">Loading...</span>
-      </div>
+      <spinnerMealPlanner />
   </div>
   </div>
 
@@ -23,13 +21,13 @@
         >
           <font-awesome-icon
             v-if="isBookmarked"
-            :icon="['fas', 'bookmark']"
+            :icon="['fas', 'heart']"
             size="2xl"
-            style="color: #ffff00"
+            style="color: #ff0000"
           />
           <font-awesome-icon
             v-else
-            :icon="['fas', 'bookmark']"
+            :icon="['fas', 'heart']"
             size="2xl"
             style="color: #ffffff"
           />
@@ -79,9 +77,9 @@
       </button>
 
       <button class="btn rounded-4 btn-fail " @click="toggleConsumedState(currentDate)" :class="{ 'consumed-btn-green': isConsumed }">
-        {{ isConsumed ? 'Eaten' : 'Not Eaten' }}        
+        {{ isConsumed ? 'Consumed!' : 'Consume Now' }}        
         <font-awesome-icon v-if="isConsumed" :icon="['fas', 'check']" style="color: #ffffff;" size="lg" />
-        <font-awesome-icon v-else :icon="['fas', 'xmark']" style="color: #ffffff;" size="lg" />
+        <font-awesome-icon v-else :icon="['fas', 'cookie-bite']" style="color: #ffffff;" size="lg" />
       </button>
     </div>
   </div>
@@ -166,7 +164,7 @@ export default {
       let formattedTime = `${hours}:${minutes}:${seconds}`;
       return formattedTime;
     },
-   computedCal(){
+  computedCal(){
       return this.nutritionData.calories ?? this.recipeData['nutrition']['nutrients'][0].amount.toFixed(0)
     }
   },
@@ -306,7 +304,7 @@ export default {
 </script>
 
 <style scoped>
-svg.fa-bookmark {
+svg.fa-heart {
   stroke: black;
   stroke-width: 30;
 }
@@ -331,7 +329,7 @@ svg.fa-bookmark {
   padding: 4px 8px;
   border-radius: 10px;
   color: #000000;
-  background-color: #7A8CEA;
+  background-color: #fff;
   margin-left: 5px;
 }
 .card-footer {
@@ -346,13 +344,16 @@ svg.fa-bookmark {
   color: #303c6c;
 }
 .btn-fail {
-  background-color: #d7191c;
+  background-color: rgb(215, 136, 25);
   color: #fff;
+  animation: pulsate 2s alternate infinite ; /* Add an animation to the overlay */
 }
 .btn-fail:hover {
   background-color: #fff;
   color: #d7191c;
+
 }
+
 .consumed-btn-green {
   background-color: #007459;
   color: #fff;
@@ -391,7 +392,7 @@ svg.fa-bookmark {
     transform: scale(1);
   }
   50% {
-    transform: scale(1.1);
+    transform: scale(1.06);
   }
   100% {
     transform: scale(1);

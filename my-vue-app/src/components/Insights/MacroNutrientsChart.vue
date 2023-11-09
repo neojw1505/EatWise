@@ -1,11 +1,12 @@
 <template>
   <div class="Chart-Container container bg-white">
+    <div class="text-center fw-bold pt-3"><h2>Nutrients: Last 7 Days</h2></div>
     <div class="row">
       <div class="col-md-8 col-sm-12 align-items-center mx-auto">
         <canvas id="pieChart" class="mx-auto my-2" style="max-height: 300px;"></canvas>
       </div>
       <div class="col my-auto">
-        <div class="legend-container bg-white">
+        <div class="legend-container bg-white mb-2">
           <ul class="list-group">
             <li v-for="(item, index) in sortedData" :key="index" class="list-group-item d-flex justify-content-between align-items-center">
               <div class="d-flex align-items-center">
