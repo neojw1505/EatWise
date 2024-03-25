@@ -12,7 +12,7 @@ from firebase_admin import credentials
 from firebase_admin import db
 
 # Initialize Firebase Admin SDK with your service account credentials
-cred = credentials.Certificate('WAD_Project/my-vue-app/backend/webscraping/wad2-9fe8a-firebase-adminsdk-191yv-f83f483caf.json')
+cred = credentials.Certificate('wad2-9fe8a-firebase-adminsdk-191yv-f83f483caf.json')
 firebase_admin.initialize_app(cred, {
     'databaseURL': "https://wad2-9fe8a-default-rtdb.asia-southeast1.firebasedatabase.app"
 })

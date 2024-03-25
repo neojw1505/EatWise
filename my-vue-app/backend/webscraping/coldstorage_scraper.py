@@ -7,9 +7,11 @@ from selenium.webdriver.support.ui import WebDriverWait
 from selenium.webdriver.support import expected_conditions as EC
 from selenium.common.exceptions import TimeoutException
 from datetime import datetime
+import shutil
+
 import time
 
-chromedriver_path = 'C:\Windows\System32\chromedriver.exe'
+chromedriver_path = shutil.which('chromedriver')
 # Create a ChromeDriver service with the specified executable path
 service = Service(chromedriver_path)
 driver = webdriver.Chrome(service=service)
