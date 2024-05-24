@@ -1,7 +1,7 @@
 
 # EatWise
 
-# WAD_Project
+# EatWise Meal Recommendation App
 <details>
   <summary>Table of Contents</summary>
   <ol>
